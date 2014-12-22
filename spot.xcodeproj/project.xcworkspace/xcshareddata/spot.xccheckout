@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>8425E137-2A72-4317-8ABF-C2D583F03B9E</string>
+	<key>IDESourceControlProjectName</key>
+	<string>spot</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>DB6D3644CAAB4CDD32F375D56224C81B2E13834A</key>
+		<string>https://github.com/starboychina/Spot.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>spot.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>DB6D3644CAAB4CDD32F375D56224C81B2E13834A</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/starboychina/Spot.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>DB6D3644CAAB4CDD32F375D56224C81B2E13834A</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>DB6D3644CAAB4CDD32F375D56224C81B2E13834A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Spot</string>
+		</dict>
+	</array>
+</dict>
+</plist>
