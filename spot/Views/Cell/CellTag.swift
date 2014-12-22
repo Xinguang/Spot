@@ -1,24 +1,17 @@
 //
-//  MessageCell.swift
+//  CellTag.swift
 //  spot
 //
-//  Created by Hikaru on 2014/11/27.
+//  Created by Hikaru on 2014/12/22.
 //  Copyright (c) 2014年 Hikaru. All rights reserved.
 //
 
 import Foundation
-import UIKit
-
-class MessageCell:UITableViewCell{
-    
+class CellTag: UICollectionViewCell {
+    @IBOutlet var titleLabel: UILabel!
     @IBOutlet var icon: UIImageView!
-    @IBOutlet weak var titleLable: UILabel!
-    @IBOutlet weak var subTitleLable: UILabel!
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-    }
-    
+    var IsCheckeded : Bool = false;
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -34,12 +27,12 @@ class MessageCell:UITableViewCell{
 
     }
     
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    func checked (ischeck:Bool){
+        self.IsCheckeded = ischeck
+        if(ischeck){
+            self.icon.image = UIImage(named: "icon_checkmark")
+        }else{
+            self.icon.image = UIImage(named: "+")
+        }
     }
-    
-    func endEdit(sender:AnyObject){
-        sender.resignFirstResponder()
-    }
-    
 }

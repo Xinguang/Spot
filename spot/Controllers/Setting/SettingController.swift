@@ -57,16 +57,16 @@ class SettingController: UITableViewController, UITableViewDataSource, UITableVi
         let datarow = self.msgRow[indexPath.row];
         
         cell.accessoryView = nil
-        cell.icon.image = nil
+        cell.imageView?.image = nil
         switch indexPath.row {
         case 0:
-            cell.icon.image = datarow.image;
+            cell.imageView?.image = datarow.image;
         case 2,3,4:
             let switchview = UISwitch(frame: CGRectZero)
             cell.accessoryView = switchview;
-            cell.icon.image = nil
+            cell.imageView?.image = nil
         default:
-            cell.icon.image = nil
+            cell.imageView?.image = nil
         }
         
         

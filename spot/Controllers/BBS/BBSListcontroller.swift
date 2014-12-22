@@ -50,7 +50,7 @@ class BBSListcontroller :CommonController, UITableViewDataSource, UITableViewDel
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell = tableView .dequeueReusableCellWithIdentifier("cell_message", forIndexPath: indexPath) as MessageCell
         let datarow = self.msgRow[indexPath.row];
-        cell.icon.image = datarow.image
+        cell.imageView?.image = datarow.image
         cell.titleLable.text = datarow.title;
         cell.subTitleLable.text = datarow.subtitle;
         return cell

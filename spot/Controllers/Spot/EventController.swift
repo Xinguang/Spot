@@ -88,7 +88,7 @@ class EventController: CommonController,MKMapViewDelegate, UITableViewDataSource
         
         let datarow = self.msgRow[indexPath.row];
         
-        cell.icon.image = datarow.image
+        cell.imageView?.image = datarow.image
         cell.titleLable.text = datarow.title
         return cell
         /*

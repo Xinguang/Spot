@@ -131,52 +131,46 @@
                                 <rect key="frame" x="0.0" y="250" width="600" height="350"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell_message" rowHeight="50" id="TRC-ek-heW" customClass="MessageCell" customModule="spot" customModuleProvider="target">
-                                        <rect key="frame" x="10" y="261" width="600" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="cell_message" tableViewCell="TRC-ek-heW" id="E8J-CQ-cyi">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell_message" rowHeight="50" id="Yvb-oO-psp" customClass="MessageCell" customModule="spot" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="cell_message" tableViewCell="Yvb-oO-psp" id="Q32-6L-rJL">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="icon" image="icon_qq" translatesAutoresizingMaskIntoConstraints="NO" id="aEW-xZ-FLy">
-                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                    <variation key="heightClass=regular" fixedFrame="YES">
-                                                        <rect key="frame" x="18" y="4" width="37" height="42"/>
-                                                    </variation>
-                                                </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="株式会社イー・ビジネス" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pLb-x9-OsA">
-                                                    <rect key="frame" x="97" y="0.0" width="150" height="59"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="150" id="9Pf-RW-rl6"/>
-                                                    </constraints>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="株式会社イー・ビジネス" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JY6-Kv-n8v">
+                                                    <rect key="frame" x="70" y="5" width="520" height="16"/>
                                                     <fontDescription key="fontDescription" name="HiraKakuProN-W6" family="Hiragino Kaku Gothic ProN" pointSize="16"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <variation key="heightClass=regular" fixedFrame="YES">
-                                                        <rect key="frame" x="78" y="10" width="459" height="30"/>
+                                                        <rect key="frame" x="78" y="0.0" width="459" height="30"/>
+                                                    </variation>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" text="株式会社イー・ビジネス" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Oz-mA-s64">
+                                                    <rect key="frame" x="88" y="26" width="494" height="10"/>
+                                                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="13"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <variation key="heightClass=regular" fixedFrame="YES">
+                                                        <rect key="frame" x="78" y="0.0" width="459" height="30"/>
                                                     </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="pLb-x9-OsA" firstAttribute="top" secondItem="E8J-CQ-cyi" secondAttribute="top" id="2wb-7I-ZH8"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="pLb-x9-OsA" secondAttribute="bottom" constant="-18" id="cDC-Uf-fjz"/>
-                                                <constraint firstItem="pLb-x9-OsA" firstAttribute="leading" secondItem="E8J-CQ-cyi" secondAttribute="leadingMargin" constant="89" id="yxc-6c-T6c"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="4Oz-mA-s64" secondAttribute="bottom" constant="5" id="6hT-4p-C9G"/>
+                                                <constraint firstItem="JY6-Kv-n8v" firstAttribute="top" secondItem="Q32-6L-rJL" secondAttribute="top" constant="5" id="J1X-eS-LVM"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="4Oz-mA-s64" secondAttribute="trailing" constant="10" id="UhV-fj-vor"/>
+                                                <constraint firstItem="4Oz-mA-s64" firstAttribute="leading" secondItem="Q32-6L-rJL" secondAttribute="leadingMargin" constant="80" id="cka-4I-j2G"/>
+                                                <constraint firstItem="4Oz-mA-s64" firstAttribute="top" secondItem="JY6-Kv-n8v" secondAttribute="bottom" constant="5" id="jJl-cS-qyd"/>
+                                                <constraint firstItem="JY6-Kv-n8v" firstAttribute="leading" secondItem="Q32-6L-rJL" secondAttribute="leading" constant="70" id="xss-Kg-nNP"/>
+                                                <constraint firstAttribute="trailing" secondItem="JY6-Kv-n8v" secondAttribute="trailing" constant="10" id="z6Y-Qa-rCS"/>
                                             </constraints>
-                                            <variation key="default">
-                                                <mask key="subviews">
-                                                    <exclude reference="aEW-xZ-FLy"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=regular">
-                                                <mask key="subviews">
-                                                    <include reference="aEW-xZ-FLy"/>
-                                                </mask>
-                                            </variation>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <outlet property="icon" destination="aEW-xZ-FLy" id="HZ6-8L-R6A"/>
-                                            <outlet property="titleLable" destination="pLb-x9-OsA" id="qcP-Yc-Qcr"/>
+                                            <outlet property="subTitleLable" destination="4Oz-mA-s64" id="g68-Y1-9MP"/>
+                                            <outlet property="titleLable" destination="JY6-Kv-n8v" id="eQX-t2-HXA"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -260,7 +254,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="dga-6L-X7t">
-                                <rect key="frame" x="0.0" y="214" width="600" height="337"/>
+                                <rect key="frame" x="0.0" y="194" width="600" height="357"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell_message" rowHeight="50" id="Ku3-ix-m2Q" customClass="MessageCell" customModule="spot" customModuleProvider="target">
@@ -301,7 +295,7 @@
                                 </connections>
                             </tableView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_event" translatesAutoresizingMaskIntoConstraints="NO" id="LbB-AL-Xsl">
-                                <rect key="frame" x="0.0" y="64" width="600" height="150"/>
+                                <rect key="frame" x="0.0" y="44" width="600" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="1Oy-Oh-fQ3"/>
                                 </constraints>
@@ -376,103 +370,14 @@
                     </tabBar>
                     <connections>
                         <segue destination="0Ye-QS-38e" kind="relationship" relationship="viewControllers" id="JSL-bV-eYZ"/>
-                        <segue destination="AAV-iv-rKR" kind="relationship" relationship="viewControllers" id="2hO-ku-EOT"/>
+                        <segue destination="uqH-dy-EV3" kind="relationship" relationship="viewControllers" id="O3J-rF-r6N"/>
                         <segue destination="4f9-ff-PoQ" kind="relationship" relationship="viewControllers" id="FCS-Yb-q2b"/>
                         <segue destination="WXp-FB-aqP" kind="relationship" relationship="viewControllers" id="qef-6f-K8o"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fop-Qn-SMr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="698" y="1112.25"/>
-        </scene>
-        <!--連絡先-->
-        <scene sceneID="APY-mT-X4H">
-            <objects>
-                <tableViewController storyboardIdentifier="view_navigation_contacts_root" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eAU-hA-dj9" customClass="ContactsTableController" customModule="spot" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MessageList" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="53" sectionHeaderHeight="22" sectionFooterHeight="22" id="WqN-24-XGH">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="dhV-HJ-xIL" customClass="SearchBar" customModule="spot" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="64" width="600" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="eAU-hA-dj9" id="YZG-98-UFk"/>
-                            </connections>
-                        </searchBar>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell_message" rowHeight="50" id="nJL-bK-73u" customClass="MessageCell" customModule="spot" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="22" width="320" height="80"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="cell_message" tableViewCell="nJL-bK-73u" id="xoA-Wa-5e2">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="icon" image="icon_qq" translatesAutoresizingMaskIntoConstraints="NO" id="NUT-b6-UdL">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                            <variation key="heightClass=regular" fixedFrame="YES">
-                                                <rect key="frame" x="18" y="4" width="37" height="42"/>
-                                            </variation>
-                                        </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="株式会社イー・ビジネス" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xQ5-1g-yQu">
-                                            <rect key="frame" x="97" y="0.0" width="150" height="59"/>
-                                            <fontDescription key="fontDescription" name="HiraKakuProN-W6" family="Hiragino Kaku Gothic ProN" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <variation key="heightClass=regular" fixedFrame="YES">
-                                                <rect key="frame" x="78" y="0.0" width="459" height="30"/>
-                                            </variation>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="株式会社イー・ビジネス" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qhe-Kn-wtQ">
-                                            <rect key="frame" x="97" y="0.0" width="150" height="59"/>
-                                            <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="14"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <variation key="heightClass=regular" fixedFrame="YES">
-                                                <rect key="frame" x="100" y="19" width="459" height="30"/>
-                                            </variation>
-                                        </label>
-                                    </subviews>
-                                    <variation key="default">
-                                        <mask key="subviews">
-                                            <exclude reference="NUT-b6-UdL"/>
-                                            <exclude reference="qhe-Kn-wtQ"/>
-                                        </mask>
-                                    </variation>
-                                    <variation key="heightClass=regular">
-                                        <mask key="subviews">
-                                            <include reference="NUT-b6-UdL"/>
-                                            <include reference="qhe-Kn-wtQ"/>
-                                        </mask>
-                                    </variation>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <outlet property="icon" destination="NUT-b6-UdL" id="MJG-Ta-GpA"/>
-                                    <outlet property="subTitleLable" destination="qhe-Kn-wtQ" id="PeO-wb-x6J"/>
-                                    <outlet property="titleLable" destination="xQ5-1g-yQu" id="CUM-fW-EEW"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="eAU-hA-dj9" id="Qot-aD-PoJ"/>
-                            <outlet property="delegate" destination="eAU-hA-dj9" id="Ooo-zX-fZz"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="連絡先" id="NON-Kv-rNf"/>
-                    <connections>
-                        <segue destination="MBy-4L-kUt" kind="show" identifier="contacts_person" id="fDP-WA-JLD"/>
-                        <segue destination="GUf-0r-a64" kind="show" identifier="contacts_nearly" id="uN1-VA-YRi"/>
-                        <segue destination="HuU-BB-Kx7" kind="show" identifier="contacts_group" id="bT0-pt-Nvc"/>
-                        <segue destination="pqt-uK-HkZ" kind="show" identifier="contacts_weixinqq" id="Q0d-qn-Jaf"/>
-                        <segue destination="9ac-xo-17L" kind="show" identifier="contacts_event" id="Ejh-6g-vfe"/>
-                        <segue destination="reb-Ru-rjV" kind="show" identifier="contacts_bbs" id="DV8-tV-bdY"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1Qp-Cx-qNQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2899" y="-69.75"/>
+            <point key="canvasLocation" x="712" y="1112"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="brh-l8-22W">
@@ -515,12 +420,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="icon" image="icon_qq" translatesAutoresizingMaskIntoConstraints="NO" id="tA2-Ek-FQc">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                            <variation key="heightClass=regular" fixedFrame="YES">
-                                                <rect key="frame" x="18" y="4" width="37" height="42"/>
-                                            </variation>
-                                        </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="株式会社イー・ビジネス" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oZo-JF-Ej9">
                                             <rect key="frame" x="97" y="0.0" width="150" height="59"/>
                                             <fontDescription key="fontDescription" name="HiraKakuProN-W6" family="Hiragino Kaku Gothic ProN" pointSize="16"/>
@@ -542,20 +441,17 @@
                                     </subviews>
                                     <variation key="default">
                                         <mask key="subviews">
-                                            <exclude reference="tA2-Ek-FQc"/>
                                             <exclude reference="OUO-Zv-S1I"/>
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular">
                                         <mask key="subviews">
-                                            <include reference="tA2-Ek-FQc"/>
                                             <include reference="OUO-Zv-S1I"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <outlet property="icon" destination="tA2-Ek-FQc" id="cKl-Mz-9CA"/>
                                     <outlet property="subTitleLable" destination="OUO-Zv-S1I" id="ok7-Te-PoW"/>
                                     <outlet property="titleLable" destination="oZo-JF-Ej9" id="YKJ-q9-CFq"/>
                                     <segue destination="pqt-uK-HkZ" kind="show" id="Dzy-5k-4mk"/>
@@ -570,7 +466,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L5O-03-cUL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4671" y="-569"/>
+            <point key="canvasLocation" x="5279" y="-1081"/>
         </scene>
         <!--Spot Controller-->
         <scene sceneID="lFb-t7-XOS">
@@ -643,24 +539,6 @@
             </objects>
             <point key="canvasLocation" x="4567" y="488"/>
         </scene>
-        <!--連絡先-->
-        <scene sceneID="rF4-Tt-5Iw">
-            <objects>
-                <navigationController storyboardIdentifier="view_navigation_contacts" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AAV-iv-rKR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="連絡先" image="icon_contact" id="bgJ-kT-Xvm"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3HK-PP-fmM">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="eAU-hA-dj9" kind="relationship" relationship="rootViewController" id="b8G-BU-Mih"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Syg-3g-BI2" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2131" y="-69.75"/>
-        </scene>
         <!--設定-->
         <scene sceneID="XAQ-ec-i5c">
             <objects>
@@ -678,21 +556,15 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell_message" rowHeight="50" id="N9A-fx-atT" customClass="MessageCell" customModule="spot" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell_message" rowHeight="50" id="QFG-Zz-N7k" customClass="MessageCell" customModule="spot" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="22" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="cell_message" tableViewCell="N9A-fx-atT" id="V9p-6z-kwB">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="cell_message" tableViewCell="QFG-Zz-N7k" id="iKn-Y0-mzt">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="icon" image="icon_qq" translatesAutoresizingMaskIntoConstraints="NO" id="xga-Mj-UCz">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                            <variation key="heightClass=regular" fixedFrame="YES">
-                                                <rect key="frame" x="18" y="4" width="37" height="42"/>
-                                            </variation>
-                                        </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="株式会社イー・ビジネス" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CIt-ap-PYB">
-                                            <rect key="frame" x="97" y="0.0" width="150" height="59"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="株式会社イー・ビジネス" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w8Y-gi-ewf">
+                                            <rect key="frame" x="70" y="5" width="520" height="16"/>
                                             <fontDescription key="fontDescription" name="HiraKakuProN-W6" family="Hiragino Kaku Gothic ProN" pointSize="16"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -700,34 +572,30 @@
                                                 <rect key="frame" x="78" y="0.0" width="459" height="30"/>
                                             </variation>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="株式会社イー・ビジネス" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kHH-go-VUt">
-                                            <rect key="frame" x="97" y="0.0" width="150" height="59"/>
-                                            <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="14"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" text="株式会社イー・ビジネス" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9vg-hZ-aEL">
+                                            <rect key="frame" x="88" y="26" width="494" height="10"/>
+                                            <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="13"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <variation key="heightClass=regular" fixedFrame="YES">
-                                                <rect key="frame" x="100" y="19" width="459" height="30"/>
+                                                <rect key="frame" x="78" y="0.0" width="459" height="30"/>
                                             </variation>
                                         </label>
                                     </subviews>
-                                    <variation key="default">
-                                        <mask key="subviews">
-                                            <exclude reference="xga-Mj-UCz"/>
-                                            <exclude reference="kHH-go-VUt"/>
-                                        </mask>
-                                    </variation>
-                                    <variation key="heightClass=regular">
-                                        <mask key="subviews">
-                                            <include reference="xga-Mj-UCz"/>
-                                            <include reference="kHH-go-VUt"/>
-                                        </mask>
-                                    </variation>
+                                    <constraints>
+                                        <constraint firstItem="9vg-hZ-aEL" firstAttribute="leading" secondItem="iKn-Y0-mzt" secondAttribute="leadingMargin" constant="80" id="0HN-PH-yVo"/>
+                                        <constraint firstAttribute="trailing" secondItem="w8Y-gi-ewf" secondAttribute="trailing" constant="10" id="Afh-hk-Spx"/>
+                                        <constraint firstItem="w8Y-gi-ewf" firstAttribute="leading" secondItem="iKn-Y0-mzt" secondAttribute="leading" constant="70" id="PIA-zN-YBm"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="9vg-hZ-aEL" secondAttribute="bottom" constant="5" id="XGR-4n-gUL"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="9vg-hZ-aEL" secondAttribute="trailing" constant="10" id="hFg-3J-0Jb"/>
+                                        <constraint firstItem="w8Y-gi-ewf" firstAttribute="top" secondItem="iKn-Y0-mzt" secondAttribute="top" constant="5" id="yEW-gz-H06"/>
+                                        <constraint firstItem="9vg-hZ-aEL" firstAttribute="top" secondItem="w8Y-gi-ewf" secondAttribute="bottom" constant="5" id="zam-lo-EEy"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <outlet property="icon" destination="xga-Mj-UCz" id="AWj-3N-EB0"/>
-                                    <outlet property="subTitleLable" destination="kHH-go-VUt" id="AZC-ru-Kx1"/>
-                                    <outlet property="titleLable" destination="CIt-ap-PYB" id="Qyn-AC-YmO"/>
+                                    <outlet property="subTitleLable" destination="9vg-hZ-aEL" id="ZM9-U0-0C3"/>
+                                    <outlet property="titleLable" destination="w8Y-gi-ewf" id="war-r1-4F0"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -738,7 +606,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="設定" id="BhZ-lD-e0X"/>
                     <connections>
-                        <segue destination="eAU-hA-dj9" kind="show" identifier="test_fav" id="vjW-dW-MdB"/>
                         <segue destination="uyq-1h-Oli" kind="show" identifier="setting_pofile" id="4Cw-zQ-zYB"/>
                     </connections>
                 </tableViewController>
@@ -852,37 +719,51 @@ COasoeOBuA
                                     <segue destination="LMu-72-0kY" kind="unwind" unwindAction="unwindToSegue:" id="ntv-aO-WrT"/>
                                 </connections>
                             </button>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="AqA-j9-uTp">
-                                <rect key="frame" x="0.0" y="390" width="600" height="130"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="AqA-j9-uTp" customClass="HorizontalCollectionView" customModule="spot" customModuleProvider="target">
+                                <rect key="frame" x="10" y="390" width="580" height="130"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="12a-OH-MOE">
-                                    <size key="itemSize" width="69" height="70"/>
+                                    <size key="itemSize" width="100" height="47"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell_tag" id="b1y-8q-CbG">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell_tag" id="b1y-8q-CbG" customClass="CellTag" customModule="spot" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="69" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="47"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tag" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSl-nz-QoV">
-                                                    <rect key="frame" x="8" y="24" width="25" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tag" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSl-nz-QoV">
+                                                    <rect key="frame" x="5" y="13" width="90" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Isa-qZ-ta0">
+                                                    <rect key="frame" x="80" y="27" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="RJd-Q3-Cjb"/>
+                                                        <constraint firstAttribute="height" constant="20" id="e73-X3-xqY"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="NSl-nz-QoV" firstAttribute="top" secondItem="b1y-8q-CbG" secondAttribute="topMargin" constant="16" id="3uz-OV-GC5"/>
-                                            <constraint firstItem="NSl-nz-QoV" firstAttribute="leading" secondItem="b1y-8q-CbG" secondAttribute="leadingMargin" id="AGC-rR-f2E"/>
+                                            <constraint firstAttribute="centerY" secondItem="NSl-nz-QoV" secondAttribute="centerY" id="Cs7-tk-6Pe"/>
+                                            <constraint firstAttribute="trailing" secondItem="Isa-qZ-ta0" secondAttribute="trailing" id="CtV-Bp-jjn"/>
+                                            <constraint firstAttribute="bottom" secondItem="Isa-qZ-ta0" secondAttribute="bottom" id="GoW-Fr-zHH"/>
+                                            <constraint firstItem="NSl-nz-QoV" firstAttribute="leading" secondItem="b1y-8q-CbG" secondAttribute="leading" constant="5" id="Kdc-cM-GSk"/>
+                                            <constraint firstAttribute="trailing" secondItem="NSl-nz-QoV" secondAttribute="trailing" constant="5" id="VHJ-6m-ftZ"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="icon" destination="Isa-qZ-ta0" id="dUQ-u2-MNd"/>
+                                            <outlet property="titleLabel" destination="NSl-nz-QoV" id="tzs-V5-5i1"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -908,7 +789,7 @@ COasoeOBuA
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="30M-5m-zpT" firstAttribute="top" secondItem="AqA-j9-uTp" secondAttribute="bottom" constant="20" id="57D-4o-YqC"/>
-                            <constraint firstAttribute="trailing" secondItem="AqA-j9-uTp" secondAttribute="trailing" id="B3Y-T3-nWc"/>
+                            <constraint firstAttribute="trailing" secondItem="AqA-j9-uTp" secondAttribute="trailing" constant="10" id="B3Y-T3-nWc"/>
                             <constraint firstItem="C7g-N5-tVG" firstAttribute="top" secondItem="AqA-j9-uTp" secondAttribute="bottom" constant="20" id="EZy-O8-dmj"/>
                             <constraint firstAttribute="trailing" secondItem="YVz-gO-5G8" secondAttribute="trailing" id="Gxc-mI-OmG"/>
                             <constraint firstItem="uQo-pc-e4y" firstAttribute="top" secondItem="AqA-j9-uTp" secondAttribute="bottom" constant="80" id="MKV-5K-Drd"/>
@@ -922,7 +803,7 @@ COasoeOBuA
                             <constraint firstAttribute="centerX" secondItem="30M-5m-zpT" secondAttribute="centerX" id="gxg-FA-QzO"/>
                             <constraint firstItem="CJ4-Q0-OIy" firstAttribute="top" secondItem="6bv-ub-Xyg" secondAttribute="top" id="i2p-ac-9t2"/>
                             <constraint firstItem="AqA-j9-uTp" firstAttribute="top" secondItem="YVz-gO-5G8" secondAttribute="bottom" id="l0k-xK-wEb"/>
-                            <constraint firstItem="AqA-j9-uTp" firstAttribute="leading" secondItem="6bv-ub-Xyg" secondAttribute="leading" id="rQs-VO-lXa"/>
+                            <constraint firstItem="AqA-j9-uTp" firstAttribute="leading" secondItem="6bv-ub-Xyg" secondAttribute="leading" constant="10" id="rQs-VO-lXa"/>
                             <constraint firstItem="YVz-gO-5G8" firstAttribute="top" secondItem="wxc-hZ-9hx" secondAttribute="bottom" constant="10" id="sok-bF-Vwf"/>
                             <constraint firstAttribute="centerX" secondItem="D5a-qv-r98" secondAttribute="centerX" constant="100" id="vLs-wX-IZV"/>
                         </constraints>
@@ -933,12 +814,107 @@ COasoeOBuA
                         <outlet property="btnNext" destination="C7g-N5-tVG" id="A4l-cE-XlP"/>
                         <outlet property="collectionView" destination="AqA-j9-uTp" id="Ljd-e8-McP"/>
                         <outlet property="icon" destination="wxc-hZ-9hx" id="hGr-t5-t7e"/>
+                        <segue destination="Uu0-fA-SuR" kind="show" identifier="show_tags" id="TYi-p3-NCJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WtQ-qi-vy4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="SKc-qq-oaQ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-1057" y="4019"/>
+        </scene>
+        <!--Tag Controller-->
+        <scene sceneID="fEd-1U-RAP">
+            <objects>
+                <viewController id="Uu0-fA-SuR" customClass="TagController" customModule="spot" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9oR-Sr-fXD"/>
+                        <viewControllerLayoutGuide type="bottom" id="X6V-9T-9gj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fVL-q3-rP0">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bLz-QT-vhq">
+                                <rect key="frame" x="10" y="0.0" width="580" height="520"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="egY-1t-VTK">
+                                    <size key="itemSize" width="100" height="47"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell_tag" id="8Ra-dL-xh0" customClass="CellTag" customModule="spot" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="47"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tag" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Klt-xs-dUD">
+                                                    <rect key="frame" x="5" y="13" width="90" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TLD-Nm-nlF">
+                                                    <rect key="frame" x="80" y="27" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="hPT-yH-U1c"/>
+                                                        <constraint firstAttribute="width" constant="20" id="l9g-uv-1AG"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="TLD-Nm-nlF" secondAttribute="bottom" id="3Kf-2D-Wk0"/>
+                                            <constraint firstAttribute="trailing" secondItem="Klt-xs-dUD" secondAttribute="trailing" constant="5" id="5Yk-Kn-tSc"/>
+                                            <constraint firstItem="Klt-xs-dUD" firstAttribute="leading" secondItem="8Ra-dL-xh0" secondAttribute="leading" constant="5" id="VzO-16-HHd"/>
+                                            <constraint firstAttribute="trailing" secondItem="TLD-Nm-nlF" secondAttribute="trailing" id="gzN-yk-RpM"/>
+                                            <constraint firstAttribute="centerY" secondItem="Klt-xs-dUD" secondAttribute="centerY" id="nco-Cb-oH8"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="icon" destination="TLD-Nm-nlF" id="JIb-EL-x3i"/>
+                                            <outlet property="titleLabel" destination="Klt-xs-dUD" id="K46-M9-ysz"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="Uu0-fA-SuR" id="Xzn-LH-epW"/>
+                                    <outlet property="delegate" destination="Uu0-fA-SuR" id="FKf-JU-usQ"/>
+                                </connections>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ATo-f2-aaq">
+                                <rect key="frame" x="150" y="540" width="300" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="IP7-7m-0Ey"/>
+                                    <constraint firstAttribute="height" constant="44" id="f8M-J3-vsw"/>
+                                </constraints>
+                                <state key="normal" title="保存" backgroundImage="btn_green">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="SKc-qq-oaQ" kind="unwind" unwindAction="unwindForTags:" id="eqa-zP-LAm"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="ATo-f2-aaq" secondAttribute="centerX" id="DvA-CD-Hl2"/>
+                            <constraint firstItem="bLz-QT-vhq" firstAttribute="leading" secondItem="fVL-q3-rP0" secondAttribute="leading" constant="10" id="PFW-be-OwY"/>
+                            <constraint firstItem="ATo-f2-aaq" firstAttribute="top" secondItem="bLz-QT-vhq" secondAttribute="bottom" constant="20" id="cJ3-vq-IuY"/>
+                            <constraint firstItem="X6V-9T-9gj" firstAttribute="top" secondItem="bLz-QT-vhq" secondAttribute="bottom" constant="80" id="gPa-tJ-uoW"/>
+                            <constraint firstItem="bLz-QT-vhq" firstAttribute="top" secondItem="9oR-Sr-fXD" secondAttribute="bottom" id="tYQ-iY-wWM"/>
+                            <constraint firstAttribute="trailing" secondItem="bLz-QT-vhq" secondAttribute="trailing" constant="10" id="uG4-ai-85P"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MRg-N6-hWu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1727" y="4950"/>
         </scene>
         <!--Set Value Controller-->
         <scene sceneID="qbi-g2-xzM">
@@ -1009,6 +985,23 @@ COasoeOBuA
             <point key="canvasLocation" x="2131" y="1330.5"/>
         </scene>
         <!--メッセージ-->
+        <scene sceneID="E0q-pn-fri">
+            <objects>
+                <viewController id="2nv-LH-dzq" customClass="MessageListController" customModule="spot" customModuleProvider="target" sceneMemberID="viewController">
+                    <containerView key="view" opaque="NO" contentMode="scaleToFill" id="s9v-yc-r1S">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <connections>
+                            <segue destination="pz9-eo-1XD" kind="embed" identifier="message_list" id="wdw-bh-xxp"/>
+                        </connections>
+                    </containerView>
+                    <navigationItem key="navigationItem" title="メッセージ" id="irm-YF-kp2"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CWc-Vq-Khm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3089" y="-1655"/>
+        </scene>
+        <!--メッセージ-->
         <scene sceneID="uvD-NJ-oUE">
             <objects>
                 <navigationController storyboardIdentifier="view_navigation_message" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0Ye-QS-38e" sceneMemberID="viewController">
@@ -1019,97 +1012,12 @@ COasoeOBuA
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="Z6V-gV-l5V" kind="relationship" relationship="rootViewController" id="xdf-4K-ELT"/>
+                        <segue destination="2nv-LH-dzq" kind="relationship" relationship="rootViewController" id="w1y-7X-aSQ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iNy-gD-y8B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2131" y="-764.25"/>
-        </scene>
-        <!--メッセージ-->
-        <scene sceneID="okB-ou-6XW">
-            <objects>
-                <tableViewController storyboardIdentifier="view_navigation_message_root" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Z6V-gV-l5V" customClass="MessageTableController" customModule="spot" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MessageList" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="53" sectionHeaderHeight="22" sectionFooterHeight="22" id="MpR-p4-RXi">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="hej-WN-1D4" customClass="SearchBar" customModule="spot" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="64" width="600" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits" returnKeyType="search"/>
-                            <scopeButtonTitles>
-                                <string>Title</string>
-                            </scopeButtonTitles>
-                            <connections>
-                                <outlet property="delegate" destination="Z6V-gV-l5V" id="g5H-DB-J4P"/>
-                            </connections>
-                        </searchBar>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell_message" rowHeight="50" id="zAp-uF-b27" customClass="MessageCell" customModule="spot" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="22" width="320" height="80"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="cell_message" tableViewCell="zAp-uF-b27" id="Bxe-2v-RrM">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="icon" image="icon_qq" translatesAutoresizingMaskIntoConstraints="NO" id="c4g-FV-IHT">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                            <variation key="heightClass=regular" fixedFrame="YES">
-                                                <rect key="frame" x="18" y="4" width="37" height="42"/>
-                                            </variation>
-                                        </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="株式会社イー・ビジネス" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDu-Ss-ESW">
-                                            <rect key="frame" x="97" y="0.0" width="150" height="59"/>
-                                            <fontDescription key="fontDescription" name="HiraKakuProN-W6" family="Hiragino Kaku Gothic ProN" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <variation key="heightClass=regular" fixedFrame="YES">
-                                                <rect key="frame" x="78" y="0.0" width="459" height="30"/>
-                                            </variation>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="株式会社イー・ビジネス" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7OL-Tu-byN">
-                                            <rect key="frame" x="97" y="0.0" width="150" height="59"/>
-                                            <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="14"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <variation key="heightClass=regular" fixedFrame="YES">
-                                                <rect key="frame" x="100" y="19" width="459" height="30"/>
-                                            </variation>
-                                        </label>
-                                    </subviews>
-                                    <variation key="default">
-                                        <mask key="subviews">
-                                            <exclude reference="c4g-FV-IHT"/>
-                                            <exclude reference="7OL-Tu-byN"/>
-                                        </mask>
-                                    </variation>
-                                    <variation key="heightClass=regular">
-                                        <mask key="subviews">
-                                            <include reference="c4g-FV-IHT"/>
-                                            <include reference="7OL-Tu-byN"/>
-                                        </mask>
-                                    </variation>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <outlet property="icon" destination="c4g-FV-IHT" id="ocl-h2-xxL"/>
-                                    <outlet property="subTitleLable" destination="7OL-Tu-byN" id="ADF-Nl-jFK"/>
-                                    <outlet property="titleLable" destination="YDu-Ss-ESW" id="78H-6d-PQo"/>
-                                    <segue destination="yxj-mA-NNq" kind="show" id="Zyb-7t-9Uf"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Z6V-gV-l5V" id="663-CC-suy"/>
-                            <outlet property="delegate" destination="Z6V-gV-l5V" id="XMX-gE-gIH"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="メッセージ" id="e3u-sP-X4b"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2hi-yn-TJ4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2899" y="-764.25"/>
         </scene>
         <!--Item-->
         <scene sceneID="hGW-90-O9G">
@@ -1391,21 +1299,15 @@ COasoeOBuA
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell_message" rowHeight="50" id="SwM-id-QKI" customClass="MessageCell" customModule="spot" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell_message" rowHeight="50" id="SkX-oX-tOk" customClass="MessageCell" customModule="spot" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="22" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="cell_message" tableViewCell="SwM-id-QKI" id="l0y-td-bv2">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="cell_message" tableViewCell="SkX-oX-tOk" id="Uto-Rr-PW3">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="icon" image="icon_qq" translatesAutoresizingMaskIntoConstraints="NO" id="ybL-X5-Sae">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                            <variation key="heightClass=regular" fixedFrame="YES">
-                                                <rect key="frame" x="18" y="4" width="37" height="42"/>
-                                            </variation>
-                                        </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="株式会社イー・ビジネス" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQW-Dj-OX7">
-                                            <rect key="frame" x="97" y="0.0" width="150" height="59"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="株式会社イー・ビジネス" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OpS-Zs-XaB">
+                                            <rect key="frame" x="70" y="5" width="520" height="16"/>
                                             <fontDescription key="fontDescription" name="HiraKakuProN-W6" family="Hiragino Kaku Gothic ProN" pointSize="16"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1413,35 +1315,30 @@ COasoeOBuA
                                                 <rect key="frame" x="78" y="0.0" width="459" height="30"/>
                                             </variation>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="株式会社イー・ビジネス" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqK-m7-fcS">
-                                            <rect key="frame" x="97" y="0.0" width="150" height="59"/>
-                                            <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="14"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" text="株式会社イー・ビジネス" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7io-UI-1QA">
+                                            <rect key="frame" x="88" y="26" width="494" height="10"/>
+                                            <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="13"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <variation key="heightClass=regular" fixedFrame="YES">
-                                                <rect key="frame" x="100" y="19" width="459" height="30"/>
+                                                <rect key="frame" x="78" y="0.0" width="459" height="30"/>
                                             </variation>
                                         </label>
                                     </subviews>
-                                    <variation key="default">
-                                        <mask key="subviews">
-                                            <exclude reference="ybL-X5-Sae"/>
-                                            <exclude reference="jqK-m7-fcS"/>
-                                        </mask>
-                                    </variation>
-                                    <variation key="heightClass=regular">
-                                        <mask key="subviews">
-                                            <include reference="ybL-X5-Sae"/>
-                                            <include reference="jqK-m7-fcS"/>
-                                        </mask>
-                                    </variation>
+                                    <constraints>
+                                        <constraint firstItem="OpS-Zs-XaB" firstAttribute="leading" secondItem="Uto-Rr-PW3" secondAttribute="leading" constant="70" id="5St-9U-f3Z"/>
+                                        <constraint firstItem="7io-UI-1QA" firstAttribute="leading" secondItem="Uto-Rr-PW3" secondAttribute="leadingMargin" constant="80" id="FuQ-Gv-3FJ"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="7io-UI-1QA" secondAttribute="bottom" constant="5" id="Rkd-Oa-FTm"/>
+                                        <constraint firstItem="OpS-Zs-XaB" firstAttribute="top" secondItem="Uto-Rr-PW3" secondAttribute="top" constant="5" id="akg-hW-Q7l"/>
+                                        <constraint firstItem="7io-UI-1QA" firstAttribute="top" secondItem="OpS-Zs-XaB" secondAttribute="bottom" constant="5" id="dnN-Lg-bzH"/>
+                                        <constraint firstAttribute="trailing" secondItem="OpS-Zs-XaB" secondAttribute="trailing" constant="10" id="eZe-Qf-3Ru"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="7io-UI-1QA" secondAttribute="trailing" constant="10" id="tmT-K9-Tfv"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <outlet property="icon" destination="ybL-X5-Sae" id="aEn-YS-dpu"/>
-                                    <outlet property="subTitleLable" destination="jqK-m7-fcS" id="w6h-DJ-ZAg"/>
-                                    <outlet property="titleLable" destination="wQW-Dj-OX7" id="mJO-M8-zqF"/>
-                                    <segue destination="MBy-4L-kUt" kind="show" id="XL4-uh-qfc"/>
+                                    <outlet property="subTitleLable" destination="7io-UI-1QA" id="9Jo-SG-pVr"/>
+                                    <outlet property="titleLable" destination="OpS-Zs-XaB" id="eoV-xG-Oxq"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1480,52 +1377,46 @@ COasoeOBuA
                                 <rect key="frame" x="0.0" y="250" width="600" height="350"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell_message" rowHeight="50" id="D58-0S-qc5" customClass="MessageCell" customModule="spot" customModuleProvider="target">
-                                        <rect key="frame" x="10" y="261" width="600" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="cell_message" tableViewCell="D58-0S-qc5" id="XL8-H2-jYM">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell_message" rowHeight="50" id="sY5-Q1-k1C" customClass="MessageCell" customModule="spot" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="cell_message" tableViewCell="sY5-Q1-k1C" id="81K-Yx-clf">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="icon" image="icon_qq" translatesAutoresizingMaskIntoConstraints="NO" id="S47-Of-kd0">
-                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                    <variation key="heightClass=regular" fixedFrame="YES">
-                                                        <rect key="frame" x="18" y="4" width="37" height="42"/>
-                                                    </variation>
-                                                </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="株式会社イー・ビジネス" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2uD-mD-USE">
-                                                    <rect key="frame" x="97" y="0.0" width="150" height="59"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="150" id="haw-Db-fPh"/>
-                                                    </constraints>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="株式会社イー・ビジネス" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zsY-Lj-LxB">
+                                                    <rect key="frame" x="70" y="5" width="520" height="16"/>
                                                     <fontDescription key="fontDescription" name="HiraKakuProN-W6" family="Hiragino Kaku Gothic ProN" pointSize="16"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <variation key="heightClass=regular" fixedFrame="YES">
-                                                        <rect key="frame" x="78" y="10" width="459" height="30"/>
+                                                        <rect key="frame" x="78" y="0.0" width="459" height="30"/>
+                                                    </variation>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" text="株式会社イー・ビジネス" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AWY-mi-wNd">
+                                                    <rect key="frame" x="88" y="26" width="494" height="10"/>
+                                                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="13"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <variation key="heightClass=regular" fixedFrame="YES">
+                                                        <rect key="frame" x="78" y="0.0" width="459" height="30"/>
                                                     </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="2uD-mD-USE" secondAttribute="bottom" constant="-18" id="OaB-T4-NeK"/>
-                                                <constraint firstItem="2uD-mD-USE" firstAttribute="top" secondItem="XL8-H2-jYM" secondAttribute="top" id="h0Y-lx-Aoh"/>
-                                                <constraint firstItem="2uD-mD-USE" firstAttribute="leading" secondItem="XL8-H2-jYM" secondAttribute="leadingMargin" constant="89" id="vXQ-Q4-TUE"/>
+                                                <constraint firstItem="AWY-mi-wNd" firstAttribute="leading" secondItem="81K-Yx-clf" secondAttribute="leadingMargin" constant="80" id="2fz-EG-DNd"/>
+                                                <constraint firstItem="zsY-Lj-LxB" firstAttribute="top" secondItem="81K-Yx-clf" secondAttribute="top" constant="5" id="789-lN-Wp1"/>
+                                                <constraint firstAttribute="trailing" secondItem="zsY-Lj-LxB" secondAttribute="trailing" constant="10" id="7dO-Pu-cBk"/>
+                                                <constraint firstItem="zsY-Lj-LxB" firstAttribute="leading" secondItem="81K-Yx-clf" secondAttribute="leading" constant="70" id="aOT-3G-sdg"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="AWY-mi-wNd" secondAttribute="trailing" constant="10" id="bAt-0M-3dP"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="AWY-mi-wNd" secondAttribute="bottom" constant="5" id="jbk-K6-Sps"/>
+                                                <constraint firstItem="AWY-mi-wNd" firstAttribute="top" secondItem="zsY-Lj-LxB" secondAttribute="bottom" constant="5" id="u2a-AA-odj"/>
                                             </constraints>
-                                            <variation key="default">
-                                                <mask key="subviews">
-                                                    <exclude reference="S47-Of-kd0"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=regular">
-                                                <mask key="subviews">
-                                                    <include reference="S47-Of-kd0"/>
-                                                </mask>
-                                            </variation>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <outlet property="icon" destination="S47-Of-kd0" id="XXh-6a-1pJ"/>
-                                            <outlet property="titleLable" destination="2uD-mD-USE" id="pRb-j2-ZoT"/>
+                                            <outlet property="subTitleLable" destination="AWY-mi-wNd" id="1lB-bL-AsK"/>
+                                            <outlet property="titleLable" destination="zsY-Lj-LxB" id="0td-kP-nlQ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1602,12 +1493,6 @@ COasoeOBuA
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="icon" image="icon_qq" translatesAutoresizingMaskIntoConstraints="NO" id="iSY-x5-R75">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                            <variation key="heightClass=regular" fixedFrame="YES">
-                                                <rect key="frame" x="18" y="4" width="37" height="42"/>
-                                            </variation>
-                                        </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="株式会社イー・ビジネス" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GVA-dZ-1sb">
                                             <rect key="frame" x="97" y="0.0" width="150" height="59"/>
                                             <fontDescription key="fontDescription" name="HiraKakuProN-W6" family="Hiragino Kaku Gothic ProN" pointSize="16"/>
@@ -1629,20 +1514,17 @@ COasoeOBuA
                                     </subviews>
                                     <variation key="default">
                                         <mask key="subviews">
-                                            <exclude reference="iSY-x5-R75"/>
                                             <exclude reference="0Br-tH-Nt0"/>
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular">
                                         <mask key="subviews">
-                                            <include reference="iSY-x5-R75"/>
                                             <include reference="0Br-tH-Nt0"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <outlet property="icon" destination="iSY-x5-R75" id="Ib2-UB-qUE"/>
                                     <outlet property="subTitleLable" destination="0Br-tH-Nt0" id="dVo-bi-GzO"/>
                                     <outlet property="titleLable" destination="GVA-dZ-1sb" id="e6n-MQ-GdH"/>
                                     <segue destination="MFR-6C-xt8" kind="show" id="1UX-ZC-WQC"/>
@@ -1675,7 +1557,7 @@ COasoeOBuA
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="243" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="YwK-1W-JQR">
-                                <rect key="frame" x="0.0" y="36" width="600" height="564"/>
+                                <rect key="frame" x="0.0" y="36" width="600" height="515"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell_message" rowHeight="243" id="CY9-ho-PAK" customClass="MessageCell" customModule="spot" customModuleProvider="target">
@@ -1892,6 +1774,123 @@ COasoeOBuA
             </objects>
             <point key="canvasLocation" x="7785" y="3832"/>
         </scene>
+        <!--Common Table View Controller-->
+        <scene sceneID="pai-HV-XXu">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="pz9-eo-1XD" customClass="CommonTableViewController" customModule="spot" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5Kg-jD-Ghb"/>
+                        <viewControllerLayoutGuide type="bottom" id="TiQ-eV-nrx"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="GA0-Cv-kA1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="h1J-zp-wxn">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell_message" rowHeight="50" id="125-cs-3zQ" customClass="MessageCell" customModule="spot" customModuleProvider="target">
+                                        <rect key="frame" x="10" y="10" width="600" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="cell_message" tableViewCell="125-cs-3zQ" id="jzT-QY-rXI">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="株式会社イー・ビジネス" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6zH-Vm-xzK">
+                                                    <rect key="frame" x="70" y="5" width="520" height="16"/>
+                                                    <fontDescription key="fontDescription" name="HiraKakuProN-W6" family="Hiragino Kaku Gothic ProN" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <variation key="heightClass=regular" fixedFrame="YES">
+                                                        <rect key="frame" x="78" y="0.0" width="459" height="30"/>
+                                                    </variation>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" text="株式会社イー・ビジネス" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jHp-Xs-Ter">
+                                                    <rect key="frame" x="88" y="26" width="494" height="15"/>
+                                                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="13"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <variation key="heightClass=regular" fixedFrame="YES">
+                                                        <rect key="frame" x="78" y="0.0" width="459" height="30"/>
+                                                    </variation>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="6zH-Vm-xzK" secondAttribute="trailing" constant="10" id="FPb-Zu-e4S"/>
+                                                <constraint firstItem="6zH-Vm-xzK" firstAttribute="leading" secondItem="jzT-QY-rXI" secondAttribute="leading" constant="70" id="QaJ-iv-q0k"/>
+                                                <constraint firstItem="6zH-Vm-xzK" firstAttribute="top" secondItem="jzT-QY-rXI" secondAttribute="top" constant="5" id="VTY-p2-8fc"/>
+                                                <constraint firstItem="jHp-Xs-Ter" firstAttribute="leading" secondItem="jzT-QY-rXI" secondAttribute="leadingMargin" constant="80" id="cgp-cm-2Ma"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="jHp-Xs-Ter" secondAttribute="trailing" constant="10" id="haq-9c-kE9"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="jHp-Xs-Ter" secondAttribute="bottom" id="sqR-pv-Chq"/>
+                                                <constraint firstItem="jHp-Xs-Ter" firstAttribute="top" secondItem="6zH-Vm-xzK" secondAttribute="bottom" constant="5" id="wLH-MY-0uL"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="subTitleLable" destination="jHp-Xs-Ter" id="Xzi-sJ-5cM"/>
+                                            <outlet property="titleLable" destination="6zH-Vm-xzK" id="DBk-UU-GXR"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="pz9-eo-1XD" id="bnn-8o-74l"/>
+                                    <outlet property="delegate" destination="pz9-eo-1XD" id="lji-gL-Bmp"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <connections>
+                        <segue destination="HuU-BB-Kx7" kind="show" identifier="contacts_group" id="flJ-nz-hn0"/>
+                        <segue destination="GUf-0r-a64" kind="show" identifier="contacts_nearly" id="iYT-QN-WDA"/>
+                        <segue destination="MBy-4L-kUt" kind="show" identifier="contacts_person" id="M25-Xl-rUR"/>
+                        <segue destination="pqt-uK-HkZ" kind="show" identifier="contacts_weixinqq" id="o6h-D2-C6D"/>
+                        <segue destination="9ac-xo-17L" kind="show" identifier="contacts_event" id="P9G-4F-eNj"/>
+                        <segue destination="reb-Ru-rjV" kind="show" identifier="contacts_bbs" id="l6S-Zb-tmX"/>
+                        <segue destination="yxj-mA-NNq" kind="show" identifier="message_detail" id="vil-0M-hBO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LN0-ba-NwH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3973" y="-1655"/>
+        </scene>
+        <!--連絡先-->
+        <scene sceneID="xdr-MD-eCv">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zyq-qC-Zwl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController useStoryboardIdentifierAsRestorationIdentifier="YES" id="uqH-dy-EV3" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="連絡先" image="icon_contact" id="dmw-2X-Frm"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pkU-mu-Jkh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="avh-Gj-UXf" kind="relationship" relationship="rootViewController" id="jDw-wa-THF"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="2275" y="-3054"/>
+        </scene>
+        <!--連絡先-->
+        <scene sceneID="GAW-LH-46d">
+            <objects>
+                <viewController id="avh-Gj-UXf" userLabel="連絡先" customClass="ContactListController" customModule="spot" customModuleProvider="target" sceneMemberID="viewController">
+                    <containerView key="view" opaque="NO" contentMode="scaleToFill" id="Hxc-JX-Zvs">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <connections>
+                            <segue destination="pz9-eo-1XD" kind="embed" identifier="contact_list" id="LdK-aa-snZ"/>
+                        </connections>
+                    </containerView>
+                    <navigationItem key="navigationItem" title="メッセージ" id="9oY-4w-GrP" userLabel="連絡先"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7n6-uK-FGo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3081" y="-3063"/>
+        </scene>
     </scenes>
     <resources>
         <image name="+" width="34" height="34"/>
@@ -1904,23 +1903,22 @@ COasoeOBuA
         <image name="icon_event" width="32" height="32"/>
         <image name="icon_member" width="32" height="32"/>
         <image name="icon_message" width="32" height="26"/>
-        <image name="icon_qq" width="64" height="64"/>
         <image name="icon_setting" width="32" height="32"/>
         <image name="icon_spot" width="32" height="24"/>
         <image name="smile" width="34" height="34"/>
         <image name="tableview_header" width="840" height="525"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="DV8-tV-bdY"/>
-        <segue reference="vjW-dW-MdB"/>
+        <segue reference="LdK-aa-snZ"/>
+        <segue reference="l6S-Zb-tmX"/>
+        <segue reference="flJ-nz-hn0"/>
+        <segue reference="o6h-D2-C6D"/>
+        <segue reference="vil-0M-hBO"/>
+        <segue reference="M25-Xl-rUR"/>
+        <segue reference="P9G-4F-eNj"/>
         <segue reference="yXI-xv-1A8"/>
-        <segue reference="fDP-WA-JLD"/>
-        <segue reference="Ejh-6g-vfe"/>
-        <segue reference="bT0-pt-Nvc"/>
-        <segue reference="Q0d-qn-Jaf"/>
-        <segue reference="1UX-ZC-WQC"/>
-        <segue reference="C6s-T9-yBI"/>
-        <segue reference="pug-as-6BE"/>
+        <segue reference="4Cw-zQ-zYB"/>
         <segue reference="mWu-fO-th9"/>
+        <segue reference="1UX-ZC-WQC"/>
     </inferredMetricsTieBreakers>
 </document>

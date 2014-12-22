@@ -10,14 +10,14 @@
 	<string>spot</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>DB6D3644CAAB4CDD32F375D56224C81B2E13834A</key>
+		<key>158935D6F89A3CF6D015C98165F99E9A453B5DB5</key>
 		<string>https://github.com/starboychina/Spot.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>spot.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>DB6D3644CAAB4CDD32F375D56224C81B2E13834A</key>
+		<key>158935D6F89A3CF6D015C98165F99E9A453B5DB5</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>DB6D3644CAAB4CDD32F375D56224C81B2E13834A</string>
+	<string>158935D6F89A3CF6D015C98165F99E9A453B5DB5</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>DB6D3644CAAB4CDD32F375D56224C81B2E13834A</string>
+			<string>158935D6F89A3CF6D015C98165F99E9A453B5DB5</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Spot</string>
 		</dict>

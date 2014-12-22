@@ -34,8 +34,7 @@ class ContactsGroupController: UITableViewController, UITableViewDataSource, UIT
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell = tableView .dequeueReusableCellWithIdentifier("cell_message", forIndexPath: indexPath) as MessageCell
-        
-        cell.icon.image = self.msgRow[indexPath.row].image
+        cell.imageView?.image = self.msgRow[indexPath.row].image
         cell.titleLable.text = self.msgRow[indexPath.row].title
         cell.subTitleLable.text = self.msgRow[indexPath.row].subtitle
         return cell

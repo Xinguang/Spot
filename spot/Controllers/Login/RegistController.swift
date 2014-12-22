@@ -60,6 +60,12 @@ class RegistController:CommonController{
                 self.icon.image = UIImage(data: imageData)
             }
         }
+        /*
+        var flowLayout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        var scrollDirection = UICollectionViewScrollDirection.Horizontal
+        flowLayout.scrollDirection = scrollDirection
+        self.collectionView.collectionViewLayout = flowLayout
+        */
         /////////////////////////////
         //self.collectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         
@@ -105,29 +111,50 @@ class RegistController:CommonController{
     
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
-    ////////////////tableview     ////////////////////
+    ////////////////collectionView     ////////////////////
     //////////////////////////////////////////////////
     
     // #pragma mark UICollectionViewDataSource
     
     func collectionView(collectionView: UICollectionView?, numberOfItemsInSection section: Int) -> Int {
         //#warning Incomplete method implementation -- Return the number of items in the section
-        return 3
+        return 6
     }
     
-    func collectionView(collectionView: UICollectionView!, cellForItemAtIndexPath indexPath: NSIndexPath!) -> UICollectionViewCell? {
-        let cell = collectionView!.dequeueReusableCellWithReuseIdentifier("cell_tag", forIndexPath: indexPath) as UICollectionViewCell
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath!) -> UICollectionViewCell? {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell_tag", forIndexPath: indexPath) as CellTag
         //cell.backgroundView = UIImageView(image: UIImage(named: "weather.png"))
         // Configure the cell
-        if(indexPath.row==2){
-            cell.backgroundView = UIImageView(image: UIImage(named: "+"))
+        if(indexPath.row==5){
+            cell.titleLabel.text = "+"
+            cell.checked(false)
+        }else{
+            cell.titleLabel.text = "tag" + String(indexPath.row)
+            cell.checked(true)
         }
         return cell
     }
     
     // Uncomment this method to specify if the specified item should be selected
     func collectionView(collectionView: UICollectionView!, shouldSelectItemAtIndexPath indexPath: NSIndexPath!) -> Bool {
-        println("selected")
-        return true
+        if(indexPath.row==5){
+            performSegueWithIdentifier("show_tags",sender: "タグ一覧")
+            return false
+        }else{
+            let cell = collectionView.cellForItemAtIndexPath(indexPath) as CellTag
+            cell.checked( !cell.IsCheckeded )
+            println("selected")
+            return true
+        }
+    }
+    
+    func collectionView(collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
+       return CGSizeMake(90, 60)
+    }
+    
+    @IBAction func unwindForTags (segue : UIStoryboardSegue) {
+        
     }
 }
