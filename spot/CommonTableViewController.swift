@@ -9,11 +9,16 @@
 
 import UIKit
 
-protocol CommonTableViewDelegate{
-    func tableViewOnSelect(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: MessageRow)
+@objc protocol CommonTableViewDelegateObjectiveC{
+    optional func tableViewOnShow(cell: MessageCell, cellForRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: MessageRow) -> UITableViewCell
 }
+protocol CommonTableViewDelegate:CommonTableViewDelegateObjectiveC{
+    func tableViewOnSelect(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: MessageRow) -> (identifier: String, sender: AnyObject)
+}
+
 class CommonTableViewController: CommonController, UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate,UISearchDisplayDelegate{
     
+    var identifier:String = "";
     var msgData: [MessageData] = []
     var delegate:CommonTableViewDelegate?
     //Sections
@@ -44,12 +49,19 @@ class CommonTableViewController: CommonController, UITableViewDataSource, UITabl
         cell.imageView?.image = datarow.image
         cell.titleLable.text = datarow.title
         cell.subTitleLable.text = datarow.subtitle
-        
+        if let rescell = self.delegate?.tableViewOnShow?(cell, cellForRowAtIndexPath: indexPath, didSelectDataRow: datarow){
+            return rescell;
+        }
         return cell
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        self.delegate?.tableViewOnSelect(tableView, didSelectRowAtIndexPath:indexPath, didSelectDataRow: self.msgData[indexPath.section].msgRow[indexPath.row])    }
+        if let res = self.delegate?.tableViewOnSelect(tableView, didSelectRowAtIndexPath:indexPath, didSelectDataRow: self.msgData[indexPath.section].msgRow[indexPath.row]){
+            res.identifier
+            res.sender
+            self.performSegueWithIdentifier(res.identifier,sender: res.sender)
+        }
+    }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 60;

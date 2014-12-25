@@ -8,23 +8,20 @@
 
 import Foundation
 class MessageListController:CommonController,CommonTableViewDelegate {
-    var viewController:CommonTableViewController?
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        self.viewController = segue.destinationViewController as? CommonTableViewController;
+         var viewController = segue.destinationViewController as? CommonTableViewController;
         
         if( "message_list" == segue.identifier ){
             var msgData = [
                 MessageData(title: "", msgRows: TestData.instance.tableViewData("メッセージ",subtitle: "「システム・友人・イベント・掲示板」からのメッセージ"))
             ]
-            self.viewController?.msgData = msgData
-            self.viewController?.delegate = self
+            viewController?.msgData = msgData
+            viewController?.delegate = self
         }
     }
-    func tableViewOnSelect(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: MessageRow){
+    func tableViewOnSelect(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: MessageRow)->(identifier: String, sender: AnyObject){
         
-        var text:String = dataRow.title
-        self.viewController?.performSegueWithIdentifier("message_detail",sender: text)
+        return ("message_detail",dataRow.title)
         
     }
 

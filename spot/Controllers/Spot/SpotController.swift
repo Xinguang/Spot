@@ -18,10 +18,8 @@ class SpotController: CommonController,MKMapViewDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.mapview.showsUserLocation = true;
-        
-        
         
         self.search()
         //self.mapview.mapType = MKMapType.Standard;//默认
@@ -90,10 +88,14 @@ class SpotController: CommonController,MKMapViewDelegate{
         
         self.mapview.addAnnotations(mappins)
         
+        /*
         let region = MKCoordinateRegionMakeWithDistance(self.mapview.userLocation.coordinate, 2500, 2500)
         self.mapview.setRegion(region, animated: true)
+        */
+        let defaultPoint =  CLLocation(latitude: 35.64818,longitude: 139.748775).coordinate//三田
         
-        
+        let region = MKCoordinateRegionMakeWithDistance(defaultPoint, 500, 500)
+        self.mapview.setRegion(region, animated: true)
         /*
         
         let request = MKLocalSearchRequest();

@@ -10,7 +10,7 @@
 import UIKit
 import MapKit
 
-class EventController: CommonController,MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate{
+class EventController: CommonController,MKMapViewDelegate,CommonTableViewDelegate{
     
     @IBOutlet var mapview: MKMapView!
     @IBOutlet var tableView: UITableView!
@@ -68,7 +68,24 @@ class EventController: CommonController,MKMapViewDelegate, UITableViewDataSource
         self.mapview.setRegion(region, animated: true)
         
     }
+    //////////////////////////////////////////////////
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var viewController = segue.destinationViewController as? CommonTableViewController;
+        if("event_member_list" == segue.identifier){
+            var msgData = [
+                MessageData(title: "メンバー", msgRows: TestData.instance.tableViewData("メンバー",subtitle: "メンバー"))
+            ]
+            viewController?.msgData = msgData
+            viewController?.delegate = self
+        }
+    }
+    func tableViewOnSelect(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: MessageRow)->(identifier: String, sender: AnyObject){
+        
+        return ("contacts_person",dataRow.title)
+        
+    }
+
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
     ////////////////tableview     ////////////////////

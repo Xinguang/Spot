@@ -9,9 +9,8 @@
 import Foundation
 
 class ContactListController:CommonController ,CommonTableViewDelegate{
-    var viewController:CommonTableViewController?
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        self.viewController = segue.destinationViewController as? CommonTableViewController;
+        var viewController = segue.destinationViewController as? CommonTableViewController;
         if("contact_list" == segue.identifier){
             var img:UIImage = UIImage(named: "icon_qq")!
             let msgRow = [
@@ -24,22 +23,21 @@ class ContactListController:CommonController ,CommonTableViewDelegate{
             var msgData = [
                 MessageData(title: "", msgRows: msgRow)
             ]
-            msgData.append(MessageData(title: "友人", msgRows: TestData.instance.tableViewData("XXさん",subtitle: "XXさんの連絡情報")))
-            self.viewController?.msgData = msgData
-            self.viewController?.delegate = self
+            msgData.append(MessageData(title: "友人", msgRows: TestData.instance.tableViewData("XXさん",subtitle: "XXさんの連絡情報xdxcdxcdffsdgsfgfdhgfdgsdhsgertsfghgfsfgdzfdsgfgf")))
+            viewController?.msgData = msgData
+            viewController?.delegate = self
         }
     }
-    func tableViewOnSelect(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: MessageRow){
+    func tableViewOnSelect(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: MessageRow)->(identifier: String, sender: AnyObject){
         
         var text:String = dataRow.title
-        
+        var identifier = "contacts_person"
         
         if(0 == indexPath.section ){
-            var identifier = "contacts_nearly";
             if("グループ" == text){
                 identifier = "contacts_group";
             }else if("招待" == text){
-                identifier = "contacts_weixinqq";
+                identifier = "contact_person_list";
             }else if("付近" == text){
                 identifier = "contacts_nearly";
             }else if("イベント" == text){
@@ -47,10 +45,8 @@ class ContactListController:CommonController ,CommonTableViewDelegate{
             }else if("掲示板" == text){
                 identifier = "contacts_bbs";
             }
-            self.viewController?.performSegueWithIdentifier(identifier,sender: text)
-        }else{
-            self.viewController?.performSegueWithIdentifier("contacts_person",sender: text)
         }
+        return (identifier,text)
 
     }
 }
