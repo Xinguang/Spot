@@ -1001,7 +1001,7 @@ class TestData {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let date = dateFormatter.dateFromString("2014-12-"+String(self.getIntRand(31)))
         for i in 1...1000 {
-            res.append(MessageModel(ID: i, userid: self.getIntRand(20) + 1, text: self.stringList[self.getIntRand(self.stringList.count)], sentDate: date!))
+            res.append(MessageModel(ID: i, userid: self.getIntRand(20) + 1, text: self.stringList[self.getIntRand(self.stringList.count-1)], sentDate: date!))
         }
         return res
     }
@@ -1010,7 +1010,7 @@ class TestData {
         var imgName = "user1.jpg"
         for i:Int in 0...50{
             imgName = "user" + String(self.getIntRand(21) + 1 ) + ".jpg"
-            res.append(CellRow(image: UIImage(named: imgName)!,title: self.userNameList[self.getIntRand(self.userNameList.count)] ,subtitle: self.stringList[self.getIntRand(self.stringList.count)]));
+            res.append(CellRow(image: UIImage(named: imgName)!,title: self.userNameList[self.getIntRand(self.userNameList.count-1)] ,subtitle: self.stringList[self.getIntRand(self.stringList.count-1)]));
         }
         return res;
     }

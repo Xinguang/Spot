@@ -27,6 +27,10 @@ class MessageController: UITableViewController, UITableViewDataSource, UITableVi
         
         self.msg = TestData.instance.messageData()
         
+        self.tableView.reloadData()
+        self.tableView.scrollToRowAtIndexPath(
+            NSIndexPath(forRow: self.msg.count-1, inSection: 0),
+            atScrollPosition:.Top, animated:false)
         
     }
     
