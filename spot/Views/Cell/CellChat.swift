@@ -79,8 +79,7 @@ class CellChat: UITableViewCell {
             })
         }
         userIcon.frame = CGRectMake(0,0, 40, 40);
-        messageLabel.text = message+message+message+message+message+message+message+message+message+message+message+message+message
-        
+        messageLabel.text = message
         if isLeft != (tag == incomingTag) {
             if isLeft {
                 tag = incomingTag

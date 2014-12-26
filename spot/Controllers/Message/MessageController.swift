@@ -67,7 +67,18 @@ class MessageController: UITableViewController, UITableViewDataSource, UITableVi
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 100
+        
+        let datarow = self.msg[indexPath.row];
+        
+        let label:UILabel = UILabel(frame: CGRectMake(0, 0, tableView.bounds.size.width - 100, CGFloat.max))
+        label.numberOfLines = 0
+        label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        label.font = UIFont.systemFontOfSize(messageFontSize)
+        label.text = datarow.text
+        
+        label.sizeToFit()
+        
+        return label.frame.height + 30
     }
     
     

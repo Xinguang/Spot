@@ -94,7 +94,6 @@
 		17C1470F1A31B6EE00591413 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C1470E1A31B6EE00591413 /* PostController.swift */; };
 		17D2C2161A47CDEF00ECCC41 /* HorizontalCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D2C2151A47CDEF00ECCC41 /* HorizontalCollectionView.swift */; };
 		17D2C21A1A47D05400ECCC41 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D2C2181A47D05400ECCC41 /* MessageCell.swift */; };
-		17D2C21B1A47D05400ECCC41 /* MessageDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D2C2191A47D05400ECCC41 /* MessageDetailCell.swift */; };
 		17D2C21D1A47D08700ECCC41 /* CellTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D2C21C1A47D08700ECCC41 /* CellTag.swift */; };
 /* End PBXBuildFile section */
 
@@ -212,7 +211,6 @@
 		17C1470E1A31B6EE00591413 /* PostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostController.swift; path = Controllers/BBS/PostController.swift; sourceTree = "<group>"; };
 		17D2C2151A47CDEF00ECCC41 /* HorizontalCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HorizontalCollectionView.swift; path = Views/CustomView/HorizontalCollectionView.swift; sourceTree = "<group>"; };
 		17D2C2181A47D05400ECCC41 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
-		17D2C2191A47D05400ECCC41 /* MessageDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDetailCell.swift; sourceTree = "<group>"; };
 		17D2C21C1A47D08700ECCC41 /* CellTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellTag.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -610,7 +608,6 @@
 			isa = PBXGroup;
 			children = (
 				17D2C2181A47D05400ECCC41 /* MessageCell.swift */,
-				17D2C2191A47D05400ECCC41 /* MessageDetailCell.swift */,
 				17D2C21C1A47D08700ECCC41 /* CellTag.swift */,
 				172F08BA1A4CED48007EBA15 /* CellChat.swift */,
 			);
@@ -764,7 +761,6 @@
 				1780924C1A249011008E6897 /* LoginController.swift in Sources */,
 				17B623FC1A400F4E00857E23 /* DynamicHelper.swift in Sources */,
 				178092441A24624A008E6897 /* UIViewController+JASidePanel.m in Sources */,
-				17D2C21B1A47D05400ECCC41 /* MessageDetailCell.swift in Sources */,
 				17211FC31A2EEAC600E6615A /* ContactsMapController.swift in Sources */,
 				173CC7D61A382432000ED1F6 /* SVIndefiniteAnimatedView.m in Sources */,
 				17D2C2161A47CDEF00ECCC41 /* HorizontalCollectionView.swift in Sources */,
