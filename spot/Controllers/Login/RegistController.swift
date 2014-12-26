@@ -16,7 +16,7 @@ class RegistController:CommonController{
     @IBOutlet var btnNext: UIButton!
     @IBOutlet var btnLogout: UIButton!
 
-    var msgRow: [MessageRow] = []
+    var msgRow: [CellRow] = []
     
     override func viewDidLoad() {
         //super.viewDidLoad()
@@ -37,12 +37,15 @@ class RegistController:CommonController{
             self.btnLogout.hidden = true;
             if let param = self.paramData as? Dictionary<String, AnyObject> {
                 SettingHelper.instance.setList(param, prefix: "sys_")
-                CommonHelper.instance.setImageFromUrl(self.icon, uri: param["figure"] as String)
+                //CommonHelper.instance.setImageFromUrl(self.icon, uri: param["figure"] as String)
+                CommonHelper.instance.setImageFromUrl(self.icon, uri: param["figure"] as String, callback: { (imgData) -> () in
+                    SettingHelper.instance.set("sys_figure_data", value: imgData)
+                })
                 self.msgRow = [
-                    MessageRow(image: UIImage(named: "icon_qq")!,title: "ニックネーム",subtitle: param["nickname"] as String),
-                    MessageRow(image: UIImage(named: "icon_qq")!,title: "生年月日",subtitle: param["birthday"] as String),
-                    MessageRow(image: UIImage(named: "icon_qq")!,title: "性別",subtitle: param["sex"] as String),
-                    MessageRow(image: UIImage(named: "icon_qq")!,title: "現場",subtitle: "三田"),
+                    CellRow(image: UIImage(named: "icon_qq")!,title: "ニックネーム",subtitle: param["nickname"] as String),
+                    CellRow(image: UIImage(named: "icon_qq")!,title: "生年月日",subtitle: param["birthday"] as String),
+                    CellRow(image: UIImage(named: "icon_qq")!,title: "性別",subtitle: param["sex"] as String),
+                    CellRow(image: UIImage(named: "icon_qq")!,title: "現場",subtitle: "三田"),
                 ];
             }
         }else{
@@ -50,10 +53,10 @@ class RegistController:CommonController{
             self.btnBack.hidden = true;
             self.btnLogout.hidden = false;
             self.msgRow = [
-                MessageRow(image: UIImage(named: "icon_qq")!,title: "ニックネーム",subtitle: SettingHelper.instance.get("sys_nickname") as String),
-                MessageRow(image: UIImage(named: "icon_qq")!,title: "生年月日",subtitle: SettingHelper.instance.get("sys_birthday")  as String),
-                MessageRow(image: UIImage(named: "icon_qq")!,title: "性別",subtitle: SettingHelper.instance.get("sys_sex")  as String),
-                MessageRow(image: UIImage(named: "icon_qq")!,title: "現場",subtitle: "三田"),
+                CellRow(image: UIImage(named: "icon_qq")!,title: "ニックネーム",subtitle: SettingHelper.instance.get("sys_nickname") as String),
+                CellRow(image: UIImage(named: "icon_qq")!,title: "生年月日",subtitle: SettingHelper.instance.get("sys_birthday")  as String),
+                CellRow(image: UIImage(named: "icon_qq")!,title: "性別",subtitle: SettingHelper.instance.get("sys_sex")  as String),
+                CellRow(image: UIImage(named: "icon_qq")!,title: "現場",subtitle: "三田"),
             ];
             
             if let imageData = SettingHelper.instance.get("sys_figure_data") as? NSData{

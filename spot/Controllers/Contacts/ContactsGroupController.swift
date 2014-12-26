@@ -10,7 +10,7 @@ import Foundation
 
 class ContactsGroupController: UITableViewController, UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate,UISearchDisplayDelegate{
     
-    var msgRow: [MessageRow] = []
+    var msgRow: [CellRow] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()

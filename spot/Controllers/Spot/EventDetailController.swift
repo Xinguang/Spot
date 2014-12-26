@@ -13,7 +13,7 @@ class EventDetailController :CommonController, UITableViewDataSource, UITableVie
     @IBOutlet var eventImage: UIImageView!
     
     
-    var msgRow: [MessageRow] = []
+    var msgRow: [CellRow] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,12 +32,12 @@ class EventDetailController :CommonController, UITableViewDataSource, UITableVie
         
         
         self.msgRow = [
-            MessageRow(image: UIImage(named: "icon_qq")!,title: "責任者",subtitle: ""),
-            MessageRow(image: UIImage(named: "icon_qq")!,title: "開催時間",subtitle: ""),
-            MessageRow(image: UIImage(named: "icon_qq")!,title: "開催場所",subtitle: ""),
-            MessageRow(image: UIImage(named: "icon_qq")!,title: "参加条件",subtitle: ""),
-            MessageRow(image: UIImage(named: "icon_qq")!,title: "概要",subtitle: ""),
-            MessageRow(image: UIImage(named: "icon_qq")!,title: "連絡事項",subtitle: ""),
+            CellRow(image: UIImage(named: "icon_qq")!,title: "責任者",subtitle: ""),
+            CellRow(image: UIImage(named: "icon_qq")!,title: "開催時間",subtitle: ""),
+            CellRow(image: UIImage(named: "icon_qq")!,title: "開催場所",subtitle: ""),
+            CellRow(image: UIImage(named: "icon_qq")!,title: "参加条件",subtitle: ""),
+            CellRow(image: UIImage(named: "icon_qq")!,title: "概要",subtitle: ""),
+            CellRow(image: UIImage(named: "icon_qq")!,title: "連絡事項",subtitle: ""),
         ];
     }
 

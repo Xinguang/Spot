@@ -17,6 +17,11 @@
 		172120461A2FFC1000E6615A /* SpotController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172120451A2FFC1000E6615A /* SpotController.swift */; };
 		172120481A30495F00E6615A /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172120471A30495F00E6615A /* TestData.swift */; };
 		1721204B1A3053B400E6615A /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1721204A1A3053B400E6615A /* EventController.swift */; };
+		172F08BB1A4CED48007EBA15 /* CellChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F08BA1A4CED48007EBA15 /* CellChat.swift */; };
+		1731014F1A4BFB410018C24C /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731014D1A4BFB410018C24C /* CellData.swift */; };
+		173101501A4BFB410018C24C /* CellRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731014E1A4BFB410018C24C /* CellRow.swift */; };
+		173101521A4BFB660018C24C /* MapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173101511A4BFB660018C24C /* MapPoint.swift */; };
+		173101541A4BFB950018C24C /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173101531A4BFB950018C24C /* UserModel.swift */; };
 		173CC7A41A36AAF0000ED1F6 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 173CC7A11A36AAF0000ED1F6 /* libWeChatSDK.a */; };
 		173CC7AF1A36C869000ED1F6 /* GCD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173CC7A71A36C869000ED1F6 /* GCD.swift */; };
 		173CC7B01A36C869000ED1F6 /* Net.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173CC7A81A36C869000ED1F6 /* Net.swift */; };
@@ -38,8 +43,6 @@
 		173CC8B21A384461000ED1F6 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 173CC8B01A384461000ED1F6 /* TencentOpenAPI.framework */; };
 		173CC8B41A38458E000ED1F6 /* QQHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173CC8B31A38458E000ED1F6 /* QQHelper.swift */; };
 		173CC8B61A392757000ED1F6 /* OpenIDHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173CC8B51A392757000ED1F6 /* OpenIDHelper.swift */; };
-		175BCD3D1A2C140F000CCC8B /* MapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175BCD3C1A2C140F000CCC8B /* MapPoint.swift */; };
-		175BCD461A2C2283000CCC8B /* MessageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175BCD451A2C2283000CCC8B /* MessageRow.swift */; };
 		175BCD791A2D8C1B000CCC8B /* ContactsDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175BCD781A2D8C1B000CCC8B /* ContactsDetailController.swift */; };
 		175BCD7D1A2DC80E000CCC8B /* MessageDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175BCD7C1A2DC80E000CCC8B /* MessageDetailController.swift */; };
 		175BCD811A2EB03E000CCC8B /* MessageSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175BCD801A2EB03E000CCC8B /* MessageSetting.swift */; };
@@ -66,11 +69,12 @@
 		17841A0E1A47F71A00381215 /* TagController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17841A0D1A47F71A00381215 /* TagController.swift */; };
 		17841A101A4813C400381215 /* MessageListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17841A0F1A4813C400381215 /* MessageListController.swift */; };
 		17841A121A48153500381215 /* CommonTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17841A111A48153500381215 /* CommonTableViewController.swift */; };
-		17841A141A481E0D00381215 /* MessageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17841A131A481E0D00381215 /* MessageData.swift */; };
 		17841A161A48270400381215 /* ContactListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17841A151A48270400381215 /* ContactListController.swift */; };
 		17A1C94D1A4A6E6500FF1E59 /* ContactGroupListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1C94C1A4A6E6500FF1E59 /* ContactGroupListController.swift */; };
 		17A1C94F1A4A898800FF1E59 /* EventListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1C94E1A4A898800FF1E59 /* EventListController.swift */; };
 		17A20B8A1A399230007C1FA1 /* AnimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A20B891A399230007C1FA1 /* AnimeHelper.swift */; };
+		17ACFF021A4D366B00400803 /* GestureRecognizerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17ACFF011A4D366B00400803 /* GestureRecognizerHelper.swift */; };
+		17ACFF061A4D4DBA00400803 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17ACFF051A4D4DBA00400803 /* MessageModel.swift */; };
 		17B623F41A3FD7C500857E23 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B623EB1A3FD7C500857E23 /* RECommonFunctions.m */; };
 		17B623F51A3FD7C500857E23 /* REMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B623ED1A3FD7C500857E23 /* REMenu.m */; };
 		17B623F61A3FD7C500857E23 /* REMenuContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B623EF1A3FD7C500857E23 /* REMenuContainerView.m */; };
@@ -115,6 +119,11 @@
 		172120451A2FFC1000E6615A /* SpotController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpotController.swift; path = Controllers/Spot/SpotController.swift; sourceTree = "<group>"; };
 		172120471A30495F00E6615A /* TestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestData.swift; path = Model/TestData/TestData.swift; sourceTree = "<group>"; };
 		1721204A1A3053B400E6615A /* EventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventController.swift; path = Controllers/Spot/EventController.swift; sourceTree = "<group>"; };
+		172F08BA1A4CED48007EBA15 /* CellChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellChat.swift; sourceTree = "<group>"; };
+		1731014D1A4BFB410018C24C /* CellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellData.swift; sourceTree = "<group>"; };
+		1731014E1A4BFB410018C24C /* CellRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellRow.swift; sourceTree = "<group>"; };
+		173101511A4BFB660018C24C /* MapPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapPoint.swift; sourceTree = "<group>"; };
+		173101531A4BFB950018C24C /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		173CC7A11A36AAF0000ED1F6 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		173CC7A21A36AAF0000ED1F6 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		173CC7A31A36AAF0000ED1F6 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
@@ -140,8 +149,6 @@
 		173CC8B01A384461000ED1F6 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TencentOpenAPI.framework; path = spot/Vendor/QQ/TencentOpenAPI.framework; sourceTree = "<group>"; };
 		173CC8B31A38458E000ED1F6 /* QQHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QQHelper.swift; path = Helpers/QQHelper.swift; sourceTree = "<group>"; };
 		173CC8B51A392757000ED1F6 /* OpenIDHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OpenIDHelper.swift; path = Helpers/OpenIDHelper.swift; sourceTree = "<group>"; };
-		175BCD3C1A2C140F000CCC8B /* MapPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapPoint.swift; path = Model/Map/MapPoint.swift; sourceTree = "<group>"; };
-		175BCD451A2C2283000CCC8B /* MessageRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageRow.swift; sourceTree = "<group>"; };
 		175BCD781A2D8C1B000CCC8B /* ContactsDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsDetailController.swift; path = Controllers/Contacts/ContactsDetailController.swift; sourceTree = "<group>"; };
 		175BCD7C1A2DC80E000CCC8B /* MessageDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageDetailController.swift; path = Controllers/Message/MessageDetailController.swift; sourceTree = "<group>"; };
 		175BCD801A2EB03E000CCC8B /* MessageSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageSetting.swift; path = Controllers/Message/MessageSetting.swift; sourceTree = "<group>"; };
@@ -175,11 +182,12 @@
 		17841A0D1A47F71A00381215 /* TagController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TagController.swift; path = Controllers/Login/TagController.swift; sourceTree = "<group>"; };
 		17841A0F1A4813C400381215 /* MessageListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageListController.swift; sourceTree = "<group>"; };
 		17841A111A48153500381215 /* CommonTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonTableViewController.swift; sourceTree = "<group>"; };
-		17841A131A481E0D00381215 /* MessageData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageData.swift; sourceTree = "<group>"; };
 		17841A151A48270400381215 /* ContactListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactListController.swift; path = Controllers/Contacts/ContactListController.swift; sourceTree = "<group>"; };
 		17A1C94C1A4A6E6500FF1E59 /* ContactGroupListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactGroupListController.swift; path = Controllers/Contacts/ContactGroupListController.swift; sourceTree = "<group>"; };
 		17A1C94E1A4A898800FF1E59 /* EventListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventListController.swift; path = Controllers/Spot/EventListController.swift; sourceTree = "<group>"; };
 		17A20B891A399230007C1FA1 /* AnimeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimeHelper.swift; path = Helpers/AnimeHelper.swift; sourceTree = "<group>"; };
+		17ACFF011A4D366B00400803 /* GestureRecognizerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GestureRecognizerHelper.swift; path = Helpers/GestureRecognizerHelper.swift; sourceTree = "<group>"; };
+		17ACFF051A4D4DBA00400803 /* MessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		17B623EA1A3FD7C500857E23 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
 		17B623EB1A3FD7C500857E23 /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
 		17B623EC1A3FD7C500857E23 /* REMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenu.h; sourceTree = "<group>"; };
@@ -256,6 +264,19 @@
 			name = TestData;
 			sourceTree = "<group>";
 		};
+		1731014C1A4BFB410018C24C /* API */ = {
+			isa = PBXGroup;
+			children = (
+				173101511A4BFB660018C24C /* MapPoint.swift */,
+				1731014D1A4BFB410018C24C /* CellData.swift */,
+				1731014E1A4BFB410018C24C /* CellRow.swift */,
+				173101531A4BFB950018C24C /* UserModel.swift */,
+				17ACFF051A4D4DBA00400803 /* MessageModel.swift */,
+			);
+			name = API;
+			path = Model/API;
+			sourceTree = "<group>";
+		};
 		173CC7A01A36AAF0000ED1F6 /* WeChatSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -324,30 +345,11 @@
 		175BCD3B1A2C13F5000CCC8B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1731014C1A4BFB410018C24C /* API */,
 				173CC7BC1A36F356000ED1F6 /* Sqlite */,
 				172120491A30496600E6615A /* TestData */,
-				175BCD441A2C2262000CCC8B /* Message */,
-				175BCD431A2C21F3000CCC8B /* Map */,
 			);
 			name = Model;
-			sourceTree = "<group>";
-		};
-		175BCD431A2C21F3000CCC8B /* Map */ = {
-			isa = PBXGroup;
-			children = (
-				175BCD3C1A2C140F000CCC8B /* MapPoint.swift */,
-			);
-			name = Map;
-			sourceTree = "<group>";
-		};
-		175BCD441A2C2262000CCC8B /* Message */ = {
-			isa = PBXGroup;
-			children = (
-				175BCD451A2C2283000CCC8B /* MessageRow.swift */,
-				17841A131A481E0D00381215 /* MessageData.swift */,
-			);
-			name = Message;
-			path = Model/Message;
 			sourceTree = "<group>";
 		};
 		17786EE51A31792A00CC81C3 /* BBS */ = {
@@ -494,6 +496,7 @@
 				17A20B891A399230007C1FA1 /* AnimeHelper.swift */,
 				17B623FB1A400F4E00857E23 /* DynamicHelper.swift */,
 				17B623FD1A4017E400857E23 /* Reachability.swift */,
+				17ACFF011A4D366B00400803 /* GestureRecognizerHelper.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -609,6 +612,7 @@
 				17D2C2181A47D05400ECCC41 /* MessageCell.swift */,
 				17D2C2191A47D05400ECCC41 /* MessageDetailCell.swift */,
 				17D2C21C1A47D08700ECCC41 /* CellTag.swift */,
+				172F08BA1A4CED48007EBA15 /* CellChat.swift */,
 			);
 			name = Cell;
 			path = Views/Cell;
@@ -749,6 +753,7 @@
 				17841A101A4813C400381215 /* MessageListController.swift in Sources */,
 				173CC7B41A36C869000ED1F6 /* NetRequestSerialization.swift in Sources */,
 				173CC7D81A382432000ED1F6 /* SVProgressHUD.m in Sources */,
+				173101521A4BFB660018C24C /* MapPoint.swift in Sources */,
 				17C1470F1A31B6EE00591413 /* PostController.swift in Sources */,
 				175BCD811A2EB03E000CCC8B /* MessageSetting.swift in Sources */,
 				173CC7B51A36C869000ED1F6 /* NetResponseData.swift in Sources */,
@@ -760,19 +765,19 @@
 				17B623FC1A400F4E00857E23 /* DynamicHelper.swift in Sources */,
 				178092441A24624A008E6897 /* UIViewController+JASidePanel.m in Sources */,
 				17D2C21B1A47D05400ECCC41 /* MessageDetailCell.swift in Sources */,
-				175BCD461A2C2283000CCC8B /* MessageRow.swift in Sources */,
 				17211FC31A2EEAC600E6615A /* ContactsMapController.swift in Sources */,
 				173CC7D61A382432000ED1F6 /* SVIndefiniteAnimatedView.m in Sources */,
 				17D2C2161A47CDEF00ECCC41 /* HorizontalCollectionView.swift in Sources */,
 				17BDC6971A285A38004A4A2C /* SearchBar.swift in Sources */,
 				17841A121A48153500381215 /* CommonTableViewController.swift in Sources */,
+				173101541A4BFB950018C24C /* UserModel.swift in Sources */,
 				17786EE01A31550900CC81C3 /* EventTabController.swift in Sources */,
 				175BCD7D1A2DC80E000CCC8B /* MessageDetailController.swift in Sources */,
 				17786EDA1A314C4C00CC81C3 /* EventDetailController.swift in Sources */,
 				17D2C21D1A47D08700ECCC41 /* CellTag.swift in Sources */,
+				173101501A4BFB410018C24C /* CellRow.swift in Sources */,
 				17A20B8A1A399230007C1FA1 /* AnimeHelper.swift in Sources */,
 				17BAFAB01A25A4F800EBD6B4 /* SettingHelper.swift in Sources */,
-				175BCD3D1A2C140F000CCC8B /* MapPoint.swift in Sources */,
 				17B623F61A3FD7C500857E23 /* REMenuContainerView.m in Sources */,
 				17B623F41A3FD7C500857E23 /* RECommonFunctions.m in Sources */,
 				173CC7B31A36C869000ED1F6 /* NetHelper.swift in Sources */,
@@ -780,6 +785,7 @@
 				17211FC71A2F09CA00E6615A /* ContactsWeiXinQQController.swift in Sources */,
 				170DC1DF1A42DDB800FBE933 /* NavigationController.swift in Sources */,
 				17BAFAB61A25C5E000EBD6B4 /* CommonHelper.swift in Sources */,
+				17ACFF021A4D366B00400803 /* GestureRecognizerHelper.swift in Sources */,
 				173CC7B21A36C869000ED1F6 /* NetDownloadTask.swift in Sources */,
 				17B630AF1A3B032F004D4D1B /* RegistController.swift in Sources */,
 				173CC7B61A36C869000ED1F6 /* NetUploadTask.swift in Sources */,
@@ -796,9 +802,11 @@
 				170DC1E51A43D08700FBE933 /* CommonTabController.swift in Sources */,
 				173CC8B41A38458E000ED1F6 /* QQHelper.swift in Sources */,
 				17BAFABF1A26CD7200EBD6B4 /* SDK_QQhelper.swift in Sources */,
+				172F08BB1A4CED48007EBA15 /* CellChat.swift in Sources */,
 				17BAFABB1A25CF1A00EBD6B4 /* CommonController.swift in Sources */,
-				17841A141A481E0D00381215 /* MessageData.swift in Sources */,
 				172120461A2FFC1000E6615A /* SpotController.swift in Sources */,
+				1731014F1A4BFB410018C24C /* CellData.swift in Sources */,
+				17ACFF061A4D4DBA00400803 /* MessageModel.swift in Sources */,
 				17841A161A48270400381215 /* ContactListController.swift in Sources */,
 				173CC7B11A36C869000ED1F6 /* NetData.swift in Sources */,
 				178092431A24624A008E6897 /* JASidePanelController.m in Sources */,
@@ -926,7 +934,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/spot/Vendor/QQ",
@@ -948,7 +956,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/spot/Vendor/QQ",

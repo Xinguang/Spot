@@ -11,7 +11,7 @@ import UIKit
 class EventCreateConttroller: CommonController , UITableViewDataSource, UITableViewDelegate{
     
     var tableView : UITableView?
-    var msgRow: [MessageRow] = []
+    var msgRow: [CellRow] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()

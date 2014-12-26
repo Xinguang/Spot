@@ -15,12 +15,12 @@ class ContactsGroupListController:CommonController ,CommonTableViewDelegate{
         viewController?.delegate = self
         if("contact_group_list" == segue.identifier){
             var msgData = [
-                MessageData(title: "", msgRows: TestData.instance.tableViewData("グループ",subtitle: "メンバー"))
+                CellData(title: "", msgRows: TestData.instance.tableViewData("グループ",subtitle: "メンバー"))
             ]
             viewController?.msgData = msgData
         }
     }
-    func tableViewOnSelect(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: MessageRow)->(identifier: String, sender: AnyObject){
+    func tableViewOnSelect(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: CellRow)->(identifier: String, sender: AnyObject){
         return ("contact_person_list",dataRow.title)
         
     }

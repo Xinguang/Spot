@@ -14,7 +14,7 @@ class EventController: CommonController,MKMapViewDelegate,CommonTableViewDelegat
     
     @IBOutlet var mapview: MKMapView!
     @IBOutlet var tableView: UITableView!
-    var msgRow: [MessageRow] = []
+    var msgRow: [CellRow] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,13 +74,13 @@ class EventController: CommonController,MKMapViewDelegate,CommonTableViewDelegat
         var viewController = segue.destinationViewController as? CommonTableViewController;
         if("event_member_list" == segue.identifier){
             var msgData = [
-                MessageData(title: "メンバー", msgRows: TestData.instance.tableViewData("メンバー",subtitle: "メンバー"))
+                CellData(title: "メンバー", msgRows: TestData.instance.tableViewData("メンバー",subtitle: "メンバー"))
             ]
             viewController?.msgData = msgData
             viewController?.delegate = self
         }
     }
-    func tableViewOnSelect(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: MessageRow)->(identifier: String, sender: AnyObject){
+    func tableViewOnSelect(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: CellRow)->(identifier: String, sender: AnyObject){
         
         return ("contacts_person",dataRow.title)
         

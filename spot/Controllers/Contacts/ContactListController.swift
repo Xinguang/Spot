@@ -14,21 +14,21 @@ class ContactListController:CommonController ,CommonTableViewDelegate{
         if("contact_list" == segue.identifier){
             var img:UIImage = UIImage(named: "icon_qq")!
             let msgRow = [
-                MessageRow(image: img, title: "招待", subtitle: "招待招待"),
-                MessageRow(image: img, title: "グループ", subtitle: "グループ"),
-                MessageRow(image: img, title: "付近", subtitle: "付近付近"),
-                MessageRow(image: img, title: "イベント", subtitle: "イベント"),
-                MessageRow(image: img, title: "掲示板", subtitle: "掲示板"),
+                CellRow(image: img, title: "招待", subtitle: "招待招待"),
+                CellRow(image: img, title: "グループ", subtitle: "グループ"),
+                CellRow(image: img, title: "付近", subtitle: "付近付近"),
+                CellRow(image: img, title: "イベント", subtitle: "イベント"),
+                CellRow(image: img, title: "掲示板", subtitle: "掲示板"),
             ]
             var msgData = [
-                MessageData(title: "", msgRows: msgRow)
+                CellData(title: "", msgRows: msgRow)
             ]
-            msgData.append(MessageData(title: "友人", msgRows: TestData.instance.tableViewData("XXさん",subtitle: "XXさんの連絡情報xdxcdxcdffsdgsfgfdhgfdgsdhsgertsfghgfsfgdzfdsgfgf")))
+            msgData.append(CellData(title: "友人", msgRows: TestData.instance.getUserList()))
             viewController?.msgData = msgData
             viewController?.delegate = self
         }
     }
-    func tableViewOnSelect(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: MessageRow)->(identifier: String, sender: AnyObject){
+    func tableViewOnSelect(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: CellRow)->(identifier: String, sender: AnyObject){
         
         var text:String = dataRow.title
         var identifier = "contacts_person"

@@ -4,10 +4,7 @@
 //
 //  Created by Hikaru on 2014/11/27.
 //  Copyright (c) 2014年 Hikaru. All rights reserved.
-//
-
-import Foundation
-import UIKit
+//import UIKit
 
 class MessageCell:UITableViewCell{
     

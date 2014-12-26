@@ -23,13 +23,13 @@ class EventListController:CommonController ,CommonTableViewDelegate{
         var viewController = segue.destinationViewController as? CommonTableViewController;
         if("contact_event_list" == segue.identifier){
             var msgData = [
-                MessageData(title: "", msgRows: TestData.instance.tableViewData("イベント",subtitle: "メンバー"))
+                CellData(title: "", msgRows: TestData.instance.tableViewData("イベント",subtitle: "メンバー"))
             ]
             viewController?.msgData = msgData
             viewController?.delegate = self   
         }
     }
-    func tableViewOnSelect(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: MessageRow)->(identifier: String, sender: AnyObject){
+    func tableViewOnSelect(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: CellRow)->(identifier: String, sender: AnyObject){
         return ("event_detail",dataRow.title)
         
     }

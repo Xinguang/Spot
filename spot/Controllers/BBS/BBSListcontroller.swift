@@ -13,7 +13,7 @@ class BBSListcontroller :CommonController, UITableViewDataSource, UITableViewDel
     @IBOutlet var eventImage: UIImageView!
     
     
-    var msgRow: [MessageRow] = []
+    var msgRow: [CellRow] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,18 +21,18 @@ class BBSListcontroller :CommonController, UITableViewDataSource, UITableViewDel
         //self.eventImage.image = UIImage(named: "bg_event")!
         
         self.msgRow = [
-            MessageRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
-            MessageRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
-            MessageRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
-            MessageRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
-            MessageRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
-            MessageRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
-            MessageRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
-            MessageRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
-            MessageRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
-            MessageRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
-            MessageRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
-            MessageRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
+            CellRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
+            CellRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
+            CellRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
+            CellRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
+            CellRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
+            CellRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
+            CellRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
+            CellRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
+            CellRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
+            CellRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
+            CellRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
+            CellRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
         ];
     }
     

@@ -13,13 +13,13 @@ class MessageListController:CommonController,CommonTableViewDelegate {
         
         if( "message_list" == segue.identifier ){
             var msgData = [
-                MessageData(title: "", msgRows: TestData.instance.tableViewData("メッセージ",subtitle: "「システム・友人・イベント・掲示板」からのメッセージ"))
+                CellData(title: "", msgRows: TestData.instance.getUserList())
             ]
             viewController?.msgData = msgData
             viewController?.delegate = self
         }
     }
-    func tableViewOnSelect(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: MessageRow)->(identifier: String, sender: AnyObject){
+    func tableViewOnSelect(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: CellRow)->(identifier: String, sender: AnyObject){
         
         return ("message_detail",dataRow.title)
         

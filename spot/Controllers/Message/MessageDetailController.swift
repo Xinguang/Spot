@@ -15,7 +15,7 @@ class MessageDetailController: UIViewController{
     @IBOutlet var btnSmile: UIButton!
     @IBOutlet var btnPlus: UIButton!
     @IBOutlet var container: UIView!
-    var msgRow: [MessageRow] = []
+    var msgRow: [CellRow] = []
     var _menu:REMenu = REMenu()
     
     override func viewDidLoad() {

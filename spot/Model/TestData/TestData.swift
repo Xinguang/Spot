@@ -21,6 +21,8 @@ class TestData {
         static var instance: TestData?
         static var token: dispatch_once_t = 0
     }
+    
+    let net = Net()
     ///////////////////map
     private func getRandMapPoint()->MapPoint{
         return MapPoint(coordinate: CLLocation(
@@ -858,8 +860,8 @@ class TestData {
     }
     /////////////////////
     ///////////////////tableView
-    func tableViewData(str:String,subtitle:String)->[MessageRow]{
-        var res = [MessageRow]();
+    func tableViewData(str:String,subtitle:String)->[CellRow]{
+        var res = [CellRow]();
         var imgName = "pofile_boy"
         for i:Int in 0...50{
             if(i % 2 == 0){
@@ -867,20 +869,150 @@ class TestData {
             }else{
                 imgName = "pofile_boy"
             }
-            res.append(MessageRow(image: UIImage(named: imgName)!,title: str + String(i) ,subtitle: subtitle+"("+String(self.getIntRand(1))+")"));
+            res.append(CellRow(image: UIImage(named: imgName)!,title: str + String(i) ,subtitle: subtitle+"("+String(self.getIntRand(1000))+")"));
         }
         return res;
     }
     
-    private func getIntRand(start:Int) ->Int{
-        return start + Int(arc4random_uniform(UInt32(UInt(1000))));
+    private func getIntRand(range:Int) ->Int{
+        return Int(arc4random_uniform(UInt32(UInt(range))));
     }
     
-    
-    
-    
-    
-    
-    
     /////////////////////
+    private var userList:[UserModel] = []
+    func getUserInfo(callback:([UserModel])->()){
+        var user = UserModel(ID: userList.count+1)
+        net.GET(absoluteUrl: "http://uifaces.com/api/v1/random",
+            params: nil,
+            successHandler: { responseData in
+                if let result = responseData.json(error: nil) as? Dictionary<String, AnyObject>{
+                    user.nickname = result["username"] as? String
+                    if let json = result["image_urls"] as? Dictionary<String, AnyObject>{
+                        user.figure = json["epic"] as? String
+                    }
+                    self.userList.append(user)
+                    if(self.userList.count<10){
+                        self.getUserInfo(callback)
+                    }else{
+                        gcd.async(.Main) {
+                            callback(self.userList)
+                        }
+                    }
+                }
+                
+            },
+            failureHandler: { error in
+                user.nickname = "bad internet connection"
+            }
+        )
+    }
+    var stringList = ["それは今日もしその発達院という事の以上が云わでしで。",
+        "やはり近頃を徹底者は同時にこの相当ですただけをなるばくるですからは安心潜り込むたたて、そうには持っならでならた。",
+        "勇気に考えな訳はあたかも始めに一々んますな。",
+        "最も大森君で反対権力それだけ思索で云っます科学こういう申私か理解のとして今落第でしょならしくなくて、その今はおれか上面学校にしから、大森さんののへ文学の私を同時にご意見と入ってこれ弟が同下宿を着ようとあたかも不運動に出ですでて、もっと単に発展に悟っあっから致したので見えるですない。",
+        "それでしかもご知人にしのはたった肝心と困るんが、その気味では出るないけれどもという形ができるがじまいたまし。",
+        "この時違の時こういう奥もそこ上を云うなけれかとネルソン君のならなた、畸形の事実たという肝尊重ですないませと、自分の中に個性に毎日などの盲目とほか抜かして得るが、実際の事実が考えからこういうためをやはり聞こえるでならと命ずるたのたば、好いありないとたったお人間違っなけれのたますた。",
+        "たとえば辛かいやかまごまごにしんて、たくさん上道でしてならます時をご発達の今日で思わですあり。",
+        "今をもどうも云っのでしないますですたから、もしどうも立つが吟味はますますないましつもりでしょ。",
+        "実は不保留に行くがはいるう方なて、他人には、ほぼ私かありてつづいれるなずなりれないだとあうて、がたはあるているないなく。",
+        "けっしてまあは無論自分に対して来ないて、そこをは今日いっぱいでもそれのお著作はなくするおかだです。",
+        "あなたはとにかく料理の点でご換言は頼めがいますたましでが、二一の態度をどう臥せっだという承諾たて、ただその必竟の麦飯をしれるて、私かをそれの応が落第へ云うて得ないんんますと病気参りから撲殺なっいないた。",
+        "自分でさて大森君にそこでそうするない事だですで。槙さんはぴたり義務をするばするたのだろたな。",
+        "専門の場合に、その人に毎日に落ちくらい、大体上と始終先刻一一幾人にするなりの本国から、これかしん意見を考えです時間はもっとも訊いれれ訳たて、たといそれほど見識をだるば、このはずをあるんを不愉快ましない怖がっないう。",
+        "そこでほとんど前十二五本にあるまではしですという自由で破壊をいうが、女学校にこうした以上この時が与えけれども切っうのです。",
+        "とうとうに引込に態度いるまし二万人昔に経るば、私かおりますて込まうというのをそう始まったものんて、どうしてもあるので変んて、やはり国民に聞かて落ちつけばしまいました。",
+        "辺がすると考えてあなたか淋しのにしように使おかも入れででしから、しかも仕方はないものに送らが、彼らで国民に云っ合うて三人で一年も三杯は実に下ってあるでもありのです。",
+        "昔でしょでかし人格に行って、その内々も愉快ないいやなかっとさない者たも願いたう、若い個人の時を限らます人あり得ると思えて来たのでで。",
+        "ところがそれも自由ですがあるうのますも好い、必要ですてできるで事たとするから私の主位の金力へその辺を記憶提げてかねるたまし。",
+        "兵隊をさえ複雑でしいくら進まてみれるなその間を申を読まとか、ばらばらを考えたり、しかし人間に遂げよとよっ光明が行っ義務、厄介たば、つい思えてなかっ理非でしんと及ぼすと、血に思うけれども私立とも自己かもが考える秋刀魚は参りだろ。",
+        "すなわち自由をはその気分の勇猛叫び声と今とあるで時が見るて同時に留学着てしまい場合へ誘き寄せるのある。",
+        "または何もこの頃をしゃべっ見え方な、尊重の権力に忠告云っです仕方でもしでしたて親しいは構わましある。",
+        "つい私はその幸福た自分があっかもだ、講演の言葉にまあ構わならが分りでいるですのん。",
+        "何とも必ずしも一五十人にいうないて、自己にも女権にはこちらが先から加えるですば読むます事に至るないう。",
+        "そこで事実全く兄に思って得たんが、講演からついに実在のようた。",
+        "そうお評価にありようた批評は云っおきんで、この事が今国例外に云いまし。",
+        "その中はいつごろが暮らしから今日だけ尽さから来事かいうでしょますて、そのうちそれをですてここの人をして来て、仕事をきまっれるものも、通りの中学というどうも必要ですたてあいつはせよてならのでしながら、ところが上でなっば、実際我々らの説明できようでだる安心は、引続き私にこういう間断があるていただくては静粛になっせるものですはでしませとは防ぐ事ん。",
+        "いつ讃をもけれども私の所をずるた勤まりのですはしたんか。",
+        "私で哲学物にしますお話の以外をこの相当的のになるな。",
+        "十一月書いなりおフォリオから二篇吉利徳義心に他のしと、教師元に事業わ考えない後、失礼人に積んべくながら、それほど隙の経過もく、珍だけ生徒にするて教師を起る身体がある訳に殖やした、致し方強くの三人はこれらをなり恐ろしいじ本位者の癒わ向いて、私まで行きてしと明らめたそうん。",
+        "かつ大した他の元とか弟に目的をという、去っの発起人からいじゃ一年の余裕を主義を生きましと出来です。",
+        "四日もその学校に時日に正直とない著書をするて、何に大分行くまいと、当時が知れからは今日の口調の順序がよし人をいうという担任を、ぷんぷんこの個人を叱りものでなるで事で。",
+        "また二日の限りの一カ条から個性に意味乗って、支のご演説をなれ事をなるたいなけれ。この方に引けるねという吉利道せですのも言葉で。",
+        "さて婆さんだばお出かけ云っ訳には行くないたて、学問方にやむをえが気でほどよく師範を筋を二年一人行っから、私を自分一般かだれかが行かなものから、騒々しくして、道義と安危とにするないない。",
+        "もっとも穿いのはずるもしからいるない、ただ失礼真面目だろ卒業ようが腰の講堂に知れな正直たら骨に霧へ思いばならんところに、いったい淋しいでし事まし。",
+        "しかし一杯と客に与えて、ちゃんと会は吉利が見るねにおいてようで自由で高圧をやりうとなるのが仮定の教師にするてなら事ですで、何がするて、その関係人について不愉快り根に、勝手ませ腹の中がどうすまがなら自身が、いろいろ何のようたのの発展に、金力が嫁の中でも得からはごしに見つかりたにおいて事は、あたかも家来の立派に退けますほか、京都の自分が少し勤まりが得な解りでしょ事たはないかとありられ事な。",
+        "その国家をしられ大分詩はそれと九月かしかしお話ししよて麦飯のしれるたのですから、そうした大森君の、どうも何へ毫も今の釣は倫理の説明をもしできたてまし、あたかも複雑の通じありば横着たというようあっものを考えれならものに見ない。",
+    ]
+    var userNameList = [
+            "鹿手袋 南朋",
+            "城田 愛梨",
+            "喜多 宏行",
+            "進藤 まさし",
+            "宇都宮 一代",
+            "藤原 みゆき",
+            "山西 光",
+            "中原 優",
+            "岡島 洋",
+            "足立 さとみ",
+            "関 遥",
+            "永島 勇一",
+            "尾上 晃司",
+            "金森 一恵",
+            "首藤 新太",
+            "細川 きみまろ",
+            "小木 耕司",
+            "大下 法嗣",
+            "大槻 京子",
+            "石崎 杏",
+            "松澤 裕司",
+            "上野 隆",
+            "浅井 はじめ",
+            "角谷 優",
+            "小柳 俊二",
+            "朝倉 恵梨香",
+            "大久保 碧海",
+            "塩見 芳正",
+            "山城 慶二",
+            "中野 路子",
+            "平山 美智子",
+            "小森 倫子",
+            "小口 敏和",
+            "大島 惇",
+            "森田 ケンイチ",
+            "大森 美智子",
+            "国分 晋也",
+            "蒼井 勝久",
+            "中里 きみまろ",
+            "中川 寛",
+            "玉田 菜摘",
+            "篠原 愛子",
+            "高村 愛子",
+            "平野 小雁",
+            "菅原 陽介",
+            "高橋 亮",
+            "松谷 隆之介",
+            "仲村 六郎",
+            "田尻 花",
+            "大内 サンタマリア",
+    ]
+    func messageData()->[MessageModel]{
+        var res:[MessageModel] = []
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let date = dateFormatter.dateFromString("2014-12-"+String(self.getIntRand(31)))
+        for i in 1...1000 {
+            res.append(MessageModel(ID: i, userid: self.getIntRand(20) + 1, text: self.stringList[self.getIntRand(self.stringList.count)], sentDate: date!))
+        }
+        return res
+    }
+    func getUserList()->[CellRow]{
+        var res:[CellRow] = [];
+        var imgName = "user1.jpg"
+        for i:Int in 0...50{
+            imgName = "user" + String(self.getIntRand(21) + 1 ) + ".jpg"
+            res.append(CellRow(image: UIImage(named: imgName)!,title: self.userNameList[self.getIntRand(self.userNameList.count)] ,subtitle: self.stringList[self.getIntRand(self.stringList.count)]));
+        }
+        return res;
+    }
+
 }

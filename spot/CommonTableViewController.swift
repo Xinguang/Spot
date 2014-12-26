@@ -10,16 +10,16 @@
 import UIKit
 
 @objc protocol CommonTableViewDelegateObjectiveC{
-    optional func tableViewOnShow(cell: MessageCell, cellForRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: MessageRow) -> UITableViewCell
+    optional func tableViewOnShow(cell: MessageCell, cellForRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: CellRow) -> UITableViewCell
 }
 protocol CommonTableViewDelegate:CommonTableViewDelegateObjectiveC{
-    func tableViewOnSelect(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: MessageRow) -> (identifier: String, sender: AnyObject)
+    func tableViewOnSelect(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: CellRow) -> (identifier: String, sender: AnyObject)
 }
 
 class CommonTableViewController: CommonController, UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate,UISearchDisplayDelegate{
     
     var identifier:String = "";
-    var msgData: [MessageData] = []
+    var msgData: [CellData] = []
     var delegate:CommonTableViewDelegate?
     //Sections
     func numberOfSectionsInTableView(tableView: UITableView) -> Int{

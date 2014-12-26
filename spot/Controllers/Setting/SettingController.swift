@@ -10,7 +10,8 @@ import UIKit
 
 class SettingController: UITableViewController, UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate,UISearchDisplayDelegate{
     
-    var msgRow: [MessageRow] = []
+    var msgRow: [CellRow] = []
+    var user:UserModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,11 +19,11 @@ class SettingController: UITableViewController, UITableViewDataSource, UITableVi
         self.tableView.backgroundColor = UIColor(patternImage: img);
         
         self.msgRow = [
-            MessageRow(image: UIImage(named: "icon_qq")!,title: "氏名",subtitle: "ID　XXXXXXXX"),
-            MessageRow(image: UIImage(named: "icon_qq")!,title: "お気に入り",subtitle: "イベントからからのメッセージ"),
-            MessageRow(image: UIImage(named: "icon_qq")!,title: "携帯",subtitle: "00000000000"),
-            MessageRow(image: UIImage(named: "icon_qq")!,title: "WeiChat",subtitle: "xxxxxxxx"),
-            MessageRow(image: UIImage(named: "icon_qq")!,title: "QQ",subtitle: "88888888"),
+            CellRow(image: UIImage(named: "icon_qq")!,title: "氏名",subtitle: "ID　XXXXXXXX"),
+            CellRow(image: UIImage(named: "icon_qq")!,title: "お気に入り",subtitle: "イベントからからのメッセージ"),
+            CellRow(image: UIImage(named: "icon_qq")!,title: "携帯",subtitle: "00000000000"),
+            CellRow(image: UIImage(named: "icon_qq")!,title: "WeiChat",subtitle: "xxxxxxxx"),
+            CellRow(image: UIImage(named: "icon_qq")!,title: "QQ",subtitle: "88888888"),
         ];
         //self.navigationController?.setNavigationBarHidden(true, animated: false)
     }

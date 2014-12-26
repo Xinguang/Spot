@@ -85,22 +85,43 @@ class CommonHelper {
     }
     
     
-    func setImageFromUrl(imageview:UIImageView,uri:String){
+    func setImageFromUrl(imageview:UIImageView,uri:String,callback:(imgData:NSData)->()){
+        imageview.image =  UIImage(named: "noimage")
+        let cachekey = "cache_"+uri
+        if let imgData = SettingHelper.instance.get(cachekey) as? NSData{
+            imageview.image =  UIImage(data: imgData)
+            return ;
+        }
         let net = Net()
         net.GET(absoluteUrl: uri,
             params: nil,
             successHandler: { responseData in
                 gcd.async(.Main) {
                     let result = responseData.data;
-                    
                     imageview.image =  UIImage(data: result)
-                    SettingHelper.instance.set("sys_figure_data", value: result)
+                    SettingHelper.instance.set(cachekey, value: result)
+                    callback(imgData: result)
                 }
             },
             failureHandler: { error in
-                imageview.image =  UIImage(named: "icon_qq")
+                imageview.image =  UIImage(named: "noimage")
             }
         )
+    }
+    
+    
+    func coloredImage(image: UIImage, color:UIColor) -> UIImage! {
+        let rect = CGRect(origin: CGPointZero, size: image.size)
+        UIGraphicsBeginImageContextWithOptions(image.size, false, image.scale)
+        let context = UIGraphicsGetCurrentContext()
+        image.drawInRect(rect)
+        //CGContextSetRGBFillColor(context, red, green, blue, alpha)
+        CGContextSetFillColorWithColor(context, color.CGColor)
+        CGContextSetBlendMode(context, kCGBlendModeSourceAtop)
+        CGContextFillRect(context, rect)
+        let result = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return result
     }
 }
 
