@@ -8,60 +8,57 @@
 
 import UIKit
 
-class BBSListcontroller :CommonController, UITableViewDataSource, UITableViewDelegate{
+class BBSListcontroller:CommonController,WaterFlowLayoutDelegate{
+    @IBOutlet var collectionView: UICollectionView!
     
-    @IBOutlet var eventImage: UIImageView!
-    
-    
-    var msgRow: [CellRow] = []
+    var contents:[BBSContentModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let layout = WaterFlowLayout()
+        layout.waterFlowDelegate = self
+        layout.numberOfColumns = 2
+        layout.interItemSpacing = 5
+        collectionView.collectionViewLayout = layout
         
-        //self.eventImage.image = UIImage(named: "bg_event")!
-        
-        self.msgRow = [
-            CellRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
-            CellRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
-            CellRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
-            CellRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
-            CellRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
-            CellRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
-            CellRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
-            CellRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
-            CellRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
-            CellRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
-            CellRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
-            CellRow(image: UIImage(named: "bg_event")!,title: "不具合",subtitle: "直接依頼のプロジェクトキャンセルのメールが他のユーザーに複数配信される"),
-        ];
+        self.contents = TestData.instance.bbsData()
+
+    }
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
+    ////////////////collectionView     ////////////////////
+    //////////////////////////////////////////////////
+    
+    // #pragma mark UICollectionViewDataSource
+    
+    func collectionView(collectionView: UICollectionView?, numberOfItemsInSection section: Int) -> Int {
+        //#warning Incomplete method implementation -- Return the number of items in the section
+        return 100
     }
     
-    
-    
-    
-    
-    
-    //Section
-    func tableView(tableView: UITableView, numberOfRowsInSection section:  Int) -> Int{
-        return self.msgRow.count
-    }
-    
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        let cell = tableView .dequeueReusableCellWithIdentifier("cell_message", forIndexPath: indexPath) as MessageCell
-        let datarow = self.msgRow[indexPath.row];
-        cell.imageView?.image = datarow.image
-        cell.titleLable.text = datarow.title;
-        cell.subTitleLable.text = datarow.subtitle;
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath!) -> UICollectionViewCell? {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell_bbs_list", forIndexPath: indexPath) as CellBBSList
+        let datarow = self.contents[indexPath.row]
+        
+        let username = TestData.instance.userNameList[datarow.userid]
+        var userface = "user" + String(datarow.userid) + ".jpg"
+        
+        cell.configureWithContents(username, userface: userface, imageUrl: datarow.imagePath, contents: datarow.text)
+        
         return cell
     }
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    // Uncomment this method to specify if the specified item should be selected
+    func collectionView(collectionView: UICollectionView!, shouldSelectItemAtIndexPath indexPath: NSIndexPath!) -> Bool {
         
+        self.performSegueWithIdentifier("bbs_detail",sender: "掲示板ー詳細")
+        
+        return true
     }
-    /*
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 250;
+    
+    
+    //MARK: - CWWaterFlowLayout Delegate
+    
+    func heightForRowInCollectionView(collectionView: UICollectionView, usingLayout layout: WaterFlowLayout, atIndexPath indexPath: NSIndexPath) -> Float {
+        return Float(50 + arc4random() % 100) + 44 + 20
     }
-    */
 }

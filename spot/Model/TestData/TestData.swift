@@ -999,9 +999,19 @@ class TestData {
         var res:[MessageModel] = []
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        let date = dateFormatter.dateFromString("2014-12-"+String(self.getIntRand(31)))
+        let date = dateFormatter.dateFromString("2014-12-"+String(self.getIntRand(30)+1))
         for i in 1...1000 {
-            res.append(MessageModel(ID: i, userid: self.getIntRand(20) + 1, text: self.stringList[self.getIntRand(self.stringList.count-1)], sentDate: date!))
+            res.append(MessageModel(ID: i, userid: self.getIntRand(20) + 1, text: self.stringList[self.getIntRand(self.stringList.count-2)], sentDate: date!))
+        }
+        return res
+    }
+    func bbsData()->[BBSContentModel]{
+        var res:[BBSContentModel] = []
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let date = dateFormatter.dateFromString("2014-12-"+String(self.getIntRand(30)+1))
+        for i in 1...1000 {
+            res.append(BBSContentModel(ID: i, userid: self.getIntRand(20) + 1, imagepath: "http://lorempixel.com/400/200/", text: self.stringList[self.getIntRand(self.stringList.count-2)], sentDate: date!))
         }
         return res
     }
@@ -1009,8 +1019,8 @@ class TestData {
         var res:[CellRow] = [];
         var imgName = "user1.jpg"
         for i:Int in 0...50{
-            imgName = "user" + String(self.getIntRand(21) + 1 ) + ".jpg"
-            res.append(CellRow(image: UIImage(named: imgName)!,title: self.userNameList[self.getIntRand(self.userNameList.count-1)] ,subtitle: self.stringList[self.getIntRand(self.stringList.count-1)]));
+            imgName = "user" + String(self.getIntRand(20) + 1 ) + ".jpg"
+            res.append(CellRow(image: UIImage(named: imgName)!,title: self.userNameList[self.getIntRand(self.userNameList.count-2)] ,subtitle: self.stringList[self.getIntRand(self.stringList.count-2)]));
         }
         return res;
     }

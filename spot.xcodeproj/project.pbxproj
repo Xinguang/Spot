@@ -92,9 +92,13 @@
 		17BAFACA1A28184C00EBD6B4 /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BAFAC91A28184C00EBD6B4 /* MessageController.swift */; };
 		17BDC6971A285A38004A4A2C /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BDC6961A285A38004A4A2C /* SearchBar.swift */; };
 		17C1470F1A31B6EE00591413 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C1470E1A31B6EE00591413 /* PostController.swift */; };
+		17C95BF11A5BB8E80097D0EA /* BBSContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C95BF01A5BB8E80097D0EA /* BBSContentModel.swift */; };
+		17C95BF31A5BED110097D0EA /* BBSDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C95BF21A5BED110097D0EA /* BBSDetailController.swift */; };
 		17D2C2161A47CDEF00ECCC41 /* HorizontalCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D2C2151A47CDEF00ECCC41 /* HorizontalCollectionView.swift */; };
 		17D2C21A1A47D05400ECCC41 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D2C2181A47D05400ECCC41 /* MessageCell.swift */; };
 		17D2C21D1A47D08700ECCC41 /* CellTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D2C21C1A47D08700ECCC41 /* CellTag.swift */; };
+		17EC354F1A5A29D500866535 /* CellBBSList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC354E1A5A29D500866535 /* CellBBSList.swift */; };
+		17EC35511A5A2E6200866535 /* WaterFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC35501A5A2E6200866535 /* WaterFlowLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -209,9 +213,13 @@
 		17BAFAC91A28184C00EBD6B4 /* MessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageController.swift; path = Controllers/Message/MessageController.swift; sourceTree = "<group>"; };
 		17BDC6961A285A38004A4A2C /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchBar.swift; path = Views/CustomView/SearchBar.swift; sourceTree = "<group>"; };
 		17C1470E1A31B6EE00591413 /* PostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostController.swift; path = Controllers/BBS/PostController.swift; sourceTree = "<group>"; };
+		17C95BF01A5BB8E80097D0EA /* BBSContentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSContentModel.swift; sourceTree = "<group>"; };
+		17C95BF21A5BED110097D0EA /* BBSDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSDetailController.swift; path = Controllers/BBS/BBSDetailController.swift; sourceTree = "<group>"; };
 		17D2C2151A47CDEF00ECCC41 /* HorizontalCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HorizontalCollectionView.swift; path = Views/CustomView/HorizontalCollectionView.swift; sourceTree = "<group>"; };
 		17D2C2181A47D05400ECCC41 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		17D2C21C1A47D08700ECCC41 /* CellTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellTag.swift; sourceTree = "<group>"; };
+		17EC354E1A5A29D500866535 /* CellBBSList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellBBSList.swift; sourceTree = "<group>"; };
+		17EC35501A5A2E6200866535 /* WaterFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterFlowLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,6 +278,7 @@
 				1731014E1A4BFB410018C24C /* CellRow.swift */,
 				173101531A4BFB950018C24C /* UserModel.swift */,
 				17ACFF051A4D4DBA00400803 /* MessageModel.swift */,
+				17C95BF01A5BB8E80097D0EA /* BBSContentModel.swift */,
 			);
 			name = API;
 			path = Model/API;
@@ -355,6 +364,7 @@
 			children = (
 				17786EE61A31795B00CC81C3 /* BBSListcontroller.swift */,
 				17C1470E1A31B6EE00591413 /* PostController.swift */,
+				17C95BF21A5BED110097D0EA /* BBSDetailController.swift */,
 			);
 			name = BBS;
 			sourceTree = "<group>";
@@ -609,7 +619,9 @@
 			children = (
 				17D2C2181A47D05400ECCC41 /* MessageCell.swift */,
 				17D2C21C1A47D08700ECCC41 /* CellTag.swift */,
+				17EC354E1A5A29D500866535 /* CellBBSList.swift */,
 				172F08BA1A4CED48007EBA15 /* CellChat.swift */,
+				17EC35501A5A2E6200866535 /* WaterFlowLayout.swift */,
 			);
 			name = Cell;
 			path = Views/Cell;
@@ -748,6 +760,8 @@
 				17B623F81A3FD7C500857E23 /* REMenuItemView.m in Sources */,
 				17B623F71A3FD7C500857E23 /* REMenuItem.m in Sources */,
 				17841A101A4813C400381215 /* MessageListController.swift in Sources */,
+				17EC354F1A5A29D500866535 /* CellBBSList.swift in Sources */,
+				17C95BF31A5BED110097D0EA /* BBSDetailController.swift in Sources */,
 				173CC7B41A36C869000ED1F6 /* NetRequestSerialization.swift in Sources */,
 				173CC7D81A382432000ED1F6 /* SVProgressHUD.m in Sources */,
 				173101521A4BFB660018C24C /* MapPoint.swift in Sources */,
@@ -765,6 +779,7 @@
 				173CC7D61A382432000ED1F6 /* SVIndefiniteAnimatedView.m in Sources */,
 				17D2C2161A47CDEF00ECCC41 /* HorizontalCollectionView.swift in Sources */,
 				17BDC6971A285A38004A4A2C /* SearchBar.swift in Sources */,
+				17EC35511A5A2E6200866535 /* WaterFlowLayout.swift in Sources */,
 				17841A121A48153500381215 /* CommonTableViewController.swift in Sources */,
 				173101541A4BFB950018C24C /* UserModel.swift in Sources */,
 				17786EE01A31550900CC81C3 /* EventTabController.swift in Sources */,
@@ -799,6 +814,7 @@
 				173CC8B41A38458E000ED1F6 /* QQHelper.swift in Sources */,
 				17BAFABF1A26CD7200EBD6B4 /* SDK_QQhelper.swift in Sources */,
 				172F08BB1A4CED48007EBA15 /* CellChat.swift in Sources */,
+				17C95BF11A5BB8E80097D0EA /* BBSContentModel.swift in Sources */,
 				17BAFABB1A25CF1A00EBD6B4 /* CommonController.swift in Sources */,
 				172120461A2FFC1000E6615A /* SpotController.swift in Sources */,
 				1731014F1A4BFB410018C24C /* CellData.swift in Sources */,
@@ -943,6 +959,7 @@
 					"$(PROJECT_DIR)/spot/Vendor/WeChatSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = spot/Common/Header.h;
 			};
 			name = Debug;
@@ -965,6 +982,7 @@
 					"$(PROJECT_DIR)/spot/Vendor/WeChatSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = spot/Common/Header.h;
 			};
 			name = Release;

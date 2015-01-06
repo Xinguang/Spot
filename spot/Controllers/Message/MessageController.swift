@@ -30,7 +30,7 @@ class MessageController: UITableViewController, UITableViewDataSource, UITableVi
         self.tableView.reloadData()
         self.tableView.scrollToRowAtIndexPath(
             NSIndexPath(forRow: self.msg.count-1, inSection: 0),
-            atScrollPosition:.Top, animated:false)
+            atScrollPosition:.Bottom, animated:false)
         
     }
     
@@ -70,15 +70,7 @@ class MessageController: UITableViewController, UITableViewDataSource, UITableVi
         
         let datarow = self.msg[indexPath.row];
         
-        let label:UILabel = UILabel(frame: CGRectMake(0, 0, tableView.bounds.size.width - 100, CGFloat.max))
-        label.numberOfLines = 0
-        label.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        label.font = UIFont.systemFontOfSize(messageFontSize)
-        label.text = datarow.text
-        
-        label.sizeToFit()
-        
-        return label.frame.height + 30
+        return CommonHelper.instance.getFitHeight(tableView.bounds.size.width - 100, text: datarow.text, fontSize: messageFontSize)
     }
     
     

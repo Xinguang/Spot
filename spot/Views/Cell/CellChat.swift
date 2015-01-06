@@ -71,13 +71,9 @@ class CellChat: UITableViewCell {
     }
     
     func configureWithMessage(isLeft:Bool,imageUrl:String,message: String) {
-        if let image = UIImage(named: imageUrl){
-            userIcon.image = image
-        }else{
-            CommonHelper.instance.setImageFromUrl(userIcon, uri: imageUrl, callback: { (imgData) -> () in
-                
-            })
-        }
+        CommonHelper.instance.setImageFromUrl(userIcon, uri: imageUrl, callback: { (imgData) -> () in
+            
+        })
         userIcon.frame = CGRectMake(0,0, 40, 40);
         messageLabel.text = message
         if isLeft != (tag == incomingTag) {
