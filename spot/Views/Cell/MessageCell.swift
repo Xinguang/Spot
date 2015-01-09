@@ -24,12 +24,6 @@ class MessageCell:UITableViewCell{
     }
     
     override func layoutSubviews() {
-        self.resetSubViews()
-    }
-    func resetSubViews(){
-        self.titleLable.hidden = false;
-        self.subTitleLable.hidden = false
-        
         self.imageView?.layer.cornerRadius = 5
         self.imageView?.layer.masksToBounds = true;
         
@@ -52,6 +46,5 @@ class MessageCell:UITableViewCell{
         tmpFrame = self.detailTextLabel?.frame;
         tmpFrame?.origin.x = height + 25;
         self.detailTextLabel?.frame = tmpFrame!;
-        
     }
 }
