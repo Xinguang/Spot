@@ -28,7 +28,7 @@ class ContactListController:CommonController ,CommonTableViewDelegate{
             viewController?.delegate = self
         }
     }
-    func tableViewOnSelect(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: CellRow)->(identifier: String, sender: AnyObject){
+    func tableViewOnSelect(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: CellRow)->(identifier: String, sender: AnyObject)?{
         
         var text:String = dataRow.title
         var identifier = "contacts_person"

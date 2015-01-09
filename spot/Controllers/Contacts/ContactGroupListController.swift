@@ -20,7 +20,7 @@ class ContactsGroupListController:CommonController ,CommonTableViewDelegate{
             viewController?.msgData = msgData
         }
     }
-    func tableViewOnSelect(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: CellRow)->(identifier: String, sender: AnyObject){
+    func tableViewOnSelect(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: CellRow)->(identifier: String, sender: AnyObject)?{
         return ("contact_person_list",dataRow.title)
         
     }

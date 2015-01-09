@@ -18,7 +18,6 @@ enum MenuDirection {
 
 
 @objc protocol DrawerControllerDelegate : NSObjectProtocol {
-    
     //滑动变化
     optional func CustomlayoutViewWithOffset(xoffset:CGFloat,menuController:DrawerController)
 }
@@ -42,7 +41,7 @@ class DrawerController: UIViewController ,UIGestureRecognizerDelegate {
     
     
     //是否边界影子
-    var showBoundsShadow:Bool =  true {
+    var showBoundsShadow:Bool =  false {
         willSet{
             
         }
@@ -241,17 +240,87 @@ class DrawerController: UIViewController ,UIGestureRecognizerDelegate {
     }
     
     func blackCoverGesture(sender: UIPanGestureRecognizer){
-        if blackCoverPan!.state == UIGestureRecognizerState.Began {
+        if menuDirection == MenuDirection.middleMenu {
+            return
+        }
+        
+        
+        if isInAnimation {
+            return
+        }
+        var velocity:CGPoint=blackCoverPan!.velocityInView(self.view)
+        
+        if ( blackCoverPan!.state == UIGestureRecognizerState.Began) {
+            startPanPoint = mainContentView!.frame.origin
+            if mainContentView!.frame.origin.x == 0 {
+                self.showShadow(showBoundsShadow)
+            }
+        }
+        var currentPostion = blackCoverPan!.translationInView(self.view)
+        var xoffset:CGFloat = startPanPoint.x + currentPostion.x
+        
+        if xoffset > 0 {
+            if (leftViewController != nil) {
+                if !panLeft {
+                    panLeft = true
+                    self.willShowLeftViewController()
+                    panRight = false
+                }
+                panLeft = true
+                self.willShowLeftViewController()
+                panRight = false
+                if bounces{
+                    self.layoutCurrentViewWithOffset(xoffset)
+                }else {
+                    self.layoutCurrentViewWithOffset(leftViewShowWidth < xoffset ? leftViewShowWidth : xoffset)
+                }
+                
+            }
             
             
-        }else if blackCoverPan!.state == UIGestureRecognizerState.Ended {
-            
-            
+        }else if xoffset < 0{
+            if (rightViewController != nil) {
+                if !panRight {
+                    panRight = true
+                    self.willShowRightViewController()
+                    panLeft = false
+                }
+                panRight = true
+                self.willShowRightViewController()
+                panLeft = false
+                if bounces {
+                    self.layoutCurrentViewWithOffset(xoffset)
+                }else{
+                    self.layoutCurrentViewWithOffset(rightViewShowWidth < abs(xoffset) ? -rightViewShowWidth : xoffset)
+                }
+            }
+        }
+        
+        
+        if ( blackCoverPan!.state == UIGestureRecognizerState.Ended) {
+            if mainContentView!.frame.origin.x == 0 {
+                self.showShadow(false)
+            }else {
+                if panMovingRightOrLeft && mainContentView!.frame.origin.x > 20 {
+                    self.showLeftViewController(true)
+                }else if !panMovingRightOrLeft &&  mainContentView!.frame.origin.x < -20 {
+                    self.showRightViewController(true)
+                }else {
+                    self.hideSideViewController(true)
+                }
+            }
+        }else{
+            if velocity.x > 0{
+                panMovingRightOrLeft = true
+            }else if velocity.x < 0 {
+                panMovingRightOrLeft = false
+            }
         }
     }
     
     func moveViewWithGesture(sender: UIPanGestureRecognizer)
     {
+        mainContentView?.tag
         if menuDirection != MenuDirection.middleMenu {
             return
         }
@@ -271,6 +340,7 @@ class DrawerController: UIViewController ,UIGestureRecognizerDelegate {
         }
         var currentPostion = movePan!.translationInView(self.view)
         var xoffset:CGFloat = startPanPoint.x + currentPostion.x
+        
         if xoffset > 0 {
             if (leftViewController != nil) {
                 if !panLeft {

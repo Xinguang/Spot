@@ -19,7 +19,7 @@ class MessageListController:CommonController,CommonTableViewDelegate {
             viewController?.delegate = self
         }
     }
-    func tableViewOnSelect(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: CellRow)->(identifier: String, sender: AnyObject){
+    func tableViewOnSelect(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: CellRow)->(identifier: String, sender: AnyObject)?{
         
         return ("message_detail",dataRow.title)
         

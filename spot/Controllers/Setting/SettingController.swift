@@ -8,10 +8,16 @@
 
 import UIKit
 
-class SettingController: UITableViewController, UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate,UISearchDisplayDelegate{
+class SettingController: UITableViewController, UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate,UISearchDisplayDelegate,SpotTableViewDelegate{
     
     var msgRow: [CellRow] = []
     var user:UserModel?
+    var delegate:SpotTableViewDelegate?
+    
+    override func awakeFromNib(){
+        super.awakeFromNib()
+        self.delegate = self
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +67,11 @@ class SettingController: UITableViewController, UITableViewDataSource, UITableVi
         cell.imageView?.image = nil
         switch indexPath.row {
         case 0:
-            cell.imageView?.image = datarow.image;
+            if let imageData = SettingHelper.instance.get("sys_figure_data") as? NSData{
+                cell.imageView?.image = UIImage(data: imageData)
+            }else{
+                cell.imageView?.image = datarow.image;
+            }
         case 2,3,4:
             let switchview = UISwitch(frame: CGRectZero)
             cell.accessoryView = switchview;
@@ -83,9 +93,7 @@ class SettingController: UITableViewController, UITableViewDataSource, UITableVi
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        if(indexPath.row == 0){
-            performSegueWithIdentifier("setting_pofile",sender: "設定")
-        }
+        self.delegate?.onSelect(tableView, didSelectRowAtIndexPath: indexPath, didSelectRowData: nil)
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -151,6 +159,11 @@ class SettingController: UITableViewController, UITableViewDataSource, UITableVi
         
         searchBar.showsCancelButton = false;
     }
-    
+    //////
+    func onSelect(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath,didSelectRowData data:AnyObject?){
+        if(indexPath.row == 0){
+            performSegueWithIdentifier("setting_pofile",sender: "設定")
+        }
+    }
     
 }

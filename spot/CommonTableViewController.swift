@@ -11,9 +11,10 @@ import UIKit
 
 @objc protocol CommonTableViewDelegateObjectiveC{
     optional func tableViewOnShow(cell: MessageCell, cellForRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: CellRow) -> UITableViewCell
+    optional func didLoad(view:CommonTableViewController)
 }
 protocol CommonTableViewDelegate:CommonTableViewDelegateObjectiveC{
-    func tableViewOnSelect(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: CellRow) -> (identifier: String, sender: AnyObject)
+    func tableViewOnSelect(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: CellRow) -> (identifier: String, sender: AnyObject)?
 }
 
 class CommonTableViewController: CommonController, UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate,UISearchDisplayDelegate{
@@ -21,6 +22,13 @@ class CommonTableViewController: CommonController, UITableViewDataSource, UITabl
     var identifier:String = "";
     var msgData: [CellData] = []
     var delegate:CommonTableViewDelegate?
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.delegate?.didLoad?(self)
+    }
+    
     //Sections
     func numberOfSectionsInTableView(tableView: UITableView) -> Int{
         return self.msgData.count;

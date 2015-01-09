@@ -47,6 +47,8 @@
 		175BCD791A2D8C1B000CCC8B /* ContactsDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175BCD781A2D8C1B000CCC8B /* ContactsDetailController.swift */; };
 		175BCD7D1A2DC80E000CCC8B /* MessageDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175BCD7C1A2DC80E000CCC8B /* MessageDetailController.swift */; };
 		175BCD811A2EB03E000CCC8B /* MessageSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175BCD801A2EB03E000CCC8B /* MessageSetting.swift */; };
+		176BF5721A5FAE9B00795CA9 /* SpotTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176BF5711A5FAE9B00795CA9 /* SpotTableViewDelegate.swift */; };
+		176BF5741A5FC42D00795CA9 /* CommonNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176BF5731A5FC42D00795CA9 /* CommonNavigationController.swift */; };
 		17786ED81A31464C00CC81C3 /* EventCreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17786ED71A31464C00CC81C3 /* EventCreateController.swift */; };
 		17786EDA1A314C4C00CC81C3 /* EventDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17786ED91A314C4C00CC81C3 /* EventDetailController.swift */; };
 		17786EE01A31550900CC81C3 /* EventTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17786EDF1A31550900CC81C3 /* EventTabController.swift */; };
@@ -158,6 +160,8 @@
 		175BCD781A2D8C1B000CCC8B /* ContactsDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsDetailController.swift; path = Controllers/Contacts/ContactsDetailController.swift; sourceTree = "<group>"; };
 		175BCD7C1A2DC80E000CCC8B /* MessageDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageDetailController.swift; path = Controllers/Message/MessageDetailController.swift; sourceTree = "<group>"; };
 		175BCD801A2EB03E000CCC8B /* MessageSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageSetting.swift; path = Controllers/Message/MessageSetting.swift; sourceTree = "<group>"; };
+		176BF5711A5FAE9B00795CA9 /* SpotTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpotTableViewDelegate.swift; path = Helpers/SpotTableViewDelegate.swift; sourceTree = "<group>"; };
+		176BF5731A5FC42D00795CA9 /* CommonNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommonNavigationController.swift; path = Views/CustomView/CommonNavigationController.swift; sourceTree = "<group>"; };
 		17786ED71A31464C00CC81C3 /* EventCreateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventCreateController.swift; path = Controllers/Spot/EventCreateController.swift; sourceTree = "<group>"; };
 		17786ED91A314C4C00CC81C3 /* EventDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventDetailController.swift; path = Controllers/Spot/EventDetailController.swift; sourceTree = "<group>"; };
 		17786EDF1A31550900CC81C3 /* EventTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventTabController.swift; path = Controllers/Spot/EventTabController.swift; sourceTree = "<group>"; };
@@ -511,6 +515,7 @@
 				17B623FB1A400F4E00857E23 /* DynamicHelper.swift */,
 				17B623FD1A4017E400857E23 /* Reachability.swift */,
 				17ACFF011A4D366B00400803 /* GestureRecognizerHelper.swift */,
+				176BF5711A5FAE9B00795CA9 /* SpotTableViewDelegate.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -579,6 +584,7 @@
 				17BAFABA1A25CF1A00EBD6B4 /* CommonController.swift */,
 				170DC1E41A43D08700FBE933 /* CommonTabController.swift */,
 				17841A111A48153500381215 /* CommonTableViewController.swift */,
+				176BF5731A5FC42D00795CA9 /* CommonNavigationController.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -746,6 +752,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				176BF5741A5FC42D00795CA9 /* CommonNavigationController.swift in Sources */,
 				173CC7B01A36C869000ED1F6 /* Net.swift in Sources */,
 				17211FC51A2F054800E6615A /* ContactsGroupController.swift in Sources */,
 				17786ED81A31464C00CC81C3 /* EventCreateController.swift in Sources */,
@@ -823,6 +830,7 @@
 				172120461A2FFC1000E6615A /* SpotController.swift in Sources */,
 				1731014F1A4BFB410018C24C /* CellData.swift in Sources */,
 				17ACFF061A4D4DBA00400803 /* MessageModel.swift in Sources */,
+				176BF5721A5FAE9B00795CA9 /* SpotTableViewDelegate.swift in Sources */,
 				17841A161A48270400381215 /* ContactListController.swift in Sources */,
 				173CC7B11A36C869000ED1F6 /* NetData.swift in Sources */,
 				173CC7B91A36EF5E000ED1F6 /* SwiftData.swift in Sources */,

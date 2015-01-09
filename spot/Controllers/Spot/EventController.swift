@@ -80,7 +80,7 @@ class EventController: CommonController,MKMapViewDelegate,CommonTableViewDelegat
             viewController?.delegate = self
         }
     }
-    func tableViewOnSelect(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: CellRow)->(identifier: String, sender: AnyObject){
+    func tableViewOnSelect(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath, didSelectDataRow dataRow: CellRow)->(identifier: String, sender: AnyObject)?{
         
         return ("contacts_person",dataRow.title)
         
