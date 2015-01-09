@@ -96,6 +96,31 @@ class SettingController: UITableViewController, UITableViewDataSource, UITableVi
             return 50;
         }
     }
+    /*
+    - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    if (section == 2) {
+    NSString *versionNum = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    //NSString *buildNum = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+    return [NSString stringWithFormat:@"バージョン情報　Ver %@", versionNum ];
+    }
+    
+    return nil;
+    }
+    */
+    override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        var res = ""
+        if(section == 0 ){
+            if let info = NSBundle.mainBundle().infoDictionary as Dictionary<NSObject,AnyObject>? {
+                if let versionNum = info["CFBundleShortVersionString"] as? String {
+                    res = NSString(format: "バージョン情報　Ver %@", versionNum)
+                    if let buildNum = info["CFBundleVersion"] as? String{
+                        res = NSString(format: "%@.%@", res,buildNum)
+                    }
+                }
+            }
+        }
+        return res
+    }
     //test_fav
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

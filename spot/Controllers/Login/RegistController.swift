@@ -30,7 +30,7 @@ class RegistController:CommonController{
             icon.layer.shadowOpacity = 0.5;
             icon.layer.borderColor = UIColor.whiteColor().CGColor
         }
-
+        
         if  nil != self.paramData {
             self.btnBack.hidden = false;
             self.btnNext.hidden = false;
@@ -74,11 +74,6 @@ class RegistController:CommonController{
         
     }
     
-    
-    
-    @IBAction func unwindToSegue(segue : UIStoryboardSegue) {
-        
-    }
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
     ////////////////tableview     ////////////////////
@@ -158,6 +153,9 @@ class RegistController:CommonController{
     }
     
     @IBAction func unwindForTags (segue : UIStoryboardSegue) {
+        
+    }
+    @IBAction func unwindToSegue(segue : UIStoryboardSegue) {
         
     }
 }

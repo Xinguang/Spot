@@ -111,7 +111,7 @@ class CommonHelper {
     }
     
     //异步设置图片
-    func setImageFromUrl(imageview:UIImageView,uri:String,callback:(imgData:NSData)->()){
+    func setImageFromUrl(imageview:UIImageView,uri:String,callback:(imgData:NSData)->()?){
         imageview.image =  UIImage(named: "noimage")
         
         if let image = UIImage(named: uri){

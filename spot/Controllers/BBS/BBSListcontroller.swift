@@ -43,14 +43,25 @@ class BBSListcontroller:CommonController,WaterFlowLayoutDelegate{
         let username = TestData.instance.userNameList[datarow.userid]
         var userface = "user" + String(datarow.userid) + ".jpg"
         
-        cell.configureWithContents(username, userface: userface, imageUrl: datarow.imagePath, contents: datarow.text)
+        cell.configureWithContents(username, userface: userface, imageurl: datarow.imagePath, contents: datarow.text)
         
         return cell
     }
     // Uncomment this method to specify if the specified item should be selected
     func collectionView(collectionView: UICollectionView!, shouldSelectItemAtIndexPath indexPath: NSIndexPath!) -> Bool {
         
-        self.performSegueWithIdentifier("bbs_detail",sender: "掲示板ー詳細")
+        let datarow = self.contents[indexPath.row]
+        
+        let username = TestData.instance.userNameList[datarow.userid]
+        var userface = "user" + String(datarow.userid) + ".jpg"
+        
+        let param:[String: AnyObject] = [
+            "username":username,
+            "userface":userface,
+            "imageurl":datarow.imagePath,
+            "contents":datarow.text,
+        ];
+        self.performSegueWithIdentifier("bbs_detail",sender: param)
         
         return true
     }
@@ -59,6 +70,6 @@ class BBSListcontroller:CommonController,WaterFlowLayoutDelegate{
     //MARK: - CWWaterFlowLayout Delegate
     
     func heightForRowInCollectionView(collectionView: UICollectionView, usingLayout layout: WaterFlowLayout, atIndexPath indexPath: NSIndexPath) -> Float {
-        return Float(50 + arc4random() % 100) + 44 + 20
+        return Float(100 + arc4random() % 100) + 44 + 20
     }
 }

@@ -7,31 +7,12 @@
 //
 
 import UIKit
-
-class SideController: JASidePanelController {
-    
+class SideController: DrawerController {
     override func awakeFromNib(){
         super.awakeFromNib()
-        self.leftPanel = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("view_left") as UIViewController
-        self.centerPanel = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("view_main") as UIViewController
-        self.rightPanel = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("view_right") as UIViewController
+        self.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("view_main") as? UIViewController
+        self.leftViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("view_left") as? UIViewController
+        self.rightViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("view_right") as? UIViewController
+        self.needSwipeShowMenu = true
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        /*
-        if(SettingHelper.instance.isRegistered()){
-        }else{
-        self.centerPanel = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("loginView") as UITabBarController
-        }
-        */
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
 }
-

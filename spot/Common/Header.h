@@ -19,7 +19,4 @@
 #import "SVProgressHUD.h"
 #import "REMenu.h"
 
-#import "JASidePanelController.h"
-#import "UIViewController+JASidePanel.h"
-
 #endif

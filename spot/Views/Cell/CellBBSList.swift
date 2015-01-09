@@ -16,6 +16,8 @@ class CellBBSList: UICollectionViewCell {
     
     @IBOutlet var textArea: UIView!
     
+    var imageUrl:String = ""
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -31,10 +33,11 @@ class CellBBSList: UICollectionViewCell {
         
     }
     
-    func configureWithContents(username:String ,userface:String,imageUrl: String,contents: String) {
+    func configureWithContents(username:String ,userface:String,imageurl: String,contents: String) {
         
         
         self.userName.text = username
+        self.imageUrl = imageurl
         CommonHelper.instance.setImageFromUrl(self.userFace, uri: userface) { (imgData) -> () in
             
         }
