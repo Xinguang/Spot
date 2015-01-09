@@ -7,12 +7,13 @@
 //
 import UIKit
 
-class LeftController: CommonController ,SpotTableViewDelegate{
+class LeftController: CommonNavigationController{
     
     var drawerController:DrawerController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.navigationBarHidden = true;
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -20,7 +21,7 @@ class LeftController: CommonController ,SpotTableViewDelegate{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    /*
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if("left" == segue.identifier){
             if let view: SettingController = segue.destinationViewController as? SettingController{
@@ -43,5 +44,6 @@ class LeftController: CommonController ,SpotTableViewDelegate{
             }
         }
     }
+    */
 }
 

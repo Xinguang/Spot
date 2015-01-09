@@ -69,10 +69,6 @@ class EventCreateConttroller:CommonController,CommonTableViewDelegate ,UIActionS
     }
     
     func imagePicker(){
-        AVCaptureDevice.requestAccessForMediaType(AVMediaTypeAudio, completionHandler: { (granted) -> Void in
-            
-        })
-        
         
         var sheet: UIActionSheet = UIActionSheet();
         let title: String = "画像を選択する";
