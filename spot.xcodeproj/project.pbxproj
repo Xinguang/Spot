@@ -67,7 +67,6 @@
 		178092481A247C31008E6897 /* RightController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178092471A247C31008E6897 /* RightController.swift */; };
 		1780924C1A249011008E6897 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1780924B1A249011008E6897 /* LoginController.swift */; };
 		17815F9D1A5CC94E00360570 /* ExtensionArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17815F9C1A5CC94E00360570 /* ExtensionArray.swift */; };
-		17815F9F1A5D258F00360570 /* BBSDetailHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17815F9E1A5D258F00360570 /* BBSDetailHeaderController.swift */; };
 		17815FA51A5E897300360570 /* BBSDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17815FA41A5E897300360570 /* BBSDetailHeaderView.swift */; };
 		1781C6C61A31C02E00EAD815 /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1781C6C51A31C02E00EAD815 /* SettingController.swift */; };
 		17841A0E1A47F71A00381215 /* TagController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17841A0D1A47F71A00381215 /* TagController.swift */; };
@@ -98,6 +97,7 @@
 		17C1470F1A31B6EE00591413 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C1470E1A31B6EE00591413 /* PostController.swift */; };
 		17C95BF11A5BB8E80097D0EA /* BBSContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C95BF01A5BB8E80097D0EA /* BBSContentModel.swift */; };
 		17C95BF31A5BED110097D0EA /* BBSDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C95BF21A5BED110097D0EA /* BBSDetailController.swift */; };
+		17CBB0AD1A64C7FA000663DF /* CellBBSHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CBB0AC1A64C7FA000663DF /* CellBBSHeader.swift */; };
 		17D2C2161A47CDEF00ECCC41 /* HorizontalCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D2C2151A47CDEF00ECCC41 /* HorizontalCollectionView.swift */; };
 		17D2C21A1A47D05400ECCC41 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D2C2181A47D05400ECCC41 /* MessageCell.swift */; };
 		17D2C21D1A47D08700ECCC41 /* CellTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D2C21C1A47D08700ECCC41 /* CellTag.swift */; };
@@ -185,7 +185,6 @@
 		178092471A247C31008E6897 /* RightController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RightController.swift; path = Controllers/RightController.swift; sourceTree = "<group>"; };
 		1780924B1A249011008E6897 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginController.swift; path = Controllers/Login/LoginController.swift; sourceTree = "<group>"; };
 		17815F9C1A5CC94E00360570 /* ExtensionArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionArray.swift; sourceTree = "<group>"; };
-		17815F9E1A5D258F00360570 /* BBSDetailHeaderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSDetailHeaderController.swift; path = Controllers/BBS/BBSDetailHeaderController.swift; sourceTree = "<group>"; };
 		17815FA41A5E897300360570 /* BBSDetailHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSDetailHeaderView.swift; path = Views/CustomView/BBSDetailHeaderView.swift; sourceTree = "<group>"; };
 		1781C6C51A31C02E00EAD815 /* SettingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingController.swift; path = Controllers/Setting/SettingController.swift; sourceTree = "<group>"; };
 		17841A0D1A47F71A00381215 /* TagController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TagController.swift; path = Controllers/Login/TagController.swift; sourceTree = "<group>"; };
@@ -221,6 +220,7 @@
 		17C1470E1A31B6EE00591413 /* PostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostController.swift; path = Controllers/BBS/PostController.swift; sourceTree = "<group>"; };
 		17C95BF01A5BB8E80097D0EA /* BBSContentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSContentModel.swift; sourceTree = "<group>"; };
 		17C95BF21A5BED110097D0EA /* BBSDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSDetailController.swift; path = Controllers/BBS/BBSDetailController.swift; sourceTree = "<group>"; };
+		17CBB0AC1A64C7FA000663DF /* CellBBSHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellBBSHeader.swift; sourceTree = "<group>"; };
 		17D2C2151A47CDEF00ECCC41 /* HorizontalCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HorizontalCollectionView.swift; path = Views/CustomView/HorizontalCollectionView.swift; sourceTree = "<group>"; };
 		17D2C2181A47D05400ECCC41 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		17D2C21C1A47D08700ECCC41 /* CellTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellTag.swift; sourceTree = "<group>"; };
@@ -371,7 +371,6 @@
 				17786EE61A31795B00CC81C3 /* BBSListcontroller.swift */,
 				17C1470E1A31B6EE00591413 /* PostController.swift */,
 				17C95BF21A5BED110097D0EA /* BBSDetailController.swift */,
-				17815F9E1A5D258F00360570 /* BBSDetailHeaderController.swift */,
 			);
 			name = BBS;
 			sourceTree = "<group>";
@@ -629,6 +628,7 @@
 				17EC354E1A5A29D500866535 /* CellBBSList.swift */,
 				172F08BA1A4CED48007EBA15 /* CellChat.swift */,
 				17EC35501A5A2E6200866535 /* WaterFlowLayout.swift */,
+				17CBB0AC1A64C7FA000663DF /* CellBBSHeader.swift */,
 			);
 			name = Cell;
 			path = Views/Cell;
@@ -771,7 +771,6 @@
 				17841A101A4813C400381215 /* MessageListController.swift in Sources */,
 				17EC354F1A5A29D500866535 /* CellBBSList.swift in Sources */,
 				17C95BF31A5BED110097D0EA /* BBSDetailController.swift in Sources */,
-				17815F9F1A5D258F00360570 /* BBSDetailHeaderController.swift in Sources */,
 				173CC7B41A36C869000ED1F6 /* NetRequestSerialization.swift in Sources */,
 				173CC7D81A382432000ED1F6 /* SVProgressHUD.m in Sources */,
 				173101521A4BFB660018C24C /* MapPoint.swift in Sources */,
@@ -825,6 +824,7 @@
 				173CC8B41A38458E000ED1F6 /* QQHelper.swift in Sources */,
 				17BAFABF1A26CD7200EBD6B4 /* SDK_QQhelper.swift in Sources */,
 				172F08BB1A4CED48007EBA15 /* CellChat.swift in Sources */,
+				17CBB0AD1A64C7FA000663DF /* CellBBSHeader.swift in Sources */,
 				17C95BF11A5BB8E80097D0EA /* BBSContentModel.swift in Sources */,
 				17BAFABB1A25CF1A00EBD6B4 /* CommonController.swift in Sources */,
 				172120461A2FFC1000E6615A /* SpotController.swift in Sources */,
