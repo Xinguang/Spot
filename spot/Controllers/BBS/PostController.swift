@@ -13,6 +13,7 @@ class PostController:UIViewController {
     @IBOutlet var textView: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.textView.becomeFirstResponder()
         
         var b = UIBarButtonItem(title: "送信", style: .Plain, target: self, action: Selector("openSend:"))
         self.navigationItem.rightBarButtonItem = b

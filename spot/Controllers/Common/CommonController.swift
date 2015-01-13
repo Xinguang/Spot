@@ -11,8 +11,8 @@ class CommonController:UIViewController {
     var paramData:AnyObject?
     override func viewDidLoad() {
         super.viewDidLoad()
-        var img:UIImage = UIImage(named: "background")!
-        self.view.backgroundColor = UIColor(patternImage: img);
+        //var img:UIImage = UIImage(named: "background")!
+        //self.view.backgroundColor = UIColor(patternImage: img);
         /*
         // 背景设置为黑色
         self.navigationController?.navigationBar.tintColor = CommonHelper.instance.UIColorFromRGB(0x000000);

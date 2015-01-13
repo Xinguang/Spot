@@ -21,8 +21,8 @@ class SettingController: UITableViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var img:UIImage = UIImage(named: "background")!
-        self.tableView.backgroundColor = UIColor(patternImage: img);
+        //var img:UIImage = UIImage(named: "background")!
+        //self.tableView.backgroundColor = UIColor(patternImage: img);
         
         self.msgRow = [
             CellRow(image: UIImage(named: "icon_qq")!,title: "氏名",subtitle: "ID　XXXXXXXX"),

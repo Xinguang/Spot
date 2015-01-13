@@ -16,6 +16,8 @@ class LoginController:CommonController,OpenIDHelperDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        var img:UIImage = UIImage(named: "background")!
+        self.view.backgroundColor = UIColor(patternImage: img);
         
         self.btn_wx = self.addLoginButton("icon_wx", backgroundValue: 0x00cf0d, tag: 1)
         self.btn_qq = self.addLoginButton("icon_qq", backgroundValue: 0x5c8eca, tag: 2)

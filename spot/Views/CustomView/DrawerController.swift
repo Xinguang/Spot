@@ -137,7 +137,8 @@ class DrawerController: UIViewController ,UIGestureRecognizerDelegate {
         didSet{
             if (leftViewController != nil){
                 self.addChildViewController(leftViewController!)
-                leftViewController!.view.frame = CGRectMake(0, 0, leftViewController!.view.frame.size.width,  leftViewController!.view.frame.size.height)
+                //leftViewController!.view.frame = CGRectMake(0, 0, leftViewController!.view.frame.size.width,  leftViewController!.view.frame.size.height)
+                leftViewController!.view.frame = CGRectMake(0, 0, leftViewShowWidth,  leftViewController!.view.frame.size.height)
                 leftSideView!.addSubview(leftViewController!.view)
             }
         }

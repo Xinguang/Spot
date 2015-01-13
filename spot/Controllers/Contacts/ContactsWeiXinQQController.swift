@@ -15,8 +15,8 @@ class ContactsWeiXinQQController: UITableViewController, UITableViewDataSource, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var img:UIImage = UIImage(named: "background")!
-        self.tableView.backgroundColor = UIColor(patternImage: img);
+        //var img:UIImage = UIImage(named: "background")!
+        //self.tableView.backgroundColor = UIColor(patternImage: img);
         
         self.dataArray = NSMutableArray()
         self.dataArray!.addObject("電話帳Aさん")

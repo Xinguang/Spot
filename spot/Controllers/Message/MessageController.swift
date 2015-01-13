@@ -14,8 +14,8 @@ class MessageController: UITableViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var img:UIImage = UIImage(named: "background")!
-        self.tableView.backgroundColor = UIColor(patternImage: img);
+        //var img:UIImage = UIImage(named: "background")!
+        //self.tableView.backgroundColor = UIColor(patternImage: img);
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         
         
