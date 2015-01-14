@@ -14,11 +14,11 @@ class SideController: DrawerController {
         self.leftViewShowWidth = UIScreen.mainScreen().bounds.width-50
         
         self.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("view_main") as? UIViewController
-        
+        /*
         let left = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("view_left") as? LeftController;
         left?.drawerController = self
         self.leftViewController = left
-        
+        */
         //self.rightViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("view_right") as? UIViewController
         
         

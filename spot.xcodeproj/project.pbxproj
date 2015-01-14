@@ -13,10 +13,10 @@
 		170DC1E51A43D08700FBE933 /* CommonTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170DC1E41A43D08700FBE933 /* CommonTabController.swift */; };
 		17211FC31A2EEAC600E6615A /* ContactsMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17211FC21A2EEAC600E6615A /* ContactsMapController.swift */; };
 		17211FC51A2F054800E6615A /* ContactsGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17211FC41A2F054800E6615A /* ContactsGroupController.swift */; };
-		17211FC71A2F09CA00E6615A /* ContactsWeiXinQQController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17211FC61A2F09CA00E6615A /* ContactsWeiXinQQController.swift */; };
 		172120461A2FFC1000E6615A /* SpotController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172120451A2FFC1000E6615A /* SpotController.swift */; };
 		172120481A30495F00E6615A /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172120471A30495F00E6615A /* TestData.swift */; };
 		1721204B1A3053B400E6615A /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1721204A1A3053B400E6615A /* EventController.swift */; };
+		1728EA691A663CF400B6BB99 /* ContactsPersonListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728EA681A663CF400B6BB99 /* ContactsPersonListController.swift */; };
 		172F08BB1A4CED48007EBA15 /* CellChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F08BA1A4CED48007EBA15 /* CellChat.swift */; };
 		1731014F1A4BFB410018C24C /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731014D1A4BFB410018C24C /* CellData.swift */; };
 		173101501A4BFB410018C24C /* CellRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731014E1A4BFB410018C24C /* CellRow.swift */; };
@@ -122,10 +122,10 @@
 		170DC1E41A43D08700FBE933 /* CommonTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommonTabController.swift; path = Controllers/Common/CommonTabController.swift; sourceTree = "<group>"; };
 		17211FC21A2EEAC600E6615A /* ContactsMapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsMapController.swift; path = Controllers/Contacts/ContactsMapController.swift; sourceTree = "<group>"; };
 		17211FC41A2F054800E6615A /* ContactsGroupController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsGroupController.swift; path = Controllers/Contacts/ContactsGroupController.swift; sourceTree = "<group>"; };
-		17211FC61A2F09CA00E6615A /* ContactsWeiXinQQController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsWeiXinQQController.swift; path = Controllers/Contacts/ContactsWeiXinQQController.swift; sourceTree = "<group>"; };
 		172120451A2FFC1000E6615A /* SpotController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpotController.swift; path = Controllers/Spot/SpotController.swift; sourceTree = "<group>"; };
 		172120471A30495F00E6615A /* TestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestData.swift; path = Model/TestData/TestData.swift; sourceTree = "<group>"; };
 		1721204A1A3053B400E6615A /* EventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventController.swift; path = Controllers/Spot/EventController.swift; sourceTree = "<group>"; };
+		1728EA681A663CF400B6BB99 /* ContactsPersonListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsPersonListController.swift; path = Controllers/Contacts/ContactsPersonListController.swift; sourceTree = "<group>"; };
 		172F08BA1A4CED48007EBA15 /* CellChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellChat.swift; sourceTree = "<group>"; };
 		1731014D1A4BFB410018C24C /* CellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellData.swift; sourceTree = "<group>"; };
 		1731014E1A4BFB410018C24C /* CellRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellRow.swift; sourceTree = "<group>"; };
@@ -602,10 +602,10 @@
 		17BAFAC11A26D0CD00EBD6B4 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
+				1728EA681A663CF400B6BB99 /* ContactsPersonListController.swift */,
 				175BCD781A2D8C1B000CCC8B /* ContactsDetailController.swift */,
 				17211FC21A2EEAC600E6615A /* ContactsMapController.swift */,
 				17211FC41A2F054800E6615A /* ContactsGroupController.swift */,
-				17211FC61A2F09CA00E6615A /* ContactsWeiXinQQController.swift */,
 				17841A151A48270400381215 /* ContactListController.swift */,
 				17A1C94C1A4A6E6500FF1E59 /* ContactGroupListController.swift */,
 			);
@@ -769,6 +769,7 @@
 				17B623F81A3FD7C500857E23 /* REMenuItemView.m in Sources */,
 				17B623F71A3FD7C500857E23 /* REMenuItem.m in Sources */,
 				17841A101A4813C400381215 /* MessageListController.swift in Sources */,
+				1728EA691A663CF400B6BB99 /* ContactsPersonListController.swift in Sources */,
 				17EC354F1A5A29D500866535 /* CellBBSList.swift in Sources */,
 				17C95BF31A5BED110097D0EA /* BBSDetailController.swift in Sources */,
 				173CC7B41A36C869000ED1F6 /* NetRequestSerialization.swift in Sources */,
@@ -802,7 +803,6 @@
 				17B623F41A3FD7C500857E23 /* RECommonFunctions.m in Sources */,
 				173CC7B31A36C869000ED1F6 /* NetHelper.swift in Sources */,
 				17D2C21A1A47D05400ECCC41 /* MessageCell.swift in Sources */,
-				17211FC71A2F09CA00E6615A /* ContactsWeiXinQQController.swift in Sources */,
 				170DC1DF1A42DDB800FBE933 /* NavigationController.swift in Sources */,
 				17BAFAB61A25C5E000EBD6B4 /* CommonHelper.swift in Sources */,
 				17ACFF021A4D366B00400803 /* GestureRecognizerHelper.swift in Sources */,

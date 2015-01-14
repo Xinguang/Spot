@@ -39,12 +39,5 @@ class MessageCell:UITableViewCell{
         self.imageView?.frame = frame
         self.imageView?.contentMode = UIViewContentMode.ScaleAspectFit;
         
-        var tmpFrame = self.textLabel?.frame;
-        tmpFrame?.origin.x = height + 10;
-        self.textLabel?.frame = tmpFrame!;
-        
-        tmpFrame = self.detailTextLabel?.frame;
-        tmpFrame?.origin.x = height + 25;
-        self.detailTextLabel?.frame = tmpFrame!;
     }
 }
