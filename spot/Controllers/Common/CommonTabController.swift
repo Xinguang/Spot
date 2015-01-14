@@ -11,6 +11,11 @@ class CommonTabController:UITabBarController{
     override func viewDidLoad() {
         super.viewDidLoad()
         var tabbar = self.tabBar as CustomTabBar;
+        /*
+        tabBar.translucent = true;
+        
+        tabBar.alpha = 0.8;
+        */
         self.delegate = tabbar
         
         tabBar.barTintColor = CommonHelper.instance.UIColorFromRGB(0xFFE6CC, alpha: 0.2)

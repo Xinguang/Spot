@@ -37,7 +37,7 @@ class CustomTabBar: UITabBar, UITabBarControllerDelegate {
     //MARK: - Initialization
     
     func setupTabBar() -> Void {
-        self.translucent = false
+        self.translucent = true
         self.addSubview(cursorView)
         self.sendSubviewToBack(cursorView)
         self.cursorIndex = 0

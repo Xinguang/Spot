@@ -25,11 +25,11 @@ class SettingController: UITableViewController, UITableViewDataSource, UITableVi
         //self.tableView.backgroundColor = UIColor(patternImage: img);
         
         self.msgRow = [
-            CellRow(image: UIImage(named: "icon_qq")!,title: "氏名",subtitle: "ID　XXXXXXXX"),
-            CellRow(image: UIImage(named: "icon_qq")!,title: "お気に入り",subtitle: "イベントからからのメッセージ"),
-            CellRow(image: UIImage(named: "icon_qq")!,title: "携帯",subtitle: "00000000000"),
-            CellRow(image: UIImage(named: "icon_qq")!,title: "WeiChat",subtitle: "xxxxxxxx"),
-            CellRow(image: UIImage(named: "icon_qq")!,title: "QQ",subtitle: "88888888"),
+            CellRow(image: CommonHelper.instance.coloredImage(UIImage(named: "smile")!, color:CommonHelper.instance.UIColorFromRGB(0xF2BD5A, alpha: 0.75)),title: "氏名",subtitle: "ID　XXXXXXXX"),
+            CellRow(image: CommonHelper.instance.coloredImage(UIImage(named: "smile")!, color:CommonHelper.instance.UIColorFromRGB(0xF2BD0A, alpha: 0.75)),title: "お気に入り",subtitle: "イベントからからのメッセージ"),
+            CellRow(image: CommonHelper.instance.coloredImage(UIImage(named: "smile")!, color:CommonHelper.instance.UIColorFromRGB(0xF2B05A, alpha: 0.75)),title: "携帯",subtitle: "00000000000"),
+            CellRow(image: CommonHelper.instance.coloredImage(UIImage(named: "smile")!, color:CommonHelper.instance.UIColorFromRGB(0xF20D5A, alpha: 0.75)),title: "WeiChat",subtitle: "xxxxxxxx"),
+            CellRow(image: CommonHelper.instance.coloredImage(UIImage(named: "smile")!, color:CommonHelper.instance.UIColorFromRGB(0xF0BD5A, alpha: 0.75)),title: "QQ",subtitle: "88888888"),
         ];
         //self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
@@ -64,7 +64,7 @@ class SettingController: UITableViewController, UITableViewDataSource, UITableVi
         let datarow = self.msgRow[indexPath.row];
         
         cell.accessoryView = nil
-        cell.imageView?.image = nil
+        cell.imageView?.image = datarow.image
         switch indexPath.row {
         case 0:
             if let imageData = SettingHelper.instance.get("sys_figure_data") as? NSData{
@@ -72,12 +72,13 @@ class SettingController: UITableViewController, UITableViewDataSource, UITableVi
             }else{
                 cell.imageView?.image = datarow.image;
             }
-        case 2,3,4:
+            break;
+        case 1,2,3,4:
             let switchview = UISwitch(frame: CGRectZero)
             cell.accessoryView = switchview;
-            cell.imageView?.image = nil
+            break;
         default:
-            cell.imageView?.image = nil
+            break;
         }
         
         

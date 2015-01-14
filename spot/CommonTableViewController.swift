@@ -19,6 +19,7 @@ protocol CommonTableViewDelegate:CommonTableViewDelegateObjectiveC{
 
 class CommonTableViewController: CommonController, UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate,UISearchDisplayDelegate{
     
+    @IBOutlet var searchBar: UISearchBar!
     var identifier:String = "";
     var msgData: [CellData] = []
     var delegate:CommonTableViewDelegate?

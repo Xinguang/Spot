@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MessageDetailController: UIViewController{
+class MessageDetailController: CommonController{
     
     
     @IBOutlet var textField: UITextField!
@@ -16,26 +16,12 @@ class MessageDetailController: UIViewController{
     @IBOutlet var btnPlus: UIButton!
     @IBOutlet var container: UIView!
     var msgRow: [CellRow] = []
-    var _menu:REMenu = REMenu()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.textField.addTarget(self, action: Selector("endEdit:"), forControlEvents: UIControlEvents.EditingDidEndOnExit)
         
-        self._menu = REMenu(items: [
-            CustomRemenuItem(title: "設定",subtitle: "subTitle",image: nil,highlightedImage: nil,{ (item) -> Void in
-                let ms = MessageSetting()
-                self.navigationController?.pushViewController(ms, animated: true)
-            }),
-            ])
-        self._menu.items.append(CustomRemenuItem(title: "イベント詳細",subtitle: "subTitle",image: nil,highlightedImage: nil,{ (item) -> Void in
-            self.performSegueWithIdentifier("event_detail",sender: "map")
-        }))
-        self._menu.items.append(CustomRemenuItem(title: "掲示板詳細",subtitle: "subTitle",image: nil,highlightedImage: nil,{ (item) -> Void in
-            self.performSegueWithIdentifier("bbs_detail",sender: "map")
-        }))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "...", style: .Plain, target: self, action: Selector("toggleMenu"))
-        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "設定", style: .Plain, target: self, action: Selector("showMessageSetting"))
+ 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
     }
@@ -44,16 +30,9 @@ class MessageDetailController: UIViewController{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    func toggleMenu()
-    {
-        if (self._menu.isOpen){
-            return self._menu.close()
-        }
-        //self._menu.showFromNavigationController(self.navigationController)
-        //self._menu.showInView(self.view)
-        self._menu.showFromRect(CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height), inView: self.view)
+    func showMessageSetting(){
+        self.performSegueWithIdentifier("message_setting",sender: "設定")
     }
-    
     
     func endEdit(sender:AnyObject){
         sender.resignFirstResponder()

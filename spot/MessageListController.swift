@@ -13,7 +13,9 @@ class MessageListController:CommonController,CommonTableViewDelegate {
         
         if( "message_list" == segue.identifier ){
             var msgData = [
-                CellData(title: "", msgRows: TestData.instance.getUserList())
+                CellData(title: "", msgRows: TestData.instance.systemMessageList()),
+                CellData(title: "友人", msgRows: TestData.instance.getUserList())
+                
             ]
             viewController?.msgData = msgData
             viewController?.delegate = self

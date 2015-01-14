@@ -14,7 +14,7 @@ class ContactsPersonListController:CommonController ,CommonTableViewDelegate{
         var viewController = segue.destinationViewController as? CommonTableViewController;
         if("contact_person_list" == segue.identifier){
             var msgData:[CellData] = []
-            msgData.append(CellData(title: "電話帳", msgRows: TestData.instance.getUserList()))
+            msgData.append(CellData(title: "", msgRows: TestData.instance.getUserList()))
             viewController?.msgData = msgData
             viewController?.delegate = self
         }

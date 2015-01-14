@@ -16,11 +16,10 @@ class CommonController:UIViewController {
         /*
         // 背景设置为黑色
         self.navigationController?.navigationBar.tintColor = CommonHelper.instance.UIColorFromRGB(0x000000);
+        self.navigationController?.navigationBar.translucent = true;
         // 透明度设置为0.3
         self.navigationController?.navigationBar.alpha = 0.300;
         */
-        // 设置为半透明
-        self.navigationController?.navigationBar.translucent = true;
     }
     
     override func didReceiveMemoryWarning() {
