@@ -70,19 +70,8 @@ class EventCreateConttroller:CommonController,CommonTableViewDelegate ,UIActionS
     
     func imagePicker(){
         
-        var sheet: UIActionSheet = UIActionSheet();
-        let title: String = "画像を選択する";
-        sheet.title  = title;
-        sheet.delegate = self;
-        sheet.addButtonWithTitle("Cancel");
-        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
-            sheet.addButtonWithTitle("カメラ");
-        }
-        if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
-            sheet.addButtonWithTitle("写真を選択する");
-        }
-        // キャンセルボタンのindexを指定
-        sheet.cancelButtonIndex = 0;
+        //var sheet: UIActionSheet = UIActionSheet();
+        var sheet: UIActionSheet = UIActionSheet(title: "画像を選択する", delegate: self, cancelButtonTitle: "取り消し", destructiveButtonTitle: "カメラ", otherButtonTitles: "写真を選択する")
         
         // UIActionSheet表示
         sheet.showInView(viewController?.view);

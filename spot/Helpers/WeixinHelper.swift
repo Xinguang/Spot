@@ -137,7 +137,13 @@ class WeixinHelper:NSObject,WXApiDelegate {
                 let result = responseData.json(error: nil) as Dictionary<String, AnyObject>;
                 if(!contains(result.keys, "errcode")){
                     SettingHelper.instance.setList(result, prefix: "wx_")
-                    self.getUserInfo()                    /*
+                    let openid = result["openid"] as String?
+                    let access_token = result["access_token"] as String?
+                    let refresh_token = result["refresh_token"] as String?
+                    
+                    APIHelper.instance.setOpenid(openid!, access_token: access_token!, refresh_token: refresh_token, expirationDate: nil)
+                    self.getUserInfo()
+                    /*
                     NSLog("access_token:%@",result["access_token"] as String)
                     let expires_in = result["expires_in"] as Int;
                     NSLog("expires_in:%d",expires_in)

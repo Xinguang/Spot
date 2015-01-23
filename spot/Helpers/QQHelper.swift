@@ -28,7 +28,7 @@ class QQHelper:NSObject,TencentSessionDelegate {
     //初期化
     private override init() {
         super.init()
-        let appid = "1103493465";
+        let appid = "1103821830";
         
         _tencentOAuth = TencentOAuth(appId: appid, andDelegate: self)
         
@@ -76,12 +76,18 @@ class QQHelper:NSObject,TencentSessionDelegate {
         let accessToken = _tencentOAuth?.accessToken
         if (accessToken != nil && "" != accessToken)
         {
+            
+            let accessToken  = _tencentOAuth?.accessToken
+            let openId = _tencentOAuth?.openId
+            let expirationDate = _tencentOAuth?.expirationDate
+            
             var param = Dictionary<String, AnyObject>();
-            param["accessToken"] = _tencentOAuth?.accessToken
-            param["openId"] = _tencentOAuth?.openId
-            param["expirationDate"] = _tencentOAuth?.expirationDate
+            param["accessToken"] = accessToken
+            param["openId"] = openId
+            param["expirationDate"] = expirationDate
             
             SettingHelper.instance.setList(param, prefix: "qq_")
+            APIHelper.instance.setOpenid(openId!, access_token:accessToken!, refresh_token: nil, expirationDate:expirationDate!)
             _tencentOAuth?.getUserInfo()
         }
         else

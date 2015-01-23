@@ -7,13 +7,17 @@
 //
 import UIKit
 
-class LoginController:CommonController,OpenIDHelperDelegate{
+class LoginController:CommonController,OpenIDHelperDelegate,APIHelperDelegate{
     
     var theAnimator:UIDynamicAnimator?;
     
     var btn_wx: UIButton?
     var btn_qq: UIButton?
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        APIHelper.instance.checkAuth(self)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         var img:UIImage = UIImage(named: "background")!
@@ -23,7 +27,6 @@ class LoginController:CommonController,OpenIDHelperDelegate{
         self.btn_qq = self.addLoginButton("icon_qq", backgroundValue: 0x5c8eca, tag: 2)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "becomeActive:", name: UIApplicationDidBecomeActiveNotification, object: nil)
-
     }
 
     override func prefersStatusBarHidden() -> Bool {
@@ -75,9 +78,28 @@ class LoginController:CommonController,OpenIDHelperDelegate{
             break;
         }
     }
+    /////////////////////////////////////////////////
+    ////API//////////////////////////////////////////
+    /////////////////////////////////////////////////
+    
+    //api
+    func onError(errCode:Int32,errMessage:String){//失败
+
+    }
+    func onSuccess(res:AnyObject){//成功
+        let auth = res as APIAuthModel
+        if auth.auth_token != ""{
+            if auth.openidlist?.count>0 {
+                performSegueWithIdentifier("login_skip",sender: "")
+                return ;
+            }
+        }
+    }
+
+    
     
     /////////////////////////////////////////////////
-    ////OpenID/////////////////////////////////////////
+    ////OpenID///////////////////////////////////////
     /////////////////////////////////////////////////
     //失败
     func onError(type:OpenIDRequestType,errCode:Int32,errMessage:String){
