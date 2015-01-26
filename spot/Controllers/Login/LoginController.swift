@@ -83,16 +83,14 @@ class LoginController:CommonController,OpenIDHelperDelegate,APIHelperDelegate{
     /////////////////////////////////////////////////
     
     //api
-    func onError(errCode:Int32,errMessage:String){//失败
-
+    func whenApiError(error:NSError!){//失败
+        println(error.localizedDescription)
     }
-    func onSuccess(res:AnyObject){//成功
-        let auth = res as APIAuthModel
-        if auth.auth_token != ""{
-            if auth.openidlist?.count>0 {
-                performSegueWithIdentifier("login_skip",sender: "")
-                return ;
-            }
+    func whenApiSuccess(res:AnyObject?){//成功
+        let auth = APIAuthModel(data: res)
+        if auth.openidlist?.count>0 {
+            performSegueWithIdentifier("login_skip",sender: "")
+            return ;
         }
     }
 

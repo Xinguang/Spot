@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MessageDetailController: CommonController{
+class MessageDetailController: CommonController,WebSocketHelperDelegate{
     
     
     @IBOutlet var textField: UITextField!
@@ -18,6 +18,8 @@ class MessageDetailController: CommonController{
     var msgRow: [CellRow] = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        WebSocketHelper.instance.delegate = self
+        
         self.textField.addTarget(self, action: Selector("endEdit:"), forControlEvents: UIControlEvents.EditingDidEndOnExit)
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "設定", style: .Plain, target: self, action: Selector("showMessageSetting"))
@@ -33,13 +35,33 @@ class MessageDetailController: CommonController{
     func showMessageSetting(){
         self.performSegueWithIdentifier("message_setting",sender: "設定")
     }
-    
+    ////////////////////////////////////////////
+    ////////////////////////////////////////////
+    //web socket
+    ////////////////////////////////////////////
+    ////////////////////////////////////////////
+    func whenError(errMessage:String){
+        println("errormessage: \(errMessage)")
+    }
+    func whenSuccess(ReceiveMessage:String){
+        println("ReceiveMessage: \(ReceiveMessage)")
+        
+    }
+    //send messge
     func endEdit(sender:AnyObject){
         sender.resignFirstResponder()
         var str = self.textField.text;
         self.textField.text = "";
+        if("" != str){
+            WebSocketHelper.instance.sendMessage(str)
+        }
     }
     
+    ////////////////////////////////////////////
+    ////////////////////////////////////////////
+    //keyboard 
+    ////////////////////////////////////////////
+    ////////////////////////////////////////////
     
     func keyboardWillShow(notification:NSNotification){
         var info = notification.userInfo!

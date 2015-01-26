@@ -9,8 +9,8 @@
 import Foundation
 
 protocol APIHelperDelegate{
-    func onError(errCode:Int32,errMessage:String)//失败
-    func onSuccess(res:AnyObject)//成功
+    func whenApiError(error:NSError!)//失败
+    func whenApiSuccess(res:AnyObject?)//成功
 }
 class APIHelper:NSObject {
     //シングルトンパターン
@@ -26,58 +26,63 @@ class APIHelper:NSObject {
     }
     
     let net = Net()
-    var auth_token:String?
     var uuid = NSUUID().UUIDString
     var domain = "http://selink.syufu.jp/"
+    
+    var ERR_NETWORK_ACCESS_DENIED = NSError(domain: "syufu.jp",code: 138,userInfo: [ NSLocalizedDescriptionKey: "インターネットに接続できません" ])
     
     
     //初期化
     private override init() {
     }
-
-    func checkNet(delegate:APIHelperDelegate?) ->Bool{
-        if !Reachability.isConnectedToNetwork() {
-            self.showError(delegate,errCode: -4, errMessage: "ネットワークに接続してください")
-            return false;
+    
+    func http(url:String,params: NSDictionary?,delegate:APIHelperDelegate?){
+        let reachability = Reachability.reachabilityForInternetConnection()
+        if !reachability.isReachable() {
+            SVProgressHUD.showErrorWithStatus(ERR_NETWORK_ACCESS_DENIED.localizedDescription)
+            delegate?.whenApiError(ERR_NETWORK_ACCESS_DENIED)
+            return;
         }
-        return true;
-    }
-    //登録情報を取得
-    func checkAuth(delegate:APIHelperDelegate){
-        if(self.checkNet(delegate)){return;}
-        
-        let url = domain + "auth.json"
-        
-        let params = ["uuid": uuid, "openid": ""]
-        
+        SVProgressHUD.dismiss()
         SVProgressHUD.showWithMaskType(SVProgressHUDMaskType.Black);
-        
-        self.net.GET(absoluteUrl: url,
+        self.net.GET(absoluteUrl: domain + url,
             params: params,
             successHandler: { responseData in
+                let urlResponse = responseData.urlResponse as NSHTTPURLResponse
                 gcd.async(.Main) {
+                    if urlResponse.statusCode != 200 {
+                        let error = NSError(domain: "HTTP_ERROR_CODE", code: urlResponse.statusCode, userInfo: nil)
+                        delegate?.whenApiError(error)
+                        return
+                    }
+                    SVProgressHUD.dismiss()
                     if let data = responseData.json(error: nil) as? Dictionary<String, AnyObject>{
-                        let auth = APIAuthModel(data: data)
-                        self.auth_token = auth.auth_token
-                        self.success(delegate, res: auth)
+                        delegate?.whenApiSuccess(data)
                     }else{
-                        self.showError(delegate,errCode: -4, errMessage: "ネットワークを確認してください")//服务器返回信息错误
+                        delegate?.whenApiSuccess(NSString(data: responseData.data, encoding: UInt())!)
                     }
                 }
             },
             failureHandler: { error in
-                self.showError(delegate,errCode: Int32(error.code), errMessage: error.localizedDescription)
+                gcd.async(.Main) {
+                    SVProgressHUD.showErrorWithStatus(error.localizedDescription)
+                    delegate?.whenApiError(error)
+                }
             }
         )
     }
+    
+    //登録情報を取得
+    func checkAuth(delegate:APIHelperDelegate){
+        let url = "auth.json"
+        let params = ["uuid": uuid, "openid": ""]
+        self.http(url, params: params, delegate: delegate)
+    }
     //openidを登録
     func setOpenid(openid:String,access_token:String,refresh_token:String?,expirationDate:NSDate?){
-        if(self.checkNet(nil)){return;}
-        
-        let url = domain + "ok.json"
+        let url = "ok.json"
         
         let params = [
-            "auth_token": self.auth_token!,
             "uuid": uuid,
             "device": UIDevice.currentDevice().name,
             "openid": openid,
@@ -86,27 +91,11 @@ class APIHelper:NSObject {
             "expirationDate": expirationDate!
         ]
         
-        self.net.GET(absoluteUrl: url,
-            params: params,
-            successHandler: { responseData in
-                if let data = responseData.json(error: nil) as? Dictionary<String, AnyObject>{
-                    let auth = APICommonModel(data: data)
-                    self.success(nil, res: auth)
-                }else{
-                    self.showError(nil,errCode: -4, errMessage: "ネットワークを確認してください")//服务器返回信息错误
-                }
-
-            },
-            failureHandler: { error in
-                self.showError(nil,errCode: Int32(error.code), errMessage: error.localizedDescription)
-            }
-        )
+        self.http(url, params: params, delegate: nil)
     }
     //openidを登録
     func regist(nickname:String,figure:String,station:String,birthday:String?,sex:NSDate?){
-        if(self.checkNet(nil)){return;}
-        
-        let url = domain + "regist.json"
+        let url = "regist.json"
         
         let params = [
             "nickname": nickname,
@@ -117,35 +106,6 @@ class APIHelper:NSObject {
             "sex": sex!,
         ]
         
-        self.net.GET(absoluteUrl: url,
-            params: params,
-            successHandler: { responseData in
-                if let data = responseData.json(error: nil) as? Dictionary<String, AnyObject>{
-                    let reg = APIRegistModel(data: data)
-                    self.auth_token = reg.auth_token
-                    self.success(nil, res: reg)
-                }else{
-                    self.showError(nil,errCode: -4, errMessage: "ネットワークを確認してください")//服务器返回信息错误
-                }
-                
-            },
-            failureHandler: { error in
-                self.showError(nil,errCode: Int32(error.code), errMessage: error.localizedDescription)
-            }
-        )
-    }
-    /////////////////////////////////////////////////////////
-    ///////エラーを表示する/////////////////////////////////////
-    /////////////////////////////////////////////////////////
-    func showError(delegate:APIHelperDelegate?,errCode:Int32,errMessage:String){
-        SVProgressHUD.showErrorWithStatus(errMessage)
-        delegate?.onError(errCode, errMessage: errMessage)
-    }
-    /////////////////////////////////////////////////////////
-    ///////データを返す////////////////////////////////////////
-    /////////////////////////////////////////////////////////
-    func success(delegate:APIHelperDelegate?,res:AnyObject){
-        SVProgressHUD.dismiss()
-        delegate?.onSuccess(res)
+        self.http(url, params: params, delegate: nil)
     }
 }

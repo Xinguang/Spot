@@ -71,7 +71,8 @@ class WeixinHelper:NSObject,WXApiDelegate {
     //检验授权凭证（access_token）是否有效
     let wx_url_auth = "https://api.weixin.qq.com/sns/auth"
     func checkAuth(){
-        if !Reachability.isConnectedToNetwork() {
+        let reachability = Reachability.reachabilityForInternetConnection()
+        if !reachability.isReachable() {
             self.showError(-4, errMessage: "ネットワークに接続してください")
             return;
         }

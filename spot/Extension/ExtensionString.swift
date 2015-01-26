@@ -29,6 +29,16 @@ extension String {
         }
         return matches
     }
+    //to Date
+    func toDate(let format:String = "yyyy-MM-dd HH:mm:ss") -> NSDate? {
+        var formatter:NSDateFormatter = NSDateFormatter()
+        formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        formatter.timeZone = NSTimeZone()
+        formatter.dateFormat = format
+        
+        return formatter.dateFromString(self)
+    }
+
 }
 
 infix operator =~ {} //mach all

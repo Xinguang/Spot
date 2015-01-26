@@ -30,7 +30,6 @@ class SettingHelper {
         "sys_figure_data":NSData(),
         "sys_sex":"",
         "sys_birthday":"",
-        "sys_auth_token":"",
         /////////////////////////////
         ///微信///////////////////////
         /////////////////////////////
@@ -87,7 +86,6 @@ class SettingHelper {
     
     
     func setAuthData(data:APIAuthModel){
-        self.set("sys_auth_token", value: data.auth_token!)
         self.set("sys_nickname", value: data.nickname!)
         self.set("sys_figure", value: data.figure!)
         self.set("sys_sex", value: data.sex!)

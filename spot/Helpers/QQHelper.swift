@@ -28,7 +28,8 @@ class QQHelper:NSObject,TencentSessionDelegate {
     //初期化
     private override init() {
         super.init()
-        let appid = "1103821830";
+        //let appid = "1103821830";
+        let appid = "222222";
         
         _tencentOAuth = TencentOAuth(appId: appid, andDelegate: self)
         
@@ -36,12 +37,13 @@ class QQHelper:NSObject,TencentSessionDelegate {
         if("" != qq_openId ){
             _tencentOAuth?.accessToken =  SettingHelper.instance.get("qq_accessToken") as String
             _tencentOAuth?.openId = qq_openId
-            _tencentOAuth?.expirationDate = SettingHelper.instance.get("qq_expirationDate") as NSDate
+            _tencentOAuth?.expirationDate = SettingHelper.instance.get("qq_expirationDate") as? NSDate
         }
     }
     
     func checkAuth(){
-        if !Reachability.isConnectedToNetwork() {
+        let reachability = Reachability.reachabilityForInternetConnection()
+        if !reachability.isReachable() {
             self.showError(-4, errMessage: "ネットワークに接続してください")
             return;
         }
@@ -85,6 +87,7 @@ class QQHelper:NSObject,TencentSessionDelegate {
             param["accessToken"] = accessToken
             param["openId"] = openId
             param["expirationDate"] = expirationDate
+            println(param)
             
             SettingHelper.instance.setList(param, prefix: "qq_")
             APIHelper.instance.setOpenid(openId!, access_token:accessToken!, refresh_token: nil, expirationDate:expirationDate!)

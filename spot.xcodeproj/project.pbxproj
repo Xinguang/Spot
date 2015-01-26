@@ -51,7 +51,10 @@
 		177130DD1A71DD6E00B8A73D /* TagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177130DC1A71DD6E00B8A73D /* TagModel.swift */; };
 		177130DF1A71DD7D00B8A73D /* UuidModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177130DE1A71DD7D00B8A73D /* UuidModel.swift */; };
 		177130E31A721E2700B8A73D /* ExtensionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177130E21A721E2700B8A73D /* ExtensionString.swift */; };
-		177130E91A72544B00B8A73D /* APIRegistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177130E81A72544B00B8A73D /* APIRegistModel.swift */; };
+		177130F91A75D3CF00B8A73D /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177130F81A75D3CF00B8A73D /* WebSocket.swift */; };
+		177130FB1A75D3FF00B8A73D /* WebSocketHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177130FA1A75D3FF00B8A73D /* WebSocketHelper.swift */; };
+		177131041A75F10300B8A73D /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177131031A75F10300B8A73D /* Reachability.swift */; };
+		177131081A764AC400B8A73D /* ExtensionDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177131071A764AC400B8A73D /* ExtensionDate.swift */; };
 		17786ED81A31464C00CC81C3 /* EventCreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17786ED71A31464C00CC81C3 /* EventCreateController.swift */; };
 		17786EDA1A314C4C00CC81C3 /* EventDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17786ED91A314C4C00CC81C3 /* EventDetailController.swift */; };
 		17786EE01A31550900CC81C3 /* EventTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17786EDF1A31550900CC81C3 /* EventTabController.swift */; };
@@ -87,7 +90,6 @@
 		17B623F81A3FD7C500857E23 /* REMenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B623F31A3FD7C500857E23 /* REMenuItemView.m */; };
 		17B623FA1A3FD8DE00857E23 /* CustomRemenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B623F91A3FD8DE00857E23 /* CustomRemenuItem.swift */; };
 		17B623FC1A400F4E00857E23 /* DynamicHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B623FB1A400F4E00857E23 /* DynamicHelper.swift */; };
-		17B623FE1A4017E400857E23 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B623FD1A4017E400857E23 /* Reachability.swift */; };
 		17B630AF1A3B032F004D4D1B /* RegistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B630AE1A3B032F004D4D1B /* RegistController.swift */; };
 		17BAFAB01A25A4F800EBD6B4 /* SettingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BAFAAF1A25A4F800EBD6B4 /* SettingHelper.swift */; };
 		17BAFAB61A25C5E000EBD6B4 /* CommonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BAFAB51A25C5E000EBD6B4 /* CommonHelper.swift */; };
@@ -110,7 +112,6 @@
 		17F2A6E91A71D9BF0011D716 /* MapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F2A6E31A71D9BF0011D716 /* MapPoint.swift */; };
 		17F2A6EA1A71D9BF0011D716 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F2A6E41A71D9BF0011D716 /* MessageModel.swift */; };
 		17F2A6EB1A71D9BF0011D716 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F2A6E51A71D9BF0011D716 /* UserModel.swift */; };
-		17F2A6ED1A71DA020011D716 /* APICommonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F2A6EC1A71DA020011D716 /* APICommonModel.swift */; };
 		17F2A6EF1A71DA9D0011D716 /* APIAuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F2A6EE1A71DA9D0011D716 /* APIAuthModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -173,7 +174,10 @@
 		177130DC1A71DD6E00B8A73D /* TagModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagModel.swift; sourceTree = "<group>"; };
 		177130DE1A71DD7D00B8A73D /* UuidModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UuidModel.swift; sourceTree = "<group>"; };
 		177130E21A721E2700B8A73D /* ExtensionString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionString.swift; sourceTree = "<group>"; };
-		177130E81A72544B00B8A73D /* APIRegistModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRegistModel.swift; sourceTree = "<group>"; };
+		177130F81A75D3CF00B8A73D /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebSocket.swift; path = spot/Vendor/WebSocket/WebSocket.swift; sourceTree = "<group>"; };
+		177130FA1A75D3FF00B8A73D /* WebSocketHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebSocketHelper.swift; path = Helpers/WebSocketHelper.swift; sourceTree = "<group>"; };
+		177131031A75F10300B8A73D /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		177131071A764AC400B8A73D /* ExtensionDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionDate.swift; sourceTree = "<group>"; };
 		17786ED71A31464C00CC81C3 /* EventCreateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventCreateController.swift; path = Controllers/Spot/EventCreateController.swift; sourceTree = "<group>"; };
 		17786ED91A314C4C00CC81C3 /* EventDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventDetailController.swift; path = Controllers/Spot/EventDetailController.swift; sourceTree = "<group>"; };
 		17786EDF1A31550900CC81C3 /* EventTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventTabController.swift; path = Controllers/Spot/EventTabController.swift; sourceTree = "<group>"; };
@@ -219,7 +223,6 @@
 		17B623F31A3FD7C500857E23 /* REMenuItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REMenuItemView.m; sourceTree = "<group>"; };
 		17B623F91A3FD8DE00857E23 /* CustomRemenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomRemenuItem.swift; path = Views/CustomView/CustomRemenuItem.swift; sourceTree = "<group>"; };
 		17B623FB1A400F4E00857E23 /* DynamicHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DynamicHelper.swift; path = Helpers/DynamicHelper.swift; sourceTree = "<group>"; };
-		17B623FD1A4017E400857E23 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = Helpers/Reachability.swift; sourceTree = "<group>"; };
 		17B630AE1A3B032F004D4D1B /* RegistController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegistController.swift; path = Controllers/Login/RegistController.swift; sourceTree = "<group>"; };
 		17BAFAAF1A25A4F800EBD6B4 /* SettingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingHelper.swift; path = Helpers/SettingHelper.swift; sourceTree = "<group>"; };
 		17BAFAB51A25C5E000EBD6B4 /* CommonHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommonHelper.swift; path = Helpers/CommonHelper.swift; sourceTree = "<group>"; };
@@ -242,7 +245,6 @@
 		17F2A6E31A71D9BF0011D716 /* MapPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapPoint.swift; path = Model/TestData/MapPoint.swift; sourceTree = "<group>"; };
 		17F2A6E41A71D9BF0011D716 /* MessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageModel.swift; path = Model/TestData/MessageModel.swift; sourceTree = "<group>"; };
 		17F2A6E51A71D9BF0011D716 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserModel.swift; path = Model/TestData/UserModel.swift; sourceTree = "<group>"; };
-		17F2A6EC1A71DA020011D716 /* APICommonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICommonModel.swift; sourceTree = "<group>"; };
 		17F2A6EE1A71DA9D0011D716 /* APIAuthModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIAuthModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -303,12 +305,10 @@
 		1731014C1A4BFB410018C24C /* API */ = {
 			isa = PBXGroup;
 			children = (
-				17F2A6EC1A71DA020011D716 /* APICommonModel.swift */,
 				17F2A6EE1A71DA9D0011D716 /* APIAuthModel.swift */,
 				177130DA1A71DD5D00B8A73D /* OpenidModel.swift */,
 				177130DC1A71DD6E00B8A73D /* TagModel.swift */,
 				177130DE1A71DD7D00B8A73D /* UuidModel.swift */,
-				177130E81A72544B00B8A73D /* APIRegistModel.swift */,
 			);
 			name = API;
 			path = Model/API;
@@ -387,6 +387,23 @@
 				172120491A30496600E6615A /* TestData */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		177130F71A75D39200B8A73D /* WebSocket */ = {
+			isa = PBXGroup;
+			children = (
+				177130F81A75D3CF00B8A73D /* WebSocket.swift */,
+			);
+			name = WebSocket;
+			sourceTree = "<group>";
+		};
+		177131021A75F0F400B8A73D /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				177131031A75F10300B8A73D /* Reachability.swift */,
+			);
+			name = Reachability;
+			path = spot/Vendor/Reachability;
 			sourceTree = "<group>";
 		};
 		17786EE51A31792A00CC81C3 /* BBS */ = {
@@ -536,10 +553,10 @@
 				173CC8B51A392757000ED1F6 /* OpenIDHelper.swift */,
 				17A20B891A399230007C1FA1 /* AnimeHelper.swift */,
 				17B623FB1A400F4E00857E23 /* DynamicHelper.swift */,
-				17B623FD1A4017E400857E23 /* Reachability.swift */,
 				17ACFF011A4D366B00400803 /* GestureRecognizerHelper.swift */,
 				176BF5711A5FAE9B00795CA9 /* SpotTableViewDelegate.swift */,
 				1737F9BB1A6E633500E8447F /* APIHelper.swift */,
+				177130FA1A75D3FF00B8A73D /* WebSocketHelper.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -547,6 +564,8 @@
 		1780923D1A2461B3008E6897 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				177131021A75F0F400B8A73D /* Reachability */,
+				177130F71A75D39200B8A73D /* WebSocket */,
 				17B623E91A3FD7C500857E23 /* REMenu */,
 				173CC7D01A382432000ED1F6 /* SVProgressHUD */,
 				173CC7BA1A36F115000ED1F6 /* SwiftData */,
@@ -562,6 +581,7 @@
 			children = (
 				177130E21A721E2700B8A73D /* ExtensionString.swift */,
 				17815F9C1A5CC94E00360570 /* ExtensionArray.swift */,
+				177131071A764AC400B8A73D /* ExtensionDate.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -781,17 +801,18 @@
 			files = (
 				1737F9BC1A6E633500E8447F /* APIHelper.swift in Sources */,
 				176BF5741A5FC42D00795CA9 /* CommonNavigationController.swift in Sources */,
-				17F2A6ED1A71DA020011D716 /* APICommonModel.swift in Sources */,
+				177130FB1A75D3FF00B8A73D /* WebSocketHelper.swift in Sources */,
 				173CC7B01A36C869000ED1F6 /* Net.swift in Sources */,
 				17F2A6E71A71D9BF0011D716 /* CellData.swift in Sources */,
 				177130E31A721E2700B8A73D /* ExtensionString.swift in Sources */,
 				17211FC51A2F054800E6615A /* ContactsGroupController.swift in Sources */,
-				177130E91A72544B00B8A73D /* APIRegistModel.swift in Sources */,
 				17786ED81A31464C00CC81C3 /* EventCreateController.swift in Sources */,
 				177A759A1A35601A008900A3 /* AngleView.swift in Sources */,
 				173CC8B61A392757000ED1F6 /* OpenIDHelper.swift in Sources */,
 				17815FA51A5E897300360570 /* BBSDetailHeaderView.swift in Sources */,
 				177A76341A36AA3E008900A3 /* WeixinHelper.swift in Sources */,
+				177130F91A75D3CF00B8A73D /* WebSocket.swift in Sources */,
+				177131081A764AC400B8A73D /* ExtensionDate.swift in Sources */,
 				173CC7BE1A36F3D1000ED1F6 /* AppSettingTable.swift in Sources */,
 				17B623F51A3FD7C500857E23 /* REMenu.m in Sources */,
 				170DC1DD1A418ADF00FBE933 /* SetValueController.swift in Sources */,
@@ -814,7 +835,6 @@
 				17C1470F1A31B6EE00591413 /* PostController.swift in Sources */,
 				175BCD811A2EB03E000CCC8B /* MessageSetting.swift in Sources */,
 				173CC7B51A36C869000ED1F6 /* NetResponseData.swift in Sources */,
-				17B623FE1A4017E400857E23 /* Reachability.swift in Sources */,
 				170DC1E31A43CA0200FBE933 /* CustomTabBar.swift in Sources */,
 				173CC7AF1A36C869000ED1F6 /* GCD.swift in Sources */,
 				178092481A247C31008E6897 /* RightController.swift in Sources */,
@@ -858,6 +878,7 @@
 				17815F9D1A5CC94E00360570 /* ExtensionArray.swift in Sources */,
 				1781C6C61A31C02E00EAD815 /* SettingController.swift in Sources */,
 				170DC1E51A43D08700FBE933 /* CommonTabController.swift in Sources */,
+				177131041A75F10300B8A73D /* Reachability.swift in Sources */,
 				173CC8B41A38458E000ED1F6 /* QQHelper.swift in Sources */,
 				17BAFABF1A26CD7200EBD6B4 /* SDK_QQhelper.swift in Sources */,
 				177130DD1A71DD6E00B8A73D /* TagModel.swift in Sources */,

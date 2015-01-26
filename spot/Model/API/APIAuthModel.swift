@@ -8,49 +8,48 @@
 
 import Foundation
 
-class APIAuthModel:APICommonModel{
+class APIAuthModel{
     
     var figure: String?
     var nickname: String?
     var sex: String?
     var birthday: String?
-    var auth_token: String?
     var openidlist: [OpenidModel]?
     var taglist: [TagModel]?
     var uuidlist: [UuidModel]?
     
-    override init(data: Dictionary<String, AnyObject>) {
-        super.init(data: data)
-        
-        self.figure = self.result!["figure"] as? String
-        self.nickname = self.result!["nickname"] as? String
-        self.sex = self.result!["sex"] as? String
-        self.birthday = self.result!["birthday"] as? String
-        self.auth_token = self.result!["auth_token"] as? String
-        
-        self.setOpenidList()
-        self.setTagList()
-        self.setUuidList()
-        SettingHelper.instance.setAuthData(self)
+    init(data: AnyObject?) {
+        if let dict = data as? Dictionary<String, AnyObject>{
+            self.figure = dict["figure"] as? String
+            self.nickname = dict["nickname"] as? String
+            self.sex = dict["sex"] as? String
+            self.birthday = dict["birthday"] as? String
+            
+            self.setOpenidList(dict)
+            self.setTagList(dict)
+            self.setUuidList(dict)
+            SettingHelper.instance.setAuthData(self)
+        }
     }
-    private func setOpenidList(){
-        if let dictlist = self.result!["openidlist"] as? [Dictionary<String, AnyObject>] {
+    
+    private func setOpenidList(data: Dictionary<String, AnyObject>){
+        if let dictlist = data["openidlist"] as? [Dictionary<String, AnyObject>] {
             self.openidlist = [];
             for dict in dictlist{
                 self.openidlist?.append(OpenidModel(data: dict))
             }
         }
     }
-    private func setTagList(){
-        if let dictlist = self.result!["taglist"] as? [Dictionary<String, AnyObject>] {
+    private func setTagList(data: Dictionary<String, AnyObject>){
+        if let dictlist = data["taglist"] as? [Dictionary<String, AnyObject>] {
             self.taglist = [];
             for dict in dictlist{
                 self.taglist?.append(TagModel(data: dict))
             }
         }
     }
-    private func setUuidList(){
-        if let dictlist = self.result!["uuidlist"] as? [Dictionary<String, AnyObject>] {
+    private func setUuidList(data: Dictionary<String, AnyObject>){
+        if let dictlist = data["uuidlist"] as? [Dictionary<String, AnyObject>] {
             self.uuidlist = [];
             for dict in dictlist{
                 self.uuidlist?.append(UuidModel(data: dict))
