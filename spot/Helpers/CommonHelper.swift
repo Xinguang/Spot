@@ -8,6 +8,8 @@
 
 import Foundation
 
+let DEVICE_WIDTH = UIScreen.mainScreen().bounds.size.width
+let DEVICE_HEIGHT = UIScreen.mainScreen().bounds.size.height
 
 class CommonHelper {
     //シングルトンパターン
@@ -169,6 +171,15 @@ class CommonHelper {
         
         return label.frame.height + 20
 
+    }
+    ///////////////////////////////////////
+    ////debugMessage
+    ///////////////////////////////////////
+    var debugTextView:UITextView?
+    func showDegInfo(info:AnyObject){
+        if let str = self.debugTextView?.text{
+            self.debugTextView?.text = "\(info)\n" + str;
+        }
     }
 }
 

@@ -46,29 +46,41 @@ class SpotController: CommonController,MKMapViewDelegate{
         }
         
         let pinView = MKAnnotationView(annotation:annotation,reuseIdentifier:"ID");
-        var imageName = "mapqq";
+        var pincolor:UInt = 0xFF00FF;
         switch self.selectedSegmentIndex
         {
         case 0:
-            imageName = "mapqq"
+            pincolor = 0xFF00FF;
             break;
         case 1:
-            imageName = "mapqq"
+            pincolor = 0x00FFFF;
             break;
         case 2:
-            imageName = "bbs"
+            pincolor = 0xFFFF00;
             break;
         default:
-            imageName = "mapqq"//付近
+            pincolor = 0xFF00FF;
             break;
         }
         
-        pinView.image = UIImage(named: imageName)!
-        
+        let img = UIImage(named: "mappin")!
+        let image = CommonHelper.instance.coloredImage(img, color: CommonHelper.instance.UIColorFromRGB(pincolor, alpha: 0.1))
+        pinView.image = image//UIImage(named: imageName)!
+        self.anime(pinView, isplus: true)
         pinView.canShowCallout = true;
         return pinView;
     }
-    
+    func anime(obj:UIView,isplus:Bool){
+        var size:CGSize;
+        if (isplus){
+            size = CGSizeMake(obj.frame.size.width - 5 , obj.frame.size.height - 5)
+        }else{
+            size = CGSizeMake(obj.frame.size.width + 5 , obj.frame.size.height + 5)
+        }
+        obj.layer.runAnimation(Animation.resizeFrame(size, delay: 1), blockCompletion: { () -> () in
+            self.anime(obj, isplus: !isplus)
+        })
+    }
     /*
     func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
         let region = MKCoordinateRegionMakeWithDistance(mapView.userLocation.coordinate, 25, 25)
@@ -108,7 +120,11 @@ class SpotController: CommonController,MKMapViewDelegate{
         
         let defaultPoint =  CLLocation(latitude: 35.64818,longitude: 139.748775).coordinate//三田
         
-        let region = MKCoordinateRegionMakeWithDistance(defaultPoint, 0, 0)
+        //0.01~0.1
+        let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.02,longitudeDelta: 0.02);
+        
+        let region = MKCoordinateRegionMake(defaultPoint,span)
+        //let region = MKCoordinateRegionMakeWithDistance(defaultPoint, 0, 0)
         self.mapview.setRegion(region, animated: true)
     }
 

@@ -11,7 +11,9 @@ class RightController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-
+        CommonHelper.instance.debugTextView = UITextView(frame: CGRectMake(DEVICE_WIDTH - 220 , 30, 220, self.view.frame.height))
+        CommonHelper.instance.debugTextView?.textAlignment = NSTextAlignment.Right
+        self.view.addSubview(CommonHelper.instance.debugTextView!)
     }
     
     override func didReceiveMemoryWarning() {

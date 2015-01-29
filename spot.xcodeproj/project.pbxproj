@@ -104,6 +104,8 @@
 		17D2C2161A47CDEF00ECCC41 /* HorizontalCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D2C2151A47CDEF00ECCC41 /* HorizontalCollectionView.swift */; };
 		17D2C21A1A47D05400ECCC41 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D2C2181A47D05400ECCC41 /* MessageCell.swift */; };
 		17D2C21D1A47D08700ECCC41 /* CellTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D2C21C1A47D08700ECCC41 /* CellTag.swift */; };
+		17D7519D1A773D69000DD048 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D7519C1A773D69000DD048 /* Keyboard.swift */; };
+		17E38A2F1A78E16300885EF4 /* TextViewAutoHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E38A2E1A78E16300885EF4 /* TextViewAutoHeight.swift */; };
 		17EC354F1A5A29D500866535 /* CellBBSList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC354E1A5A29D500866535 /* CellBBSList.swift */; };
 		17EC35511A5A2E6200866535 /* WaterFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC35501A5A2E6200866535 /* WaterFlowLayout.swift */; };
 		17F2A6E61A71D9BF0011D716 /* BBSContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F2A6E01A71D9BF0011D716 /* BBSContentModel.swift */; };
@@ -237,6 +239,8 @@
 		17D2C2151A47CDEF00ECCC41 /* HorizontalCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HorizontalCollectionView.swift; path = Views/CustomView/HorizontalCollectionView.swift; sourceTree = "<group>"; };
 		17D2C2181A47D05400ECCC41 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		17D2C21C1A47D08700ECCC41 /* CellTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellTag.swift; sourceTree = "<group>"; };
+		17D7519C1A773D69000DD048 /* Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Keyboard.swift; path = Views/CustomView/Keyboard.swift; sourceTree = "<group>"; };
+		17E38A2E1A78E16300885EF4 /* TextViewAutoHeight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextViewAutoHeight.swift; path = Views/CustomView/TextViewAutoHeight.swift; sourceTree = "<group>"; };
 		17EC354E1A5A29D500866535 /* CellBBSList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellBBSList.swift; sourceTree = "<group>"; };
 		17EC35501A5A2E6200866535 /* WaterFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterFlowLayout.swift; sourceTree = "<group>"; };
 		17F2A6E01A71D9BF0011D716 /* BBSContentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBSContentModel.swift; path = Model/TestData/BBSContentModel.swift; sourceTree = "<group>"; };
@@ -426,6 +430,8 @@
 				170DC1E21A43CA0200FBE933 /* CustomTabBar.swift */,
 				17D2C2151A47CDEF00ECCC41 /* HorizontalCollectionView.swift */,
 				17815FA41A5E897300360570 /* BBSDetailHeaderView.swift */,
+				17D7519C1A773D69000DD048 /* Keyboard.swift */,
+				17E38A2E1A78E16300885EF4 /* TextViewAutoHeight.swift */,
 			);
 			name = CustomView;
 			sourceTree = "<group>";
@@ -812,6 +818,7 @@
 				17815FA51A5E897300360570 /* BBSDetailHeaderView.swift in Sources */,
 				177A76341A36AA3E008900A3 /* WeixinHelper.swift in Sources */,
 				177130F91A75D3CF00B8A73D /* WebSocket.swift in Sources */,
+				17E38A2F1A78E16300885EF4 /* TextViewAutoHeight.swift in Sources */,
 				177131081A764AC400B8A73D /* ExtensionDate.swift in Sources */,
 				173CC7BE1A36F3D1000ED1F6 /* AppSettingTable.swift in Sources */,
 				17B623F51A3FD7C500857E23 /* REMenu.m in Sources */,
@@ -854,6 +861,7 @@
 				17F2A6E61A71D9BF0011D716 /* BBSContentModel.swift in Sources */,
 				17D2C21D1A47D08700ECCC41 /* CellTag.swift in Sources */,
 				17A20B8A1A399230007C1FA1 /* AnimeHelper.swift in Sources */,
+				17D7519D1A773D69000DD048 /* Keyboard.swift in Sources */,
 				17F2A6EF1A71DA9D0011D716 /* APIAuthModel.swift in Sources */,
 				17BAFAB01A25A4F800EBD6B4 /* SettingHelper.swift in Sources */,
 				17B623F61A3FD7C500857E23 /* REMenuContainerView.m in Sources */,

@@ -19,7 +19,7 @@ class SideController: DrawerController {
         left?.drawerController = self
         self.leftViewController = left
         */
-        //self.rightViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("view_right") as? UIViewController
+        self.rightViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("view_right") as? UIViewController
         
         
     }

@@ -8,19 +8,34 @@
 
 import UIKit
 
-class MessageDetailController: CommonController,WebSocketHelperDelegate{
+class MessageDetailController: CommonController,WebSocketHelperDelegate,KeyboardDelegate{
+    ////////////////////////////////////////////
+    ////////////////////////////////////////////
+    //ui
+    ////////////////////////////////////////////
+    ////////////////////////////////////////////
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        let inputArea = Keyboard()
+        inputArea.delegate = self
+        //inputArea.backgroundColor = UIColor.redColor()
+        self.view.addSubview(inputArea)
+        
+       /*
+        let tableView = UITableView(frame:CGRectMake(0, 0, 320, 480))
+        tableView.backgroundColor = UIColor.redColor()
+        self.view.addSubview(tableView)
+        */
+    }
     
-    
-    @IBOutlet var textField: UITextField!
-    @IBOutlet var btnSmile: UIButton!
-    @IBOutlet var btnPlus: UIButton!
     @IBOutlet var container: UIView!
     var msgRow: [CellRow] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         WebSocketHelper.instance.delegate = self
         
-        self.textField.addTarget(self, action: Selector("endEdit:"), forControlEvents: UIControlEvents.EditingDidEndOnExit)
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "設定", style: .Plain, target: self, action: Selector("showMessageSetting"))
  
@@ -41,20 +56,11 @@ class MessageDetailController: CommonController,WebSocketHelperDelegate{
     ////////////////////////////////////////////
     ////////////////////////////////////////////
     func whenError(errMessage:String){
-        println("errormessage: \(errMessage)")
+        CommonHelper.instance.showDegInfo("errormessage: \(errMessage)")
     }
     func whenSuccess(ReceiveMessage:String){
-        println("ReceiveMessage: \(ReceiveMessage)")
+        CommonHelper.instance.showDegInfo("ReceiveMessage: \(ReceiveMessage)")
         
-    }
-    //send messge
-    func endEdit(sender:AnyObject){
-        sender.resignFirstResponder()
-        var str = self.textField.text;
-        self.textField.text = "";
-        if("" != str){
-            WebSocketHelper.instance.sendMessage(str)
-        }
     }
     
     ////////////////////////////////////////////
@@ -62,7 +68,9 @@ class MessageDetailController: CommonController,WebSocketHelperDelegate{
     //keyboard 
     ////////////////////////////////////////////
     ////////////////////////////////////////////
-    
+    func onSend(message:String){
+        WebSocketHelper.instance.sendMessage(message)
+    }
     func keyboardWillShow(notification:NSNotification){
         var info = notification.userInfo!
         if let info = notification.userInfo {
@@ -72,7 +80,7 @@ class MessageDetailController: CommonController,WebSocketHelperDelegate{
             var frame:CGRect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-44-keyboardFrame.size.height)
             
             self.container.frame = frame
-            
+            /*
             
             frame = self.textField.frame
             
@@ -95,6 +103,7 @@ class MessageDetailController: CommonController,WebSocketHelperDelegate{
             UIView.animateWithDuration(duration, animations: { () -> Void in
                 self.view.layoutIfNeeded()
             })
+            */
         } else {
             // no userInfo dictionary present
         }
@@ -103,7 +112,7 @@ class MessageDetailController: CommonController,WebSocketHelperDelegate{
         var frame:CGRect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-44)
         
         self.container.frame = frame
-        
+        /*
         frame = self.textField.frame
         
         frame.origin.y = self.view.frame.size.height-37
@@ -119,6 +128,7 @@ class MessageDetailController: CommonController,WebSocketHelperDelegate{
         frame.origin.y = self.view.frame.size.height-37
         
         self.btnPlus.frame = frame
+        */ 
     }
     
 }
