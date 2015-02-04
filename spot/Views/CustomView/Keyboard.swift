@@ -11,7 +11,6 @@ import UIKit
 protocol KeyboardDelegate{
     func onSend(message:String)
 }
-
 class Keyboard: UIView ,UITextViewDelegate,TextViewAutoHeightDelegate{
     
     //////////////////////////////////////
@@ -27,6 +26,14 @@ class Keyboard: UIView ,UITextViewDelegate,TextViewAutoHeightDelegate{
     private var btnSmilies: UIButton?
     private var btnPlus: UIButton?
     private var collectionView: UICollectionView?
+    
+    enum KeyboardType : UInt8 {
+        case keyboard = 0x0
+        case smilies = 0x1
+        case plus = 0x2
+    }
+    
+    private var showType:KeyboardType = .keyboard
     
     override init() {
         super.init()
@@ -48,6 +55,7 @@ class Keyboard: UIView ,UITextViewDelegate,TextViewAutoHeightDelegate{
         
         self.setSmilies()
         self.setPlus()
+        self.setBackgroundDefault()
     }
     /////////////////////////////////////////
     //SubViews
@@ -62,10 +70,10 @@ class Keyboard: UIView ,UITextViewDelegate,TextViewAutoHeightDelegate{
         self.textView?.heightDelegate = self
         self.textView?.maxHeight=100
         self.textView?.layer.borderWidth = 1
-        self.textView?.layer.borderColor = UIColor.redColor().CGColor
+        self.textView?.layer.borderColor = CommonHelper.instance.UIColorFromRGB(0xBDBBBB, alpha: 1).CGColor
         self.textView?.layer.cornerRadius = 5
         self.textView?.layer.masksToBounds = true;
-        self.textView?.backgroundColor = UIColor.blueColor()
+        //self.textView?.backgroundColor = UIColor.blueColor()
         
         //self.textView?.addTarget(self, action: Selector("endEdit:"), forControlEvents: UIControlEvents.EditingDidEndOnExit)
         self.addSubview(self.textView!)
@@ -78,41 +86,94 @@ class Keyboard: UIView ,UITextViewDelegate,TextViewAutoHeightDelegate{
     func setPlus(){
         if (self.btnPlus == nil) {
             self.btnPlus = UIButton(frame:self.getButtonFrame(1,heightChangeed: 0))
-            self.btnPlus?.backgroundColor = UIColor(patternImage: UIImage(named:"+")!)
+            self.btnPlus?.tag = 1
+            self.btnPlus?.addTarget(self, action: "showCollectionView:", forControlEvents: UIControlEvents.TouchDown)
             self.addSubview(self.btnPlus!)
         }
     }
     func setSmilies(){
         if (self.btnSmilies == nil) {
             self.btnSmilies = UIButton(frame:self.getButtonFrame(2,heightChangeed: 0))
-            self.btnSmilies?.backgroundColor = UIColor(patternImage: UIImage(named:"smile")!)
+            self.btnSmilies?.tag = 2
             //self.btnSmilies?.addTarget(self, action: Selector("showCollectionView:"), forControlEvents: UIControlEvents.TouchUpOutside)
             self.btnSmilies?.addTarget(self, action: "showCollectionView:", forControlEvents: UIControlEvents.TouchDown)
             self.addSubview(self.btnSmilies!)
         }
     }
+    
+    func setCollectionView(frame:CGRect?){
+        if nil == self.collectionView{
+            if let f = frame{
+                let l = WaterFlowLayout();
+                self.collectionView = UICollectionView(frame: CGRectMake(0, self.frame.size.height, self.frame.size.width, f.size.height),collectionViewLayout:l)
+                self.frame.size.height = self.frame.size.height + f.size.height
+                self.addSubview(self.collectionView!)
+            }else{
+                self.textView?.resignFirstResponder()
+                self.textView?.becomeFirstResponder()
+            }
+        }
+        if self.showType != .keyboard{
+            self.textView?.resignFirstResponder()
+        }else{
+            self.textView?.becomeFirstResponder()
+        }
+    }
+    
     func showCollectionView(sender:AnyObject){
-        self.textView?.becomeFirstResponder()
-        //self.textView?.resignFirstResponder()
+        var oldType = self.showType
+        var btnType:KeyboardType = (sender.tag == 1 ) ? .plus : .smilies
+
+        self.setBackgroundDefault()
+        if(self.showType == btnType){
+            self.showType = .keyboard
+        }else{
+            self.showType = btnType
+            (sender as UIButton).backgroundColor = UIColor(patternImage: UIImage(named:"keyboard")!)
+        }
+        if(oldType != self.showType){
+            self.setCollectionView(nil)
+        }
+        //
         
         //self.collectionView = UICollectionView(frame: CGRectMake(0, self.frame.size.height, self.frame.size.width, 216))
+    }
+    func setBackgroundDefault(){
+        self.btnPlus?.backgroundColor = UIColor(patternImage: UIImage(named:"+")!)
+        self.btnSmilies?.backgroundColor = UIColor(patternImage: UIImage(named:"smile")!)
     }
     /////////////////////////////////////////
     //delegate
     /////////////////////////////////////////
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
-            //textView.resignFirstResponder()
+            textView.resignFirstResponder()
             self.delegate?.onSend(textView.text)
             textView.text = "";
             return false
         }
         return true;
     }
+    func textViewShouldBeginEditing(textView: UITextView) -> Bool {
+        if self.showType != .keyboard && self.frame.origin.y < DEVICE_HEIGHT - self._ToolBar_Height{
+            self.setBackgroundDefault()
+            self.showType = .keyboard
+            self.setCollectionView(nil)
+        }
+        return true;
+    }
+    
+    
     func heightChanged(height:CGFloat){
         var frame = self.frame
-        frame.size.height = self._ToolBar_Height + height
-        frame.origin.y = DEVICE_HEIGHT - self.keyboardFrame.size.height - frame.size.height
+        var collectionViewHeight:CGFloat = 0
+        if let f = self.collectionView?.frame{
+            collectionViewHeight = f.size.height
+            self.collectionView?.frame.origin.y = f.origin.y + height
+        }
+        frame.size.height = self._ToolBar_Height + collectionViewHeight + height
+        frame.origin.y = DEVICE_HEIGHT - self.keyboardFrame.size.height - frame.size.height + collectionViewHeight
+        
         CommonHelper.instance.showDegInfo("\(height)")
         self.frame = frame
         
@@ -126,24 +187,23 @@ class Keyboard: UIView ,UITextViewDelegate,TextViewAutoHeightDelegate{
         var info = notification.userInfo!
         if let info = notification.userInfo {
             self.keyboardFrame = (info[UIKeyboardFrameEndUserInfoKey] as NSValue).CGRectValue()
-            CommonHelper.instance.showDegInfo("keyboard--------------" )
-            CommonHelper.instance.showDegInfo(self.keyboardFrame.size.height )
-            CommonHelper.instance.showDegInfo("/---------------------" )
+            self.setCollectionView(self.keyboardFrame)
             var duration:NSTimeInterval = (info[UIKeyboardAnimationDurationUserInfoKey] as NSNumber).doubleValue
-            
-        
             var point = keyboardFrame.origin
             point.y = point.y - self._ToolBar_Height
             self.layer.runAnimation(Animation.movePosition(point, delay: duration))
             //self.frame = CGRectMake(0, keyboardFrame.origin.y - self._ToolBar_Height , DEVICE_WIDTH, self._ToolBar_Height)
-            
-            CommonHelper.instance.showDegInfo("\(keyboardFrame)")
         } else {
             // no userInfo dictionary present
         }
     }
     func keyboardWillHide(notification:NSNotification){
-        self.frame = CGRectMake(0, DEVICE_HEIGHT - self._ToolBar_Height, DEVICE_WIDTH, self._ToolBar_Height)
+        if self.showType != .keyboard{
+            self.frame.origin.y = DEVICE_HEIGHT - self.frame.size.height
+        }else{
+            self.frame.origin.y = DEVICE_HEIGHT - self._ToolBar_Height
+        }
+        
     }
 
     /////////////////////////////////////////

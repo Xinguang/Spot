@@ -64,9 +64,9 @@ class SpotController: CommonController,MKMapViewDelegate{
         }
         
         let img = UIImage(named: "mappin")!
-        let image = CommonHelper.instance.coloredImage(img, color: CommonHelper.instance.UIColorFromRGB(pincolor, alpha: 0.1))
+        let image = CommonHelper.instance.coloredImage(img, color: CommonHelper.instance.UIColorFromRGB(pincolor, alpha: 0.5))//0.1~1
         pinView.image = image//UIImage(named: imageName)!
-        self.anime(pinView, isplus: true)
+        //self.anime(pinView, isplus: true)
         pinView.canShowCallout = true;
         return pinView;
     }
