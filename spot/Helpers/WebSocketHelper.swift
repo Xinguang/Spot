@@ -62,6 +62,7 @@ class WebSocketHelper: NSObject, WebSocketDelegate {
         self.socket = WebSocket(url: NSURL(scheme: self.scheme, host: self.host, path: self.path)!, protocols: self.protocols)
         self.socket?.delegate = self
         self.socket?.connect()
+        self.socket?.voipEnabled = true
         
         self.reachability.whenReachable = { reachability in
             if let so = self.socket? {
