@@ -81,29 +81,43 @@ class APIHelper:NSObject {
     //openidを登録
     func setOpenid(openid:String,access_token:String,refresh_token:String?,expirationDate:NSDate?){
         let url = "ok.json"
-        
+        var expirationDateString = ""
+        if let date = expirationDate{
+            expirationDateString = date.toString(.Custom("yyyy-MM-dd HH:mm:ss"));
+        }
+        var refreshtoken = ""
+        if let token = refresh_token{
+            refreshtoken = token;
+        }
         let params = [
             "uuid": uuid,
             "device": UIDevice.currentDevice().name,
             "openid": openid,
             "access_token": access_token,
-            "refresh_token": refresh_token!,
-            "expirationDate": expirationDate!
+            "refresh_token": refreshtoken,
+            "expirationDate": expirationDateString
         ]
         
         self.http(url, params: params, delegate: nil)
     }
     //openidを登録
-    func regist(nickname:String,figure:String,station:String,birthday:String?,sex:NSDate?){
+    func regist(nickname:String,figure:String,station:String,birthday:String?,sex:String?){
         let url = "regist.json"
-        
+        var _birthday = ""
+        var _sex = ""
+        if let _b = birthday {
+            _birthday = _b
+        }
+        if let _s = sex {
+            _sex = _s
+        }
         let params = [
             "nickname": nickname,
             "uuid": uuid,
             "figure": figure,
             "station": station,
-            "birthday": birthday!,
-            "sex": sex!,
+            "birthday": _birthday,
+            "sex": _sex,
         ]
         
         self.http(url, params: params, delegate: nil)

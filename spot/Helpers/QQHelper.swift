@@ -28,8 +28,8 @@ class QQHelper:NSObject,TencentSessionDelegate {
     //初期化
     private override init() {
         super.init()
-        //let appid = "1103821830";
-        let appid = "222222";
+        let appid = "1103821830";
+        //let appid = "222222";
         
         _tencentOAuth = TencentOAuth(appId: appid, andDelegate: self)
         
