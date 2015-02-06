@@ -199,6 +199,7 @@ class CommonHelper {
     func showDegInfo(info:AnyObject){
         if let str = self.debugTextView?.text{
             self.debugTextView?.text = "\(info)\n" + str;
+            println(str)
         }
     }
 }

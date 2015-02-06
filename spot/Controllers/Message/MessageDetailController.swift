@@ -55,7 +55,9 @@ class MessageDetailController: CommonController,KeyboardDelegate{
     ////////////////////////////////////////////
     ////////////////////////////////////////////
     func onSend(message:String){
-        WebSocketHelper.instance.sendMessage(message)
+        if "" != message {
+            WebSocketHelper.instance.sendMessage(message)
+        }
     }
     func keyboardWillShow(notification:NSNotification){
         var info = notification.userInfo!
