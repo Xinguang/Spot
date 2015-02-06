@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="GeY-dz-6Pb">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <scenes>
+        <!--本人-->
+        <scene sceneID="JRa-uC-vcU">
+            <objects>
+                <viewController id="TfB-HI-gB1" customClass="AccountViewController" customModule="spot" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="STL-2E-d3l"/>
+                        <viewControllerLayoutGuide type="bottom" id="Pod-Cd-tfk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="28i-hO-3Jn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="h0z-0D-lqJ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="h0z-0D-lqJ" secondAttribute="trailing" id="G7a-az-eWc"/>
+                            <constraint firstItem="Pod-Cd-tfk" firstAttribute="top" secondItem="h0z-0D-lqJ" secondAttribute="bottom" id="InW-Xa-Sib"/>
+                            <constraint firstItem="h0z-0D-lqJ" firstAttribute="leading" secondItem="28i-hO-3Jn" secondAttribute="leading" id="TjI-2p-qar"/>
+                            <constraint firstItem="h0z-0D-lqJ" firstAttribute="top" secondItem="28i-hO-3Jn" secondAttribute="top" id="yL2-UM-yCR"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="本人" id="w3s-Xx-37k"/>
+                    <connections>
+                        <outlet property="tableView" destination="h0z-0D-lqJ" id="TVv-ME-GuQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V5m-TK-w7W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="721" y="382"/>
+        </scene>
+        <!--本人-->
+        <scene sceneID="fsf-pj-kgY">
+            <objects>
+                <navigationController title="本人" automaticallyAdjustsScrollViewInsets="NO" id="GeY-dz-6Pb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="tqp-4Q-Blq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="TfB-HI-gB1" kind="relationship" relationship="rootViewController" id="pTB-Sp-tWk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wvj-Ie-7rI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="189" y="382"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
