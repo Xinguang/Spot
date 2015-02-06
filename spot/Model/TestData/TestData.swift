@@ -874,7 +874,7 @@ class TestData {
         return res;
     }
     
-    private func getIntRand(range:Int) ->Int{
+    func getIntRand(range:Int) ->Int{
         return Int(arc4random_uniform(UInt32(UInt(range))));
     }
     
@@ -1001,12 +1001,12 @@ class TestData {
         //"イベント",
         "掲示板",
     ]
-    func messageData()->[MessageModel]{
+    func messageData(count:Int)->[MessageModel]{
         var res:[MessageModel] = []
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let date = dateFormatter.dateFromString("2014-12-"+String(self.getIntRand(30)+1))
-        for i in 1...100 {
+        for i in 1...count {
             res.append(MessageModel(ID: i, userid: self.getIntRand(20) + 1, text: self.stringList[self.getIntRand(self.stringList.count-2)], sentDate: date!))
         }
         return res

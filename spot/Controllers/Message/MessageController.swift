@@ -8,12 +8,14 @@
 
 import UIKit
 
-class MessageController: UITableViewController, UITableViewDataSource, UITableViewDelegate{
+class MessageController: UITableViewController, UITableViewDataSource, UITableViewDelegate,WebSocketHelperDelegate{
     
     var msg: [MessageModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        WebSocketHelper.instance.delegate = self
+        
         //var img:UIImage = UIImage(named: "background")!
         //self.tableView.backgroundColor = UIColor(patternImage: img);
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
@@ -25,7 +27,7 @@ class MessageController: UITableViewController, UITableViewDataSource, UITableVi
         
         self.tableView.frame = tableFrame;
         
-        self.msg = TestData.instance.messageData()
+        self.msg = TestData.instance.messageData(2)
         
         self.tableView.reloadData()
         self.tableView.scrollToRowAtIndexPath(
@@ -84,6 +86,27 @@ class MessageController: UITableViewController, UITableViewDataSource, UITableVi
             view.title = "詳細"
         }
         view.hidesBottomBarWhenPushed = true;
+    }
+    
+    ////////////////////////////////////////////
+    ////////////////////////////////////////////
+    //web socket
+    ////////////////////////////////////////////
+    ////////////////////////////////////////////
+    func whenError(errMessage:String){
+        CommonHelper.instance.showDegInfo("errormessage: \(errMessage)")
+    }
+    func whenSuccess(ReceiveMessage:String){
+        if "" != ReceiveMessage {
+            let res = ReceiveMessage.match("(?<=\")(.*)(?=\")")//self.socketEvent
+            if(res.count>0){
+                self.msg.append(MessageModel(ID: self.msg.count, userid: TestData.instance.getIntRand(14) + 1, text: res[0], sentDate: NSDate()))
+            }
+        }
+        self.tableView.reloadData()
+        self.tableView.scrollToRowAtIndexPath(
+            NSIndexPath(forRow: self.msg.count-1, inSection: 0),
+            atScrollPosition:.Bottom, animated:false)
     }
     
     

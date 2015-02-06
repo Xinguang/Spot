@@ -83,25 +83,20 @@ class WebSocketHelper: NSObject, WebSocketDelegate {
         
         reachability.startNotifier()
     }
+    
     // MARK: Websocket Delegate Methods.
     
-    func websocketDidConnect() {
+    func websocketDidConnect(ws: WebSocket) {
         self.delegate?.showInfo?("websocket is connected");
     }
     
-    func websocketDidDisconnect(error: NSError?) {
+    func websocketDidDisconnect(ws: WebSocket, error: NSError?) {
         if let e = error {
             self.delegate?.whenError("websocket is disconnected: \(e.localizedDescription)");
         }
     }
     
-    func websocketDidWriteError(error: NSError?) {
-        if let e = error {
-            self.delegate?.whenError("we got an error from the websocket: \(e.localizedDescription)")
-        }
-    }
-    
-    func websocketDidReceiveMessage(text: String) {
+    func websocketDidReceiveMessage(ws: WebSocket, text: String) {
         if self.issocketio {
             let res = text.match("(?<=42\\[\"\(self.socketEvent)\",)(.*)(?=\\])")//self.socketEvent
             if(res.count>0){
@@ -113,7 +108,7 @@ class WebSocketHelper: NSObject, WebSocketDelegate {
         //self.delegate?.whenSuccess(text)
     }
     
-    func websocketDidReceiveData(data: NSData) {
+    func websocketDidReceiveData(ws: WebSocket, data: NSData) {
         self.delegate?.whenSuccess?(data)
     }
     

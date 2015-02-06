@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MessageDetailController: CommonController,WebSocketHelperDelegate,KeyboardDelegate{
+class MessageDetailController: CommonController,KeyboardDelegate{
     ////////////////////////////////////////////
     ////////////////////////////////////////////
     //ui
@@ -34,7 +34,6 @@ class MessageDetailController: CommonController,WebSocketHelperDelegate,Keyboard
     var msgRow: [CellRow] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        WebSocketHelper.instance.delegate = self
         
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "設定", style: .Plain, target: self, action: Selector("showMessageSetting"))
@@ -52,19 +51,6 @@ class MessageDetailController: CommonController,WebSocketHelperDelegate,Keyboard
     }
     ////////////////////////////////////////////
     ////////////////////////////////////////////
-    //web socket
-    ////////////////////////////////////////////
-    ////////////////////////////////////////////
-    func whenError(errMessage:String){
-        CommonHelper.instance.showDegInfo("errormessage: \(errMessage)")
-    }
-    func whenSuccess(ReceiveMessage:String){
-        CommonHelper.instance.showDegInfo("ReceiveMessage: \(ReceiveMessage)")
-        
-    }
-    
-    ////////////////////////////////////////////
-    ////////////////////////////////////////////
     //keyboard 
     ////////////////////////////////////////////
     ////////////////////////////////////////////
@@ -75,35 +61,9 @@ class MessageDetailController: CommonController,WebSocketHelperDelegate,Keyboard
         var info = notification.userInfo!
         if let info = notification.userInfo {
             var keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as NSValue).CGRectValue()
-            var duration:NSTimeInterval = (info[UIKeyboardAnimationDurationUserInfoKey] as NSNumber).doubleValue
+            //var duration:NSTimeInterval = (info[UIKeyboardAnimationDurationUserInfoKey] as NSNumber).doubleValue
             
-            var frame:CGRect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-44-keyboardFrame.size.height)
-            
-            self.container.frame = frame
-            /*
-            
-            frame = self.textField.frame
-            
-            frame.origin.y = self.view.frame.size.height - 37 - keyboardFrame.size.height
-            
-            self.textField.frame = frame
-            
-            frame = self.btnSmile.frame
-            
-            frame.origin.y = self.view.frame.size.height - 37 - keyboardFrame.size.height
-            
-            self.btnSmile.frame = frame
-            
-            frame = self.btnPlus.frame
-            
-            frame.origin.y = self.view.frame.size.height - 37 - keyboardFrame.size.height
-            
-            self.btnPlus.frame = frame
-            
-            UIView.animateWithDuration(duration, animations: { () -> Void in
-                self.view.layoutIfNeeded()
-            })
-            */
+            CommonHelper.instance.changeBottom(self.container, bottom: 44 + keyboardFrame.size.height)
         } else {
             // no userInfo dictionary present
         }

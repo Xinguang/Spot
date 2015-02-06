@@ -112,6 +112,26 @@ class CommonHelper {
         view.addConstraint(constraint)
     }
     
+    //改变控件底部间距
+    func changeBottom(view:UIView,bottom: CGFloat){
+        var cons:NSLayoutConstraint = NSLayoutConstraint(item: view, attribute: .Top, relatedBy: .Equal, toItem: view.superview, attribute: .Bottom, multiplier: 1.0, constant: bottom);
+        if let constraints: NSArray = view.superview?.constraints(){
+            if(constraints.count > 0){
+                constraints.indexOfObjectPassingTest { (var constraint, idx, stop) in
+                    let co = constraint as NSLayoutConstraint
+                    if co.firstAttribute == .Top && co.secondAttribute == .Bottom {
+                        println(co.constant)
+                        cons = co
+                        view.superview?.removeConstraint(constraints[idx] as NSLayoutConstraint)
+                        return true
+                    }
+                    return false
+                }
+            }
+        }
+        view.superview?.addConstraint(cons)
+    }
+    
     //异步设置图片
     func setImageFromUrl(imageview:UIImageView,uri:String,callback:(imgData:NSData)->()?){
         imageview.image =  UIImage(named: "noimage")
