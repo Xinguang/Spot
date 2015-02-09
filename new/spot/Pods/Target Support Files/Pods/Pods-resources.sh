@@ -31,10 +31,6 @@ install_resource()
       echo "xcrun momc \"${PODS_ROOT}/$1\" \"${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/`basename "$1" .xcdatamodeld`.momd\""
       xcrun momc "${PODS_ROOT}/$1" "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/`basename "$1" .xcdatamodeld`.momd"
       ;;
-    *.xcmappingmodel)
-      echo "xcrun mapc \"${PODS_ROOT}/$1\" \"${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/`basename "$1" .xcmappingmodel`.cdm\""
-      xcrun mapc "${PODS_ROOT}/$1" "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/`basename "$1" .xcmappingmodel`.cdm"
-      ;;
     *.xcassets)
       ;;
     /*)
@@ -47,13 +43,41 @@ install_resource()
       ;;
   esac
 }
-if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_resource 'SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle'
-fi
-if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_resource 'SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle'
-fi
-
+          install_resource "JSQMessagesViewController/JSQMessagesViewController/Assets/JSQMessagesAssets.bundle"
+                    install_resource "JSQMessagesViewController/JSQMessagesViewController/Assets/Strings/Base.lproj"
+                    install_resource "JSQMessagesViewController/JSQMessagesViewController/Assets/Strings/de.lproj"
+                    install_resource "JSQMessagesViewController/JSQMessagesViewController/Assets/Strings/en.lproj"
+                    install_resource "JSQMessagesViewController/JSQMessagesViewController/Assets/Strings/es.lproj"
+                    install_resource "JSQMessagesViewController/JSQMessagesViewController/Assets/Strings/fr.lproj"
+                    install_resource "JSQMessagesViewController/JSQMessagesViewController/Assets/Strings/he.lproj"
+                    install_resource "JSQMessagesViewController/JSQMessagesViewController/Assets/Strings/it.lproj"
+                    install_resource "JSQMessagesViewController/JSQMessagesViewController/Assets/Strings/nl.lproj"
+                    install_resource "JSQMessagesViewController/JSQMessagesViewController/Assets/Strings/pl.lproj"
+                    install_resource "JSQMessagesViewController/JSQMessagesViewController/Assets/Strings/pt.lproj"
+                    install_resource "JSQMessagesViewController/JSQMessagesViewController/Assets/Strings/ro.lproj"
+                    install_resource "JSQMessagesViewController/JSQMessagesViewController/Assets/Strings/ru.lproj"
+                    install_resource "JSQMessagesViewController/JSQMessagesViewController/Assets/Strings/tr.lproj"
+                    install_resource "JSQMessagesViewController/JSQMessagesViewController/Assets/Strings/zh-Hans.lproj"
+                    install_resource "JSQMessagesViewController/JSQMessagesViewController/Assets/Strings/zh-Hant.lproj"
+                    install_resource "JSQMessagesViewController/JSQMessagesViewController/Controllers/JSQMessagesViewController.xib"
+                    install_resource "JSQMessagesViewController/JSQMessagesViewController/Views/JSQMessagesCollectionViewCellIncoming.xib"
+                    install_resource "JSQMessagesViewController/JSQMessagesViewController/Views/JSQMessagesCollectionViewCellOutgoing.xib"
+                    install_resource "JSQMessagesViewController/JSQMessagesViewController/Views/JSQMessagesLoadEarlierHeaderView.xib"
+                    install_resource "JSQMessagesViewController/JSQMessagesViewController/Views/JSQMessagesToolbarContentView.xib"
+                    install_resource "JSQMessagesViewController/JSQMessagesViewController/Views/JSQMessagesTypingIndicatorFooterView.xib"
+                    install_resource "SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
+                    install_resource "XMPPFramework/Extensions/Roster/CoreDataStorage/XMPPRoster.xcdatamodel"
+                    install_resource "XMPPFramework/Extensions/XEP-0045/CoreDataStorage/XMPPRoom.xcdatamodeld"
+                    install_resource "XMPPFramework/Extensions/XEP-0045/CoreDataStorage/XMPPRoom.xcdatamodeld/XMPPRoom.xcdatamodel"
+                    install_resource "XMPPFramework/Extensions/XEP-0045/HybridStorage/XMPPRoomHybrid.xcdatamodeld"
+                    install_resource "XMPPFramework/Extensions/XEP-0045/HybridStorage/XMPPRoomHybrid.xcdatamodeld/XMPPRoomHybrid.xcdatamodel"
+                    install_resource "XMPPFramework/Extensions/XEP-0054/CoreDataStorage/XMPPvCard.xcdatamodeld"
+                    install_resource "XMPPFramework/Extensions/XEP-0054/CoreDataStorage/XMPPvCard.xcdatamodeld/XMPPvCard.xcdatamodel"
+                    install_resource "XMPPFramework/Extensions/XEP-0115/CoreDataStorage/XMPPCapabilities.xcdatamodel"
+                    install_resource "XMPPFramework/Extensions/XEP-0136/CoreDataStorage/XMPPMessageArchiving.xcdatamodeld"
+                    install_resource "XMPPFramework/Extensions/XEP-0136/CoreDataStorage/XMPPMessageArchiving.xcdatamodeld/XMPPMessageArchiving.xcdatamodel"
+                    install_resource "XMPPFramework/Xcode/ServerlessDemo/ServerlessDemo.xcdatamodel"
+          
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 if [[ "${ACTION}" == "install" ]]; then
   rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${INSTALL_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

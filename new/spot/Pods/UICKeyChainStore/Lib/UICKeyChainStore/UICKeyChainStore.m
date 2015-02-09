@@ -1004,7 +1004,9 @@ static NSString *_defaultService;
     
     CFTypeRef itemClass = [self itemClassObject];
     query[(__bridge __strong id)kSecClass] =(__bridge id)itemClass;
-    query[(__bridge __strong id)kSecAttrSynchronizable] = (__bridge id)kSecAttrSynchronizableAny;
+    if (floor(NSFoundationVersionNumber) > floor(993.00)) { // iOS 7+ (NSFoundationVersionNumber_iOS_6_1)
+        query[(__bridge __strong id)kSecAttrSynchronizable] = (__bridge id)kSecAttrSynchronizableAny;
+    }
     
     if (itemClass == kSecClassGenericPassword) {
         query[(__bridge __strong id)(kSecAttrService)] = _service;
@@ -1032,7 +1034,7 @@ static NSString *_defaultService;
     
 #if TARGET_OS_IPHONE
     if (_authenticationPrompt) {
-        if (floor(NSFoundationVersionNumber) > floor(1047.25)) { // iOS 8+
+        if (floor(NSFoundationVersionNumber) > floor(1047.25)) { // iOS 8+ (NSFoundationVersionNumber_iOS_7_1)
             query[(__bridge __strong id)kSecUseOperationPrompt] = _authenticationPrompt;
         } else {
             NSLog(@"%@", @"Unavailable 'authenticationPrompt' attribute on iOS versions prior to 8.0.");

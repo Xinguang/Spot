@@ -6,3 +6,5 @@ pod 'SVProgressHUD'
 pod 'AFNetworking'
 pod 'Reveal-iOS-SDK', :configurations => ['Debug']
 pod 'APAddressBook/Swift'
+pod 'XMPPFramework'
+pod 'JSQMessagesViewController'
