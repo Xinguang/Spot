@@ -1,0 +1,8 @@
+pod 'UICKeyChainStore'
+pod 'Reachability'
+pod 'MagicalRecord'
+pod 'Parse'
+pod 'SVProgressHUD'
+pod 'AFNetworking'
+pod 'Reveal-iOS-SDK', :configurations => ['Debug']
+pod 'APAddressBook/Swift'
