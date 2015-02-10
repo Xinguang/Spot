@@ -1,4 +1,4 @@
-pod 'UICKeyChainStore'
+pod 'SSKeychain'
 pod 'Reachability'
 pod 'MagicalRecord'
 pod 'Parse'

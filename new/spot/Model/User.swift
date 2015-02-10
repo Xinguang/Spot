@@ -1,6 +1,29 @@
 @objc(User)
 class User: _User {
     
+//    var domain: String!
+//    var resources: String!
+//    var port: Int!
+    
+    override func awakeFromInsert() {
+        
+    }
+    var password: String? {
+        get {
+            return SSKeychain.passwordForService(kSpotServiceName, account: uniqueIdentifier)
+        }
+        
+        set {
+            if password == nil {
+                SSKeychain.deletePasswordForService(kSpotServiceName, account: uniqueIdentifier)
+                return
+            }
+            
+            SSKeychain.setPassword(password, forService: kSpotServiceName, account: uniqueIdentifier)
+        }
+    }
+    
+    /*
     class func signInComplete(complete: (error: NSError?) -> Void) {
 
         
@@ -77,4 +100,5 @@ class User: _User {
         
         chat.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
     }
+*/
 }

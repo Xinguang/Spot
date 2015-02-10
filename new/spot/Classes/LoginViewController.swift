@@ -24,21 +24,21 @@ class LoginViewController: BaseViewController {
     // MARK: - Action
     
     @IBAction func skipBtnTapped(sender: AnyObject) {
-        SVProgressHUD.show()
-        
-        User.signInComplete { (error) -> Void in
-            SVProgressHUD.dismiss()
-            
-            if let error = error {
-                println(error.localizedDescription)
-            } else {
+//        SVProgressHUD.show()
+//        
+//        User.signInComplete { (error) -> Void in
+//            SVProgressHUD.dismiss()
+//            
+//            if let error = error {
+//                println(error.localizedDescription)
+//            } else {
                 self.performSegueWithIdentifier("SegueTabBar", sender: nil)
-            }
-        }
+//            }
+//        }
     }
     
     @IBAction func debug(sender: AnyObject) {
-        User.removeUser()
+//        User.removeUser()
     }
 
 }

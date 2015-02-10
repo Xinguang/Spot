@@ -30,7 +30,7 @@ class MapViewController: BaseViewController {
     }
     
     @IBAction func debug(sender: AnyObject) {
-        User.addFriend("")
+//        User.addFriend("")
     }
 
     /*

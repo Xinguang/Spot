@@ -21,6 +21,12 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		296623A01A898D41002608EF /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2966239F1A898D41002608EF /* DatabaseManager.swift */; };
+		296623A31A898E70002608EF /* SpotConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296623A21A898E70002608EF /* SpotConstants.swift */; };
+		296623A41A8995D0002608EF /* SpotConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296623A21A898E70002608EF /* SpotConstants.swift */; };
+		296623A61A89A640002608EF /* XMPPCreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296623A51A89A640002608EF /* XMPPCreateAccountViewController.swift */; };
+		296623A91A89AC3B002608EF /* NewAccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296623A81A89AC3B002608EF /* NewAccountTableViewController.swift */; };
+		296623AB1A89C586002608EF /* XMPPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296623AA1A89C586002608EF /* XMPPManager.swift */; };
 		5F6DCE83C393AD717AAB7030 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A5D3641F258F85CB0ABCED /* libPods.a */; };
 		DC4109B81A81C15200E11CAB /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4109B71A81C15200E11CAB /* TabBarController.swift */; };
 		DC4109BA1A81C27500E11CAB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DC4109B91A81C27500E11CAB /* Localizable.strings */; };
@@ -59,14 +65,12 @@
 		DCB539261A81BE0B00C216D7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB539251A81BE0B00C216D7 /* BaseViewController.swift */; };
 		DCC671DC1A82089B001781ED /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC671DB1A82089B001781ED /* MapViewController.swift */; };
 		DCC671DE1A820A9B001781ED /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCC671DD1A820A9B001781ED /* MapKit.framework */; };
-		DCD9CB781A836DA1009C4468 /* AppSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD9CB771A836DA1009C4468 /* AppSetting.swift */; };
 		DCD9CB791A838085009C4468 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A5D3641F258F85CB0ABCED /* libPods.a */; };
 		DCD9CB7A1A838088009C4468 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCC671DD1A820A9B001781ED /* MapKit.framework */; };
 		DCD9CB7B1A838133009C4468 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4109F31A81DEF400E11CAB /* User.swift */; };
 		DCD9CB7C1A838136009C4468 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4109F81A81E04E00E11CAB /* Friend.swift */; };
 		DCD9CB7D1A838153009C4468 /* _Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4109F61A81E04600E11CAB /* _Friend.swift */; };
 		DCD9CB7E1A838153009C4468 /* _User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4109F21A81DEF400E11CAB /* _User.swift */; };
-		DCD9CB7F1A838160009C4468 /* AppSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD9CB771A836DA1009C4468 /* AppSetting.swift */; };
 		DCD9CB811A8381C3009C4468 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD9CB801A8381C3009C4468 /* Chat.swift */; };
 		DCD9CB821A8381C3009C4468 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD9CB801A8381C3009C4468 /* Chat.swift */; };
 		DCD9CB841A8381CD009C4468 /* _Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD9CB831A8381CD009C4468 /* _Chat.swift */; };
@@ -87,6 +91,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2966239F1A898D41002608EF /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatabaseManager.swift; path = Classes/DatabaseManager.swift; sourceTree = "<group>"; };
+		296623A21A898E70002608EF /* SpotConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpotConstants.swift; path = Classes/SpotConstants.swift; sourceTree = "<group>"; };
+		296623A51A89A640002608EF /* XMPPCreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XMPPCreateAccountViewController.swift; path = Classes/XMPPCreateAccountViewController.swift; sourceTree = "<group>"; };
+		296623A81A89AC3B002608EF /* NewAccountTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewAccountTableViewController.swift; path = Classes/NewAccountTableViewController.swift; sourceTree = "<group>"; };
+		296623AA1A89C586002608EF /* XMPPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XMPPManager.swift; path = Classes/XMPPManager.swift; sourceTree = "<group>"; };
 		4CAB4A8089D8A99280C16B78 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		67192A0B6C2C674435DC4219 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		DC4109B71A81C15200E11CAB /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarController.swift; path = Classes/TabBarController.swift; sourceTree = "<group>"; };
@@ -132,7 +141,6 @@
 		DCB539251A81BE0B00C216D7 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = Classes/BaseViewController.swift; sourceTree = "<group>"; };
 		DCC671DB1A82089B001781ED /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = Classes/MapViewController.swift; sourceTree = "<group>"; };
 		DCC671DD1A820A9B001781ED /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		DCD9CB771A836DA1009C4468 /* AppSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppSetting.swift; path = Classes/AppSetting.swift; sourceTree = "<group>"; };
 		DCD9CB801A8381C3009C4468 /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		DCD9CB831A8381CD009C4468 /* _Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _Chat.swift; sourceTree = "<group>"; };
 		DCD9CB861A84BA9E009C4468 /* Account.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Account.storyboard; path = Classes/Account.storyboard; sourceTree = "<group>"; };
@@ -163,6 +171,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		296623A11A898E4F002608EF /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				296623A21A898E70002608EF /* SpotConstants.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		296623A71A89A645002608EF /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				DCD9CB881A84BC01009C4468 /* AccountViewController.swift */,
+				296623A51A89A640002608EF /* XMPPCreateAccountViewController.swift */,
+				296623A81A89AC3B002608EF /* NewAccountTableViewController.swift */,
+			);
+			name = Account;
+			sourceTree = "<group>";
+		};
 		A54F6AD9F9DF19B112503F1C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,12 +243,13 @@
 			isa = PBXGroup;
 			children = (
 				DCB539111A81AFC300C216D7 /* Storyboard */,
-				DCB539151A81B01A00C216D7 /* ViewController */,
-				DCB539171A81B04700C216D7 /* DataController */,
+				DCB539151A81B01A00C216D7 /* View Controllers */,
+				DCB539171A81B04700C216D7 /* Controllers */,
 				DCB539161A81B02A00C216D7 /* CustomView */,
 				DCB539141A81B01000C216D7 /* Vendors */,
 				DCB539131A81B00700C216D7 /* Model */,
 				DCB539121A81AFFB00C216D7 /* API */,
+				296623A11A898E4F002608EF /* Utils */,
 				DCB5391E1A81B64800C216D7 /* Support */,
 				DCB538EC1A81AE9C00C216D7 /* spot */,
 				DCB538F81A81AE9C00C216D7 /* Images.xcassets */,
@@ -315,7 +342,7 @@
 			path = Vendors;
 			sourceTree = "<group>";
 		};
-		DCB539151A81B01A00C216D7 /* ViewController */ = {
+		DCB539151A81B01A00C216D7 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				DCB539231A81B99B00C216D7 /* LoginViewController.swift */,
@@ -324,9 +351,9 @@
 				DC4109D71A81C84600E11CAB /* TalkViewController.swift */,
 				DC410A071A81FB2F00E11CAB /* ContactViewController.swift */,
 				DCC671DB1A82089B001781ED /* MapViewController.swift */,
-				DCD9CB881A84BC01009C4468 /* AccountViewController.swift */,
+				296623A71A89A645002608EF /* Account */,
 			);
-			name = ViewController;
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 		DCB539161A81B02A00C216D7 /* CustomView */ = {
@@ -337,13 +364,15 @@
 			name = CustomView;
 			sourceTree = "<group>";
 		};
-		DCB539171A81B04700C216D7 /* DataController */ = {
+		DCB539171A81B04700C216D7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				DCF538EA1A82244800C83FE5 /* gpx.json */,
 				DC4109D91A81CC2100E11CAB /* DataController.swift */,
+				2966239F1A898D41002608EF /* DatabaseManager.swift */,
+				296623AA1A89C586002608EF /* XMPPManager.swift */,
 			);
-			name = DataController;
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		DCB5391E1A81B64800C216D7 /* Support */ = {
@@ -353,7 +382,6 @@
 				DCB5391F1A81B65B00C216D7 /* AppDelegate.swift */,
 				DCB539211A81B7BE00C216D7 /* Util.swift */,
 				DC4109B91A81C27500E11CAB /* Localizable.strings */,
-				DCD9CB771A836DA1009C4468 /* AppSetting.swift */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -523,10 +551,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				296623A01A898D41002608EF /* DatabaseManager.swift in Sources */,
 				DC4109F41A81DEF400E11CAB /* _User.swift in Sources */,
 				DC4109CF1A81C50A00E11CAB /* Float.swift in Sources */,
-				DCD9CB781A836DA1009C4468 /* AppSetting.swift in Sources */,
 				DC4109F71A81E04600E11CAB /* _Friend.swift in Sources */,
+				296623A91A89AC3B002608EF /* NewAccountTableViewController.swift in Sources */,
 				DCB539241A81B99B00C216D7 /* LoginViewController.swift in Sources */,
 				DCD9CB841A8381CD009C4468 /* _Chat.swift in Sources */,
 				DC4109D51A81C50A00E11CAB /* Sequence.swift in Sources */,
@@ -538,8 +567,10 @@
 				DC410A081A81FB2F00E11CAB /* ContactViewController.swift in Sources */,
 				DC4109E21A81CDEB00E11CAB /* Model.xcdatamodeld in Sources */,
 				DCB539261A81BE0B00C216D7 /* BaseViewController.swift in Sources */,
+				296623A31A898E70002608EF /* SpotConstants.swift in Sources */,
 				DC4109F51A81DEF400E11CAB /* User.swift in Sources */,
 				DCD9CB811A8381C3009C4468 /* Chat.swift in Sources */,
+				296623AB1A89C586002608EF /* XMPPManager.swift in Sources */,
 				DC4109CB1A81C50A00E11CAB /* Character.swift in Sources */,
 				DC4109CE1A81C50A00E11CAB /* ExSwift.swift in Sources */,
 				DC4109DA1A81CC2100E11CAB /* DataController.swift in Sources */,
@@ -553,6 +584,7 @@
 				DC4109D61A81C50A00E11CAB /* String.swift in Sources */,
 				DC4109CD1A81C50A00E11CAB /* Double.swift in Sources */,
 				DC4109D81A81C84600E11CAB /* TalkViewController.swift in Sources */,
+				296623A61A89A640002608EF /* XMPPCreateAccountViewController.swift in Sources */,
 				DCB539221A81B7BE00C216D7 /* Util.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -564,7 +596,7 @@
 				DCD9CB7C1A838136009C4468 /* Friend.swift in Sources */,
 				DCD9CB7B1A838133009C4468 /* User.swift in Sources */,
 				DCD9CB821A8381C3009C4468 /* Chat.swift in Sources */,
-				DCD9CB7F1A838160009C4468 /* AppSetting.swift in Sources */,
+				296623A41A8995D0002608EF /* SpotConstants.swift in Sources */,
 				DCD9CB7E1A838153009C4468 /* _User.swift in Sources */,
 				DCD9CB851A8381CD009C4468 /* _Chat.swift in Sources */,
 				DCB539081A81AE9C00C216D7 /* spotTests.swift in Sources */,

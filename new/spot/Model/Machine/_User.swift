@@ -6,8 +6,10 @@ import CoreData
 enum UserAttributes: String {
     case age = "age"
     case birthday = "birthday"
-    case id = "id"
+    case displayName = "displayName"
     case nickName = "nickName"
+    case uniqueIdentifier = "uniqueIdentifier"
+    case username = "username"
 }
 
 enum UserRelationships: String {
@@ -51,14 +53,24 @@ class _User: NSManagedObject {
     // func validateBirthday(value: AutoreleasingUnsafePointer<AnyObject>, error: NSErrorPointer) {}
 
     @NSManaged
-    var id: String?
+    var displayName: String?
 
-    // func validateId(value: AutoreleasingUnsafePointer<AnyObject>, error: NSErrorPointer) {}
+    // func validateDisplayName(value: AutoreleasingUnsafePointer<AnyObject>, error: NSErrorPointer) {}
 
     @NSManaged
     var nickName: String?
 
     // func validateNickName(value: AutoreleasingUnsafePointer<AnyObject>, error: NSErrorPointer) {}
+
+    @NSManaged
+    var uniqueIdentifier: String?
+
+    // func validateUniqueIdentifier(value: AutoreleasingUnsafePointer<AnyObject>, error: NSErrorPointer) {}
+
+    @NSManaged
+    var username: String?
+
+    // func validateUsername(value: AutoreleasingUnsafePointer<AnyObject>, error: NSErrorPointer) {}
 
     // MARK: - Relationships
 

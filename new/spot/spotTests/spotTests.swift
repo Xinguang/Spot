@@ -33,15 +33,15 @@ class spotTests: XCTestCase {
         }
     }
     
-    func testRemoveUser() {
-        User.removeUser()
-    }
-    
-    func testAddFriend() {
-        User.addFriend("")
-    }
-    
-    func testSendMessage() {
-        User.sendMessageTo("6V5rV6mTyZ")
-    }
+//    func testRemoveUser() {
+//        User.removeUser()
+//    }
+//    
+//    func testAddFriend() {
+//        User.addFriend("")
+//    }
+//    
+//    func testSendMessage() {
+//        User.sendMessageTo("6V5rV6mTyZ")
+//    }
 }

@@ -41,8 +41,8 @@ PODS:
     - Bolts (~> 1.1)
   - Reachability (3.2)
   - Reveal-iOS-SDK (1.5.0)
+  - SSKeychain (1.2.2)
   - SVProgressHUD (1.1.2)
-  - UICKeyChainStore (2.0.3)
   - XMPPFramework (3.6.4):
     - XMPPFramework/Authentication
     - XMPPFramework/BandwidthMonitor
@@ -192,8 +192,8 @@ DEPENDENCIES:
   - Parse
   - Reachability
   - Reveal-iOS-SDK
+  - SSKeychain
   - SVProgressHUD
-  - UICKeyChainStore
   - XMPPFramework
 
 SPEC CHECKSUMS:
@@ -208,8 +208,8 @@ SPEC CHECKSUMS:
   Parse: 60d65108fe39da77ec16c9e51d74b4d296b21424
   Reachability: 1ef8adf5c4e3d362f96515d4278f68dad3c26930
   Reveal-iOS-SDK: b6d94eb78d84ebd2e3182063577975561cd6dbd9
+  SSKeychain: cc48bd3ad24fcd9125adb9e0d23dd50b8bbd08b9
   SVProgressHUD: da7a49e789af645d9279ffbca62318945a832438
-  UICKeyChainStore: 9b6ce74b89fc24e1879257eb51c002f7cc4a5b9b
   XMPPFramework: 5a8555132822ebb3e11d2bac0258e62754315bc5
 
 COCOAPODS: 0.34.4
