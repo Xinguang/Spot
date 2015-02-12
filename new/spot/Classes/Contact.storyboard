@@ -95,14 +95,97 @@
                             <constraint firstItem="hY3-Lk-RXq" firstAttribute="top" secondItem="L3L-sS-Jx6" secondAttribute="bottom" id="vSe-aB-VYA"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="連絡先" id="ufv-f2-h18"/>
+                    <navigationItem key="navigationItem" title="連絡先" id="ufv-f2-h18">
+                        <barButtonItem key="rightBarButtonItem" image="contacts_add_friend" id="1DE-ek-qTt">
+                            <connections>
+                                <segue destination="ej9-3F-zzQ" kind="push" id="cFZ-zy-Uuh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="L3L-sS-Jx6" id="AcR-So-T03"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pT8-XU-qV0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="785" y="549"/>
+            <point key="canvasLocation" x="604" y="549"/>
+        </scene>
+        <!--友人の追加-->
+        <scene sceneID="mQy-AZ-CAp">
+            <objects>
+                <tableViewController id="ej9-3F-zzQ" customClass="AddFriendSelectViewController" customModule="spot" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Bpi-Rf-IfM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection id="GC2-Bm-QZy">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="VEW-ur-txt">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VEW-ur-txt" id="c3n-h8-4CN">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="9Tz-VA-Tld">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Tz-VA-Tld" id="Y1D-7L-I5D">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="ej9-3F-zzQ" id="Nkq-iy-o98"/>
+                            <outlet property="delegate" destination="ej9-3F-zzQ" id="ezi-MO-cSx"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="友人の追加" id="ljd-f4-UWQ"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dd9-CX-vBO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="953" y="550"/>
+        </scene>
+        <!--Friend Search Result Table View Controller-->
+        <scene sceneID="nJz-PS-GBP">
+            <objects>
+                <tableViewController storyboardIdentifier="FriendSearchResultTableViewController" id="D37-Vj-Exz" customClass="FriendSearchResultTableViewController" customModule="spot" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="mY9-lw-0AZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AccountCell" textLabel="Czc-ZG-htw" detailTextLabel="Xc0-FR-nLw" style="IBUITableViewCellStyleSubtitle" id="3Wi-tM-RXC">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Wi-tM-RXC" id="xAD-sD-vbh">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Czc-ZG-htw">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Xc0-FR-nLw">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="D37-Vj-Exz" id="aGN-n1-ybe"/>
+                            <outlet property="delegate" destination="D37-Vj-Exz" id="iz9-mZ-xds"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QYQ-ly-sJv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="953" y="-63"/>
         </scene>
         <!--連絡先-->
         <scene sceneID="RD9-Rm-7oj">
@@ -123,6 +206,9 @@
             <point key="canvasLocation" x="253" y="549"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="contacts_add_friend" width="28" height="30"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

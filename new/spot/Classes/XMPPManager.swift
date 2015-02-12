@@ -85,7 +85,7 @@ class XMPPManager: NSObject {
         xmppReconnect.activate(xmppStream)
         xmppCapabilities.activate(xmppStream)
         
-        xmppStream.addDelegate(self, delegateQueue: workQueue)
+        xmppStream.addDelegate(self, delegateQueue: dispatch_get_main_queue())
     }
     
     func registerNewAccountWithPassword(password: String) {
@@ -169,4 +169,103 @@ extension XMPPManager: XMPPStreamDelegate {
         // TODO: error
         failedToConnect(nil)
     }
+    
+    func xmppStream(sender: XMPPStream!, didReceiveIQ iq: XMPPIQ!) -> Bool {
+//        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//            SVProgressHUD.dismiss()
+//        })
+//        
+//        if let query = iq.elementForName("query", xmlns: "jabber:iq:search") {
+//            if let x = query.elementForName("x", xmlns: "jabber:x:data") {
+//                if let item = x.elementForName("item") {
+//                    let items = item.elementsForName("Field") as [XMPPElement]
+//                    for element in items {
+////                        element.el
+//                    }
+//                }
+//            }
+//        }
+        
+        let report = XMPPSearchReported.reportWithElement(iq) as XMPPSearchReported
+        if report.items?.count > 0 {
+            var accounts = [XMPPAccount]()
+            for item in report.items {
+                // TODO: custom init
+                var account = XMPPAccount()
+                account.email = item["Email"] as? String
+                account.name = item["Name"] as? String
+                account.username = item["Username"] as? String
+                
+                accounts.append(account)
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                NSNotificationCenter.defaultCenter().postNotificationName(kXMPPSearchAccountComplete, object: accounts)
+            })
+        } else {
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                NSNotificationCenter.defaultCenter().postNotificationName(kXMPPSearchAccountComplete, object: nil)
+            })
+        }
+        
+        return false
+    }
+    
+    func xmppStream(sender: XMPPStream!, didSendIQ iq: XMPPIQ!) {
+        println(iq)
+    }
+}
+
+extension XMPPManager {
+    
+    func search(word: String) {
+
+//        var iq = XMPPIQ()
+//        iq.addAttributeWithName("type", stringValue: "get")
+//        iq.addAttributeWithName("from", stringValue: account.username)
+//        iq.addAttributeWithName("to", stringValue: "search." + kOpenFireDomainName)
+//        iq.addAttributeWithName("id", stringValue: "search1")
+//        
+//        var query = XMPPElement(name: "query", xmlns: "jabber:iq:search")
+//        iq.addChild(query)
+//        
+//        xmppStream.sendElement(iq)
+        
+        var iq = XMPPIQ()
+        iq.addAttributeWithName("type", stringValue: "set")
+        iq.addAttributeWithName("from", stringValue: account.username)
+        iq.addAttributeWithName("to", stringValue: "search." + kOpenFireDomainName)
+//        iq.addAttributeWithName("id", stringValue: "search2")
+        iq.addAttributeWithName("id", stringValue: "searchByUserName")
+        
+        
+        var formType = XMPPElement(name: "field")
+        formType.addAttributeWithName("type", stringValue: "hidden")
+        formType.addAttributeWithName("var", stringValue: "FORM_TYPE")
+        formType.addChild(XMPPElement(name: "value", stringValue: "jabber:iq:search"))
+        
+        var username = XMPPElement(name: "field")
+        username.addAttributeWithName("var", stringValue: "Username")
+        username.addChild(XMPPElement(name: "value", stringValue: "1"))
+        
+        var search = XMPPElement(name: "field")
+        search.addAttributeWithName("var", stringValue: "search")
+        search.addChild(XMPPElement(name: "value", stringValue: word))
+        
+        var x = XMPPElement(name: "x", xmlns: "jabber:x:data")
+        x.addAttributeWithName("type", stringValue: "submit")
+        x.addChild(formType)
+        x.addChild(username)
+        x.addChild(search)
+        
+        var query = XMPPElement(name: "query", xmlns: "jabber:iq:search")
+        query.addChild(x)
+        
+        
+        iq.addChild(query)
+        
+        xmppStream.sendElement(iq)
+
+    }
+
 }

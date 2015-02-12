@@ -41,5 +41,6 @@
 #define HAVE_XMPP_SUBSPEC_XEP_0224
 #import "XMPPFramework.h"
 #import "XMPPCapabilitiesCoreDataStorage.h"
+#import "XMPPSearchModule.h"
 
 #endif

@@ -19,6 +19,7 @@ let kXMPPLoginSuccess = "LoginSuccessNotification"
 let kXMPPLoginFail = "LoginFailedNotification"
 let kXMPPRegisterFailed = "RegisterFailedNotification"
 let kXMPPRegisterSuccess = "RegisterSuccessNotification"
+let kXMPPSearchAccountComplete = "SearchAccountCompleteNotification"
 
 class SpotConstants: NSObject {
    

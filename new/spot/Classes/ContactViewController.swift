@@ -45,6 +45,10 @@ class ContactViewController: BaseViewController {
         })
 
     }
+    
+    // MARK: - Action
+    
+    
 }
 
 extension ContactViewController: UITableViewDataSource, UITableViewDelegate {
