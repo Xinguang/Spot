@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		178AE0451A8CBAAA00D91542 /* SNSController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178AE0441A8CBAAA00D91542 /* SNSController.swift */; };
 		296623A01A898D41002608EF /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2966239F1A898D41002608EF /* DatabaseManager.swift */; };
 		296623A31A898E70002608EF /* SpotConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296623A21A898E70002608EF /* SpotConstants.swift */; };
 		296623A61A89A640002608EF /* XMPPCreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296623A51A89A640002608EF /* XMPPCreateAccountViewController.swift */; };
@@ -78,6 +79,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		178AE0441A8CBAAA00D91542 /* SNSController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SNSController.swift; path = Classes/SNSController.swift; sourceTree = "<group>"; };
 		2966239F1A898D41002608EF /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatabaseManager.swift; path = Classes/DatabaseManager.swift; sourceTree = "<group>"; };
 		296623A21A898E70002608EF /* SpotConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpotConstants.swift; path = Classes/SpotConstants.swift; sourceTree = "<group>"; };
 		296623A51A89A640002608EF /* XMPPCreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XMPPCreateAccountViewController.swift; path = Classes/XMPPCreateAccountViewController.swift; sourceTree = "<group>"; };
@@ -391,6 +393,11 @@
 			isa = PBXGroup;
 			children = (
 				DCF538EA1A82244800C83FE5 /* gpx.json */,
+<<<<<<< HEAD
+=======
+				178AE0441A8CBAAA00D91542 /* SNSController.swift */,
+				DC4109D91A81CC2100E11CAB /* DataController.swift */,
+>>>>>>> OPENID
 				2966239F1A898D41002608EF /* DatabaseManager.swift */,
 				296623E01A8D89E8002608EF /* XMPP */,
 			);
@@ -553,6 +560,7 @@
 				DC4109D51A81C50A00E11CAB /* Sequence.swift in Sources */,
 				DCD9CB891A84BC01009C4468 /* AccountViewController.swift in Sources */,
 				DC4109D21A81C50A00E11CAB /* NSArray.swift in Sources */,
+				178AE0451A8CBAAA00D91542 /* SNSController.swift in Sources */,
 				DC4109CC1A81C50A00E11CAB /* Dictionary.swift in Sources */,
 				DC4109D31A81C50A00E11CAB /* NSDate.swift in Sources */,
 				DC4109D11A81C50A00E11CAB /* Int.swift in Sources */,
@@ -709,6 +717,7 @@
 			baseConfigurationReference = 67192A0B6C2C674435DC4219 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				HEADER_SEARCH_PATHS = (
@@ -745,6 +754,7 @@
 			baseConfigurationReference = 4CAB4A8089D8A99280C16B78 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				HEADER_SEARCH_PATHS = (

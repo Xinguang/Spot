@@ -8,3 +8,5 @@ pod 'Reveal-iOS-SDK', :configurations => ['Debug']
 pod 'APAddressBook/Swift'
 pod 'XMPPFramework'
 pod 'JSQMessagesViewController'
+pod 'libWeChatSDK', '~> 1.5'
+pod 'DXYTencentOpenAPI', '~> 2.3'

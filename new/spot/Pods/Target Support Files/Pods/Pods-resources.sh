@@ -43,7 +43,8 @@ install_resource()
       ;;
   esac
 }
-          install_resource "JSQMessagesViewController/JSQMessagesViewController/Assets/JSQMessagesAssets.bundle"
+          install_resource "DXYTencentOpenAPI/TencentOpenAPI/TencentOpenApi_IOS_Bundle.bundle"
+                    install_resource "JSQMessagesViewController/JSQMessagesViewController/Assets/JSQMessagesAssets.bundle"
                     install_resource "JSQMessagesViewController/JSQMessagesViewController/Assets/Strings/Base.lproj"
                     install_resource "JSQMessagesViewController/JSQMessagesViewController/Assets/Strings/de.lproj"
                     install_resource "JSQMessagesViewController/JSQMessagesViewController/Assets/Strings/en.lproj"

@@ -1,0 +1,1 @@
+../../../DXYTencentOpenAPI/TencentOpenAPI/TencentOpenAPI.framework/Headers/WeiyunAPI.h

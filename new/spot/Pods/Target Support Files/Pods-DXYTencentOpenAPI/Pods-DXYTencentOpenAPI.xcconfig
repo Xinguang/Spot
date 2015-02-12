@@ -1,0 +1,2 @@
+PODS_DXYTENCENTOPENAPI_FRAMEWORK_SEARCH_PATHS = "$(PODS_ROOT)/DXYTencentOpenAPI/TencentOpenAPI"
+PODS_DXYTENCENTOPENAPI_OTHER_LDFLAGS = -l"iconv" -l"sqlite3" -l"stdc++" -l"z" -framework "CoreTelephony" -framework "SystemConfiguration" -framework "TencentOpenAPI"
