@@ -50,6 +50,7 @@ class XMPPManager: NSObject {
         struct Static {
             static let instance : XMPPManager = XMPPManager()
         }
+        
         return Static.instance
     }
     
@@ -99,10 +100,11 @@ class XMPPManager: NSObject {
     }
     
     func connectWithPassword(myPassword: String) {
-        connectWithJID(account.username!, myPassword: password)
+        connectWithJID(account.username!, myPassword: myPassword)
     }
     
     func connectWithJID(myJID: String, myPassword: String) {
+        password = myPassword
         xmppStream.myJID = XMPPJID.jidWithString(myJID)
         
         if xmppStream.isDisconnected() == false {
@@ -161,5 +163,10 @@ extension XMPPManager: XMPPStreamDelegate {
     
     func xmppStreamDidAuthenticate(sender: XMPPStream!) {
         goOnline()
+    }
+    
+    func xmppStream(sender: XMPPStream!, didNotAuthenticate error: DDXMLElement!) {
+        // TODO: error
+        failedToConnect(nil)
     }
 }

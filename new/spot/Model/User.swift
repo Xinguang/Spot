@@ -8,18 +8,18 @@ class User: _User {
     override func awakeFromInsert() {
         
     }
-    var password: String? {
+    var password: String {
         get {
             return SSKeychain.passwordForService(kSpotServiceName, account: uniqueIdentifier)
         }
         
         set {
-            if password == nil {
-                SSKeychain.deletePasswordForService(kSpotServiceName, account: uniqueIdentifier)
-                return
-            }
+//            if password == nil {
+//                SSKeychain.deletePasswordForService(kSpotServiceName, account: uniqueIdentifier)
+//                return
+//            }
             
-            SSKeychain.setPassword(password, forService: kSpotServiceName, account: uniqueIdentifier)
+            SSKeychain.setPassword(newValue, forService: kSpotServiceName, account: uniqueIdentifier)
         }
     }
     

@@ -82,6 +82,11 @@ class XMPPCreateAccountViewController: BaseViewController {
         
         account.username = fixedUsername;
         
+        account.uniqueIdentifier = NSUUID().UUIDString.lowercaseString
+
+        account.password = newAccountTableViewController.passwordTF.text
+        
+        
         SVProgressHUD.show()
         
         XMPPManager.instance.account = account

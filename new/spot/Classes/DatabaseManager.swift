@@ -9,5 +9,14 @@
 import UIKit
 
 class DatabaseManager: NSObject {
-   
+    class var instance : DatabaseManager {
+        struct Static {
+            static let instance : DatabaseManager = DatabaseManager()
+        }
+        return Static.instance
+    }
+    
+    func autoLoginAccount() -> User? {
+        return User.MR_findFirst() as? User
+    }
 }
