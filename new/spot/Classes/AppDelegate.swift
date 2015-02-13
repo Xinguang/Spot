@@ -28,6 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let user = DatabaseManager.instance.autoLoginAccount() {
             XMPPManager.instance.account = user
             XMPPManager.instance.connectWithPassword(user.password)
+            
+            let vc = Util.createViewControllerWithIdentifier("TabBarController", storyboardName: "Main")
+            self.window?.rootViewController = vc
         }
     }
     

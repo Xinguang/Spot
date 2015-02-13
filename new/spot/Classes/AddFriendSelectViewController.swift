@@ -64,6 +64,7 @@ extension AddFriendSelectViewController: UISearchControllerDelegate {
 
 extension AddFriendSelectViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        // TODO: change timing
         SVProgressHUD.showWithStatus("検索中...", maskType: .Clear)
 
         XMPPManager.instance.search(searchBar.text)

@@ -4,8 +4,20 @@
 import CoreData
 
 enum FriendAttributes: String {
-    case nickName = "nickName"
-    case usrName = "usrName"
+    case accountName = "accountName"
+    case chatState = "chatState"
+    case composingMessageString = "composingMessageString"
+    case currentStatus = "currentStatus"
+    case displayName = "displayName"
+    case lastMessageDate = "lastMessageDate"
+    case lastMessageDisconnected = "lastMessageDisconnected"
+    case lastSentChatState = "lastSentChatState"
+    case pendingApproval = "pendingApproval"
+    case photo = "photo"
+}
+
+enum FriendRelationships: String {
+    case user = "user"
 }
 
 @objc
@@ -35,16 +47,61 @@ class _Friend: NSManagedObject {
     // MARK: - Properties
 
     @NSManaged
-    var nickName: String?
+    var accountName: String?
 
-    // func validateNickName(value: AutoreleasingUnsafePointer<AnyObject>, error: NSErrorPointer) {}
+    // func validateAccountName(value: AutoreleasingUnsafePointer<AnyObject>, error: NSErrorPointer) {}
 
     @NSManaged
-    var usrName: String?
+    var chatState: NSNumber?
 
-    // func validateUsrName(value: AutoreleasingUnsafePointer<AnyObject>, error: NSErrorPointer) {}
+    // func validateChatState(value: AutoreleasingUnsafePointer<AnyObject>, error: NSErrorPointer) {}
+
+    @NSManaged
+    var composingMessageString: String?
+
+    // func validateComposingMessageString(value: AutoreleasingUnsafePointer<AnyObject>, error: NSErrorPointer) {}
+
+    @NSManaged
+    var currentStatus: NSNumber?
+
+    // func validateCurrentStatus(value: AutoreleasingUnsafePointer<AnyObject>, error: NSErrorPointer) {}
+
+    @NSManaged
+    var displayName: String?
+
+    // func validateDisplayName(value: AutoreleasingUnsafePointer<AnyObject>, error: NSErrorPointer) {}
+
+    @NSManaged
+    var lastMessageDate: NSDate?
+
+    // func validateLastMessageDate(value: AutoreleasingUnsafePointer<AnyObject>, error: NSErrorPointer) {}
+
+    @NSManaged
+    var lastMessageDisconnected: NSNumber?
+
+    // func validateLastMessageDisconnected(value: AutoreleasingUnsafePointer<AnyObject>, error: NSErrorPointer) {}
+
+    @NSManaged
+    var lastSentChatState: NSNumber?
+
+    // func validateLastSentChatState(value: AutoreleasingUnsafePointer<AnyObject>, error: NSErrorPointer) {}
+
+    @NSManaged
+    var pendingApproval: NSNumber?
+
+    // func validatePendingApproval(value: AutoreleasingUnsafePointer<AnyObject>, error: NSErrorPointer) {}
+
+    @NSManaged
+    var photo: AnyObject?
+
+    // func validatePhoto(value: AutoreleasingUnsafePointer<AnyObject>, error: NSErrorPointer) {}
 
     // MARK: - Relationships
+
+    @NSManaged
+    var user: User?
+
+    // func validateUser(value: AutoreleasingUnsafePointer<AnyObject>, error: NSErrorPointer) {}
 
 }
 

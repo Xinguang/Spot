@@ -1,13 +1,6 @@
 @objc(User)
 class User: _User {
-    
-//    var domain: String!
-//    var resources: String!
-//    var port: Int!
-    
-    override func awakeFromInsert() {
-        
-    }
+
     var password: String {
         get {
             return SSKeychain.passwordForService(kSpotServiceName, account: uniqueIdentifier)
@@ -22,6 +15,16 @@ class User: _User {
             SSKeychain.setPassword(newValue, forService: kSpotServiceName, account: uniqueIdentifier)
         }
     }
+    
+//    class func userForStream(stream: XMPPStream) -> User? {
+//        var user: User?
+//        
+//        if stream.tag is String {
+//            user = self.MR_findFirstByAttribute("uniqueIdentifier", withValue: stream.tag) as? User
+//        }
+//        
+//        return user
+//    }
     
     /*
     class func signInComplete(complete: (error: NSError?) -> Void) {

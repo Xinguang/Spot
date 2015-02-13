@@ -16,7 +16,7 @@ class TalkViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        friends = DataController.instance.friends()
+//        friends = DataController.instance.friends()
     }
 }
 

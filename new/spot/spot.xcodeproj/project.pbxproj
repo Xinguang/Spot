@@ -33,6 +33,7 @@
 		296623DB1A8CA28C002608EF /* XMPPSearchNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 296623D51A8CA28C002608EF /* XMPPSearchNode.m */; };
 		296623DC1A8CA28C002608EF /* XMPPSearchReported.m in Sources */ = {isa = PBXBuildFile; fileRef = 296623D71A8CA28C002608EF /* XMPPSearchReported.m */; };
 		296623DD1A8CA28C002608EF /* XMPPSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 296623D91A8CA28C002608EF /* XMPPSearchResult.m */; };
+		296623DF1A8D89C1002608EF /* DatabaseRosterStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296623DE1A8D89C1002608EF /* DatabaseRosterStorage.swift */; };
 		5F6DCE83C393AD717AAB7030 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A5D3641F258F85CB0ABCED /* libPods.a */; };
 		DC4109B81A81C15200E11CAB /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4109B71A81C15200E11CAB /* TabBarController.swift */; };
 		DC4109BA1A81C27500E11CAB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DC4109B91A81C27500E11CAB /* Localizable.strings */; };
@@ -50,7 +51,6 @@
 		DC4109D51A81C50A00E11CAB /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4109C81A81C50A00E11CAB /* Sequence.swift */; };
 		DC4109D61A81C50A00E11CAB /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4109C91A81C50A00E11CAB /* String.swift */; };
 		DC4109D81A81C84600E11CAB /* TalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4109D71A81C84600E11CAB /* TalkViewController.swift */; };
-		DC4109DA1A81CC2100E11CAB /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4109D91A81CC2100E11CAB /* DataController.swift */; };
 		DC4109E21A81CDEB00E11CAB /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC4109E01A81CDEB00E11CAB /* Model.xcdatamodeld */; };
 		DC4109F41A81DEF400E11CAB /* _User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4109F21A81DEF400E11CAB /* _User.swift */; };
 		DC4109F51A81DEF400E11CAB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4109F31A81DEF400E11CAB /* User.swift */; };
@@ -94,6 +94,7 @@
 		296623D71A8CA28C002608EF /* XMPPSearchReported.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPSearchReported.m; sourceTree = "<group>"; };
 		296623D81A8CA28C002608EF /* XMPPSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPSearchResult.h; sourceTree = "<group>"; };
 		296623D91A8CA28C002608EF /* XMPPSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPSearchResult.m; sourceTree = "<group>"; };
+		296623DE1A8D89C1002608EF /* DatabaseRosterStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatabaseRosterStorage.swift; path = Classes/DatabaseRosterStorage.swift; sourceTree = "<group>"; };
 		4CAB4A8089D8A99280C16B78 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		67192A0B6C2C674435DC4219 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		DC4109B71A81C15200E11CAB /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarController.swift; path = Classes/TabBarController.swift; sourceTree = "<group>"; };
@@ -113,7 +114,6 @@
 		DC4109C81A81C50A00E11CAB /* Sequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sequence.swift; sourceTree = "<group>"; };
 		DC4109C91A81C50A00E11CAB /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		DC4109D71A81C84600E11CAB /* TalkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TalkViewController.swift; path = Classes/TalkViewController.swift; sourceTree = "<group>"; };
-		DC4109D91A81CC2100E11CAB /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataController.swift; path = Classes/DataController.swift; sourceTree = "<group>"; };
 		DC4109E11A81CDEB00E11CAB /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		DC4109F21A81DEF400E11CAB /* _User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _User.swift; sourceTree = "<group>"; };
 		DC4109F31A81DEF400E11CAB /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -200,6 +200,15 @@
 				296623D91A8CA28C002608EF /* XMPPSearchResult.m */,
 			);
 			path = "XMPP-0055";
+			sourceTree = "<group>";
+		};
+		296623E01A8D89E8002608EF /* XMPP */ = {
+			isa = PBXGroup;
+			children = (
+				296623AA1A89C586002608EF /* XMPPManager.swift */,
+				296623DE1A8D89C1002608EF /* DatabaseRosterStorage.swift */,
+			);
+			name = XMPP;
 			sourceTree = "<group>";
 		};
 		A54F6AD9F9DF19B112503F1C /* Pods */ = {
@@ -382,9 +391,8 @@
 			isa = PBXGroup;
 			children = (
 				DCF538EA1A82244800C83FE5 /* gpx.json */,
-				DC4109D91A81CC2100E11CAB /* DataController.swift */,
 				2966239F1A898D41002608EF /* DatabaseManager.swift */,
-				296623AA1A89C586002608EF /* XMPPManager.swift */,
+				296623E01A8D89E8002608EF /* XMPP */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -561,7 +569,6 @@
 				DC4109CB1A81C50A00E11CAB /* Character.swift in Sources */,
 				DC4109CE1A81C50A00E11CAB /* ExSwift.swift in Sources */,
 				296623DC1A8CA28C002608EF /* XMPPSearchReported.m in Sources */,
-				DC4109DA1A81CC2100E11CAB /* DataController.swift in Sources */,
 				DC410A0A1A8200EA00E11CAB /* ContactCell.swift in Sources */,
 				DC4109F91A81E04E00E11CAB /* Friend.swift in Sources */,
 				DC4109D41A81C50A00E11CAB /* Range.swift in Sources */,
@@ -575,6 +582,7 @@
 				DC4109D81A81C84600E11CAB /* TalkViewController.swift in Sources */,
 				296623DD1A8CA28C002608EF /* XMPPSearchResult.m in Sources */,
 				296623A61A89A640002608EF /* XMPPCreateAccountViewController.swift in Sources */,
+				296623DF1A8D89C1002608EF /* DatabaseRosterStorage.swift in Sources */,
 				DCB539221A81B7BE00C216D7 /* Util.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

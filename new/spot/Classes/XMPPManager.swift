@@ -79,13 +79,24 @@ class XMPPManager: NSObject {
         
         xmppReconnect = XMPPReconnect()
         
+        
+        //Roster
+        let rosterStorage = DatabaseRosterStorage()
+        
+        xmppRoster = XMPPRoster(rosterStorage: rosterStorage)
+        xmppRoster.autoFetchRoster = true
+        xmppRoster.autoClearAllUsersAndResources = false
+        xmppRoster.autoAcceptKnownPresenceSubscriptionRequests = true
+        
         xmppCapabilitiesStorage = XMPPCapabilitiesCoreDataStorage(inMemoryStore:())
         xmppCapabilities = XMPPCapabilities(capabilitiesStorage: xmppCapabilitiesStorage)
         
         xmppReconnect.activate(xmppStream)
         xmppCapabilities.activate(xmppStream)
+        xmppRoster.activate(xmppStream)
         
-        xmppStream.addDelegate(self, delegateQueue: dispatch_get_main_queue())
+        xmppStream.addDelegate(self, delegateQueue: workQueue)
+        xmppRoster.addDelegate(self, delegateQueue: workQueue)
     }
     
     func registerNewAccountWithPassword(password: String) {
@@ -132,13 +143,21 @@ class XMPPManager: NSObject {
     }
     
     func goOnline() {
-        NSNotificationCenter.defaultCenter().postNotificationName(kXMPPLoginSuccess, object: nil)
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            NSNotificationCenter.defaultCenter().postNotificationName(kXMPPLoginSuccess, object: nil)
+        })
         
         xmppStream.sendElement(XMPPPresence())
     }
     
     func goOffline() {
         xmppStream.sendElement(XMPPPresence(type: "unavailable"))
+    }
+    
+    func addFriend(friend: Friend) {
+        let jid = XMPPJID.jidWithString(friend.accountName)
+        // TODO: nickName
+        xmppRoster.addUser(jid, withNickname: "todo")
     }
 }
 
@@ -214,6 +233,14 @@ extension XMPPManager: XMPPStreamDelegate {
     func xmppStream(sender: XMPPStream!, didSendIQ iq: XMPPIQ!) {
         println(iq)
     }
+}
+
+extension XMPPManager: XMPPRosterDelegate {
+    
+    func xmppRoster(sender: XMPPRoster!, didReceivePresenceSubscriptionRequest presence: XMPPPresence!) {
+        
+    }
+    
 }
 
 extension XMPPManager {
