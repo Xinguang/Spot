@@ -1,9 +1,7 @@
 pod 'SSKeychain'
-pod 'Reachability'
 pod 'MagicalRecord'
 pod 'Parse'
 pod 'SVProgressHUD'
-pod 'AFNetworking'
 pod 'Reveal-iOS-SDK', :configurations => ['Debug']
 pod 'APAddressBook/Swift'
 pod 'XMPPFramework'
