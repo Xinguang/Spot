@@ -71,7 +71,8 @@ extension DatabaseRosterStorage: XMPPRosterStorage {
         let ask = item.attributeStringValueForName("ask")
         
         if subscription == "none" || subscription == "from" {
-            if ask == "subscribe" {
+            // TODO: 
+            if ask == nil || ask == "subscribe" {
                 return true
             }
         }

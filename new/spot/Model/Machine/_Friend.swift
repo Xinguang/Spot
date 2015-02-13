@@ -7,6 +7,7 @@ enum FriendAttributes: String {
     case accountName = "accountName"
     case chatState = "chatState"
     case composingMessageString = "composingMessageString"
+    case createAt = "createAt"
     case currentStatus = "currentStatus"
     case displayName = "displayName"
     case lastMessageDate = "lastMessageDate"
@@ -60,6 +61,11 @@ class _Friend: NSManagedObject {
     var composingMessageString: String?
 
     // func validateComposingMessageString(value: AutoreleasingUnsafePointer<AnyObject>, error: NSErrorPointer) {}
+
+    @NSManaged
+    var createAt: NSDate?
+
+    // func validateCreateAt(value: AutoreleasingUnsafePointer<AnyObject>, error: NSErrorPointer) {}
 
     @NSManaged
     var currentStatus: NSNumber?

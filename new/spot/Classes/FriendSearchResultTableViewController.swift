@@ -79,10 +79,10 @@ extension FriendSearchResultTableViewController: UITableViewDataSource, UITableV
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let account = accounts[indexPath.row]
         
-        var friend = Friend.MR_findFirstByAttribute("accountName", withValue: account.username) as? Friend
+        var friend = Friend.MR_findFirstByAttribute("accountName", withValue: account.username + "@" + kOpenFireDomainName) as? Friend
         if friend == nil {
             friend = Friend.MR_createEntity() as? Friend
-            friend?.accountName = account.username
+            friend?.accountName = account.username + "@" + kOpenFireDomainName
             friend?.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
         }
         

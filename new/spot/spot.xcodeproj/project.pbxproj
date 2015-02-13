@@ -46,6 +46,7 @@
 		296623DC1A8CA28C002608EF /* XMPPSearchReported.m in Sources */ = {isa = PBXBuildFile; fileRef = 296623D71A8CA28C002608EF /* XMPPSearchReported.m */; };
 		296623DD1A8CA28C002608EF /* XMPPSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 296623D91A8CA28C002608EF /* XMPPSearchResult.m */; };
 		296623DF1A8D89C1002608EF /* DatabaseRosterStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296623DE1A8D89C1002608EF /* DatabaseRosterStorage.swift */; };
+		296623E41A8DFD2B002608EF /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296623E31A8DFD2B002608EF /* ContactViewController.swift */; };
 		5F6DCE83C393AD717AAB7030 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A5D3641F258F85CB0ABCED /* libPods.a */; };
 		DC4109B81A81C15200E11CAB /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4109B71A81C15200E11CAB /* TabBarController.swift */; };
 		DC4109BA1A81C27500E11CAB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DC4109B91A81C27500E11CAB /* Localizable.strings */; };
@@ -68,7 +69,7 @@
 		DC4109F51A81DEF400E11CAB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4109F31A81DEF400E11CAB /* User.swift */; };
 		DC4109F71A81E04600E11CAB /* _Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4109F61A81E04600E11CAB /* _Friend.swift */; };
 		DC4109F91A81E04E00E11CAB /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4109F81A81E04E00E11CAB /* Friend.swift */; };
-		DC410A081A81FB2F00E11CAB /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC410A071A81FB2F00E11CAB /* ContactViewController.swift */; };
+		DC410A081A81FB2F00E11CAB /* AddressContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC410A071A81FB2F00E11CAB /* AddressContactViewController.swift */; };
 		DC410A0A1A8200EA00E11CAB /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC410A091A8200EA00E11CAB /* ContactCell.swift */; };
 		DCB538F71A81AE9C00C216D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCB538F51A81AE9C00C216D7 /* Main.storyboard */; };
 		DCB538F91A81AE9C00C216D7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCB538F81A81AE9C00C216D7 /* Images.xcassets */; };
@@ -119,6 +120,7 @@
 		296623D81A8CA28C002608EF /* XMPPSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPSearchResult.h; sourceTree = "<group>"; };
 		296623D91A8CA28C002608EF /* XMPPSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPSearchResult.m; sourceTree = "<group>"; };
 		296623DE1A8D89C1002608EF /* DatabaseRosterStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatabaseRosterStorage.swift; path = Classes/DatabaseRosterStorage.swift; sourceTree = "<group>"; };
+		296623E31A8DFD2B002608EF /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactViewController.swift; path = Classes/ContactViewController.swift; sourceTree = "<group>"; };
 		4CAB4A8089D8A99280C16B78 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		67192A0B6C2C674435DC4219 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		DC4109B71A81C15200E11CAB /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarController.swift; path = Classes/TabBarController.swift; sourceTree = "<group>"; };
@@ -144,7 +146,7 @@
 		DC4109F61A81E04600E11CAB /* _Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _Friend.swift; sourceTree = "<group>"; };
 		DC4109F81A81E04E00E11CAB /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		DC410A061A81E14B00E11CAB /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "spot/Bridging-Header.h"; sourceTree = "<group>"; };
-		DC410A071A81FB2F00E11CAB /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactViewController.swift; path = Classes/ContactViewController.swift; sourceTree = "<group>"; };
+		DC410A071A81FB2F00E11CAB /* AddressContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddressContactViewController.swift; path = Classes/AddressContactViewController.swift; sourceTree = "<group>"; };
 		DC410A091A8200EA00E11CAB /* ContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactCell.swift; path = Classes/ContactCell.swift; sourceTree = "<group>"; };
 		DCB538EA1A81AE9C00C216D7 /* spot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCB538EE1A81AE9C00C216D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -227,9 +229,10 @@
 		296623AE1A8C47FD002608EF /* Contact */ = {
 			isa = PBXGroup;
 			children = (
-				DC410A071A81FB2F00E11CAB /* ContactViewController.swift */,
+				DC410A071A81FB2F00E11CAB /* AddressContactViewController.swift */,
 				296623AC1A8C47F5002608EF /* AddFriendSelectViewController.swift */,
 				296623AF1A8C4C29002608EF /* FriendSearchResultTableViewController.swift */,
+				296623E31A8DFD2B002608EF /* ContactViewController.swift */,
 			);
 			name = Contact;
 			sourceTree = "<group>";
@@ -442,9 +445,7 @@
 			isa = PBXGroup;
 			children = (
 				DCF538EA1A82244800C83FE5 /* gpx.json */,
-
 				178AE0441A8CBAAA00D91542 /* SNSController.swift */,
-				DC4109D91A81CC2100E11CAB /* DataController.swift */,
 				2966239F1A898D41002608EF /* DatabaseManager.swift */,
 				296623E01A8D89E8002608EF /* XMPP */,
 			);
@@ -615,7 +616,7 @@
 				DC4109CC1A81C50A00E11CAB /* Dictionary.swift in Sources */,
 				DC4109D31A81C50A00E11CAB /* NSDate.swift in Sources */,
 				DC4109D11A81C50A00E11CAB /* Int.swift in Sources */,
-				DC410A081A81FB2F00E11CAB /* ContactViewController.swift in Sources */,
+				DC410A081A81FB2F00E11CAB /* AddressContactViewController.swift in Sources */,
 				178AE0551A8DC27300D91542 /* NetHelper.swift in Sources */,
 				178AE0521A8DC27300D91542 /* Net.swift in Sources */,
 				DC4109E21A81CDEB00E11CAB /* Model.xcdatamodeld in Sources */,
@@ -635,6 +636,7 @@
 				DC410A0A1A8200EA00E11CAB /* ContactCell.swift in Sources */,
 				DC4109F91A81E04E00E11CAB /* Friend.swift in Sources */,
 				178AE0581A8DC27300D91542 /* NetUploadTask.swift in Sources */,
+				296623E41A8DFD2B002608EF /* ContactViewController.swift in Sources */,
 				178AE0591A8DC27300D91542 /* Reachability.swift in Sources */,
 				DC4109D41A81C50A00E11CAB /* Range.swift in Sources */,
 				DCB539201A81B65B00C216D7 /* AppDelegate.swift in Sources */,
