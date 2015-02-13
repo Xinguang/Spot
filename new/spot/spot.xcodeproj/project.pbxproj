@@ -442,11 +442,9 @@
 			isa = PBXGroup;
 			children = (
 				DCF538EA1A82244800C83FE5 /* gpx.json */,
-<<<<<<< HEAD
-=======
+
 				178AE0441A8CBAAA00D91542 /* SNSController.swift */,
 				DC4109D91A81CC2100E11CAB /* DataController.swift */,
->>>>>>> OPENID
 				2966239F1A898D41002608EF /* DatabaseManager.swift */,
 				296623E01A8D89E8002608EF /* XMPP */,
 			);

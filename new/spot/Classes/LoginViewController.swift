@@ -69,7 +69,7 @@ class LoginViewController: BaseViewController {
     }
     
     @IBAction func skipBtnTapped(sender: AnyObject) {
-        SNSController.instance.SendAuth()
+//        SNSController.instance.SendAuth()
 //        SVProgressHUD.show()
 //        
 //        User.signInComplete { (error) -> Void in
@@ -78,7 +78,7 @@ class LoginViewController: BaseViewController {
 //            if let error = error {
 //                println(error.localizedDescription)
 //            } else {
-                //self.performSegueWithIdentifier("SegueTabBar", sender: nil)
+                self.performSegueWithIdentifier("SegueTabBar", sender: nil)
 //            }
 //        }
     }
