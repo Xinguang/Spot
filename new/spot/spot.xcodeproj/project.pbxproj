@@ -22,6 +22,17 @@
 
 /* Begin PBXBuildFile section */
 		178AE0451A8CBAAA00D91542 /* SNSController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178AE0441A8CBAAA00D91542 /* SNSController.swift */; };
+		178AE0511A8DC27300D91542 /* GCD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178AE0471A8DC27300D91542 /* GCD.swift */; };
+		178AE0521A8DC27300D91542 /* Net.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178AE0481A8DC27300D91542 /* Net.swift */; };
+		178AE0531A8DC27300D91542 /* NetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178AE0491A8DC27300D91542 /* NetData.swift */; };
+		178AE0541A8DC27300D91542 /* NetDownloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178AE04A1A8DC27300D91542 /* NetDownloadTask.swift */; };
+		178AE0551A8DC27300D91542 /* NetHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178AE04B1A8DC27300D91542 /* NetHelper.swift */; };
+		178AE0561A8DC27300D91542 /* NetRequestSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178AE04C1A8DC27300D91542 /* NetRequestSerialization.swift */; };
+		178AE0571A8DC27300D91542 /* NetResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178AE04D1A8DC27300D91542 /* NetResponseData.swift */; };
+		178AE0581A8DC27300D91542 /* NetUploadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178AE04E1A8DC27300D91542 /* NetUploadTask.swift */; };
+		178AE0591A8DC27300D91542 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178AE0501A8DC27300D91542 /* Reachability.swift */; };
+		178AE05D1A8DCAC400D91542 /* _SNS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178AE05C1A8DCAC400D91542 /* _SNS.swift */; };
+		178AE05F1A8DCACC00D91542 /* SNS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178AE05E1A8DCACC00D91542 /* SNS.swift */; };
 		296623A01A898D41002608EF /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2966239F1A898D41002608EF /* DatabaseManager.swift */; };
 		296623A31A898E70002608EF /* SpotConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296623A21A898E70002608EF /* SpotConstants.swift */; };
 		296623A61A89A640002608EF /* XMPPCreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296623A51A89A640002608EF /* XMPPCreateAccountViewController.swift */; };
@@ -80,6 +91,17 @@
 
 /* Begin PBXFileReference section */
 		178AE0441A8CBAAA00D91542 /* SNSController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SNSController.swift; path = Classes/SNSController.swift; sourceTree = "<group>"; };
+		178AE0471A8DC27300D91542 /* GCD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCD.swift; sourceTree = "<group>"; };
+		178AE0481A8DC27300D91542 /* Net.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Net.swift; sourceTree = "<group>"; };
+		178AE0491A8DC27300D91542 /* NetData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetData.swift; sourceTree = "<group>"; };
+		178AE04A1A8DC27300D91542 /* NetDownloadTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetDownloadTask.swift; sourceTree = "<group>"; };
+		178AE04B1A8DC27300D91542 /* NetHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetHelper.swift; sourceTree = "<group>"; };
+		178AE04C1A8DC27300D91542 /* NetRequestSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetRequestSerialization.swift; sourceTree = "<group>"; };
+		178AE04D1A8DC27300D91542 /* NetResponseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetResponseData.swift; sourceTree = "<group>"; };
+		178AE04E1A8DC27300D91542 /* NetUploadTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetUploadTask.swift; sourceTree = "<group>"; };
+		178AE0501A8DC27300D91542 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		178AE05C1A8DCAC400D91542 /* _SNS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _SNS.swift; sourceTree = "<group>"; };
+		178AE05E1A8DCACC00D91542 /* SNS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SNS.swift; sourceTree = "<group>"; };
 		2966239F1A898D41002608EF /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatabaseManager.swift; path = Classes/DatabaseManager.swift; sourceTree = "<group>"; };
 		296623A21A898E70002608EF /* SpotConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpotConstants.swift; path = Classes/SpotConstants.swift; sourceTree = "<group>"; };
 		296623A51A89A640002608EF /* XMPPCreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XMPPCreateAccountViewController.swift; path = Classes/XMPPCreateAccountViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +183,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		178AE0461A8DC27300D91542 /* Net */ = {
+			isa = PBXGroup;
+			children = (
+				178AE0471A8DC27300D91542 /* GCD.swift */,
+				178AE0481A8DC27300D91542 /* Net.swift */,
+				178AE0491A8DC27300D91542 /* NetData.swift */,
+				178AE04A1A8DC27300D91542 /* NetDownloadTask.swift */,
+				178AE04B1A8DC27300D91542 /* NetHelper.swift */,
+				178AE04C1A8DC27300D91542 /* NetRequestSerialization.swift */,
+				178AE04D1A8DC27300D91542 /* NetResponseData.swift */,
+				178AE04E1A8DC27300D91542 /* NetUploadTask.swift */,
+			);
+			path = Net;
+			sourceTree = "<group>";
+		};
+		178AE04F1A8DC27300D91542 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				178AE0501A8DC27300D91542 /* Reachability.swift */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
 		296623A11A898E4F002608EF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,6 +301,7 @@
 		DC4109F11A81DEF400E11CAB /* Machine */ = {
 			isa = PBXGroup;
 			children = (
+				178AE05C1A8DCAC400D91542 /* _SNS.swift */,
 				DCD9CB831A8381CD009C4468 /* _Chat.swift */,
 				DC4109F61A81E04600E11CAB /* _Friend.swift */,
 				DC4109F21A81DEF400E11CAB /* _User.swift */,
@@ -348,6 +394,7 @@
 		DCB539131A81B00700C216D7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				178AE05E1A8DCACC00D91542 /* SNS.swift */,
 				296623CF1A8C990E002608EF /* XMPPAccount.swift */,
 				DCD9CB801A8381C3009C4468 /* Chat.swift */,
 				DC4109F81A81E04E00E11CAB /* Friend.swift */,
@@ -361,6 +408,8 @@
 		DCB539141A81B01000C216D7 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				178AE0461A8DC27300D91542 /* Net */,
+				178AE04F1A8DC27300D91542 /* Reachability */,
 				296623D11A8CA28C002608EF /* XMPP-0055 */,
 				DC4109BB1A81C50A00E11CAB /* ExSwift */,
 			);
@@ -549,11 +598,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				178AE0571A8DC27300D91542 /* NetResponseData.swift in Sources */,
 				296623A01A898D41002608EF /* DatabaseManager.swift in Sources */,
+				178AE0531A8DC27300D91542 /* NetData.swift in Sources */,
 				DC4109F41A81DEF400E11CAB /* _User.swift in Sources */,
 				DC4109CF1A81C50A00E11CAB /* Float.swift in Sources */,
 				296623DA1A8CA28C002608EF /* XMPPSearchModule.m in Sources */,
+				178AE05F1A8DCACC00D91542 /* SNS.swift in Sources */,
 				DC4109F71A81E04600E11CAB /* _Friend.swift in Sources */,
+				178AE05D1A8DCAC400D91542 /* _SNS.swift in Sources */,
 				296623A91A89AC3B002608EF /* NewAccountTableViewController.swift in Sources */,
 				DCB539241A81B99B00C216D7 /* LoginViewController.swift in Sources */,
 				DCD9CB841A8381CD009C4468 /* _Chat.swift in Sources */,
@@ -565,13 +618,17 @@
 				DC4109D31A81C50A00E11CAB /* NSDate.swift in Sources */,
 				DC4109D11A81C50A00E11CAB /* Int.swift in Sources */,
 				DC410A081A81FB2F00E11CAB /* ContactViewController.swift in Sources */,
+				178AE0551A8DC27300D91542 /* NetHelper.swift in Sources */,
+				178AE0521A8DC27300D91542 /* Net.swift in Sources */,
 				DC4109E21A81CDEB00E11CAB /* Model.xcdatamodeld in Sources */,
 				DCB539261A81BE0B00C216D7 /* BaseViewController.swift in Sources */,
+				178AE0511A8DC27300D91542 /* GCD.swift in Sources */,
 				296623A31A898E70002608EF /* SpotConstants.swift in Sources */,
 				296623B01A8C4C29002608EF /* FriendSearchResultTableViewController.swift in Sources */,
 				296623D01A8C990E002608EF /* XMPPAccount.swift in Sources */,
 				DC4109F51A81DEF400E11CAB /* User.swift in Sources */,
 				DCD9CB811A8381C3009C4468 /* Chat.swift in Sources */,
+				178AE0541A8DC27300D91542 /* NetDownloadTask.swift in Sources */,
 				296623AD1A8C47F5002608EF /* AddFriendSelectViewController.swift in Sources */,
 				296623AB1A89C586002608EF /* XMPPManager.swift in Sources */,
 				DC4109CB1A81C50A00E11CAB /* Character.swift in Sources */,
@@ -579,12 +636,15 @@
 				296623DC1A8CA28C002608EF /* XMPPSearchReported.m in Sources */,
 				DC410A0A1A8200EA00E11CAB /* ContactCell.swift in Sources */,
 				DC4109F91A81E04E00E11CAB /* Friend.swift in Sources */,
+				178AE0581A8DC27300D91542 /* NetUploadTask.swift in Sources */,
+				178AE0591A8DC27300D91542 /* Reachability.swift in Sources */,
 				DC4109D41A81C50A00E11CAB /* Range.swift in Sources */,
 				DCB539201A81B65B00C216D7 /* AppDelegate.swift in Sources */,
 				DC4109CA1A81C50A00E11CAB /* Array.swift in Sources */,
 				DC4109B81A81C15200E11CAB /* TabBarController.swift in Sources */,
 				DCC671DC1A82089B001781ED /* MapViewController.swift in Sources */,
 				DC4109D61A81C50A00E11CAB /* String.swift in Sources */,
+				178AE0561A8DC27300D91542 /* NetRequestSerialization.swift in Sources */,
 				DC4109CD1A81C50A00E11CAB /* Double.swift in Sources */,
 				296623DB1A8CA28C002608EF /* XMPPSearchNode.m in Sources */,
 				DC4109D81A81C84600E11CAB /* TalkViewController.swift in Sources */,
