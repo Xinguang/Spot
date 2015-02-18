@@ -258,6 +258,48 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FriendRequestCell" rowHeight="59" id="CYS-Sm-5Ac" customClass="FriendRequestCell" customModule="spot" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CYS-Sm-5Ac" id="8BJ-YS-qbD">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdn-Os-FDY">
+                                                    <rect key="frame" x="16" y="13" width="30.5" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVW-kJ-8pt">
+                                                    <rect key="frame" x="16" y="32" width="39.5" height="13.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sgn-v6-hk7">
+                                                    <rect key="frame" x="252" y="15" width="60" height="30"/>
+                                                    <state key="normal" title="受け入れ">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="acceptRequest:" destination="CYS-Sm-5Ac" eventType="touchUpInside" id="RQV-y5-ad6"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="fdn-Os-FDY" firstAttribute="leading" secondItem="8BJ-YS-qbD" secondAttribute="leading" constant="16" id="TC4-iP-mer"/>
+                                                <constraint firstAttribute="trailing" secondItem="Sgn-v6-hk7" secondAttribute="trailing" constant="8" id="YwL-9j-fNm"/>
+                                                <constraint firstItem="nVW-kJ-8pt" firstAttribute="top" secondItem="fdn-Os-FDY" secondAttribute="bottom" constant="-0.5" id="bRd-r1-BPD"/>
+                                                <constraint firstItem="nVW-kJ-8pt" firstAttribute="leading" secondItem="8BJ-YS-qbD" secondAttribute="leading" constant="16" id="emi-5e-SWJ"/>
+                                                <constraint firstAttribute="centerY" secondItem="Sgn-v6-hk7" secondAttribute="centerY" id="fpK-E5-De4"/>
+                                                <constraint firstItem="fdn-Os-FDY" firstAttribute="top" secondItem="8BJ-YS-qbD" secondAttribute="top" constant="13" id="rNK-2y-sqB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="accountNameLabel" destination="fdn-Os-FDY" id="sAx-ah-l0H"/>
+                                            <outlet property="displayNameLabel" destination="nVW-kJ-8pt" id="46y-f7-GLl"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="gkj-ap-slI" id="lpL-vb-2gS"/>

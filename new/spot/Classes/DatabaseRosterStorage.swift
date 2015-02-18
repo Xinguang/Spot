@@ -31,6 +31,8 @@ extension DatabaseRosterStorage: XMPPRosterStorage {
     
     func handleRosterItem(item: DDXMLElement!, xmppStream stream: XMPPStream!) {
         let jidStr = item.attributeStringValueForName("jid")
+//        let jid = XMPPJID.jidWithString(jidStr)
+        
         // TODO:
 //        let jid = XMPPJID.jidWithString(jidStr).bareJID()
 //        
@@ -42,7 +44,7 @@ extension DatabaseRosterStorage: XMPPRosterStorage {
         var friend = Friend.MR_findFirstByAttribute("accountName", withValue: jidStr) as? Friend
         if friend == nil {
             friend = Friend.MR_createEntity() as? Friend
-            friend?.accountName = jidStr + "@" + kOpenFireDomainName
+            friend?.accountName = jidStr
         }
         
         let subscription = item.attributeStringValueForName("subscription")
@@ -85,7 +87,7 @@ extension DatabaseRosterStorage: XMPPRosterStorage {
     }
     
     func userExistsWithJID(jid: XMPPJID!, xmppStream stream: XMPPStream!) -> Bool {
-        if let f = Friend.MR_findFirstByAttribute("accountName", withValue: jid) as? Friend {
+        if let f = Friend.MR_findFirstByAttribute("accountName", withValue: jid.bareJID().bare()) as? Friend {
             return true
         }
         

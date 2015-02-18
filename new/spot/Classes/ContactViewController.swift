@@ -12,10 +12,19 @@ class ContactViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var fsc: NSFetchedResultsController!
+    var frcRequest: NSFetchedResultsController!
+    var frcFriend: NSFetchedResultsController!
     
-    var count: Int! {
-        if let sectionInfo = fsc.sections?[0] as? NSFetchedResultsSectionInfo {
+    var friendCount: Int! {
+        if let sectionInfo = frcFriend.sections?[0] as? NSFetchedResultsSectionInfo {
+            return sectionInfo.numberOfObjects
+        }
+        
+        return 0
+    }
+    
+    var requestCount: Int! {
+        if let sectionInfo = frcRequest.sections?[0] as? NSFetchedResultsSectionInfo {
             return sectionInfo.numberOfObjects
         }
         
@@ -25,8 +34,11 @@ class ContactViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        fsc = Friend.MR_fetchAllGroupedBy(nil, withPredicate: nil, sortedBy: "createAt", ascending: false)
-        fsc.delegate = self
+        frcRequest = FriendRequest.MR_fetchAllGroupedBy(nil, withPredicate: nil, sortedBy: "createAt", ascending: false)
+        frcRequest.delegate = self
+        
+        frcFriend = Friend.MR_fetchAllGroupedBy(nil, withPredicate: nil, sortedBy: "createAt", ascending: false)
+        frcFriend.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,30 +71,68 @@ extension ContactViewController: NSFetchedResultsControllerDelegate {
 
 extension ContactViewController: UITableViewDataSource, UITableViewDelegate {
     
-    //    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    //        return 2
-    //    }
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        if requestCount > 0 {
+            return 2
+        }
+        
+        return 1
+    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return count
+        if requestCount > 0 {
+            if section == 0 {
+                return requestCount
+            }
+        }
+        
+        return friendCount
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if requestCount > 0 && section == 0 {
+            return "友人要求"
+        }
+        
         return "友人"
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let friend = fsc.objectAtIndexPath(indexPath) as Friend
-        var cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as UITableViewCell
-        cell.textLabel?.text = friend.accountName
-                //                cell?.imageView?.image = UIImage(named: circleImageName)
-        cell.detailTextLabel?.text = friend.displayName
-        
+        if requestCount > 0 && indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("FriendRequestCell", forIndexPath: indexPath) as FriendRequestCell
             
-        return cell
+            cell.friendRequest = frcRequest.objectAtIndexPath(indexPath) as FriendRequest
+            cell.delegate = self
+            
+            return cell
+        }
+        
+        if let sectionInfo = frcFriend.sections?[0] as? NSFetchedResultsSectionInfo {
+            let friend = sectionInfo.objects[indexPath.row] as Friend
+            
+            let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as UITableViewCell
+            
+            cell.textLabel?.text = friend.accountName
+            cell.detailTextLabel?.text = friend.displayName
+            
+            return cell
+        }
+        
+        return UITableViewCell()
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+}
+
+extension ContactViewController: FriendRequestCellDelegate {
+    func friendRequestCellDidAcceptRequest(cell: FriendRequestCell) {
+        var friendRequest = cell.friendRequest
+        
+        let jid = XMPPJID.jidWithString(friendRequest.jid)
+        XMPPManager.instance.xmppRoster.acceptPresenceSubscriptionRequestFrom(jid, andAddToRoster: true)
+        friendRequest.MR_deleteEntity()
+        NSManagedObjectContext.MR_defaultContext().MR_saveToPersistentStoreWithCompletion(nil)
     }
 }

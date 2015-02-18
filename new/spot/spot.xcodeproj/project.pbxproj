@@ -47,6 +47,9 @@
 		296623DD1A8CA28C002608EF /* XMPPSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 296623D91A8CA28C002608EF /* XMPPSearchResult.m */; };
 		296623DF1A8D89C1002608EF /* DatabaseRosterStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296623DE1A8D89C1002608EF /* DatabaseRosterStorage.swift */; };
 		296623E41A8DFD2B002608EF /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296623E31A8DFD2B002608EF /* ContactViewController.swift */; };
+		2991E80B1A942FEE00C94552 /* _FriendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2991E80A1A942FEE00C94552 /* _FriendRequest.swift */; };
+		2991E80D1A942FF900C94552 /* FriendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2991E80C1A942FF900C94552 /* FriendRequest.swift */; };
+		2991E80F1A94351C00C94552 /* FriendRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2991E80E1A94351C00C94552 /* FriendRequestCell.swift */; };
 		5F6DCE83C393AD717AAB7030 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A5D3641F258F85CB0ABCED /* libPods.a */; };
 		DC4109B81A81C15200E11CAB /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4109B71A81C15200E11CAB /* TabBarController.swift */; };
 		DC4109BA1A81C27500E11CAB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DC4109B91A81C27500E11CAB /* Localizable.strings */; };
@@ -121,6 +124,9 @@
 		296623D91A8CA28C002608EF /* XMPPSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPSearchResult.m; sourceTree = "<group>"; };
 		296623DE1A8D89C1002608EF /* DatabaseRosterStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatabaseRosterStorage.swift; path = Classes/DatabaseRosterStorage.swift; sourceTree = "<group>"; };
 		296623E31A8DFD2B002608EF /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactViewController.swift; path = Classes/ContactViewController.swift; sourceTree = "<group>"; };
+		2991E80A1A942FEE00C94552 /* _FriendRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _FriendRequest.swift; sourceTree = "<group>"; };
+		2991E80C1A942FF900C94552 /* FriendRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendRequest.swift; sourceTree = "<group>"; };
+		2991E80E1A94351C00C94552 /* FriendRequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendRequestCell.swift; path = Classes/FriendRequestCell.swift; sourceTree = "<group>"; };
 		4CAB4A8089D8A99280C16B78 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		67192A0B6C2C674435DC4219 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		DC4109B71A81C15200E11CAB /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarController.swift; path = Classes/TabBarController.swift; sourceTree = "<group>"; };
@@ -304,6 +310,7 @@
 		DC4109F11A81DEF400E11CAB /* Machine */ = {
 			isa = PBXGroup;
 			children = (
+				2991E80A1A942FEE00C94552 /* _FriendRequest.swift */,
 				178AE05C1A8DCAC400D91542 /* _SNS.swift */,
 				DCD9CB831A8381CD009C4468 /* _Chat.swift */,
 				DC4109F61A81E04600E11CAB /* _Friend.swift */,
@@ -397,6 +404,7 @@
 		DCB539131A81B00700C216D7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2991E80C1A942FF900C94552 /* FriendRequest.swift */,
 				178AE05E1A8DCACC00D91542 /* SNS.swift */,
 				296623CF1A8C990E002608EF /* XMPPAccount.swift */,
 				DCD9CB801A8381C3009C4468 /* Chat.swift */,
@@ -437,6 +445,7 @@
 			isa = PBXGroup;
 			children = (
 				DC410A091A8200EA00E11CAB /* ContactCell.swift */,
+				2991E80E1A94351C00C94552 /* FriendRequestCell.swift */,
 			);
 			name = CustomView;
 			sourceTree = "<group>";
@@ -614,6 +623,7 @@
 				DC4109D21A81C50A00E11CAB /* NSArray.swift in Sources */,
 				178AE0451A8CBAAA00D91542 /* SNSController.swift in Sources */,
 				DC4109CC1A81C50A00E11CAB /* Dictionary.swift in Sources */,
+				2991E80F1A94351C00C94552 /* FriendRequestCell.swift in Sources */,
 				DC4109D31A81C50A00E11CAB /* NSDate.swift in Sources */,
 				DC4109D11A81C50A00E11CAB /* Int.swift in Sources */,
 				DC410A081A81FB2F00E11CAB /* AddressContactViewController.swift in Sources */,
@@ -628,6 +638,7 @@
 				DC4109F51A81DEF400E11CAB /* User.swift in Sources */,
 				DCD9CB811A8381C3009C4468 /* Chat.swift in Sources */,
 				178AE0541A8DC27300D91542 /* NetDownloadTask.swift in Sources */,
+				2991E80B1A942FEE00C94552 /* _FriendRequest.swift in Sources */,
 				296623AD1A8C47F5002608EF /* AddFriendSelectViewController.swift in Sources */,
 				296623AB1A89C586002608EF /* XMPPManager.swift in Sources */,
 				DC4109CB1A81C50A00E11CAB /* Character.swift in Sources */,
@@ -637,6 +648,7 @@
 				DC4109F91A81E04E00E11CAB /* Friend.swift in Sources */,
 				178AE0581A8DC27300D91542 /* NetUploadTask.swift in Sources */,
 				296623E41A8DFD2B002608EF /* ContactViewController.swift in Sources */,
+				2991E80D1A942FF900C94552 /* FriendRequest.swift in Sources */,
 				178AE0591A8DC27300D91542 /* Reachability.swift in Sources */,
 				DC4109D41A81C50A00E11CAB /* Range.swift in Sources */,
 				DCB539201A81B65B00C216D7 /* AppDelegate.swift in Sources */,

@@ -20,6 +20,11 @@
         <attribute name="photo" optional="YES" attributeType="Transformable" syncable="YES"/>
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="No Action" destinationEntity="User" inverseName="friends" inverseEntity="User" syncable="YES"/>
     </entity>
+    <entity name="FriendRequest" representedClassName="FriendRequest" syncable="YES">
+        <attribute name="createAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="jid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="SNS" representedClassName="SNS" syncable="YES">
         <attribute name="access_token" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="expirationDate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -41,5 +46,6 @@
         <element name="Friend" positionX="-54" positionY="18" width="128" height="223"/>
         <element name="SNS" positionX="-54" positionY="45" width="128" height="118"/>
         <element name="User" positionX="-63" positionY="-18" width="128" height="150"/>
+        <element name="FriendRequest" positionX="-63" positionY="99" width="128" height="88"/>
     </elements>
 </model>
