@@ -12,4 +12,5 @@ class XMPPAccount: NSObject {
     var username: String!
     var name: String?
     var email: String?
+    var jid: String?
 }

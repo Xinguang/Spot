@@ -214,6 +214,7 @@ extension XMPPManager: XMPPStreamDelegate {
                 account.email = item["Email"] as? String
                 account.name = item["Name"] as? String
                 account.username = item["Username"] as? String
+                account.jid = item["jid"] as? String
                 
                 accounts.append(account)
             }
@@ -238,7 +239,15 @@ extension XMPPManager: XMPPStreamDelegate {
 extension XMPPManager: XMPPRosterDelegate {
     
     func xmppRoster(sender: XMPPRoster!, didReceivePresenceSubscriptionRequest presence: XMPPPresence!) {
+        let jidStrBare = presence.fromStr()
+        var request = FriendRequest.MR_findFirstByAttribute("jid", withValue: jidStrBare) as? FriendRequest
+        if request == nil {
+            request = FriendRequest.MR_createEntity() as? FriendRequest
+        }
         
+        request!.jid = jidStrBare
+        
+        request!.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
     }
     
 }
