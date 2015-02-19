@@ -21,6 +21,10 @@ let kXMPPRegisterFailed = "RegisterFailedNotification"
 let kXMPPRegisterSuccess = "RegisterSuccessNotification"
 let kXMPPSearchAccountComplete = "SearchAccountCompleteNotification"
 
+let kGoogleApiKey = "bV4WSVpD7XG2iCoGZabJSe9pOEl4NcA"
+
+
+
 class SpotConstants: NSObject {
    
 }
