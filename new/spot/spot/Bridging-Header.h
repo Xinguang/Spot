@@ -43,5 +43,6 @@
 #import "XMPPFramework.h"
 #import "XMPPCapabilitiesCoreDataStorage.h"
 #import "XMPPSearchModule.h"
+#import <GoogleMaps/GoogleMaps.h>
 
 #endif

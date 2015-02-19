@@ -7,44 +7,42 @@
 //
 
 import UIKit
-import MapKit
+//import MapKit
 
-class MapViewController: BaseViewController {
+class MapViewController: BaseViewController, GMSMapViewDelegate {
 
-    @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
-    
-    let lm = CLLocationManager()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        lm.delegate = self
-        lm.requestWhenInUseAuthorization()
-        lm.startUpdatingLocation()
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        
+        var target: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 34.689197, longitude: 135.502321)
+        var camera: GMSCameraPosition = GMSCameraPosition(target: target, zoom: 12, bearing: 0, viewingAngle: 0)
+        var mapView = GMSMapView(
+            frame: CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height)
+        )
+        mapView.myLocationEnabled = true
+        mapView.camera = camera
+        mapView.delegate = self
+        
+        var marker: GMSMarker = GMSMarker()
+        marker.position = CLLocationCoordinate2DMake(34.689197, 135.502321)
+        marker.title = "notice"
+        marker.snippet = "japan"
+        marker.map = mapView
+        
+        self.view.addSubview(mapView)
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    @IBAction func debug(sender: AnyObject) {
-//        User.addFriend("")
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
-
+/*
 extension MapViewController: MKMapViewDelegate {
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
@@ -87,3 +85,4 @@ extension MapViewController: CLLocationManagerDelegate {
         mapView.setRegion(region, animated: true)
     }
 }
+*/

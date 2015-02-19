@@ -19,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Parse.setApplicationId(kParseId, clientKey: kClientKey)
         
+        
+        GMSServices.provideAPIKey(kGoogleApiKey);
+        
         autoLogin()
         
         return true
