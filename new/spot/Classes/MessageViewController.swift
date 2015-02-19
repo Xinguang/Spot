@@ -31,6 +31,8 @@ class MessageViewController: JSQMessagesViewController {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+
+        self.friend.addObserver(self, forKeyPath: "messages", options: NSKeyValueObservingOptions.New, context: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -56,7 +58,17 @@ class MessageViewController: JSQMessagesViewController {
         }
     }
     
-
+    override func didPressAccessoryButton(sender: UIButton!) {
+        println()
+    }
+    
+    // MARK: - KVO
+    
+    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+        if keyPath == "messages" {
+            self.collectionView.reloadData()
+        }
+    }
 
     /*
     // MARK: - Navigation
