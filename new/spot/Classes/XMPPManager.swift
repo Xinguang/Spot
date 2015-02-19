@@ -159,7 +159,26 @@ class XMPPManager: NSObject {
         // TODO: nickName
         xmppRoster.addUser(jid, withNickname: "todo")
     }
+    
+    // MARK: - Message
+    
+    func sendMessage(message: SpotMessage) {
+        let text = message.text
+        let friend = message.friend
+        
+        if text?.length > 0 {
+            if let messageId = message.messageId {
+                let xmppMessage = XMPPMessage(type: "chat", to: XMPPJID.jidWithString(friend!.accountName!), elementID: messageId)
+                xmppMessage.addBody(text!)
+                xmppMessage.addActiveChatState()
+                
+                xmppStream.sendElement(xmppMessage)
+            }
+        }
+    }
 }
+
+// MARK: - XMPPStreamDelegate
 
 extension XMPPManager: XMPPStreamDelegate {
     func xmppStreamDidConnect(sender: XMPPStream!) {
@@ -233,6 +252,47 @@ extension XMPPManager: XMPPStreamDelegate {
     
     func xmppStream(sender: XMPPStream!, didSendIQ iq: XMPPIQ!) {
         println(iq)
+    }
+    
+    func xmppStream(sender: XMPPStream!, didReceiveMessage message: XMPPMessage!) {
+        if let friend = Friend.MR_findFirstByAttribute("accountName", withValue: message.from().bare()) as? Friend {
+            
+            if message.isErrorMessage() {
+                println(message.errorMessage())
+            } else if message.hasChatState() {
+                // TODO: save chat state
+            }
+            
+            if message.hasReceiptResponse() && !message.isErrorMessage() {
+                // TODO: save response
+            }
+            
+            if message.isMessageWithBody() && !message.isErrorMessage() {
+                let body = message.elementForName("body").stringValue()
+                let date = message.delayedDeliveryDate()
+                
+                let messageDB = SpotMessage.MR_createEntity() as SpotMessage
+                messageDB.incoming = true as Bool
+                messageDB.text = body
+                
+                if date != nil {
+                    messageDB.createAt = date
+                }
+                
+                messageDB.messageId = message.elementID()
+                
+                friend.lastMessageDate = messageDB.createAt
+                
+                messageDB.friend = friend
+                
+                NSManagedObjectContext.MR_contextForCurrentThread().MR_saveToPersistentStoreWithCompletion({ (b, error) -> Void in
+                    let m = messageDB.MR_inThreadContext() as SpotMessage
+                    // TODO: notification
+                })
+            }
+        }
+        
+        
     }
 }
 
