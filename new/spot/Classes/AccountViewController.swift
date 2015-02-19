@@ -117,7 +117,8 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 0 && indexPath.row == userCount {
-            self.performSegueWithIdentifier("SegueCreateAccountNavi", sender: nil)
+            let vc = Util.createViewControllerWithIdentifier(nil, storyboardName: "Common")
+            self.presentViewController(vc, animated: true, completion: nil)
         }
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)

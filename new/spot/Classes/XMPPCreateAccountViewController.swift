@@ -8,10 +8,15 @@
 
 import UIKit
 
+@objc protocol XMPPCreateAccountViewControllerDelegate {
+    func createAccountViewControllerDidLogin()
+}
+
 class XMPPCreateAccountViewController: BaseViewController {
 
     var newAccountTableViewController: NewAccountTableViewController!
     var account: User!
+    weak var delegate: XMPPCreateAccountViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +57,11 @@ class XMPPCreateAccountViewController: BaseViewController {
         
         account.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(true, completion: {
+            if let delegate = self.delegate {
+                delegate.createAccountViewControllerDidLogin()
+            }
+        })
     }
     
     func xmppRegisterSuccess(notification: NSNotification) {

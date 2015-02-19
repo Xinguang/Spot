@@ -62,6 +62,13 @@ class LoginViewController: BaseViewController {
 
     // MARK: - Action
     
+    @IBAction func signUpBtnClicked(sender: AnyObject) {
+        let createAccountVCNavi = Util.createViewControllerWithIdentifier(nil, storyboardName: "Common") as UINavigationController
+        let createAccountVC = createAccountVCNavi.topViewController as XMPPCreateAccountViewController
+        createAccountVC.delegate = self
+        self.presentViewController(createAccountVCNavi, animated: true, completion: nil)
+    }
+    
     @IBAction func signinBtnClicked(sender: AnyObject) {
         SVProgressHUD.showWithMaskType(.Clear)
         
@@ -78,7 +85,7 @@ class LoginViewController: BaseViewController {
 //            if let error = error {
 //                println(error.localizedDescription)
 //            } else {
-                self.performSegueWithIdentifier("SegueTabBar", sender: nil)
+//                self.performSegueWithIdentifier("SegueTabBar", sender: nil)
 //            }
 //        }
     }
@@ -87,4 +94,12 @@ class LoginViewController: BaseViewController {
 //        User.removeUser()
     }
 
+}
+
+// MARK: - XMPPCreateAccountViewControllerDelegate
+
+extension LoginViewController: XMPPCreateAccountViewControllerDelegate {
+    func createAccountViewControllerDidLogin() {
+        self.performSegueWithIdentifier("SegueTabBar", sender: nil)
+    }
 }
