@@ -62,9 +62,11 @@ extension DatabaseRosterStorage: XMPPRosterStorage {
     
     func updateFriendWithItem(f: Friend, item: DDXMLElement) {
         MagicalRecord.saveUsingCurrentThreadContextWithBlock({ (oc) -> Void in
-            var localF = f.MR_inContext(oc) as Friend
-            localF.displayName = item.attributeStringValueForName("name")
-            localF.pendingApproval = self.isPendingApprovalElement(item)
+            var localUser = XMPPManager.instance.account.MR_inContext(oc) as User
+            f.displayName = item.attributeStringValueForName("name")
+            f.pendingApproval = self.isPendingApprovalElement(item)
+            
+            f.user = localUser
         }, completion: nil)
     }
     

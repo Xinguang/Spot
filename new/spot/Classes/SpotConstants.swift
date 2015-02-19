@@ -13,7 +13,7 @@ let kOpenFireDomainName = "www5371ui.sakura.ne.jp"
 let kParseId = "5EdLCTAmNTVTSWzCymdwdWcKOmAZsbSPYxcc3RUG"
 let kClientKey = "6VW4lyCEoeJyMiVi3fxv3SbmiuzTIzf8cyqHYkpL"
 
-let kSpotServiceName = "jp.co.e-bussiness.spot.Spot"
+
 
 let kXMPPLoginSuccess = "LoginSuccessNotification"
 let kXMPPLoginFail = "LoginFailedNotification"

@@ -57,6 +57,15 @@ class ContactViewController: UIViewController {
     }
     */
 
+    func enterMessageViewControllerWithFriend(friend: Friend) {
+        // TODO: setAllMessagesRead
+        let messageViewController = Util.createViewControllerWithIdentifier(nil, storyboardName: "Message") as MessageViewController
+
+//        let messageViewController = MessageViewController()
+        messageViewController.friend = friend
+        
+        self.navigationController?.pushViewController(messageViewController, animated: true)
+    }
 }
 
 // MARK: - NSFetchedResultsControllerDelegate
@@ -123,6 +132,15 @@ extension ContactViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        if requestCount > 0 && indexPath.section == 0 {
+            return
+        }
+        
+        if let sectionInfo = frcFriend.sections?[0] as? NSFetchedResultsSectionInfo {
+            let friend = sectionInfo.objects[indexPath.row] as Friend
+            enterMessageViewControllerWithFriend(friend)
+        }
     }
 }
 
