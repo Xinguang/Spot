@@ -877,7 +877,7 @@
 					"$(SRCROOT)/Vendors/**",
 				);
 				INFOPLIST_FILE = spot/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -914,10 +914,10 @@
 					"$(SRCROOT)/Vendors/**",
 				);
 				INFOPLIST_FILE = spot/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1768f496-451d-416b-bee1-2dff6b54abe5";
 				SWIFT_OBJC_BRIDGING_HEADER = "spot/Bridging-Header.h";
 			};
 			name = Release;
