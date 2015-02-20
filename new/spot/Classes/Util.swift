@@ -18,5 +18,14 @@ class Util: NSObject {
         
         return storyboard.instantiateInitialViewController() as UIViewController
     }
-    
+ 
+    class func enterMessageViewControllerWithFriend(friend: Friend, from: UIViewController) {
+        // TODO: setAllMessagesRead
+        let messageViewController = Util.createViewControllerWithIdentifier(nil, storyboardName: "Message") as MessageViewController
+        
+        //        let messageViewController = MessageViewController()
+        messageViewController.friend = friend
+        
+        from.navigationController?.pushViewController(messageViewController, animated: true)
+    }
 }

@@ -56,16 +56,6 @@ class ContactViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
-    func enterMessageViewControllerWithFriend(friend: Friend) {
-        // TODO: setAllMessagesRead
-        let messageViewController = Util.createViewControllerWithIdentifier(nil, storyboardName: "Message") as MessageViewController
-
-//        let messageViewController = MessageViewController()
-        messageViewController.friend = friend
-        
-        self.navigationController?.pushViewController(messageViewController, animated: true)
-    }
 }
 
 // MARK: - NSFetchedResultsControllerDelegate
@@ -139,7 +129,7 @@ extension ContactViewController: UITableViewDataSource, UITableViewDelegate {
         
         if let sectionInfo = frcFriend.sections?[0] as? NSFetchedResultsSectionInfo {
             let friend = sectionInfo.objects[indexPath.row] as Friend
-            enterMessageViewControllerWithFriend(friend)
+            Util.enterMessageViewControllerWithFriend(friend, from: self)
         }
     }
 }
