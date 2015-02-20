@@ -15,6 +15,8 @@ class RecentlyFriendCell: UITableViewCell {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
+    var badgeView: JSBadgeView!
+    
     var friend: Friend! {
         didSet {
             self.friendNameLabel.text = friend.displayName ?? "友人の名前"
@@ -23,11 +25,20 @@ class RecentlyFriendCell: UITableViewCell {
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateStyle = .ShortStyle
             self.timeLabel.text = dateFormatter.stringFromDate(friend.lastMessageDate)
+            
+            if friend.numberOfUnreadMessages() > 0 {
+                badgeView.hidden = false
+                badgeView.badgeText = String(friend.numberOfUnreadMessages())
+            } else {
+                badgeView.hidden = true
+            }
         }
     }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        badgeView = JSBadgeView(parentView: friendImageView, alignment: .TopRight)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

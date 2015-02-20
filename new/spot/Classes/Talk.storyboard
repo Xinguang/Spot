@@ -34,13 +34,13 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WFJ-2E-Tgk">
-                                                    <rect key="frame" x="58" y="8" width="39" height="18"/>
+                                                    <rect key="frame" x="65.5" y="8" width="39" height="18"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AGL-Wa-9bQ">
-                                                    <rect key="frame" x="58" y="34" width="254" height="16"/>
+                                                    <rect key="frame" x="65.5" y="34" width="229.5" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -59,10 +59,10 @@
                                                 <constraint firstAttribute="trailing" secondItem="08y-Hc-Re2" secondAttribute="trailing" constant="8" id="IpI-BV-rQp"/>
                                                 <constraint firstAttribute="bottom" secondItem="AGL-Wa-9bQ" secondAttribute="bottom" constant="8" id="coH-kj-gbs"/>
                                                 <constraint firstItem="WFJ-2E-Tgk" firstAttribute="top" secondItem="SFV-iK-n12" secondAttribute="top" constant="8" id="lxW-ZB-Z0g"/>
-                                                <constraint firstItem="AGL-Wa-9bQ" firstAttribute="leading" secondItem="Dvf-o7-zWr" secondAttribute="trailing" constant="8" id="m6Q-nu-6cj"/>
-                                                <constraint firstItem="WFJ-2E-Tgk" firstAttribute="leading" secondItem="Dvf-o7-zWr" secondAttribute="trailing" constant="8" id="mjI-Re-FVE"/>
+                                                <constraint firstItem="AGL-Wa-9bQ" firstAttribute="leading" secondItem="Dvf-o7-zWr" secondAttribute="trailing" constant="15" id="m6Q-nu-6cj"/>
+                                                <constraint firstItem="WFJ-2E-Tgk" firstAttribute="leading" secondItem="Dvf-o7-zWr" secondAttribute="trailing" constant="15" id="mjI-Re-FVE"/>
                                                 <constraint firstItem="Dvf-o7-zWr" firstAttribute="leading" secondItem="SFV-iK-n12" secondAttribute="leading" constant="8" id="qDc-zj-X1O"/>
-                                                <constraint firstAttribute="trailing" secondItem="AGL-Wa-9bQ" secondAttribute="trailing" constant="8" id="y6p-sf-en7"/>
+                                                <constraint firstAttribute="trailing" secondItem="AGL-Wa-9bQ" secondAttribute="trailing" constant="25" id="y6p-sf-en7"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

@@ -3,5 +3,6 @@
 @interface Friend : _Friend {}
 
 - (void)setAllMessagesRead;
+- (NSInteger)numberOfUnreadMessages;
 
 @end

@@ -24,4 +24,8 @@
     [self.managedObjectContext MR_saveToPersistentStoreWithCompletion:nil];
 }
 
+- (NSInteger)numberOfUnreadMessages {
+    return [self.messagesSet.array filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"read==NO"]].count;
+}
+
 @end

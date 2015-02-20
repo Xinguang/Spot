@@ -45,6 +45,10 @@ class TalkViewController: BaseViewController {
         if let indexPath = tableView.indexPathForSelectedRow() {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
+        
+        //update badge
+        self.tableView.reloadData()
+        updateBadgeNumber()
     }
     
     func setupSearchController() {
@@ -64,6 +68,14 @@ class TalkViewController: BaseViewController {
         // hierarchy until it finds the root view controller or one that defines a presentation context.
         definesPresentationContext = true
     }
+    
+    func updateBadgeNumber() {
+        if SpotMessage.numberOfUnreadMessages() > 0 {
+            self.navigationController?.tabBarItem.badgeValue = String(SpotMessage.numberOfUnreadMessages())
+        } else {
+            self.navigationController?.tabBarItem.badgeValue = nil
+        }
+    }
 }
 
 // MARK: - NSFetchedResultsControllerDelegate
@@ -71,6 +83,8 @@ class TalkViewController: BaseViewController {
 extension TalkViewController: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         self.tableView.reloadData()
+        
+        updateBadgeNumber()
     }
 }
 
