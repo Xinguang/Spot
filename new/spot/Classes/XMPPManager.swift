@@ -287,7 +287,7 @@ extension XMPPManager: XMPPStreamDelegate {
                 
                 NSManagedObjectContext.MR_contextForCurrentThread().MR_saveToPersistentStoreWithCompletion({ (b, error) -> Void in
                     let m = messageDB.MR_inThreadContext() as SpotMessage
-                    // TODO: notification
+                    SpotMessage.showLocalNotificationForMessage(m)
                 })
             }
         }

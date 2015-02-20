@@ -25,7 +25,20 @@ class Util: NSObject {
         
         //        let messageViewController = MessageViewController()
         messageViewController.friend = friend
+        friend.setAllMessagesRead()
         
         from.navigationController?.pushViewController(messageViewController, animated: true)
+    }
+    
+    class func checkPermissions() {
+        if !canSendNotifications() {
+            let settings = UIUserNotificationSettings(forTypes: .Badge | .Sound | .Alert,categories: nil)
+            UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+        }
+    }
+    
+    class func canSendNotifications() -> Bool {
+        let notificationSettings = UIApplication.sharedApplication().currentUserNotificationSettings()
+        return notificationSettings.types == .Badge | .Sound | .Alert
     }
 }

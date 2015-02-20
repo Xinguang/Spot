@@ -33,6 +33,12 @@ class TalkViewController: BaseViewController {
         setupSearchController()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Util.checkPermissions()
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         

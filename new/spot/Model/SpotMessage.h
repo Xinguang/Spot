@@ -2,5 +2,8 @@
 #import <JSQMessageData.h>
 
 @interface SpotMessage : _SpotMessage <JSQMessageData> {}
-// Custom logic goes here.
+
++ (void)showLocalNotificationForMessage:(SpotMessage *)message;
++ (NSInteger) numberOfUnreadMessages;
+
 @end

@@ -35,6 +35,12 @@ class MessageViewController: JSQMessagesViewController {
         self.friend.addObserver(self, forKeyPath: "messages", options: NSKeyValueObservingOptions.New, context: nil)
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.friend.removeObserver(self, forKeyPath: "messages")
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
