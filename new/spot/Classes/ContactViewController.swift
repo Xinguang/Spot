@@ -12,33 +12,37 @@ class ContactViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var frcRequest: NSFetchedResultsController!
-    var frcFriend: NSFetchedResultsController!
+    var frc: NSFetchedResultsController!
     
-    var friendCount: Int! {
-        if let sectionInfo = frcFriend.sections?[0] as? NSFetchedResultsSectionInfo {
-            return sectionInfo.numberOfObjects
-        }
-        
-        return 0
-    }
+//    var frcRequest: NSFetchedResultsController!
+//    var frcFriend: NSFetchedResultsController!
     
-    var requestCount: Int! {
-        if let sectionInfo = frcRequest.sections?[0] as? NSFetchedResultsSectionInfo {
-            return sectionInfo.numberOfObjects
-        }
-        
-        return 0
-    }
+//    var friendCount: Int! {
+//        if let sectionInfo = frcFriend.sections?[0] as? NSFetchedResultsSectionInfo {
+//            return sectionInfo.numberOfObjects
+//        }
+//        
+//        return 0
+//    }
+//    
+//    var requestCount: Int! {
+//        if let sectionInfo = frcRequest.sections?[0] as? NSFetchedResultsSectionInfo {
+//            return sectionInfo.numberOfObjects
+//        }
+//        
+//        return 0
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        frcRequest = FriendRequest.MR_fetchAllGroupedBy(nil, withPredicate: nil, sortedBy: "createAt", ascending: false)
-        frcRequest.delegate = self
-        
-        frcFriend = Friend.MR_fetchAllGroupedBy(nil, withPredicate: nil, sortedBy: "createAt", ascending: false)
-        frcFriend.delegate = self
+//        rosters = XMPPUserCoreDataStorageObject.MR_findAllInContext(XMPPManager.instance.xmppRosterStorage.mainThreadManagedObjectContext) as [XMPPUserCoreDataStorageObject]
+//        XMPPManager.instance.xmppRosterStorage.mainThreadManagedObjectContext
+        frc = XMPPUserCoreDataStorageObject.MR_fetchAllGroupedBy(nil, withPredicate: nil, sortedBy: "sectionNum", ascending: true, inContext: XMPPManager.instance.xmppRosterStorage.mainThreadManagedObjectContext)
+        frc.delegate = self
+//
+//        frcFriend = Friend.MR_fetchAllGroupedBy(nil, withPredicate: nil, sortedBy: "createAt", ascending: false)
+//        frcFriend.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,71 +75,76 @@ extension ContactViewController: NSFetchedResultsControllerDelegate {
 extension ContactViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if requestCount > 0 {
-            return 2
-        }
-        
-        return 1
+        return frc.sections!.count
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if requestCount > 0 {
-            if section == 0 {
-                return requestCount
-            }
+        if let sectionInfo = frc.sections?[section] as? NSFetchedResultsSectionInfo {
+            return sectionInfo.numberOfObjects
         }
         
-        return friendCount
+        return 0
+//        if requestCount > 0 {
+//            if section == 0 {
+//                return requestCount
+//            }
+//        }
+//        
+//        return friendCount
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if requestCount > 0 && section == 0 {
-            return "友人要求"
-        }
-        
-        return "友人"
-    }
+//    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        if requestCount > 0 && section == 0 {
+//            return "友人要求"
+//        }
+//        
+//        return "友人"
+//    }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if requestCount > 0 && indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("FriendRequestCell", forIndexPath: indexPath) as FriendRequestCell
-            
-            cell.friendRequest = frcRequest.objectAtIndexPath(indexPath) as FriendRequest
-            cell.delegate = self
-            
-            return cell
-        }
+//        if requestCount > 0 && indexPath.section == 0 {
+//            let cell = tableView.dequeueReusableCellWithIdentifier("FriendRequestCell", forIndexPath: indexPath) as FriendRequestCell
+//            
+//            cell.friendRequest = frcRequest.objectAtIndexPath(indexPath) as FriendRequest
+//            cell.delegate = self
+//            
+//            return cell
+//        }
+//        
+//        if let sectionInfo = frcFriend.sections?[0] as? NSFetchedResultsSectionInfo {
+//            let friend = sectionInfo.objects[indexPath.row] as Friend
+        let roster = frc.objectAtIndexPath(indexPath) as XMPPUserCoreDataStorageObject
+     
         
-        if let sectionInfo = frcFriend.sections?[0] as? NSFetchedResultsSectionInfo {
-            let friend = sectionInfo.objects[indexPath.row] as Friend
-            
+        
+        
             let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as UITableViewCell
             
             let imageView = cell.viewWithTag(1) as UIImageView!
             let label = cell.viewWithTag(2) as UILabel!
             
-            imageView.image = friend.avatarImage()
-            label.text = friend.displayName ?? "匿名"
+//            imageView.image = friend.avatarImage()
+            label.text = roster.displayName ?? "匿名"
             
             return cell
-        }
+//        }
         
-        return UITableViewCell()
+//        return UITableViewCell()
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        if requestCount > 0 && indexPath.section == 0 {
-            return
-        }
+//        if requestCount > 0 && indexPath.section == 0 {
+//            return
+//        }
+        let roster = frc.objectAtIndexPath(indexPath) as XMPPUserCoreDataStorageObject
         
-        if let sectionInfo = frcFriend.sections?[0] as? NSFetchedResultsSectionInfo {
-            let friend = sectionInfo.objects[indexPath.row] as Friend
-            Util.enterMessageViewControllerWithFriend(friend, from: self)
-        }
+        Util.enterMessageViewControllerWithFriend(roster, from: self)
     }
 }
+
+// MARK: - FriendRequestCellDelegate
 
 extension ContactViewController: FriendRequestCellDelegate {
     func friendRequestCellDidAcceptRequest(cell: FriendRequestCell) {

@@ -79,16 +79,18 @@ extension FriendSearchResultTableViewController: UITableViewDataSource, UITableV
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let account = accounts[indexPath.row]
         
-        var friend = Friend.MR_findFirstByAttribute("accountName", withValue: account.jid) as? Friend
-        if friend == nil {
-            friend = Friend.MR_createEntity() as? Friend
-            friend?.accountName = account.jid
-            friend?.displayName = account.name
-            friend?.user = XMPPManager.instance.account
-            friend?.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
-        }
+        XMPPManager.instance.xmppRoster.addUser(XMPPJID.jidWithString(account.jid), withNickname: nil)
         
-        XMPPManager.instance.addFriend(friend!)
+//        var friend = Friend.MR_findFirstByAttribute("accountName", withValue: account.jid) as? Friend
+//        if friend == nil {
+//            friend = Friend.MR_createEntity() as? Friend
+//            friend?.accountName = account.jid
+//            friend?.displayName = account.name
+//            friend?.user = XMPPManager.instance.account
+//            friend?.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
+//        }
+//        
+//        XMPPManager.instance.addFriend(friend!)
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }

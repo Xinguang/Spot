@@ -1,9 +1,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import "XMPP.h"
+#import <JSQMessageData.h>
 
-
-@interface XMPPMessageArchiving_Message_CoreDataObject : NSManagedObject
+@interface XMPPMessageArchiving_Message_CoreDataObject : NSManagedObject <JSQMessageData>
 
 @property (nonatomic, strong) XMPPMessage * message;  // Transient (proper type, not on disk)
 @property (nonatomic, strong) NSString * messageStr;  // Shadow (binary data, written to disk)

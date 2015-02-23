@@ -17,18 +17,18 @@ class RecentlyFriendCell: UITableViewCell {
     
     var badgeView: JSBadgeView!
     
-    var friend: Friend! {
+    var friend: XMPPMessageArchiving_Contact_CoreDataObject! {
         didSet {
-            self.friendNameLabel.text = friend.displayName ?? "友人の名前"
-            self.messageLabel.text = (friend.messages.lastObject as SpotMessage).text()
+            self.friendNameLabel.text = friend.bareJidStr ?? "友人の名前"
+            self.messageLabel.text = friend.mostRecentMessageBody
             
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateStyle = .ShortStyle
-            self.timeLabel.text = dateFormatter.stringFromDate(friend.lastMessageDate)
+            self.timeLabel.text = dateFormatter.stringFromDate(friend.mostRecentMessageTimestamp)
             
-            if friend.numberOfUnreadMessages() > 0 {
+            if friend.mostRecentMessageOutgoing as Int > 0 {
                 badgeView.hidden = false
-                badgeView.badgeText = String(friend.numberOfUnreadMessages())
+                badgeView.badgeText = String(friend.mostRecentMessageOutgoing as Int)
             } else {
                 badgeView.hidden = true
             }

@@ -10,35 +10,40 @@ import UIKit
 
 class MessageViewController: JSQMessagesViewController {
 
-    var friend: Friend!
+    var roster: XMPPUserCoreDataStorageObject!
     
     var meImage: JSQMessagesAvatarImage!
     var friendImage: JSQMessagesAvatarImage!
+    
+    var frc: NSFetchedResultsController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.collectionView.frame = self.view.bounds
         
-        self.title = friend.displayName ?? "匿名"
+        self.title = roster.displayName ?? "匿名"
         
 //        let meImage = JSQMessagesAvatarImageFactory.avatarImageWithUserInitials("我", backgroundColor: UIColor(white: 0.85, alpha: 1.0), textColor: UIColor(white: 0.6, alpha: 1.0), font: UIFont.systemFontOfSize(14), diameter: kJSQMessagesCollectionViewAvatarSizeDefault)
 
         self.meImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(UIImage(named: "user2.jpg"), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
         self.friendImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(UIImage(named: "user1.jpg"), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
         
+        frc = XMPPMessageArchiving_Message_CoreDataObject.MR_fetchAllGroupedBy(nil, withPredicate: NSPredicate(format: "bareJidStr=%@", argumentArray: [roster.jidStr]), sortedBy: "timestamp", ascending: true, inContext: XMPPManager.instance.xmppMessageArchivingCoreDataStorage.mainThreadManagedObjectContext)
+        frc.delegate = self
+        
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        self.friend.addObserver(self, forKeyPath: "messages", options: NSKeyValueObservingOptions.New, context: nil)
+//        self.friend.addObserver(self, forKeyPath: "messages", options: NSKeyValueObservingOptions.New, context: nil)
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
-        self.friend.removeObserver(self, forKeyPath: "messages")
+//        self.friend.removeObserver(self, forKeyPath: "messages")
     }
     
     override func didReceiveMemoryWarning() {
@@ -49,32 +54,36 @@ class MessageViewController: JSQMessagesViewController {
     // MARK: - JSQMessagesViewController method overrides
     
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
-        let message = SpotMessage.MR_createEntity() as SpotMessage
+        XMPPManager.instance.sendMessage(text, to: roster.jid)
         
-        message.text = text
-        message.read = true as Bool
+        self.finishSendingMessageAnimated(true)
         
-        message.friend = self.friend
-        self.friend.lastMessageDate = message.createAt
-        
-        NSManagedObjectContext.MR_defaultContext().MR_saveToPersistentStoreWithCompletion { (b, error) -> Void in
-            XMPPManager.instance.sendMessage(message)
-            
-            self.finishSendingMessageAnimated(true)
-        }
+//        let message = SpotMessage.MR_createEntity() as SpotMessage
+//        
+//        message.text = text
+//        message.read = true as Bool
+//        
+//        message.friend = self.friend
+//        self.friend.lastMessageDate = message.createAt
+//        
+//        NSManagedObjectContext.MR_defaultContext().MR_saveToPersistentStoreWithCompletion { (b, error) -> Void in
+//            XMPPManager.instance.sendMessage(message)
+//            
+//            self.finishSendingMessageAnimated(true)
+//        }
     }
     
     override func didPressAccessoryButton(sender: UIButton!) {
         println()
     }
     
-    // MARK: - KVO
-    
-    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
-        if keyPath == "messages" {
-            self.collectionView.reloadData()
-        }
-    }
+//    // MARK: - KVO
+//    
+//    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+//        if keyPath == "messages" {
+//            self.collectionView.reloadData()
+//        }
+//    }
 
     /*
     // MARK: - Navigation
@@ -93,21 +102,23 @@ class MessageViewController: JSQMessagesViewController {
 extension MessageViewController: UICollectionViewDataSource {
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.friend.messages.count
+        return frc.sections![section].numberOfObjects
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as JSQMessagesCollectionViewCell
         
-        let message = self.friend.messages[indexPath.item] as SpotMessage
+        let message = frc.objectAtIndexPath(indexPath) as XMPPMessageArchiving_Message_CoreDataObject
         
-        if message.isMediaMessage() == false {
+//        let message = self.friend.messages[indexPath.item] as SpotMessage
+        
+//        if message.isMediaMessage() == false {
             if message.senderId() == self.senderId {
                 cell.textView.textColor = UIColor.blackColor()
             } else {
                 cell.textView.textColor = UIColor.whiteColor()
             }
-        }
+//        }
         
         cell.textView.linkTextAttributes = [NSForegroundColorAttributeName : cell.textView.textColor,
             NSUnderlineStyleAttributeName : NSUnderlineStyle.StyleSingle.rawValue | NSUnderlineStyle.PatternDash.rawValue]
@@ -127,11 +138,11 @@ extension MessageViewController: JSQMessagesCollectionViewDataSource {
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
-        return self.friend.messages[indexPath.item] as SpotMessage
+        return frc.objectAtIndexPath(indexPath) as XMPPMessageArchiving_Message_CoreDataObject
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageAvatarImageDataSource! {
-        let message = self.friend.messages[indexPath.item] as SpotMessage
+        let message = frc.objectAtIndexPath(indexPath) as XMPPMessageArchiving_Message_CoreDataObject
         
         if message.senderId() == self.senderId {
             return self.meImage
@@ -142,7 +153,7 @@ extension MessageViewController: JSQMessagesCollectionViewDataSource {
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageBubbleImageDataSource! {
         let bubbleFactory = JSQMessagesBubbleImageFactory()
-        let message = self.friend.messages[indexPath.item] as SpotMessage
+        let message = frc.objectAtIndexPath(indexPath) as XMPPMessageArchiving_Message_CoreDataObject
         if message.senderId() == self.senderId {
             return bubbleFactory.outgoingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor())
         }
@@ -150,4 +161,12 @@ extension MessageViewController: JSQMessagesCollectionViewDataSource {
         return bubbleFactory.incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleGreenColor())
     }
     
+}
+
+// MARK: - NSFetchedResultsControllerDelegate
+
+extension MessageViewController: NSFetchedResultsControllerDelegate {
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        collectionView.reloadData()
+    }
 }

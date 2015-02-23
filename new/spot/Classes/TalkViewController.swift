@@ -23,8 +23,12 @@ class TalkViewController: BaseViewController {
     }
     
     override func awakeFromNib() {
-        frc = Friend.MR_fetchAllGroupedBy(nil, withPredicate: NSPredicate(format: "lastMessageDate!=nil", argumentArray: nil), sortedBy: "lastMessageDate", ascending: false)
+//        frc = Friend.MR_fetchAllGroupedBy(nil, withPredicate: NSPredicate(format: "lastMessageDate!=nil", argumentArray: nil), sortedBy: "lastMessageDate", ascending: false)
+//        frc.delegate = self
+        
+        frc = XMPPMessageArchiving_Contact_CoreDataObject.MR_fetchAllGroupedBy(nil, withPredicate: nil, sortedBy: "mostRecentMessageTimestamp", ascending: false, inContext: XMPPManager.instance.xmppMessageArchivingCoreDataStorage.mainThreadManagedObjectContext)
         frc.delegate = self
+        
     }
     
     override func viewDidLoad() {
@@ -70,11 +74,11 @@ class TalkViewController: BaseViewController {
     }
     
     func updateBadgeNumber() {
-        if SpotMessage.numberOfUnreadMessages() > 0 {
-            self.navigationController?.tabBarItem.badgeValue = String(SpotMessage.numberOfUnreadMessages())
-        } else {
-            self.navigationController?.tabBarItem.badgeValue = nil
-        }
+//        if SpotMessage.numberOfUnreadMessages() > 0 {
+//            self.navigationController?.tabBarItem.badgeValue = String(SpotMessage.numberOfUnreadMessages())
+//        } else {
+//            self.navigationController?.tabBarItem.badgeValue = nil
+//        }
     }
 }
 
@@ -122,7 +126,7 @@ extension TalkViewController: UITableViewDataSource, UITableViewDelegate {
 //        }
         
         let cell = tableView.dequeueReusableCellWithIdentifier("RecentlyFriendCell", forIndexPath: indexPath) as RecentlyFriendCell
-        let friend = frc.objectAtIndexPath(indexPath) as Friend
+        let friend = frc.objectAtIndexPath(indexPath) as XMPPMessageArchiving_Contact_CoreDataObject
 
         cell.friend = friend
         
@@ -130,8 +134,13 @@ extension TalkViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let friend = frc.objectAtIndexPath(indexPath) as Friend
-        
-        Util.enterMessageViewControllerWithFriend(friend, from: self)
+        let friend = frc.objectAtIndexPath(indexPath) as XMPPMessageArchiving_Contact_CoreDataObject
+//        let roster = XMPPUserCoreDataStorageObject.MR_findFirstInContext(XMPPManager.instance.xmppRosterStorage.mainThreadManagedObjectContext) as XMPPUserCoreDataStorageObject
+
+        let roster = XMPPUserCoreDataStorageObject.MR_findFirstByAttribute("jidStr", withValue: friend.bareJidStr, inContext: XMPPManager.instance.xmppRosterStorage.mainThreadManagedObjectContext) as XMPPUserCoreDataStorageObject
+        Util.enterMessageViewControllerWithFriend(roster, from: self)
+//        friend.bareJidStr
+//        Util.enterMessageViewControllerWithFriend(friend, from: self)
     }
 }
+

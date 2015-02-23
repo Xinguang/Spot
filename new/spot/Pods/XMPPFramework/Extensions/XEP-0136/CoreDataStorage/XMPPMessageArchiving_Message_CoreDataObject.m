@@ -168,4 +168,28 @@
 	// you can override this method to use as a hook to set your own custom properties.
 }
 
+- (NSString *)senderId {
+    if (self.isOutgoing) {
+        return self.streamBareJidStr;
+    } else {
+        return self.bareJidStr;
+    }
+}
+
+- (NSString *)senderDisplayName {
+    return @"test";
+}
+
+- (NSDate *)date {
+    return self.timestamp;
+}
+
+
+- (BOOL)isMediaMessage {
+    return NO;
+}
+
+- (NSString *)text {
+    return self.body;
+}
 @end

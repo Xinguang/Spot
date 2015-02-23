@@ -22,7 +22,11 @@ class XMPPManager: NSObject {
     var password: String!
     var JID: XMPPJID!
     var xmppCapabilitiesStorage: XMPPCapabilitiesCoreDataStorage!
-//    var xmppRosterStorage: OTRYapDatabaseRosterStorage
+    var xmppRosterStorage: XMPPRosterCoreDataStorage!
+    
+    var xmppMessageArchivingCoreDataStorage: XMPPMessageArchivingCoreDataStorage!
+    var xmppMessageArchiving: XMPPMessageArchiving!
+    
     var isXmppConnected: Bool!
     var isRegisteringNewAccount = false
     
@@ -81,12 +85,17 @@ class XMPPManager: NSObject {
         
         
         //Roster
-        let rosterStorage = DatabaseRosterStorage()
+//        let rosterStorage = DatabaseRosterStorage()
+        xmppRosterStorage = XMPPRosterCoreDataStorage.sharedInstance()
         
-        xmppRoster = XMPPRoster(rosterStorage: rosterStorage)
+        xmppRoster = XMPPRoster(rosterStorage: xmppRosterStorage)
         xmppRoster.autoFetchRoster = true
         xmppRoster.autoClearAllUsersAndResources = false
         xmppRoster.autoAcceptKnownPresenceSubscriptionRequests = true
+        
+        xmppMessageArchivingCoreDataStorage = XMPPMessageArchivingCoreDataStorage.sharedInstance()
+        xmppMessageArchiving = XMPPMessageArchiving(messageArchivingStorage: xmppMessageArchivingCoreDataStorage)
+        xmppMessageArchiving.clientSideMessageArchivingOnly = true
         
         
         let vCardCoreDataStorage = XMPPvCardCoreDataStorage.sharedInstance() as XMPPvCardCoreDataStorage
@@ -101,10 +110,12 @@ class XMPPManager: NSObject {
         xmppRoster.activate(xmppStream)
         xmppvCardTempModule.activate(xmppStream)
         xmppvCardAvatarModule.activate(xmppStream)
+        xmppMessageArchiving.activate(xmppStream)
         
         xmppStream.addDelegate(self, delegateQueue: workQueue)
         xmppRoster.addDelegate(self, delegateQueue: workQueue)
         xmppCapabilities.addDelegate(self, delegateQueue: workQueue)
+        xmppMessageArchiving.addDelegate(self, delegateQueue: workQueue)
     }
     
     func registerNewAccountWithPassword(password: String) {
@@ -181,18 +192,13 @@ class XMPPManager: NSObject {
     
     // MARK: - Message
     
-    func sendMessage(message: SpotMessage) {
-        let text = message.text
-        let friend = message.friend
-        
-        if text?.length > 0 {
-            if let messageId = message.messageId {
-                let xmppMessage = XMPPMessage(type: "chat", to: XMPPJID.jidWithString(friend!.accountName!), elementID: messageId)
-                xmppMessage.addBody(text!)
-                xmppMessage.addActiveChatState()
-                
+    func sendMessage(message: NSString, to: XMPPJID) {
+        if message.length > 0 {
+                let xmppMessage = XMPPMessage(type: "chat", to: to)
+                xmppMessage.addBody(message)
+//                xmppMessage.addActiveChatState()
+            
                 xmppStream.sendElement(xmppMessage)
-            }
         }
     }
 }
@@ -289,59 +295,62 @@ extension XMPPManager: XMPPStreamDelegate {
     }
     
     func xmppStream(sender: XMPPStream!, didReceiveMessage message: XMPPMessage!) {
-        if let friend = Friend.MR_findFirstByAttribute("accountName", withValue: message.from().bare()) as? Friend {
-            
-            if message.isErrorMessage() {
-                println(message.errorMessage())
-            } else if message.hasChatState() {
-                // TODO: save chat state
-            }
-            
-            if message.hasReceiptResponse() && !message.isErrorMessage() {
-                // TODO: save response
-            }
-            
-            if message.isMessageWithBody() && !message.isErrorMessage() {
-                let body = message.elementForName("body").stringValue()
-                let date = message.delayedDeliveryDate()
-                
-                let messageDB = SpotMessage.MR_createEntity() as SpotMessage
-                messageDB.incoming = true as Bool
-                messageDB.text = body
-                
-                if date != nil {
-                    messageDB.createAt = date
-                }
-                
-                messageDB.messageId = message.elementID()
-                
-                friend.lastMessageDate = messageDB.createAt
-                
-                messageDB.friend = friend
-                
-                NSManagedObjectContext.MR_contextForCurrentThread().MR_saveToPersistentStoreWithCompletion({ (b, error) -> Void in
-                    let m = messageDB.MR_inThreadContext() as SpotMessage
-                    SpotMessage.showLocalNotificationForMessage(m)
-                })
-            }
-        }
+//        if let friend = Friend.MR_findFirstByAttribute("accountName", withValue: message.from().bare()) as? Friend {
+//            
+//            if message.isErrorMessage() {
+//                println(message.errorMessage())
+//            } else if message.hasChatState() {
+//                // TODO: save chat state
+//            }
+//            
+//            if message.hasReceiptResponse() && !message.isErrorMessage() {
+//                // TODO: save response
+//            }
+//            
+//            if message.isMessageWithBody() && !message.isErrorMessage() {
+//                let body = message.elementForName("body").stringValue()
+//                let date = message.delayedDeliveryDate()
+//                
+//                let messageDB = SpotMessage.MR_createEntity() as SpotMessage
+//                messageDB.incoming = true as Bool
+//                messageDB.text = body
+//                
+//                if date != nil {
+//                    messageDB.createAt = date
+//                }
+//                
+//                messageDB.messageId = message.elementID()
+//                
+//                friend.lastMessageDate = messageDB.createAt
+//                
+//                messageDB.friend = friend
+//                
+//                NSManagedObjectContext.MR_contextForCurrentThread().MR_saveToPersistentStoreWithCompletion({ (b, error) -> Void in
+//                    let m = messageDB.MR_inThreadContext() as SpotMessage
+//                    SpotMessage.showLocalNotificationForMessage(m)
+//                })
+//            }
+//        }
         
         
     }
 }
 
+// MARK: - XMPPRosterDelegate
+
 extension XMPPManager: XMPPRosterDelegate {
     
     func xmppRoster(sender: XMPPRoster!, didReceivePresenceSubscriptionRequest presence: XMPPPresence!) {
-        let jidStrBare = presence.fromStr()
-        var request = FriendRequest.MR_findFirstByAttribute("jid", withValue: jidStrBare) as? FriendRequest
-        if request == nil {
-            request = FriendRequest.MR_createEntity() as? FriendRequest
-        }
-        
-        request!.jid = jidStrBare
-        
-        request!.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
+        xmppRoster.acceptPresenceSubscriptionRequestFrom(presence.from(), andAddToRoster: true)
+//        let jidStrBare = presence.fromStr()
+//        var request = FriendRequest.MR_findFirstByAttribute("jid", withValue: jidStrBare) as? FriendRequest
+//        if request == nil {
+//            request = FriendRequest.MR_createEntity() as? FriendRequest
+//        }
+//        
+//        request!.jid = jidStrBare
+//        
+//        request!.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
     }
     
 }
