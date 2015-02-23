@@ -19,4 +19,12 @@ NSString *kSpotServiceName = @"jp.co.e-bussiness.spot.Spot";
     [SSKeychain setPassword:password forService:kSpotServiceName account:self.uniqueIdentifier];
 }
 
+- (UIImage *)avatarImage {
+    if (self.avatarData) {
+        return [UIImage imageWithData:self.avatarData];
+    }
+    
+    return [UIImage imageNamed:@"avatar"];
+}
+
 @end

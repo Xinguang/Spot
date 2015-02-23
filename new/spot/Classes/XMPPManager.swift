@@ -88,15 +88,23 @@ class XMPPManager: NSObject {
         xmppRoster.autoClearAllUsersAndResources = false
         xmppRoster.autoAcceptKnownPresenceSubscriptionRequests = true
         
+        
+        let vCardCoreDataStorage = XMPPvCardCoreDataStorage.sharedInstance() as XMPPvCardCoreDataStorage
+        xmppvCardTempModule = XMPPvCardTempModule(withvCardStorage: vCardCoreDataStorage, dispatchQueue: nil)
+        xmppvCardAvatarModule = XMPPvCardAvatarModule(withvCardTempModule: xmppvCardTempModule, dispatchQueue:nil)
+        
         xmppCapabilitiesStorage = XMPPCapabilitiesCoreDataStorage(inMemoryStore:())
         xmppCapabilities = XMPPCapabilities(capabilitiesStorage: xmppCapabilitiesStorage)
         
         xmppReconnect.activate(xmppStream)
         xmppCapabilities.activate(xmppStream)
         xmppRoster.activate(xmppStream)
+        xmppvCardTempModule.activate(xmppStream)
+        xmppvCardAvatarModule.activate(xmppStream)
         
         xmppStream.addDelegate(self, delegateQueue: workQueue)
         xmppRoster.addDelegate(self, delegateQueue: workQueue)
+        xmppCapabilities.addDelegate(self, delegateQueue: workQueue)
     }
     
     func registerNewAccountWithPassword(password: String) {

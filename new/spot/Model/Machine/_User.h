@@ -5,6 +5,7 @@
 
 extern const struct UserAttributes {
 	__unsafe_unretained NSString *age;
+	__unsafe_unretained NSString *avatarData;
 	__unsafe_unretained NSString *birthday;
 	__unsafe_unretained NSString *displayName;
 	__unsafe_unretained NSString *nickName;
@@ -34,6 +35,10 @@ extern const struct UserRelationships {
 - (void)setAgeValue:(int32_t)value_;
 
 //- (BOOL)validateAge:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSData* avatarData;
+
+//- (BOOL)validateAvatarData:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSDate* birthday;
 
@@ -83,6 +88,9 @@ extern const struct UserRelationships {
 
 - (int32_t)primitiveAgeValue;
 - (void)setPrimitiveAgeValue:(int32_t)value_;
+
+- (NSData*)primitiveAvatarData;
+- (void)setPrimitiveAvatarData:(NSData*)value;
 
 - (NSDate*)primitiveBirthday;
 - (void)setPrimitiveBirthday:(NSDate*)value;

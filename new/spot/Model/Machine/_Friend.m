@@ -5,6 +5,7 @@
 
 const struct FriendAttributes FriendAttributes = {
 	.accountName = @"accountName",
+	.avatarData = @"avatarData",
 	.chatState = @"chatState",
 	.composingMessageString = @"composingMessageString",
 	.createAt = @"createAt",
@@ -78,6 +79,8 @@ const struct FriendRelationships FriendRelationships = {
 }
 
 @dynamic accountName;
+
+@dynamic avatarData;
 
 @dynamic chatState;
 

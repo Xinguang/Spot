@@ -5,6 +5,7 @@
 
 extern const struct FriendAttributes {
 	__unsafe_unretained NSString *accountName;
+	__unsafe_unretained NSString *avatarData;
 	__unsafe_unretained NSString *chatState;
 	__unsafe_unretained NSString *composingMessageString;
 	__unsafe_unretained NSString *createAt;
@@ -39,6 +40,10 @@ extern const struct FriendRelationships {
 @property (nonatomic, strong) NSString* accountName;
 
 //- (BOOL)validateAccountName:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSData* avatarData;
+
+//- (BOOL)validateAvatarData:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* chatState;
 
@@ -129,6 +134,9 @@ extern const struct FriendRelationships {
 
 - (NSString*)primitiveAccountName;
 - (void)setPrimitiveAccountName:(NSString*)value;
+
+- (NSData*)primitiveAvatarData;
+- (void)setPrimitiveAvatarData:(NSData*)value;
 
 - (NSNumber*)primitiveChatState;
 - (void)setPrimitiveChatState:(NSNumber*)value;

@@ -10,6 +10,18 @@ import UIKit
 
 class UserCell: UITableViewCell {
 
+    @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var idLabel: UILabel!
+    
+    var user: User! {
+        didSet {
+            userImage.image = user.avatarImage()
+            nameLabel.text = user.displayName
+            idLabel.text = user.username
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

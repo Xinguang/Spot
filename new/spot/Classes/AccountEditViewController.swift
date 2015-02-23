@@ -8,12 +8,24 @@
 
 import UIKit
 
-class AccountEditViewController: UIViewController {
+class AccountEditViewController: UITableViewController {
 
+    @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var idLabel: UILabel!
+    @IBOutlet weak var sexLabel: UILabel!
+    @IBOutlet weak var stationLabel: UILabel!
+    
+    var user: User!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        userImage.image = user.avatarImage()
+        nameLabel.text = user.displayName
+        idLabel.text = user.username
+//        sexLabel.text = 
+//        stationLabel.text = 
     }
 
     override func didReceiveMemoryWarning() {
