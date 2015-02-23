@@ -111,8 +111,11 @@ extension ContactViewController: UITableViewDataSource, UITableViewDelegate {
             
             let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as UITableViewCell
             
-            cell.textLabel?.text = friend.accountName
-            cell.detailTextLabel?.text = friend.displayName
+            let imageView = cell.viewWithTag(1) as UIImageView!
+            let label = cell.viewWithTag(2) as UILabel!
+            
+            imageView.image = friend.avatarImage()
+            label.text = friend.displayName ?? "匿名"
             
             return cell
         }

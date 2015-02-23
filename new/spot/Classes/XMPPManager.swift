@@ -165,7 +165,7 @@ class XMPPManager: NSObject {
     func addFriend(friend: Friend) {
         let jid = XMPPJID.jidWithString(friend.accountName)
         // TODO: nickName
-        xmppRoster.addUser(jid, withNickname: "todo")
+        xmppRoster.addUser(jid, withNickname: friend.displayName)
     }
     
     // MARK: - Message
@@ -192,7 +192,18 @@ extension XMPPManager: XMPPStreamDelegate {
     func xmppStreamDidConnect(sender: XMPPStream!) {
         if isRegisteringNewAccount {
             var error: NSError?
-            xmppStream.registerWithPassword(password, error: &error)
+//            xmppStream.registerWithPassword(password, error: &error)
+            var elements = [XMPPElement]()
+            elements.append(XMPPElement(name: "username", stringValue: sender.myJID.user))
+            elements.append(XMPPElement(name: "password", stringValue: password))
+            
+            if let displayName = account.displayName {
+                let e = XMPPElement(name: "name", stringValue: displayName)
+                elements.append(e)
+            }
+            
+            xmppStream.registerWithElements(elements, error: &error)
+            
             if let error = error {
                 failedToRegisterNewAccount(error)
             }
@@ -205,6 +216,10 @@ extension XMPPManager: XMPPStreamDelegate {
         isRegisteringNewAccount = false
         
         NSNotificationCenter.defaultCenter().postNotificationName(kXMPPRegisterSuccess, object: nil)
+    }
+    
+    func xmppStream(sender: XMPPStream!, didNotRegister error: DDXMLElement!) {
+        println(error)
     }
     
     func xmppStreamDidAuthenticate(sender: XMPPStream!) {

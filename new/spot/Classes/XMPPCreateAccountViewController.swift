@@ -94,7 +94,7 @@ class XMPPCreateAccountViewController: BaseViewController {
         account.uniqueIdentifier = NSUUID().UUIDString.lowercaseString
 
         account.password = newAccountTableViewController.passwordTF.text
-        
+        account.displayName = newAccountTableViewController.displayNameTF.text
         
         SVProgressHUD.show()
         

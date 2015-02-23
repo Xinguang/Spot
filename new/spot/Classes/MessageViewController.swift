@@ -20,7 +20,7 @@ class MessageViewController: JSQMessagesViewController {
 
         self.collectionView.frame = self.view.bounds
         
-        self.title = "友人の名前"
+        self.title = friend.displayName ?? "匿名"
         
 //        let meImage = JSQMessagesAvatarImageFactory.avatarImageWithUserInitials("我", backgroundColor: UIColor(white: 0.85, alpha: 1.0), textColor: UIColor(white: 0.6, alpha: 1.0), font: UIFont.systemFontOfSize(14), diameter: kJSQMessagesCollectionViewAvatarSizeDefault)
 

@@ -83,6 +83,7 @@ extension FriendSearchResultTableViewController: UITableViewDataSource, UITableV
         if friend == nil {
             friend = Friend.MR_createEntity() as? Friend
             friend?.accountName = account.jid
+            friend?.displayName = account.name
             friend?.user = XMPPManager.instance.account
             friend?.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
         }

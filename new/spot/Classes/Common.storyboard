@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="mm2-7B-blw">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--New Account Table View Controller-->
@@ -26,7 +27,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ユーザー名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="arZ-ni-ZOC">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="必須" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="arZ-ni-ZOC">
                                                     <rect key="frame" x="91" y="13.5" width="221" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -73,6 +74,35 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="bb7-l7-x73">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bb7-l7-x73" id="zcs-ow-yQP">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名前" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYe-W8-K8Q">
+                                                    <rect key="frame" x="8" y="12" width="30" height="18"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="オプション" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xPy-mW-Kl0">
+                                                    <rect key="frame" x="91" y="13" width="221" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="irz-49-IV2" id="fqz-di-6MG"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="bYe-W8-K8Q" secondAttribute="centerY" id="U81-oM-0rN"/>
+                                                <constraint firstItem="bYe-W8-K8Q" firstAttribute="leading" secondItem="zcs-ow-yQP" secondAttribute="leading" constant="8" id="Yqw-JN-wzK"/>
+                                                <constraint firstAttribute="trailing" secondItem="xPy-mW-Kl0" secondAttribute="trailing" constant="8" id="mEd-HW-sSe"/>
+                                                <constraint firstItem="xPy-mW-Kl0" firstAttribute="leading" secondItem="zcs-ow-yQP" secondAttribute="leadingMargin" constant="83" id="oRk-wv-Mbu"/>
+                                                <constraint firstAttribute="centerY" secondItem="xPy-mW-Kl0" secondAttribute="centerY" id="tDk-ws-pe3"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -82,6 +112,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="displayNameTF" destination="xPy-mW-Kl0" id="OKD-Di-Iug"/>
                         <outlet property="passwordTF" destination="6SJ-ju-BSy" id="YTN-Ga-7Mm"/>
                         <outlet property="usernameTF" destination="arZ-ni-ZOC" id="T1S-4q-1Nv"/>
                     </connections>

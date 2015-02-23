@@ -28,4 +28,12 @@
     return [self.messagesSet.array filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"read==NO"]].count;
 }
 
+- (UIImage *)avatarImage {
+    if (self.avatarData) {
+        return [UIImage imageWithData:self.avatarData];
+    }
+    
+    return [UIImage imageNamed:@"avatar"];
+}
+
 @end

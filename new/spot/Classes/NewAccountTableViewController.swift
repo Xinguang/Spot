@@ -12,6 +12,7 @@ class NewAccountTableViewController: UITableViewController {
 
     @IBOutlet weak var usernameTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
+    @IBOutlet weak var displayNameTF: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()

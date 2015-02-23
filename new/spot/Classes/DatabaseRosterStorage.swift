@@ -53,6 +53,8 @@ extension DatabaseRosterStorage: XMPPRosterStorage {
 //    
                 friend?.user = localUser
             }, completion: nil)
+        } else {
+            updateFriendWithItem(friend!, item: item)
         }
         
 //        let subscription = item.attributeStringValueForName("subscription")
@@ -68,16 +70,12 @@ extension DatabaseRosterStorage: XMPPRosterStorage {
         
     }
     
-//    func updateFriendWithItem(f: Friend, item: DDXMLElement) {
-//        MagicalRecord.saveUsingCurrentThreadContextWithBlock({ (oc) -> Void in
-//            var localUser = XMPPManager.instance.account.MR_inContext(oc) as User
-//            f.displayName = item.attributeStringValueForName("name")
-//            f.pendingApproval = self.isPendingApprovalElement(item)
-//            
-//            f.user = localUser
-//        }, completion: nil)
-//    }
-//    
+    func updateFriendWithItem(f: Friend, item: DDXMLElement) {
+        f.displayName = item.attributeStringValueForName("name")
+        f.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
+    }
+    
+//
 //    func isPendingApprovalElement(item: DDXMLElement) -> Bool {
 //        let subscription = item.attributeStringValueForName("subscription")
 //        let ask = item.attributeStringValueForName("ask")

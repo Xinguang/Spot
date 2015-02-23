@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="jCE-Pi-Vhr">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--アドレス帳-->
@@ -217,6 +217,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="59" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Lhp-ju-LzZ">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" red="0.93725490196078431" green="0.93333333333333335" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SearchBarCell" rowHeight="59" id="uZ9-f6-Uzq">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -237,25 +238,34 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FriendCell" textLabel="wVy-Q0-Ycx" detailTextLabel="hY6-QT-Oqr" rowHeight="59" style="IBUITableViewCellStyleSubtitle" id="by4-NE-P02">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FriendCell" rowHeight="55" id="by4-NE-P02">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="by4-NE-P02" id="YTS-Tt-AmT">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wVy-Q0-Ycx">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hY6-QT-Oqr">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="GEN-TB-v4m">
+                                                    <rect key="frame" x="8" y="8" width="38" height="38.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="GEN-TB-v4m" secondAttribute="height" multiplier="1:1" id="xiL-Bg-hsb"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kep-ZH-hFt">
+                                                    <rect key="frame" x="54" y="17.5" width="42" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="GEN-TB-v4m" secondAttribute="bottom" constant="8" id="6fz-mO-hY9"/>
+                                                <constraint firstAttribute="centerY" secondItem="GEN-TB-v4m" secondAttribute="centerY" id="DTm-8y-e55"/>
+                                                <constraint firstAttribute="centerY" secondItem="kep-ZH-hFt" secondAttribute="centerY" id="GLk-3K-xOV"/>
+                                                <constraint firstItem="GEN-TB-v4m" firstAttribute="leading" secondItem="YTS-Tt-AmT" secondAttribute="leading" constant="8" id="Wbu-MR-V4j"/>
+                                                <constraint firstItem="GEN-TB-v4m" firstAttribute="leading" secondItem="YTS-Tt-AmT" secondAttribute="leading" constant="8" id="cf9-Z1-HaB"/>
+                                                <constraint firstItem="GEN-TB-v4m" firstAttribute="top" secondItem="YTS-Tt-AmT" secondAttribute="top" constant="8" id="lOr-vO-efi"/>
+                                                <constraint firstItem="kep-ZH-hFt" firstAttribute="leading" secondItem="GEN-TB-v4m" secondAttribute="trailing" constant="8" id="w1o-rs-hfY"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FriendRequestCell" rowHeight="59" id="CYS-Sm-5Ac" customClass="FriendRequestCell" customModule="spot" customModuleProvider="target">
@@ -332,6 +342,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="avatar" width="80" height="80"/>
         <image name="contacts_add_friend" width="28" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
