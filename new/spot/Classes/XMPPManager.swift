@@ -152,7 +152,7 @@ class XMPPManager: NSObject {
     
     func goOnline() {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            NSNotificationCenter.defaultCenter().postNotificationName(kXMPPLoginSuccess, object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName(kXMPPLoginSuccess, object: self)
         })
         
         xmppStream.sendElement(XMPPPresence())
@@ -166,6 +166,17 @@ class XMPPManager: NSObject {
         let jid = XMPPJID.jidWithString(friend.accountName)
         // TODO: nickName
         xmppRoster.addUser(jid, withNickname: friend.displayName)
+    }
+    
+    func updateMyName(name: String) {
+        var myvCardTemp = xmppvCardTempModule.myvCardTemp
+        if myvCardTemp == nil {
+            println("myvCardTemp==nil")
+        }
+        
+        myvCardTemp.formattedName = name
+        
+        xmppvCardTempModule.updateMyvCardTemp(myvCardTemp)
     }
     
     // MARK: - Message

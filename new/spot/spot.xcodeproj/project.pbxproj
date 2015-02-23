@@ -63,6 +63,7 @@
 		298FE3CD1A956FBC007AB117 /* _SpotMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 298FE3C61A956FBC007AB117 /* _SpotMessage.m */; };
 		298FE3CE1A956FBC007AB117 /* _User.m in Sources */ = {isa = PBXBuildFile; fileRef = 298FE3C81A956FBC007AB117 /* _User.m */; };
 		2991E80F1A94351C00C94552 /* FriendRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2991E80E1A94351C00C94552 /* FriendRequestCell.swift */; };
+		29E623351A9B004A00383DEA /* AccountNameEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E623341A9B004A00383DEA /* AccountNameEditTableViewController.swift */; };
 		29F5D4241A996D1F00D0AF54 /* AccountEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F5D4231A996D1F00D0AF54 /* AccountEditViewController.swift */; };
 		5F6DCE83C393AD717AAB7030 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A5D3641F258F85CB0ABCED /* libPods.a */; };
 		DC4109B81A81C15200E11CAB /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4109B71A81C15200E11CAB /* TabBarController.swift */; };
@@ -156,6 +157,7 @@
 		298FE3C71A956FBC007AB117 /* _User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _User.h; sourceTree = "<group>"; };
 		298FE3C81A956FBC007AB117 /* _User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _User.m; sourceTree = "<group>"; };
 		2991E80E1A94351C00C94552 /* FriendRequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendRequestCell.swift; path = Classes/FriendRequestCell.swift; sourceTree = "<group>"; };
+		29E623341A9B004A00383DEA /* AccountNameEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountNameEditTableViewController.swift; path = Classes/AccountNameEditTableViewController.swift; sourceTree = "<group>"; };
 		29EB19581A9881DB0085BFC7 /* Model2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model2.xcdatamodel; sourceTree = "<group>"; };
 		29F5D4231A996D1F00D0AF54 /* AccountEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountEditViewController.swift; path = Classes/AccountEditViewController.swift; sourceTree = "<group>"; };
 		4CAB4A8089D8A99280C16B78 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 			children = (
 				DCD9CB881A84BC01009C4468 /* AccountViewController.swift */,
 				29F5D4231A996D1F00D0AF54 /* AccountEditViewController.swift */,
+				29E623341A9B004A00383DEA /* AccountNameEditTableViewController.swift */,
 			);
 			name = Account;
 			sourceTree = "<group>";
@@ -747,6 +750,7 @@
 				296623DD1A8CA28C002608EF /* XMPPSearchResult.m in Sources */,
 				296623A61A89A640002608EF /* XMPPCreateAccountViewController.swift in Sources */,
 				296623DF1A8D89C1002608EF /* DatabaseRosterStorage.swift in Sources */,
+				29E623351A9B004A00383DEA /* AccountNameEditTableViewController.swift in Sources */,
 				DCB539221A81B7BE00C216D7 /* Util.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

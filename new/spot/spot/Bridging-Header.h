@@ -48,7 +48,7 @@
 #import "XMPPCapabilitiesCoreDataStorage.h"
 #import "XMPPSearchModule.h"
 #import "XMPPvCardCoreDataStorage.h"
-
+#import "XMPPvCardTemp.h"
 
 #import <GoogleMaps/GoogleMaps.h>
 

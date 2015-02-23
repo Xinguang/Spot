@@ -36,7 +36,7 @@ class AccountViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         user = User.MR_findFirst() as? User
-        
+                
         tableView.reloadData()
     }
     
