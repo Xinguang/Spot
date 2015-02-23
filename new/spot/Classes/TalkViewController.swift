@@ -29,6 +29,8 @@ class TalkViewController: BaseViewController {
         frc = XMPPMessageArchiving_Contact_CoreDataObject.MR_fetchAllGroupedBy(nil, withPredicate: nil, sortedBy: "mostRecentMessageTimestamp", ascending: false, inContext: XMPPManager.instance.xmppMessageArchivingCoreDataStorage.mainThreadManagedObjectContext)
         frc.delegate = self
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"), name: kXMPPDidReceivevCardTemp, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"), name: kXMPPDidReceiveAvata, object: nil)
     }
     
     override func viewDidLoad() {
@@ -80,6 +82,12 @@ class TalkViewController: BaseViewController {
 //            self.navigationController?.tabBarItem.badgeValue = nil
 //        }
     }
+    
+    // MARK: - Notification
+    
+    func reloadUI() {
+        tableView.reloadData()
+    }
 }
 
 // MARK: - NSFetchedResultsControllerDelegate
@@ -127,6 +135,7 @@ extension TalkViewController: UITableViewDataSource, UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("RecentlyFriendCell", forIndexPath: indexPath) as RecentlyFriendCell
         let friend = frc.objectAtIndexPath(indexPath) as XMPPMessageArchiving_Contact_CoreDataObject
+
 
         cell.friend = friend
         

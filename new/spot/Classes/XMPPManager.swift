@@ -114,6 +114,9 @@ class XMPPManager: NSObject {
         
         xmppStream.addDelegate(self, delegateQueue: workQueue)
         xmppRoster.addDelegate(self, delegateQueue: workQueue)
+        xmppvCardTempModule.addDelegate(self, delegateQueue: workQueue)
+        xmppvCardAvatarModule.addDelegate(self, delegateQueue: workQueue)
+        
         xmppCapabilities.addDelegate(self, delegateQueue: workQueue)
         xmppMessageArchiving.addDelegate(self, delegateQueue: workQueue)
     }
@@ -353,7 +356,34 @@ extension XMPPManager: XMPPRosterDelegate {
 //        request!.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
     }
     
+    func xmppRosterDidEndPopulating(sender: XMPPRoster!) {
+        println(__FUNCTION__)
+    }
 }
+
+// MARK: - XMPPvCardTempModuleDelegate
+
+extension XMPPManager: XMPPvCardTempModuleDelegate {
+    
+    func xmppvCardTempModule(vCardTempModule: XMPPvCardTempModule!, didReceivevCardTemp vCardTemp: XMPPvCardTemp!, forJID jid: XMPPJID!) {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            NSNotificationCenter.defaultCenter().postNotificationName(kXMPPDidReceivevCardTemp, object: nil)
+        })
+    }
+}
+
+// MARK: - XMPPvCardAvatarDelegate
+
+extension XMPPManager: XMPPvCardAvatarDelegate {
+    
+    func xmppvCardAvatarModule(vCardTempModule: XMPPvCardAvatarModule!, didReceivePhoto photo: UIImage!, forJID jid: XMPPJID!) {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            NSNotificationCenter.defaultCenter().postNotificationName(kXMPPDidReceiveAvata, object: nil)
+        })
+    }
+}
+
+// MARK: - Search
 
 extension XMPPManager {
     

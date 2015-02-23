@@ -19,19 +19,26 @@ class RecentlyFriendCell: UITableViewCell {
     
     var friend: XMPPMessageArchiving_Contact_CoreDataObject! {
         didSet {
-            self.friendNameLabel.text = friend.bareJidStr ?? "友人の名前"
+//            self.friendNameLabel.text = friend.bareJidStr ?? "友人の名前"
+            
+            if let vCard = XMPPManager.instance.xmppvCardTempModule.vCardTempForJID(friend.bareJid, shouldFetch: true) {
+                friendNameLabel.text = vCard.formattedName ?? friend.bareJidStr
+
+            } else {
+              friendNameLabel.text = friend.bareJidStr
+            }
             self.messageLabel.text = friend.mostRecentMessageBody
             
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateStyle = .ShortStyle
             self.timeLabel.text = dateFormatter.stringFromDate(friend.mostRecentMessageTimestamp)
             
-            if friend.mostRecentMessageOutgoing as Int > 0 {
-                badgeView.hidden = false
-                badgeView.badgeText = String(friend.mostRecentMessageOutgoing as Int)
-            } else {
-                badgeView.hidden = true
-            }
+//            if roster?.unreadMessages as Int > 0 {
+//                badgeView.hidden = false
+//                badgeView.badgeText = String(roster?.unreadMessages as Int)
+//            } else {
+//                badgeView.hidden = true
+//            }
         }
     }
     

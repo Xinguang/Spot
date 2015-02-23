@@ -17,7 +17,14 @@ class UserCell: UITableViewCell {
     var user: User! {
         didSet {
             userImage.image = user.avatarImage()
-            nameLabel.text = user.displayName
+//            nameLabel.text = user.displayName
+            
+            if let vCard = XMPPManager.instance.xmppvCardTempModule.myvCardTemp {
+                nameLabel.text = vCard.formattedName ?? ""
+                
+            } else {
+                nameLabel.text = ""
+            }
             idLabel.text = user.username
         }
     }

@@ -36,6 +36,8 @@ class ContactViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"), name: kXMPPDidReceivevCardTemp, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"), name: kXMPPDidReceiveAvata, object: nil)
 //        rosters = XMPPUserCoreDataStorageObject.MR_findAllInContext(XMPPManager.instance.xmppRosterStorage.mainThreadManagedObjectContext) as [XMPPUserCoreDataStorageObject]
 //        XMPPManager.instance.xmppRosterStorage.mainThreadManagedObjectContext
         frc = XMPPUserCoreDataStorageObject.MR_fetchAllGroupedBy(nil, withPredicate: nil, sortedBy: "sectionNum", ascending: true, inContext: XMPPManager.instance.xmppRosterStorage.mainThreadManagedObjectContext)
@@ -50,7 +52,11 @@ class ContactViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    // MARK: - Notification
+    
+    func reloadUI() {
+        tableView.reloadData()
+    }
     /*
     // MARK: - Navigation
 
@@ -124,8 +130,16 @@ extension ContactViewController: UITableViewDataSource, UITableViewDelegate {
             let label = cell.viewWithTag(2) as UILabel!
             
 //            imageView.image = friend.avatarImage()
-            label.text = roster.displayName ?? "匿名"
+        
+        if let vCard = XMPPManager.instance.xmppvCardTempModule.vCardTempForJID(roster.jid, shouldFetch: true) {
+            label.text = vCard.formattedName ?? roster.jidStr
             
+        } else {
+            label.text = roster.jidStr
+        }
+        
+//            label.text = roster.displayName ?? "匿名"
+        
             return cell
 //        }
         

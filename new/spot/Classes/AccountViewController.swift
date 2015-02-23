@@ -27,6 +27,8 @@ class AccountViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"), name: kXMPPDidReceivevCardTemp, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"), name: kXMPPDidReceiveAvata, object: nil)
 //        fsc = User.MR_fetchAllGroupedBy(nil, withPredicate: nil, sortedBy: "uniqueIdentifier", ascending: true)
 //        fsc.delegate = self
 //        user = User.MR_findFirst() as User
@@ -37,6 +39,12 @@ class AccountViewController: BaseViewController {
         
         user = User.MR_findFirst() as? User
                 
+        tableView.reloadData()
+    }
+    
+    // MARK: - Notification
+    
+    func reloadUI() {
         tableView.reloadData()
     }
     

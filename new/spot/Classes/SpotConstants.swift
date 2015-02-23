@@ -20,6 +20,8 @@ let kXMPPLoginFail = "LoginFailedNotification"
 let kXMPPRegisterFailed = "RegisterFailedNotification"
 let kXMPPRegisterSuccess = "RegisterSuccessNotification"
 let kXMPPSearchAccountComplete = "SearchAccountCompleteNotification"
+let kXMPPDidReceivevCardTemp = "DidReceivevCardTempNotification"
+let kXMPPDidReceiveAvata = "DidReceiveAvataNotification"
 
 let kGoogleApiKey = "bV4WSVpD7XG2iCoGZabJSe9pOEl4NcA"
 

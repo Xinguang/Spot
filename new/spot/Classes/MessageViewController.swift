@@ -20,9 +20,12 @@ class MessageViewController: JSQMessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"), name: kXMPPDidReceivevCardTemp, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"), name: kXMPPDidReceiveAvata, object: nil)
+        
         self.collectionView.frame = self.view.bounds
         
-        self.title = roster.displayName ?? "匿名"
+        reloadUI()
         
 //        let meImage = JSQMessagesAvatarImageFactory.avatarImageWithUserInitials("我", backgroundColor: UIColor(white: 0.85, alpha: 1.0), textColor: UIColor(white: 0.6, alpha: 1.0), font: UIFont.systemFontOfSize(14), diameter: kJSQMessagesCollectionViewAvatarSizeDefault)
 
@@ -49,6 +52,19 @@ class MessageViewController: JSQMessagesViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: - Notification
+    
+    func reloadUI() {
+        if let vCard = XMPPManager.instance.xmppvCardTempModule.vCardTempForJID(roster.jid, shouldFetch: true) {
+            self.title = vCard.formattedName ?? roster.jidStr
+            XMPPManager.instance.xmppvCardTempModule.fetchvCardTempForJID(roster.jid, ignoreStorage:true)
+        } else {
+            self.title = roster.jidStr
+        }
+        
+        
     }
     
     // MARK: - JSQMessagesViewController method overrides
@@ -95,6 +111,9 @@ class MessageViewController: JSQMessagesViewController {
     }
     */
 
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
 }
 
 // MARK: - CollectionView
