@@ -74,7 +74,13 @@ extension ContactDetailViewController: UITableViewDataSource, UITableViewDelegat
     
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let view = Util.createViewWithNibName("ContactDetailFooterView") as ContactDetailFooterView
-        
+        view.delegate = self
         return view
+    }
+}
+
+extension ContactDetailViewController: ContactDetailFooterViewDelegate {
+    func didTappedChatBtn(footerView: ContactDetailFooterView) {
+        
     }
 }

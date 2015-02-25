@@ -18,6 +18,9 @@
                     <state key="normal" title="メッセージ">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="chatBtnTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="Mop-os-3AP"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEm-wz-1bD">
                     <rect key="frame" x="8" y="63" width="304" height="42"/>

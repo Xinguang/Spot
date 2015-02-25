@@ -8,10 +8,16 @@
 
 import UIKit
 
+@objc protocol ContactDetailFooterViewDelegate {
+    func didTappedChatBtn(footerView: ContactDetailFooterView)
+}
+
 class ContactDetailFooterView: UITableViewHeaderFooterView {
     
     @IBOutlet weak var chatBtn: UIButton!
     @IBOutlet weak var telBtn: UIButton!
+    
+    weak var delegate: ContactDetailFooterViewDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,5 +27,9 @@ class ContactDetailFooterView: UITableViewHeaderFooterView {
         chatBtn.setBackgroundImage(image?.stretchableImageWithLeftCapWidth(4, topCapHeight: 4), forState: .Normal)
         
         telBtn.setBackgroundImage(UIImage(named: "common_gray_btn")!.stretchableImageWithLeftCapWidth(4, topCapHeight: 4), forState: .Normal)
+    }
+    
+    @IBAction func chatBtnTapped(sender: AnyObject) {
+        delegate?.didTappedChatBtn(self)
     }
 }
