@@ -244,7 +244,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="by4-NE-P02" id="YTS-Tt-AmT">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="GEN-TB-v4m">
+                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="GEN-TB-v4m">
                                                     <rect key="frame" x="8" y="8" width="38" height="38.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="GEN-TB-v4m" secondAttribute="height" multiplier="1:1" id="xiL-Bg-hsb"/>

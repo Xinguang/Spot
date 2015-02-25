@@ -63,10 +63,18 @@ class AccountEditViewController: UITableViewController {
         if indexPath.section == 0 && indexPath.row == 0 {
             let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
             let cameraAction = UIAlertAction(title: "写真を撮る", style: .Default, handler: { (action) -> Void in
-                
+                let picker = UIImagePickerController()
+                picker.sourceType = .Camera
+                picker.allowsEditing = true
+                picker.delegate = self
+                self.presentViewController(picker, animated: true, completion: nil)
             })
             let albumAction = UIAlertAction(title: "写真から選択", style: .Default, handler: { (action) -> Void in
-                
+                let picker = UIImagePickerController()
+                picker.sourceType = .PhotoLibrary
+                picker.allowsEditing = true
+                picker.delegate = self
+                self.presentViewController(picker, animated: true, completion: nil)
             })
             let cancelAction = UIAlertAction(title: "キャンセル", style: .Cancel, handler: { (action) -> Void in
                 
@@ -79,14 +87,21 @@ class AccountEditViewController: UITableViewController {
             self.presentViewController(alertController, animated: true, completion: nil)
         }
     }
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+extension AccountEditViewController: UINavigationControllerDelegate {
+    
+    
+}
+
+extension AccountEditViewController: UIImagePickerControllerDelegate {
+    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        let smallImage = image.scaleToFitSize(CGSize(width: 250, height: 250))
+//        userImage.image = image
+        user.avatarData = UIImagePNGRepresentation(smallImage)
+        user.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+        XMPPManager.instance.updateMyImage(smallImage)
     }
-    */
-
 }

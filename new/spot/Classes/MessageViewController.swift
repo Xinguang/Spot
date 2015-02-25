@@ -28,9 +28,11 @@ class MessageViewController: JSQMessagesViewController {
         reloadUI()
         
 //        let meImage = JSQMessagesAvatarImageFactory.avatarImageWithUserInitials("我", backgroundColor: UIColor(white: 0.85, alpha: 1.0), textColor: UIColor(white: 0.6, alpha: 1.0), font: UIFont.systemFontOfSize(14), diameter: kJSQMessagesCollectionViewAvatarSizeDefault)
-
-        self.meImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(UIImage(named: "user2.jpg"), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
-        self.friendImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(UIImage(named: "user1.jpg"), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
+        
+        self.meImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(XMPPManager.instance.account.avatarImage(), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
+        
+        let rosterImage = UIImage(data: XMPPManager.instance.xmppvCardAvatarModule.photoDataForJID(roster.jid))
+        self.friendImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(rosterImage ?? UIImage(named: "avatar"), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
         
         frc = XMPPMessageArchiving_Message_CoreDataObject.MR_fetchAllGroupedBy(nil, withPredicate: NSPredicate(format: "bareJidStr=%@", argumentArray: [roster.jidStr]), sortedBy: "timestamp", ascending: true, inContext: XMPPManager.instance.xmppMessageArchivingCoreDataStorage.mainThreadManagedObjectContext)
         frc.delegate = self
@@ -59,7 +61,7 @@ class MessageViewController: JSQMessagesViewController {
     func reloadUI() {
         if let vCard = XMPPManager.instance.xmppvCardTempModule.vCardTempForJID(roster.jid, shouldFetch: true) {
             self.title = vCard.formattedName ?? roster.jidStr
-            XMPPManager.instance.xmppvCardTempModule.fetchvCardTempForJID(roster.jid, ignoreStorage:true)
+//            XMPPManager.instance.xmppvCardTempModule.fetchvCardTempForJID(roster.jid, ignoreStorage:true)
         } else {
             self.title = roster.jidStr
         }

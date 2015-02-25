@@ -133,10 +133,11 @@ extension ContactViewController: UITableViewDataSource, UITableViewDelegate {
         
         if let vCard = XMPPManager.instance.xmppvCardTempModule.vCardTempForJID(roster.jid, shouldFetch: true) {
             label.text = vCard.formattedName ?? roster.jidStr
-            
         } else {
             label.text = roster.jidStr
         }
+        
+        imageView.image = XMPPManager.instance.photoOfJid(roster.jid)
         
 //            label.text = roster.displayName ?? "匿名"
         

@@ -27,6 +27,10 @@ class RecentlyFriendCell: UITableViewCell {
             } else {
               friendNameLabel.text = friend.bareJidStr
             }
+            
+            
+            friendImageView.image = XMPPManager.instance.photoOfJid(friend.bareJid)
+            
             self.messageLabel.text = friend.mostRecentMessageBody
             
             let dateFormatter = NSDateFormatter()

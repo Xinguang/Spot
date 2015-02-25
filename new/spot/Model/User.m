@@ -1,5 +1,6 @@
 #import "User.h"
 #import <SSKeychain.h>
+#import <XMPPvCardTemp.h>
 
 @interface User ()
 
@@ -25,6 +26,11 @@ NSString *kSpotServiceName = @"jp.co.e-bussiness.spot.Spot";
     }
     
     return [UIImage imageNamed:@"avatar"];
+}
+
+- (void)updateWithVcard:(XMPPvCardAvatarModule *)card {
+    self.displayName = card.xmppvCardTempModule.myvCardTemp.formattedName;
+    self.avatarData = card.xmppvCardTempModule.myvCardTemp.photo;
 }
 
 @end

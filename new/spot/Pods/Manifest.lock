@@ -20,9 +20,10 @@ PODS:
   - MagicalRecord (2.2):
     - MagicalRecord/Core
   - MagicalRecord/Core (2.2)
+  - NYXImagesKit (2.3)
   - Parse (1.6.2):
     - Bolts (~> 1.1)
-  - Reveal-iOS-SDK (1.5.0)
+  - Reveal-iOS-SDK (1.5.1)
   - SSKeychain (1.2.2)
   - SVProgressHUD (1.1.2)
   - XMPPFramework (3.6.4):
@@ -174,6 +175,7 @@ DEPENDENCIES:
   - JSQMessagesViewController
   - libWeChatSDK (~> 1.5)
   - MagicalRecord
+  - NYXImagesKit
   - Parse
   - Reveal-iOS-SDK
   - SSKeychain
@@ -186,14 +188,15 @@ SPEC CHECKSUMS:
   CocoaAsyncSocket: 45bdbbc1c0a5ed0640ff4c42af325ba43a2f099a
   CocoaLumberjack: baf4a09a3bcbdfea3363556a90104e026d3504e2
   DXYTencentOpenAPI: b63563ff453cb598c3e5df6373dde85cc46c5fa4
-  Google-Maps-iOS-SDK: 3b89f4c151f8fc3ddb0e70dece9bcab33dbec2ea
+  Google-Maps-iOS-SDK: 4c008abdb68e03ae125c7f674be841d369e2b3de
   JSBadgeView: 75bec79d76e0eb01d57c9ce75b7c5ea8d6707955
   JSQMessagesViewController: e93a288a9662d4519c95a28a8c0eec10beae1bfc
   JSQSystemSoundPlayer: 55528c699a283aae2220d3ae7b8b527d2ecef4b4
   libWeChatSDK: 198d607370b3f5eb8f470549126b25ef63e92993
   MagicalRecord: 2b471584fc9e3137f3d0a56967917baa4979e224
+  NYXImagesKit: 1c9f228ae78fab475d267b3b3a1308e0fba11731
   Parse: 60d65108fe39da77ec16c9e51d74b4d296b21424
-  Reveal-iOS-SDK: b6d94eb78d84ebd2e3182063577975561cd6dbd9
+  Reveal-iOS-SDK: dcfeb671c7da222c85f18f866da2ce88de075524
   SSKeychain: cc48bd3ad24fcd9125adb9e0d23dd50b8bbd08b9
   SVProgressHUD: da7a49e789af645d9279ffbca62318945a832438
   XMPPFramework: 5a8555132822ebb3e11d2bac0258e62754315bc5

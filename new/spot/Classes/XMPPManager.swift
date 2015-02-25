@@ -193,6 +193,17 @@ class XMPPManager: NSObject {
         xmppvCardTempModule.updateMyvCardTemp(myvCardTemp)
     }
     
+    func updateMyImage(image: UIImage) {
+        var myvCardTemp = xmppvCardTempModule.myvCardTemp
+        if myvCardTemp == nil {
+            println("myvCardTemp==nil")
+        }
+        
+        myvCardTemp.photo = UIImagePNGRepresentation(image)
+        
+        xmppvCardTempModule.updateMyvCardTemp(myvCardTemp)
+    }
+    
     // MARK: - Message
     
     func sendMessage(message: NSString, to: XMPPJID) {
@@ -252,6 +263,7 @@ extension XMPPManager: XMPPStreamDelegate {
     }
     
     func xmppStream(sender: XMPPStream!, didReceiveIQ iq: XMPPIQ!) -> Bool {
+        println(iq)
 //        dispatch_async(dispatch_get_main_queue(), { () -> Void in
 //            SVProgressHUD.dismiss()
 //        })
@@ -377,6 +389,8 @@ extension XMPPManager: XMPPvCardTempModuleDelegate {
 extension XMPPManager: XMPPvCardAvatarDelegate {
     
     func xmppvCardAvatarModule(vCardTempModule: XMPPvCardAvatarModule!, didReceivePhoto photo: UIImage!, forJID jid: XMPPJID!) {
+            account.updateWithVcard(vCardTempModule)
+        
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             NSNotificationCenter.defaultCenter().postNotificationName(kXMPPDidReceiveAvata, object: nil)
         })
@@ -437,4 +451,19 @@ extension XMPPManager {
 
     }
 
+}
+
+// MARK: - Photo
+
+extension XMPPManager {
+    
+    func photoOfJid(jid: XMPPJID) -> UIImage {
+        if let data = XMPPManager.instance.xmppvCardAvatarModule.photoDataForJID(jid) {
+            return UIImage(data: data)!
+        }
+        
+        return UIImage(named: "avatar")!
+    }
+    
+    
 }
