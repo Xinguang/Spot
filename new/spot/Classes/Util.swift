@@ -18,6 +18,10 @@ class Util: NSObject {
         
         return storyboard.instantiateInitialViewController() as UIViewController
     }
+    
+    class func createViewWithNibName(name: String) -> UIView {
+        return UINib(nibName: name, bundle: nil).instantiateWithOwner(self, options: nil)[0] as UIView
+    }
  
     class func enterMessageViewControllerWithFriend(roster: XMPPUserCoreDataStorageObject, from: UIViewController) {
         // TODO: setAllMessagesRead

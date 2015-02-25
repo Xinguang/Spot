@@ -183,10 +183,10 @@
             </objects>
             <point key="canvasLocation" x="-1992" y="-2874"/>
         </scene>
-        <!--View Controller-->
+        <!--Contact Detail View Controller-->
         <scene sceneID="13c-c7-KNC">
             <objects>
-                <viewController id="6nf-jP-oQ4" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContactDetailViewController" id="6nf-jP-oQ4" customClass="ContactDetailViewController" customModule="spot" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PGa-jy-I0a"/>
                         <viewControllerLayoutGuide type="bottom" id="htH-PP-aJE"/>
@@ -194,7 +194,40 @@
                     <view key="view" contentMode="scaleToFill" id="wiw-13-PSh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="90" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="ThS-1A-rpA">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="sectionIndexBackgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="LbI-Na-36w" style="IBUITableViewCellStyleDefault" id="ZWT-q3-ZxH">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZWT-q3-ZxH" id="G5a-1H-xWe">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LbI-Na-36w">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="6nf-jP-oQ4" id="xDb-nH-WCw"/>
+                                    <outlet property="delegate" destination="6nf-jP-oQ4" id="zy4-LW-MDG"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ThS-1A-rpA" secondAttribute="trailing" id="1bO-3D-8o9"/>
+                            <constraint firstItem="ThS-1A-rpA" firstAttribute="leading" secondItem="wiw-13-PSh" secondAttribute="leading" id="Rze-dd-egE"/>
+                            <constraint firstItem="htH-PP-aJE" firstAttribute="top" secondItem="ThS-1A-rpA" secondAttribute="bottom" id="dbQ-B6-VvN"/>
+                            <constraint firstItem="ThS-1A-rpA" firstAttribute="top" secondItem="wiw-13-PSh" secondAttribute="top" id="lee-mU-9bV"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zST-hc-gfI" userLabel="First Responder" sceneMemberID="firstResponder"/>

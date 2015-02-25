@@ -155,7 +155,10 @@ extension ContactViewController: UITableViewDataSource, UITableViewDelegate {
 //        }
         let roster = frc.objectAtIndexPath(indexPath) as XMPPUserCoreDataStorageObject
         
-        Util.enterMessageViewControllerWithFriend(roster, from: self)
+//        Util.enterMessageViewControllerWithFriend(roster, from: self)
+        let vc = Util.createViewControllerWithIdentifier("ContactDetailViewController", storyboardName: "Common") as ContactDetailViewController
+        vc.jid = roster.jid
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
