@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
-        application.applicationIconBadgeNumber = SpotMessage.numberOfUnreadMessages()
+        application.applicationIconBadgeNumber = Friend.numberOfUnreadMessages()
     }
 
     func applicationWillEnterForeground(application: UIApplication) {

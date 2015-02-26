@@ -165,13 +165,13 @@ extension ContactViewController: UITableViewDataSource, UITableViewDelegate {
 
 // MARK: - FriendRequestCellDelegate
 
-extension ContactViewController: FriendRequestCellDelegate {
-    func friendRequestCellDidAcceptRequest(cell: FriendRequestCell) {
-        var friendRequest = cell.friendRequest
-        
-        let jid = XMPPJID.jidWithString(friendRequest.jid)
-        XMPPManager.instance.xmppRoster.acceptPresenceSubscriptionRequestFrom(jid, andAddToRoster: true)
-        friendRequest.MR_deleteEntity()
-        NSManagedObjectContext.MR_defaultContext().MR_saveToPersistentStoreWithCompletion(nil)
-    }
-}
+//extension ContactViewController: FriendRequestCellDelegate {
+//    func friendRequestCellDidAcceptRequest(cell: FriendRequestCell) {
+//        var friendRequest = cell.friendRequest
+//        
+//        let jid = XMPPJID.jidWithString(friendRequest.jid)
+//        XMPPManager.instance.xmppRoster.acceptPresenceSubscriptionRequestFrom(jid, andAddToRoster: true)
+//        friendRequest.MR_deleteEntity()
+//        NSManagedObjectContext.MR_defaultContext().MR_saveToPersistentStoreWithCompletion(nil)
+//    }
+//}

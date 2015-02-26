@@ -23,6 +23,7 @@ let kXMPPSearchAccountComplete = "SearchAccountCompleteNotification"
 let kXMPPDidReceivevCardTemp = "DidReceivevCardTempNotification"
 let kXMPPDidReceiveAvata = "DidReceiveAvataNotification"
 let kXMPPEnterMessageViewController = "EnterMessageViewController"
+let kXMPPReceivedMessage = "ReceivedMessageNotification"
 
 let kGoogleApiKey = "bV4WSVpD7XG2iCoGZabJSe9pOEl4NcA"
 

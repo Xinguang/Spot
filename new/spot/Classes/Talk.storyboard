@@ -41,7 +41,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AGL-Wa-9bQ">
-                                                    <rect key="frame" x="82" y="27.5" width="212.5" height="35"/>
+                                                    <rect key="frame" x="82" y="27" width="212.5" height="35"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -52,12 +52,22 @@
                                                     <color key="textColor" red="0.69803921568627447" green="0.69803921568627447" blue="0.69803921568627447" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="08F-je-7g0">
+                                                    <rect key="frame" x="266" y="33" width="24" height="24"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="24" id="KYw-Qz-0Xn"/>
+                                                        <constraint firstAttribute="width" constant="24" id="bki-ZJ-O7H"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Dvf-o7-zWr" firstAttribute="top" secondItem="SFV-iK-n12" secondAttribute="top" constant="6" id="1ue-xS-52G"/>
                                                 <constraint firstItem="08y-Hc-Re2" firstAttribute="top" secondItem="WFJ-2E-Tgk" secondAttribute="top" id="5tt-pC-RPK"/>
+                                                <constraint firstAttribute="trailing" secondItem="08F-je-7g0" secondAttribute="trailing" constant="30" id="DfX-E0-jXS"/>
                                                 <constraint firstAttribute="trailing" secondItem="08y-Hc-Re2" secondAttribute="trailing" constant="8" id="IpI-BV-rQp"/>
                                                 <constraint firstItem="AGL-Wa-9bQ" firstAttribute="top" secondItem="WFJ-2E-Tgk" secondAttribute="bottom" id="SkH-2H-FHX"/>
+                                                <constraint firstAttribute="bottom" secondItem="08F-je-7g0" secondAttribute="bottom" constant="13" id="bdA-xw-Y3f"/>
                                                 <constraint firstAttribute="bottom" secondItem="AGL-Wa-9bQ" secondAttribute="bottom" constant="7" id="coH-kj-gbs"/>
                                                 <constraint firstItem="WFJ-2E-Tgk" firstAttribute="top" secondItem="SFV-iK-n12" secondAttribute="top" constant="7" id="lxW-ZB-Z0g"/>
                                                 <constraint firstItem="AGL-Wa-9bQ" firstAttribute="leading" secondItem="Dvf-o7-zWr" secondAttribute="trailing" constant="15" id="m6Q-nu-6cj"/>
@@ -68,6 +78,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="badgeBackView" destination="08F-je-7g0" id="KAa-34-Vv0"/>
                                             <outlet property="friendImageView" destination="Dvf-o7-zWr" id="Bx8-mF-Nke"/>
                                             <outlet property="friendNameLabel" destination="WFJ-2E-Tgk" id="gFt-WQ-GwF"/>
                                             <outlet property="messageLabel" destination="AGL-Wa-9bQ" id="QKq-p2-JJy"/>

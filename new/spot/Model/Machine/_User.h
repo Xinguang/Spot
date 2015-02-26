@@ -13,12 +13,6 @@ extern const struct UserAttributes {
 	__unsafe_unretained NSString *username;
 } UserAttributes;
 
-extern const struct UserRelationships {
-	__unsafe_unretained NSString *friends;
-} UserRelationships;
-
-@class Friend;
-
 @interface UserID : NSManagedObjectID {}
 @end
 
@@ -60,25 +54,6 @@ extern const struct UserRelationships {
 
 //- (BOOL)validateUsername:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSOrderedSet *friends;
-
-- (NSMutableOrderedSet*)friendsSet;
-
-@end
-
-@interface _User (FriendsCoreDataGeneratedAccessors)
-- (void)addFriends:(NSOrderedSet*)value_;
-- (void)removeFriends:(NSOrderedSet*)value_;
-- (void)addFriendsObject:(Friend*)value_;
-- (void)removeFriendsObject:(Friend*)value_;
-
-- (void)insertObject:(Friend*)value inFriendsAtIndex:(NSUInteger)idx;
-- (void)removeObjectFromFriendsAtIndex:(NSUInteger)idx;
-- (void)insertFriends:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
-- (void)removeFriendsAtIndexes:(NSIndexSet *)indexes;
-- (void)replaceObjectInFriendsAtIndex:(NSUInteger)idx withObject:(Friend*)value;
-- (void)replaceFriendsAtIndexes:(NSIndexSet *)indexes withFriends:(NSArray *)values;
-
 @end
 
 @interface _User (CoreDataGeneratedPrimitiveAccessors)
@@ -106,8 +81,5 @@ extern const struct UserRelationships {
 
 - (NSString*)primitiveUsername;
 - (void)setPrimitiveUsername:(NSString*)value;
-
-- (NSMutableOrderedSet*)primitiveFriends;
-- (void)setPrimitiveFriends:(NSMutableOrderedSet*)value;
 
 @end

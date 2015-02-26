@@ -1,5 +1,4 @@
 #import "Friend.h"
-#import "SpotMessage.h"
 #import <CoreData+MagicalRecord.h>
 
 @interface Friend ()
@@ -10,30 +9,39 @@
 
 @implementation Friend
 
-- (void)awakeFromInsert {
-    [super awakeFromInsert];
-    
-    self.createAt = [NSDate date];
++ (NSInteger)numberOfUnreadMessages {
+    return [Friend MR_aggregateOperation:@"sum:" onAttribute:@"unreadMessages" withPredicate:nil].integerValue;
 }
 
-- (void)setAllMessagesRead {
-    for (SpotMessage *m in self.messagesSet) {
-        m.readValue = YES;
++ (Friend *)friendOfJid:(NSString *)jidStr {
+    return [Friend MR_findFirstByAttribute:@"jidStr" withValue:jidStr];
+}
+
++ (void)saveUnreadMessage:(XMPPMessage *)message done:(void (^)())done {
+    
+    Friend *f = [Friend MR_findFirstByAttribute:@"jidStr" withValue: [[message from] bare]];
+    if (f == nil) {
+        f = [Friend MR_createEntity];
+        f.jidStr = [[message from] bare];
     }
     
-    [self.managedObjectContext MR_saveToPersistentStoreWithCompletion:nil];
-}
-
-- (NSInteger)numberOfUnreadMessages {
-    return [self.messagesSet.array filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"read==NO"]].count;
-}
-
-- (UIImage *)avatarImage {
-    if (self.avatarData) {
-        return [UIImage imageWithData:self.avatarData];
-    }
+    f.unreadMessagesValue += 1;
+    [f.managedObjectContext MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+        done();
+    }];
     
-    return [UIImage imageNamed:@"avatar"];
+//    var friend = Friend.MR_findFirstByAttribute("jidStr", withValue: message.from().bare()) as? Friend
+//    if friend == nil {
+//        friend = Friend.MR_createEntity() as? Friend
+//        friend?.jidStr = message.from().bare()
+//    }
+//    
+//    friend?.unreadMessagesValue += 1
+//    
+//    friend?.managedObjectContext?.MR_saveToPersistentStoreWithCompletion({ (b, error) -> Void in
+//        
+//    })
+
 }
 
 @end

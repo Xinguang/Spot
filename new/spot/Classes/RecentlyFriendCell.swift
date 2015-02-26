@@ -15,6 +15,8 @@ class RecentlyFriendCell: UITableViewCell {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
+    @IBOutlet weak var badgeBackView: UIView!
+    
     var badgeView: JSBadgeView!
     
     var friend: XMPPMessageArchiving_Contact_CoreDataObject! {
@@ -36,7 +38,17 @@ class RecentlyFriendCell: UITableViewCell {
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateStyle = .ShortStyle
             self.timeLabel.text = dateFormatter.stringFromDate(friend.mostRecentMessageTimestamp)
+
+
             
+            if let friend = Friend.MR_findFirstByAttribute("jidStr", withValue: friend.bareJidStr) as? Friend {
+                if friend.unreadMessagesValue > 0 {
+                    badgeView.hidden = false
+                    badgeView.badgeText = String(friend.unreadMessagesValue)
+                } else {
+                    badgeView.hidden = true
+                }
+            }
 //            if roster?.unreadMessages as Int > 0 {
 //                badgeView.hidden = false
 //                badgeView.badgeText = String(roster?.unreadMessages as Int)
@@ -49,7 +61,8 @@ class RecentlyFriendCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        badgeView = JSBadgeView(parentView: friendImageView, alignment: .TopRight)
+        badgeView = JSBadgeView(parentView: badgeBackView, alignment: .CenterRight)
+        badgeView.badgeBackgroundColor = UIColor(hexString: "#0EAA00")
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

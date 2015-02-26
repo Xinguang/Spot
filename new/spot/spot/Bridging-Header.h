@@ -59,9 +59,7 @@
 
 
 #import "Friend.h"
-#import "FriendRequest.h"
 #import "SNS.h"
-#import "SpotMessage.h"
 #import "User.h"
 
 #endif

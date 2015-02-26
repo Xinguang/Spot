@@ -31,6 +31,7 @@ class TalkViewController: BaseViewController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"), name: kXMPPDidReceivevCardTemp, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"), name: kXMPPDidReceiveAvata, object: nil)
+         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("didReceivedMessage:"), name: kXMPPReceivedMessage, object: nil)
     }
     
     override func viewDidLoad() {
@@ -76,17 +77,42 @@ class TalkViewController: BaseViewController {
     }
     
     func updateBadgeNumber() {
-//        if SpotMessage.numberOfUnreadMessages() > 0 {
-//            self.navigationController?.tabBarItem.badgeValue = String(SpotMessage.numberOfUnreadMessages())
-//        } else {
-//            self.navigationController?.tabBarItem.badgeValue = nil
-//        }
+        if Friend.numberOfUnreadMessages() > 0 {
+            self.navigationController?.tabBarItem.badgeValue = String(Friend.numberOfUnreadMessages())
+        } else {
+            self.navigationController?.tabBarItem.badgeValue = nil
+        }
     }
     
     // MARK: - Notification
     
     func reloadUI() {
         tableView.reloadData()
+        self.updateBadgeNumber()
+    }
+    
+    func didReceivedMessage(notification: NSNotification) {
+        let message = notification.object as XMPPMessage
+        if isTalkingWithJid(message.from()) {
+            return
+        }
+        
+        Friend.saveUnreadMessage(message, done: { () -> Void in
+            if self.navigationController?.tabBarController?.selectedIndex == 0 {
+                if self.navigationController?.topViewController == self {
+                    self.reloadUI()
+                }
+            }
+        })
+    }
+    
+    func isTalkingWithJid(jid: XMPPJID) -> Bool {
+        if let vc = self.navigationController?.topViewController as? MessageViewController {
+            if vc.roster.jid.isEqualToJID(jid, options: XMPPJIDCompareUser) {
+                return true
+            }
+        }
+        return false
     }
 }
 

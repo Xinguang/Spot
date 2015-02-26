@@ -20,6 +20,13 @@ class MessageViewController: JSQMessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let friend = Friend(ofJid: roster.jidStr)
+        if friend != nil {
+            friend.unreadMessagesValue = 0
+            friend.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
+        }
+        
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"), name: kXMPPDidReceivevCardTemp, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"), name: kXMPPDidReceiveAvata, object: nil)
         

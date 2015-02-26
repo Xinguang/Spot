@@ -176,11 +176,11 @@ class XMPPManager: NSObject {
         xmppStream.sendElement(XMPPPresence(type: "unavailable"))
     }
     
-    func addFriend(friend: Friend) {
-        let jid = XMPPJID.jidWithString(friend.accountName)
-        // TODO: nickName
-        xmppRoster.addUser(jid, withNickname: friend.displayName)
-    }
+//    func addFriend(friend: Friend) {
+//        let jid = XMPPJID.jidWithString(friend.accountName)
+//        // TODO: nickName
+//        xmppRoster.addUser(jid, withNickname: friend.displayName)
+//    }
     
     func updateMyName(name: String) {
         var myvCardTemp = xmppvCardTempModule.myvCardTemp
@@ -310,44 +310,26 @@ extension XMPPManager: XMPPStreamDelegate {
     }
     
     func xmppStream(sender: XMPPStream!, didReceiveMessage message: XMPPMessage!) {
-//        if let friend = Friend.MR_findFirstByAttribute("accountName", withValue: message.from().bare()) as? Friend {
-//            
-//            if message.isErrorMessage() {
-//                println(message.errorMessage())
-//            } else if message.hasChatState() {
-//                // TODO: save chat state
-//            }
-//            
-//            if message.hasReceiptResponse() && !message.isErrorMessage() {
-//                // TODO: save response
-//            }
-//            
-//            if message.isMessageWithBody() && !message.isErrorMessage() {
-//                let body = message.elementForName("body").stringValue()
-//                let date = message.delayedDeliveryDate()
-//                
-//                let messageDB = SpotMessage.MR_createEntity() as SpotMessage
-//                messageDB.incoming = true as Bool
-//                messageDB.text = body
-//                
-//                if date != nil {
-//                    messageDB.createAt = date
-//                }
-//                
-//                messageDB.messageId = message.elementID()
-//                
-//                friend.lastMessageDate = messageDB.createAt
-//                
-//                messageDB.friend = friend
-//                
-//                NSManagedObjectContext.MR_contextForCurrentThread().MR_saveToPersistentStoreWithCompletion({ (b, error) -> Void in
-//                    let m = messageDB.MR_inThreadContext() as SpotMessage
-//                    SpotMessage.showLocalNotificationForMessage(m)
-//                })
-//            }
-//        }
+        if UIApplication.sharedApplication().applicationState != .Active {
+            Friend.saveUnreadMessage(message, done: { () -> Void in
+                self.showLocalNotification(message)
+            })
+        } else {
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                NSNotificationCenter.defaultCenter().postNotificationName(kXMPPReceivedMessage, object: message)
+            })
+        }
+    }
+    
+    func showLocalNotification(message: XMPPMessage) {
+        let notification = UILocalNotification()
+        notification.soundName = UILocalNotificationDefaultSoundName
+        notification.applicationIconBadgeNumber = Friend.numberOfUnreadMessages()
+        notification.alertBody = "\(fromStrOfMessage(message)): \(message.body())"
         
+        notification.userInfo = ["kNotificationFriendAccountName" : message.fromStr()]
         
+        UIApplication.sharedApplication().presentLocalNotificationNow(notification)
     }
 }
 
@@ -471,6 +453,17 @@ extension XMPPManager {
     
     func userForJID(jid: XMPPJID) -> XMPPUserCoreDataStorageObject? {
         return xmppRosterStorage.userForJID(jid, xmppStream: xmppStream, managedObjectContext: xmppRosterStorage.mainThreadManagedObjectContext)
+    }
+    
+    func fromStrOfMessage(message: XMPPMessage) -> String {
+        var from = message.from().user
+    
+        if let user = self.xmppvCardTempModule.vCardTempForJID(message.from(), shouldFetch: false) {
+            from = user.formattedName ?? message.from().user
+        }
+        
+        return from
+
     }
     
 }

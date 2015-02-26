@@ -1,10 +1,12 @@
 #import "_Friend.h"
+#import <XMPPMessage.h>
+
 @import UIKit;
 
 @interface Friend : _Friend {}
 
-- (void)setAllMessagesRead;
-- (NSInteger)numberOfUnreadMessages;
-- (UIImage *)avatarImage;
++ (NSInteger)numberOfUnreadMessages;
++ (Friend *)friendOfJid: (NSString *)jidStr;
++ (void)saveUnreadMessage: (XMPPMessage *)message done:(void(^)())done;
 
 @end
