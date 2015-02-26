@@ -12,6 +12,8 @@ class AddFriendSelectViewController: UITableViewController {
 
     var searchController :UISearchController!
     
+    @IBOutlet weak var searchBarCell: UITableViewCell!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,8 +24,15 @@ class AddFriendSelectViewController: UITableViewController {
         searchController.searchBar.placeholder = "現場TOMOID"
         tableView.tableHeaderView = searchController.searchBar
         
+//        searchBarCell.contentView.addSubview(searchController.searchBar)
+//        searchController.searchBar.setTranslatesAutoresizingMaskIntoConstraints(false)
+//        searchBarCell.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[searchBar]|", options: nil, metrics: nil, views: ["searchBar" : searchController.searchBar]))
+//        
+//        searchBarCell.contentView.addConstraint(NSLayoutConstraint(item: searchController.searchBar, attribute: NSLayoutAttribute.CenterY, relatedBy: .Equal, toItem: searchBarCell.contentView, attribute: .CenterY, multiplier: 1.0, constant: 0))
+        
+//        searchBarCell.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[searchBar]-|", options: nil, metrics: nil, views: ["searchBar" : searchController.searchBar]))
+        
         searchController.delegate = self
-        searchController.dimsBackgroundDuringPresentation = false // default is YES
         searchController.searchBar.delegate = self    // so we can monitor text changes + others
         
         // Search is now just presenting a view controller. As such, normal view controller
@@ -37,7 +46,34 @@ class AddFriendSelectViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = UIColor(hexString: "#EFEFF4")
+        
+        let label = UILabel()
+        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.font = UIFont.systemFontOfSize(14)
+        // TODO: 
+        let jid = XMPPJID.jidWithString(XMPPManager.instance.account.username)
+        label.text = "私の現場トモID:\(jid.user)"
+        view.addSubview(label)
+        
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[label]", options: nil, metrics: nil, views: ["label" : label]))
+        view.addConstraint(NSLayoutConstraint(item: label, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0))
+        
+        return view
+    }
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        if section == 1 {
+//            return 50
+//        }
+        
+        return 50
+    }
 
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
     /*
     // MARK: - Navigation
 

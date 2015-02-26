@@ -19,6 +19,7 @@
 #import "JSQMessages.h"
 #import "JSBadgeView.h"
 #import "NYXImagesKit.h"
+#import "UIColor+HexString.h"
 
 #define HAVE_XMPP_SUBSPEC_BANDWIDTHMONITOR
 #define HAVE_XMPP_SUBSPEC_GOOGLESHAREDSTATUS

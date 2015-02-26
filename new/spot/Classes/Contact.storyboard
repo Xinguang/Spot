@@ -5,7 +5,7 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--アドレス帳-->
+        <!--携帯連絡先-->
         <scene sceneID="ElP-ne-smH">
             <objects>
                 <viewController id="4nb-mH-6tG" customClass="AddressContactViewController" customModule="spot" customModuleProvider="target" sceneMemberID="viewController">
@@ -96,38 +96,108 @@
                             <constraint firstItem="hY3-Lk-RXq" firstAttribute="top" secondItem="L3L-sS-Jx6" secondAttribute="bottom" id="vSe-aB-VYA"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="アドレス帳" id="ufv-f2-h18">
-                        <barButtonItem key="rightBarButtonItem" image="contacts_add_friend" id="1DE-ek-qTt"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="携帯連絡先" id="ufv-f2-h18"/>
                     <connections>
                         <outlet property="tableView" destination="L3L-sS-Jx6" id="AcR-So-T03"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pT8-XU-qV0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="579" y="-63"/>
+            <point key="canvasLocation" x="1299" y="550"/>
         </scene>
         <!--友人の追加-->
         <scene sceneID="mQy-AZ-CAp">
             <objects>
                 <tableViewController id="ej9-3F-zzQ" customClass="AddFriendSelectViewController" customModule="spot" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Bpi-Rf-IfM">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="40" sectionFooterHeight="10" id="Bpi-Rf-IfM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
                             <tableViewSection id="GC2-Bm-QZy">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="VEW-ur-txt">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="45" id="VEW-ur-txt">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VEW-ur-txt" id="c3n-h8-4CN">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add_friend_icon_contacts" translatesAutoresizingMaskIntoConstraints="NO" id="1Jm-rZ-Qd1">
+                                                    <rect key="frame" x="8" y="10" width="25" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="25" id="A9m-ig-RKg"/>
+                                                        <constraint firstAttribute="height" constant="25" id="csb-ue-INE"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="携帯連絡先" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IvM-6O-eiZ">
+                                                    <rect key="frame" x="55" y="12.5" width="85" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="1Jm-rZ-Qd1" secondAttribute="centerY" id="BCD-Se-6Bo"/>
+                                                <constraint firstAttribute="centerY" secondItem="IvM-6O-eiZ" secondAttribute="centerY" id="Tbs-bh-iPg"/>
+                                                <constraint firstItem="IvM-6O-eiZ" firstAttribute="leading" secondItem="1Jm-rZ-Qd1" secondAttribute="trailing" constant="22" id="kER-hx-D2U"/>
+                                                <constraint firstItem="1Jm-rZ-Qd1" firstAttribute="leading" secondItem="c3n-h8-4CN" secondAttribute="leading" constant="8" id="lAt-Rb-6sE"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="4nb-mH-6tG" kind="push" id="0Lb-bB-tek"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="45" id="ibq-Ob-8UY">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ibq-Ob-8UY" id="qw1-ZB-Sqj">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Friends_QQ_icon" translatesAutoresizingMaskIntoConstraints="NO" id="TCw-rE-ojS">
+                                                    <rect key="frame" x="8" y="10" width="25" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="1Qy-Mu-hKn"/>
+                                                        <constraint firstAttribute="width" constant="25" id="afL-Mr-u2F"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QQ連絡先" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OxK-Ru-LRf">
+                                                    <rect key="frame" x="55" y="12.5" width="77" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="OxK-Ru-LRf" secondAttribute="centerY" id="E2R-Uo-3QG"/>
+                                                <constraint firstAttribute="centerY" secondItem="TCw-rE-ojS" secondAttribute="centerY" id="ocj-aC-xaX"/>
+                                                <constraint firstItem="TCw-rE-ojS" firstAttribute="leading" secondItem="qw1-ZB-Sqj" secondAttribute="leading" constant="8" id="q4m-YV-7vA"/>
+                                                <constraint firstItem="OxK-Ru-LRf" firstAttribute="leading" secondItem="TCw-rE-ojS" secondAttribute="trailing" constant="22" id="wC9-mX-Gz6"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="9Tz-VA-Tld">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="45" id="yHf-oJ-6Rh">
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Tz-VA-Tld" id="Y1D-7L-I5D">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yHf-oJ-6Rh" id="Pu9-gL-ptP">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wechat_icon" translatesAutoresizingMaskIntoConstraints="NO" id="QCp-F3-DhK">
+                                                    <rect key="frame" x="8" y="10" width="25" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="UB9-Cd-3Un"/>
+                                                        <constraint firstAttribute="width" constant="25" id="sNa-1E-6MO"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微信連絡先" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Gv-aw-fjX">
+                                                    <rect key="frame" x="55" y="12.5" width="85" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="QCp-F3-DhK" firstAttribute="leading" secondItem="Pu9-gL-ptP" secondAttribute="leading" constant="8" id="VcB-Z1-Y43"/>
+                                                <constraint firstAttribute="centerY" secondItem="QCp-F3-DhK" secondAttribute="centerY" id="bVg-D0-XhH"/>
+                                                <constraint firstAttribute="centerY" secondItem="4Gv-aw-fjX" secondAttribute="centerY" id="gwg-77-F0B"/>
+                                                <constraint firstItem="4Gv-aw-fjX" firstAttribute="leading" secondItem="QCp-F3-DhK" secondAttribute="trailing" constant="22" id="woA-mb-5Ia"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -139,6 +209,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="友人の追加" id="ljd-f4-UWQ"/>
+                    <connections>
+                        <outlet property="searchBarCell" destination="VEW-ur-txt" id="1wE-ZZ-DxU"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dd9-CX-vBO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -343,8 +416,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Friends_QQ_icon" width="25" height="25"/>
+        <image name="add_friend_icon_contacts" width="36" height="36"/>
         <image name="avatar" width="80" height="80"/>
         <image name="contacts_add_friend" width="28" height="30"/>
+        <image name="wechat_icon" width="60" height="60"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

@@ -26,6 +26,7 @@ PODS:
   - Reveal-iOS-SDK (1.5.1)
   - SSKeychain (1.2.2)
   - SVProgressHUD (1.1.2)
+  - UIColor-HexString (1.1.0)
   - XMPPFramework (3.6.4):
     - XMPPFramework/Authentication
     - XMPPFramework/BandwidthMonitor
@@ -180,6 +181,7 @@ DEPENDENCIES:
   - Reveal-iOS-SDK
   - SSKeychain
   - SVProgressHUD
+  - UIColor-HexString
   - XMPPFramework
 
 SPEC CHECKSUMS:
@@ -199,6 +201,7 @@ SPEC CHECKSUMS:
   Reveal-iOS-SDK: dcfeb671c7da222c85f18f866da2ce88de075524
   SSKeychain: cc48bd3ad24fcd9125adb9e0d23dd50b8bbd08b9
   SVProgressHUD: da7a49e789af645d9279ffbca62318945a832438
+  UIColor-HexString: a9eabf02c1a2f9036ed6ac9cb2a3ea086f3b39e4
   XMPPFramework: 5a8555132822ebb3e11d2bac0258e62754315bc5
 
 COCOAPODS: 0.34.4
