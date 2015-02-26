@@ -40,7 +40,9 @@ class AccountEditViewController: UITableViewController {
             nameLabel.text = XMPPManager.instance.xmppvCardTempModule.myvCardTemp.formattedName
         }
         
-        idLabel.text = user.username
+        // TODO: 
+        let jid = XMPPJID.jidWithString(user.username)
+        idLabel.text = jid.user
     }
     
     override func didReceiveMemoryWarning() {

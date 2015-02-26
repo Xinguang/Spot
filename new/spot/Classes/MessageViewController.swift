@@ -31,8 +31,8 @@ class MessageViewController: JSQMessagesViewController {
         
         self.meImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(XMPPManager.instance.account.avatarImage(), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
         
-        let rosterImage = UIImage(data: XMPPManager.instance.xmppvCardAvatarModule.photoDataForJID(roster.jid))
-        self.friendImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(rosterImage ?? UIImage(named: "avatar"), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
+        let rosterImage = XMPPManager.instance.photoOfJid(roster.jid)
+        self.friendImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(rosterImage, diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
         
         frc = XMPPMessageArchiving_Message_CoreDataObject.MR_fetchAllGroupedBy(nil, withPredicate: NSPredicate(format: "bareJidStr=%@", argumentArray: [roster.jidStr]), sortedBy: "timestamp", ascending: true, inContext: XMPPManager.instance.xmppMessageArchivingCoreDataStorage.mainThreadManagedObjectContext)
         frc.delegate = self

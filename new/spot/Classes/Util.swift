@@ -23,6 +23,12 @@ class Util: NSObject {
         return UINib(nibName: name, bundle: nil).instantiateWithOwner(self, options: nil)[0] as UIView
     }
  
+    class func enterMessageViewControllerWithJid(jid: XMPPJID, from: UIViewController) {
+        if let user = XMPPManager.instance.userForJID(jid) {
+            enterMessageViewControllerWithFriend(user, from: from)
+        }
+    }
+    
     class func enterMessageViewControllerWithFriend(roster: XMPPUserCoreDataStorageObject, from: UIViewController) {
         // TODO: setAllMessagesRead
         let messageViewController = Util.createViewControllerWithIdentifier(nil, storyboardName: "Message") as MessageViewController

@@ -1,6 +1,7 @@
 #import "User.h"
 #import <SSKeychain.h>
 #import <XMPPvCardTemp.h>
+#import <JSQMessagesAvatarImageFactory.h>
 
 @interface User ()
 
@@ -21,11 +22,23 @@ NSString *kSpotServiceName = @"jp.co.e-bussiness.spot.Spot";
 }
 
 - (UIImage *)avatarImage {
+    UIImage *orgImage = [UIImage imageNamed:@"avatar"];
+    
+//    if let data = XMPPManager.instance.xmppvCardAvatarModule.photoDataForJID(jid) {
+//        orgImage = UIImage(data: data)
+//    }
+//    
+//    let image = JSQMessagesAvatarImageFactory.avatarImageWithImage(orgImage, diameter: 75)
+//    
+//    return image.avatarImage
+    
     if (self.avatarData) {
-        return [UIImage imageWithData:self.avatarData];
+        orgImage = [UIImage imageWithData:self.avatarData];
     }
     
-    return [UIImage imageNamed:@"avatar"];
+    JSQMessagesAvatarImage *image = [JSQMessagesAvatarImageFactory avatarImageWithImage:orgImage diameter:75];
+    
+    return image.avatarImage;
 }
 
 - (void)updateWithVcard:(XMPPvCardAvatarModule *)card {

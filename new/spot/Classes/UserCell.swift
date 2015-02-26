@@ -25,7 +25,9 @@ class UserCell: UITableViewCell {
             } else {
                 nameLabel.text = ""
             }
-            idLabel.text = user.username
+            // TODO: 
+            let jid = XMPPJID.jidWithString(user.username)
+            idLabel.text = jid.user
         }
     }
     

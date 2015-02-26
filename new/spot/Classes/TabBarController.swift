@@ -16,6 +16,10 @@ class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.delegate = self
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("enterMessageViewController:"), name:kXMPPEnterMessageViewController, object: nil)
 
         setupViewControllers()
         
@@ -41,14 +45,35 @@ class TabBarController: UITabBarController {
         self.viewControllers = viewControllers
     }
     
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func enterMessageViewController(notification: NSNotification) {
+        let jid = notification.object as XMPPJID
+        
+        selectedIndex = 0
+        
+        let talkVC = (selectedViewController as UINavigationController).topViewController as TalkViewController
+        Util.enterMessageViewControllerWithJid(jid, from: talkVC)
     }
-    */
+    
+    func enterMessageViewControllerWithJid(jid: XMPPJID) {
+        selectedIndex = 0
+        
+        let talkVC = (selectedViewController as UINavigationController).topViewController as TalkViewController
+        Util.enterMessageViewControllerWithJid(jid, from: talkVC)
+    }
 
+}
+
+extension TabBarController: UITabBarControllerDelegate {
+    
+    func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
+        if viewController is UINavigationController {
+            if (viewController as UINavigationController).topViewController is ContactDetailViewController {
+                (viewController as UINavigationController).popViewControllerAnimated(false)
+            }
+        }
+        
+        return true
+    }
 }

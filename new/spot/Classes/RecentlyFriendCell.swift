@@ -22,10 +22,10 @@ class RecentlyFriendCell: UITableViewCell {
 //            self.friendNameLabel.text = friend.bareJidStr ?? "友人の名前"
             
             if let vCard = XMPPManager.instance.xmppvCardTempModule.vCardTempForJID(friend.bareJid, shouldFetch: true) {
-                friendNameLabel.text = vCard.formattedName ?? friend.bareJidStr
+                friendNameLabel.text = vCard.formattedName ?? friend.bareJid.user
 
             } else {
-              friendNameLabel.text = friend.bareJidStr
+              friendNameLabel.text = friend.bareJid.user
             }
             
             

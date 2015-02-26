@@ -453,17 +453,24 @@ extension XMPPManager {
 
 }
 
-// MARK: - Photo
+// MARK: - Support
 
 extension XMPPManager {
     
     func photoOfJid(jid: XMPPJID) -> UIImage {
+        var orgImage = UIImage(named: "avatar")
+        
         if let data = XMPPManager.instance.xmppvCardAvatarModule.photoDataForJID(jid) {
-            return UIImage(data: data)!
+            orgImage = UIImage(data: data)
         }
         
-        return UIImage(named: "avatar")!
+        let image = JSQMessagesAvatarImageFactory.avatarImageWithImage(orgImage, diameter: 75)
+
+        return image.avatarImage
     }
     
+    func userForJID(jid: XMPPJID) -> XMPPUserCoreDataStorageObject? {
+        return xmppRosterStorage.userForJID(jid, xmppStream: xmppStream, managedObjectContext: xmppRosterStorage.mainThreadManagedObjectContext)
+    }
     
 }

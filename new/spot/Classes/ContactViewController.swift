@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContactViewController: UIViewController {
+class ContactViewController: BaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -57,6 +57,7 @@ class ContactViewController: UIViewController {
     func reloadUI() {
         tableView.reloadData()
     }
+    
     /*
     // MARK: - Navigation
 
@@ -132,9 +133,9 @@ extension ContactViewController: UITableViewDataSource, UITableViewDelegate {
 //            imageView.image = friend.avatarImage()
         
         if let vCard = XMPPManager.instance.xmppvCardTempModule.vCardTempForJID(roster.jid, shouldFetch: true) {
-            label.text = vCard.formattedName ?? roster.jidStr
+            label.text = vCard.formattedName ?? roster.jid.user
         } else {
-            label.text = roster.jidStr
+            label.text = roster.jid.user
         }
         
         imageView.image = XMPPManager.instance.photoOfJid(roster.jid)

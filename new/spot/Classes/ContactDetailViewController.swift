@@ -8,9 +8,10 @@
 
 import UIKit
 
-class ContactDetailViewController: UIViewController {
+class ContactDetailViewController: BaseViewController {
 
     var jid: XMPPJID!
+    var isFromMessageViewController = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,8 +80,23 @@ extension ContactDetailViewController: UITableViewDataSource, UITableViewDelegat
     }
 }
 
+// MARK: - ContactDetailFooterViewDelegate
+
 extension ContactDetailViewController: ContactDetailFooterViewDelegate {
+    
     func didTappedChatBtn(footerView: ContactDetailFooterView) {
-        
+        if isFromMessageViewController {
+            self.navigationController?.popViewControllerAnimated(true)
+        } else {
+            
+            let tabController = self.navigationController?.tabBarController as? TabBarController
+            
+//            self.navigationController?.popViewControllerAnimated(false)
+            
+            tabController?.enterMessageViewControllerWithJid(jid)
+
+//            NSNotificationCenter.defaultCenter().postNotificationName(kXMPPEnterMessageViewController, object: jid)
+
+        }
     }
 }

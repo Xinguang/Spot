@@ -31,7 +31,7 @@ class ContactDetailHeaderView: UITableViewHeaderFooterView {
         
         if let vCard = XMPPManager.instance.xmppvCardTempModule.vCardTempForJID(jid, shouldFetch: true) {
 //            let sexImageName = vCard
-            nameLabel.text = vCard.formattedName
+            nameLabel.text = vCard.formattedName ?? "匿名"
         }
     }
 }
