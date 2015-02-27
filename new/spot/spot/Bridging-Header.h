@@ -22,6 +22,9 @@
 #import "UIColor+HexString.h"
 #import "JSONModel.h"
 #import "GPSModel.h"
+#import <TencentOpenAPI/TencentOAuth.h>
+#import <TencentOpenAPI/QQApi.h>
+#import <TencentOpenAPI/QQApiInterface.h>
 
 #define HAVE_XMPP_SUBSPEC_BANDWIDTHMONITOR
 #define HAVE_XMPP_SUBSPEC_GOOGLESHAREDSTATUS

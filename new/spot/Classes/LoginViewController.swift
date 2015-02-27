@@ -92,6 +92,79 @@ class LoginViewController: BaseViewController {
         isAnonymousLogin = true
         UserController.anonymousLogin()
     }
+    
+    @IBAction func wxBtnTapped(sender: AnyObject) {
+        SNSController.instance.wxCheckAuth({ (res) -> () in
+            ///////////////////////////////////////////////
+            let account = User.MR_createEntity() as User
+            
+            account.username = res["nickname"] as? String;
+            
+            account.uniqueIdentifier = NSUUID().UUIDString.lowercaseString
+            
+            account.password = NSUUID().UUIDString.lowercaseString
+            
+            
+            println(res)
+            ///////////////////////////////////////////////
+            self.performSegueWithIdentifier("SegueTabBar", sender: nil)
+            }, failure: { (errCode, errMessage) -> () in
+                println(errMessage)
+        })
+    }
+    
+    @IBAction func qqBtnTapped(sender: AnyObject) {
+        //self.test()
+        //QQ auth
+        SNSController.instance.qqCheckAuth({ (res) -> () in
+            println(res)
+            self.test()
+            self.performSegueWithIdentifier("SegueTabBar", sender: nil)
+            }, failure: { (errCode, errMessage) -> () in
+                println(errMessage)
+        })
+
+    }
+    func test(){
+        //
+        //SNSController.instance.qqShare(0, title: "分享测试", description: "分享内容", url: "http://e-business.co.jp")
+        //SNSController.instance.wxShare(0,  title: "wx分享测试", description: "wx分享内容")
+        
+        
+        
+        
+        let select = ParseUserInfoModel()
+        select.find(ParseUserInfoModel.self, complete: { (result) -> () in
+            if let res = result {
+                for o in res {
+                    println(o)
+                    println("openids")
+                    println(o.openids)
+                    for sns in o.openids{
+                        println(sns.access_token)
+                    }
+                }
+            }
+            
+        })
+        /*
+        let select = ParseUserInfoModel()
+        select.objectId = "N7yMQYQYVm"
+        select.nickname = "nicknameValue"
+        let sns = ParseSNSModel(openid: "openid", access_token: "token1", refresh_token: "token2", expirationDate: "dateeeee")
+        sns.objectId = "Nk2St1QVYU"
+        //select.openids = [sns,sns]
+        let pf = select.toPFObject()
+        println(pf)
+        pf.saveInBackgroundWithBlock({ (isok, error) -> Void in
+        //select.initWithPFObject(pf)
+        println(select)
+        
+        })
+        */
+        
+        
+    }
 
 }
 

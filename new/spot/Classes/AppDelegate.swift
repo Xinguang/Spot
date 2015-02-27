@@ -87,11 +87,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //////////////////////////////////////////////////////
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
         //SDK_QQhelper.getCallbakc(url)
-        return WXApi.handleOpenURL(url, delegate: SNSController.instance)//||TencentOAuth.HandleOpenURL(url);
+        return WXApi.handleOpenURL(url, delegate: SNSController.instance)||TencentOAuth.HandleOpenURL(url);
     }
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
         //SDK_QQhelper.getCallbakc(url)
-        return WXApi.handleOpenURL(url, delegate: SNSController.instance)//||TencentOAuth.HandleOpenURL(url);
+        return WXApi.handleOpenURL(url, delegate: SNSController.instance)||TencentOAuth.HandleOpenURL(url);
     }
 
     func application( application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData ) {

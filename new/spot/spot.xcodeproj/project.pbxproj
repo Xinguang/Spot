@@ -21,7 +21,18 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		178AE0451A8CBAAA00D91542 /* SNSController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178AE0441A8CBAAA00D91542 /* SNSController.swift */; };
+		1737A4941AA03C0F007B8281 /* SNSController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1737A4911AA03C0F007B8281 /* SNSController.swift */; };
+		1737A4951AA03C0F007B8281 /* SNSQQController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1737A4921AA03C0F007B8281 /* SNSQQController.swift */; };
+		1737A4961AA03C0F007B8281 /* SNSWXController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1737A4931AA03C0F007B8281 /* SNSWXController.swift */; };
+		1737A4A11AA03C5C007B8281 /* ParseDeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1737A4991AA03C5C007B8281 /* ParseDeviceModel.swift */; };
+		1737A4A21AA03C5C007B8281 /* ParseMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1737A49A1AA03C5C007B8281 /* ParseMessageModel.swift */; };
+		1737A4A31AA03C5C007B8281 /* ParseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1737A49B1AA03C5C007B8281 /* ParseModel.swift */; };
+		1737A4A41AA03C5C007B8281 /* ParseSNSModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1737A49C1AA03C5C007B8281 /* ParseSNSModel.swift */; };
+		1737A4A51AA03C5C007B8281 /* ParseStationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1737A49D1AA03C5C007B8281 /* ParseStationModel.swift */; };
+		1737A4A61AA03C5C007B8281 /* ParseTagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1737A49E1AA03C5C007B8281 /* ParseTagModel.swift */; };
+		1737A4A71AA03C5C007B8281 /* ParseUserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1737A49F1AA03C5C007B8281 /* ParseUserInfoModel.swift */; };
+		1737A4A81AA03C5C007B8281 /* ParseUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1737A4A01AA03C5C007B8281 /* ParseUserModel.swift */; };
+		1737A4AA1AA03EA4007B8281 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1737A4A91AA03EA4007B8281 /* StringExtension.swift */; };
 		178AE0511A8DC27300D91542 /* GCD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178AE0471A8DC27300D91542 /* GCD.swift */; };
 		178AE0521A8DC27300D91542 /* Net.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178AE0481A8DC27300D91542 /* Net.swift */; };
 		178AE0531A8DC27300D91542 /* NetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178AE0491A8DC27300D91542 /* NetData.swift */; };
@@ -106,7 +117,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		178AE0441A8CBAAA00D91542 /* SNSController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SNSController.swift; path = Classes/SNSController.swift; sourceTree = "<group>"; };
+		1737A4911AA03C0F007B8281 /* SNSController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SNSController.swift; path = Classes/SNSController.swift; sourceTree = "<group>"; };
+		1737A4921AA03C0F007B8281 /* SNSQQController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SNSQQController.swift; path = Classes/SNSQQController.swift; sourceTree = "<group>"; };
+		1737A4931AA03C0F007B8281 /* SNSWXController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SNSWXController.swift; path = Classes/SNSWXController.swift; sourceTree = "<group>"; };
+		1737A4991AA03C5C007B8281 /* ParseDeviceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseDeviceModel.swift; sourceTree = "<group>"; };
+		1737A49A1AA03C5C007B8281 /* ParseMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseMessageModel.swift; sourceTree = "<group>"; };
+		1737A49B1AA03C5C007B8281 /* ParseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseModel.swift; sourceTree = "<group>"; };
+		1737A49C1AA03C5C007B8281 /* ParseSNSModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseSNSModel.swift; sourceTree = "<group>"; };
+		1737A49D1AA03C5C007B8281 /* ParseStationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseStationModel.swift; sourceTree = "<group>"; };
+		1737A49E1AA03C5C007B8281 /* ParseTagModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseTagModel.swift; sourceTree = "<group>"; };
+		1737A49F1AA03C5C007B8281 /* ParseUserInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseUserInfoModel.swift; sourceTree = "<group>"; };
+		1737A4A01AA03C5C007B8281 /* ParseUserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseUserModel.swift; sourceTree = "<group>"; };
+		1737A4A91AA03EA4007B8281 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtension.swift; path = Classes/StringExtension.swift; sourceTree = "<group>"; };
 		178AE0471A8DC27300D91542 /* GCD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCD.swift; sourceTree = "<group>"; };
 		178AE0481A8DC27300D91542 /* Net.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Net.swift; sourceTree = "<group>"; };
 		178AE0491A8DC27300D91542 /* NetData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetData.swift; sourceTree = "<group>"; };
@@ -225,6 +247,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1737A4901AA03BDC007B8281 /* SNS */ = {
+			isa = PBXGroup;
+			children = (
+				1737A4911AA03C0F007B8281 /* SNSController.swift */,
+				1737A4921AA03C0F007B8281 /* SNSQQController.swift */,
+				1737A4931AA03C0F007B8281 /* SNSWXController.swift */,
+			);
+			name = SNS;
+			sourceTree = "<group>";
+		};
+		1737A4981AA03C5C007B8281 /* Parse */ = {
+			isa = PBXGroup;
+			children = (
+				1737A4991AA03C5C007B8281 /* ParseDeviceModel.swift */,
+				1737A49A1AA03C5C007B8281 /* ParseMessageModel.swift */,
+				1737A49B1AA03C5C007B8281 /* ParseModel.swift */,
+				1737A49C1AA03C5C007B8281 /* ParseSNSModel.swift */,
+				1737A49D1AA03C5C007B8281 /* ParseStationModel.swift */,
+				1737A49E1AA03C5C007B8281 /* ParseTagModel.swift */,
+				1737A49F1AA03C5C007B8281 /* ParseUserInfoModel.swift */,
+				1737A4A01AA03C5C007B8281 /* ParseUserModel.swift */,
+			);
+			path = Parse;
+			sourceTree = "<group>";
+		};
 		178AE0461A8DC27300D91542 /* Net */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,6 +298,7 @@
 		296623A11A898E4F002608EF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				1737A4A91AA03EA4007B8281 /* StringExtension.swift */,
 				296623A21A898E70002608EF /* SpotConstants.swift */,
 				DCB539211A81B7BE00C216D7 /* Util.swift */,
 			);
@@ -483,6 +531,7 @@
 		DCB539131A81B00700C216D7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1737A4981AA03C5C007B8281 /* Parse */,
 				298FE3AD1A956FAD007AB117 /* Friend.h */,
 				298FE3AE1A956FAD007AB117 /* Friend.m */,
 				298FE3B11A956FAD007AB117 /* SNS.h */,
@@ -539,9 +588,11 @@
 		DCB539171A81B04700C216D7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1737A4901AA03BDC007B8281 /* SNS */,
 				DCF538EA1A82244800C83FE5 /* gpx.json */,
 				29EE09C01AA4B3A5005F6509 /* UserController.swift */,
 				178AE0441A8CBAAA00D91542 /* SNSController.swift */,
+
 				2966239F1A898D41002608EF /* DatabaseManager.swift */,
 				296623E01A8D89E8002608EF /* XMPP */,
 				29BE112C1AA476100087287F /* MapDataConroller.swift */,
@@ -700,6 +751,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1737A4941AA03C0F007B8281 /* SNSController.swift in Sources */,
 				178AE0571A8DC27300D91542 /* NetResponseData.swift in Sources */,
 				296623A01A898D41002608EF /* DatabaseManager.swift in Sources */,
 				178AE0531A8DC27300D91542 /* NetData.swift in Sources */,
@@ -712,7 +764,6 @@
 				DCD9CB891A84BC01009C4468 /* AccountViewController.swift in Sources */,
 				298FE3BA1A956FAD007AB117 /* SNS.m in Sources */,
 				DC4109D21A81C50A00E11CAB /* NSArray.swift in Sources */,
-				178AE0451A8CBAAA00D91542 /* SNSController.swift in Sources */,
 				DC4109CC1A81C50A00E11CAB /* Dictionary.swift in Sources */,
 				29EE09F51AA4B801005F6509 /* LoadingViewController.swift in Sources */,
 				298FE3CA1A956FBC007AB117 /* _Friend.m in Sources */,
@@ -726,18 +777,21 @@
 				178AE0521A8DC27300D91542 /* Net.swift in Sources */,
 				DC4109E21A81CDEB00E11CAB /* Model.xcdatamodeld in Sources */,
 				298FE3CE1A956FBC007AB117 /* _User.m in Sources */,
+				1737A4A61AA03C5C007B8281 /* ParseTagModel.swift in Sources */,
 				DCB539261A81BE0B00C216D7 /* BaseViewController.swift in Sources */,
 				178AE0511A8DC27300D91542 /* GCD.swift in Sources */,
 				2989E0C41A98A8A100029F6B /* UserCell.swift in Sources */,
 				296623A31A898E70002608EF /* SpotConstants.swift in Sources */,
 				293DC7BA1A9DD81600332124 /* ContactDetailFooterView.swift in Sources */,
 				296623B01A8C4C29002608EF /* FriendSearchResultTableViewController.swift in Sources */,
+				1737A4A71AA03C5C007B8281 /* ParseUserInfoModel.swift in Sources */,
 				296623D01A8C990E002608EF /* XMPPAccount.swift in Sources */,
 				178AE0541A8DC27300D91542 /* NetDownloadTask.swift in Sources */,
 				2911ACEA1A96E37A00DF1F84 /* RecentlyFriendCell.swift in Sources */,
 				296623AD1A8C47F5002608EF /* AddFriendSelectViewController.swift in Sources */,
 				296623AB1A89C586002608EF /* XMPPManager.swift in Sources */,
 				29F5D4241A996D1F00D0AF54 /* AccountEditViewController.swift in Sources */,
+				1737A4A21AA03C5C007B8281 /* ParseMessageModel.swift in Sources */,
 				DC4109CB1A81C50A00E11CAB /* Character.swift in Sources */,
 				DC4109CE1A81C50A00E11CAB /* ExSwift.swift in Sources */,
 				296623DC1A8CA28C002608EF /* XMPPSearchReported.m in Sources */,
@@ -745,24 +799,32 @@
 				29BE112F1AA5753C0087287F /* UserAnnotation.swift in Sources */,
 				29BE112D1AA476100087287F /* MapDataConroller.swift in Sources */,
 				29BE110E1AA46A120087287F /* GPSModel.m in Sources */,
+				1737A4A81AA03C5C007B8281 /* ParseUserModel.swift in Sources */,
 				DC410A0A1A8200EA00E11CAB /* ContactCell.swift in Sources */,
+				1737A4A41AA03C5C007B8281 /* ParseSNSModel.swift in Sources */,
+				1737A4A31AA03C5C007B8281 /* ParseModel.swift in Sources */,
 				178AE0581A8DC27300D91542 /* NetUploadTask.swift in Sources */,
 				296623E41A8DFD2B002608EF /* ContactViewController.swift in Sources */,
 				29EE09C11AA4B3A5005F6509 /* UserController.swift in Sources */,
 				178AE0591A8DC27300D91542 /* Reachability.swift in Sources */,
+				1737A4A11AA03C5C007B8281 /* ParseDeviceModel.swift in Sources */,
 				DC4109D41A81C50A00E11CAB /* Range.swift in Sources */,
 				DCB539201A81B65B00C216D7 /* AppDelegate.swift in Sources */,
 				DC4109CA1A81C50A00E11CAB /* Array.swift in Sources */,
 				DC4109B81A81C15200E11CAB /* TabBarController.swift in Sources */,
 				DCC671DC1A82089B001781ED /* MapViewController.swift in Sources */,
 				DC4109D61A81C50A00E11CAB /* String.swift in Sources */,
+				1737A4951AA03C0F007B8281 /* SNSQQController.swift in Sources */,
 				178AE0561A8DC27300D91542 /* NetRequestSerialization.swift in Sources */,
 				DC4109CD1A81C50A00E11CAB /* Double.swift in Sources */,
+				1737A4961AA03C0F007B8281 /* SNSWXController.swift in Sources */,
 				297235A71A9DC34A006E5F32 /* ContactDetailHeaderView.swift in Sources */,
+				1737A4A51AA03C5C007B8281 /* ParseStationModel.swift in Sources */,
 				296623DB1A8CA28C002608EF /* XMPPSearchNode.m in Sources */,
 				298FE3B81A956FAD007AB117 /* Friend.m in Sources */,
 				DC4109D81A81C84600E11CAB /* TalkViewController.swift in Sources */,
 				296623DD1A8CA28C002608EF /* XMPPSearchResult.m in Sources */,
+				1737A4AA1AA03EA4007B8281 /* StringExtension.swift in Sources */,
 				296623A61A89A640002608EF /* XMPPCreateAccountViewController.swift in Sources */,
 				29E623351A9B004A00383DEA /* AccountNameEditTableViewController.swift in Sources */,
 				DCB539221A81B7BE00C216D7 /* Util.swift in Sources */,
