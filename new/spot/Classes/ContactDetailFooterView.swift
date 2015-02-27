@@ -10,6 +10,7 @@ import UIKit
 
 @objc protocol ContactDetailFooterViewDelegate {
     func didTappedChatBtn(footerView: ContactDetailFooterView)
+    func didTappedAddFriendBtn(footerView: ContactDetailFooterView)
 }
 
 class ContactDetailFooterView: UITableViewHeaderFooterView {
@@ -18,6 +19,20 @@ class ContactDetailFooterView: UITableViewHeaderFooterView {
     @IBOutlet weak var telBtn: UIButton!
     
     weak var delegate: ContactDetailFooterViewDelegate?
+    
+    var jid: XMPPJID! {
+        didSet {
+            if XMPPManager.instance.isMe(jid) {
+                chatBtn.hidden = true
+                telBtn.hidden = true
+            }
+            
+            if XMPPManager.instance.isFriend(jid) {
+                telBtn.hidden = true
+                chatBtn.setTitle("追加", forState: .Normal)
+            }
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,6 +45,11 @@ class ContactDetailFooterView: UITableViewHeaderFooterView {
     }
     
     @IBAction func chatBtnTapped(sender: AnyObject) {
-        delegate?.didTappedChatBtn(self)
+        if XMPPManager.instance.isFriend(jid) {
+            delegate?.didTappedChatBtn(self)
+        } else {
+            delegate?.didTappedAddFriendBtn(self)
+        }
+        
     }
 }

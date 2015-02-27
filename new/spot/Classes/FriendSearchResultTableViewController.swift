@@ -8,9 +8,15 @@
 
 import UIKit
 
+
+@objc protocol FriendSearchResultTableViewControllerDelegate {
+    func didSelectJID(jid: XMPPJID)
+}
+
 class FriendSearchResultTableViewController: UITableViewController {
 
     var accounts = [XMPPAccount]()
+    var delegate: FriendSearchResultTableViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +40,7 @@ class FriendSearchResultTableViewController: UITableViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self)
         
         // TODO: change timing
-        accounts = [XMPPAccount]()
+//        accounts = [XMPPAccount]()
     }
     
     override func didReceiveMemoryWarning() {
@@ -79,7 +85,9 @@ extension FriendSearchResultTableViewController: UITableViewDataSource, UITableV
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let account = accounts[indexPath.row]
         
-        XMPPManager.instance.xmppRoster.addUser(XMPPJID.jidWithString(account.jid), withNickname: nil)
+//        XMPPManager.instance.xmppRoster.addUser(XMPPJID.jidWithString(account.jid), withNickname: nil)
+        
+        delegate?.didSelectJID(XMPPJID.jidWithString(account.jid))
         
 //        var friend = Friend.MR_findFirstByAttribute("accountName", withValue: account.jid) as? Friend
 //        if friend == nil {

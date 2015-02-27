@@ -37,7 +37,7 @@ class AccountEditViewController: UITableViewController {
                 nameLabel.text = vc.nameTF.text
             }
         } else {
-            nameLabel.text = XMPPManager.instance.xmppvCardTempModule.myvCardTemp.formattedName
+            nameLabel.text = XMPPManager.instance.xmppvCardTempModule.myvCardTemp?.formattedName? ?? ""
         }
         
         // TODO: 

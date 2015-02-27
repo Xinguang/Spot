@@ -76,6 +76,8 @@ extension ContactDetailViewController: UITableViewDataSource, UITableViewDelegat
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let view = Util.createViewWithNibName("ContactDetailFooterView") as ContactDetailFooterView
         view.delegate = self
+        view.jid = jid
+        
         return view
     }
 }
@@ -98,5 +100,11 @@ extension ContactDetailViewController: ContactDetailFooterViewDelegate {
 //            NSNotificationCenter.defaultCenter().postNotificationName(kXMPPEnterMessageViewController, object: jid)
 
         }
+    }
+    
+    func didTappedAddFriendBtn(footerView: ContactDetailFooterView) {
+        XMPPManager.instance.xmppRoster.addUser(jid, withNickname: nil)
+        
+        self.navigationController?.popViewControllerAnimated(true)
     }
 }

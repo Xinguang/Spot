@@ -67,10 +67,10 @@ class MessageViewController: JSQMessagesViewController {
     
     func reloadUI() {
         if let vCard = XMPPManager.instance.xmppvCardTempModule.vCardTempForJID(roster.jid, shouldFetch: true) {
-            self.title = vCard.formattedName ?? roster.jidStr
+            self.title = vCard.formattedName ?? roster.jid.user
 //            XMPPManager.instance.xmppvCardTempModule.fetchvCardTempForJID(roster.jid, ignoreStorage:true)
         } else {
-            self.title = roster.jidStr
+            self.title = roster.jid.user
         }
         
         
@@ -191,10 +191,20 @@ extension MessageViewController: JSQMessagesCollectionViewDataSource {
     
 }
 
+extension MessageViewController: JSQMessagesCollectionViewDelegateFlowLayout {
+    
+    override func collectionView(collectionView: JSQMessagesCollectionView!, didTapAvatarImageView avatarImageView: UIImageView!, atIndexPath indexPath: NSIndexPath!) {
+        let message = frc.objectAtIndexPath(indexPath) as XMPPMessageArchiving_Message_CoreDataObject
+        let jid = XMPPJID.jidWithString(message.senderId())
+        Util.enterFriendDetailViewController(jid, from: self, isTalking: true)
+    }
+}
+
 // MARK: - NSFetchedResultsControllerDelegate
 
 extension MessageViewController: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         collectionView.reloadData()
+        scrollToBottomAnimated(true)
     }
 }

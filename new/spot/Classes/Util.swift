@@ -40,6 +40,15 @@ class Util: NSObject {
         from.navigationController?.pushViewController(messageViewController, animated: true)
     }
     
+    class func enterFriendDetailViewController(jid: XMPPJID, from: UIViewController, isTalking: Bool) {
+        let vc = Util.createViewControllerWithIdentifier("ContactDetailViewController", storyboardName: "Common") as ContactDetailViewController
+        vc.jid = jid
+        vc.isFromMessageViewController = isTalking
+        
+        from.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
     class func checkPermissions() {
         if !canSendNotifications() {
             let settings = UIUserNotificationSettings(forTypes: .Badge | .Sound | .Alert,categories: nil)

@@ -14,25 +14,6 @@ class ContactViewController: BaseViewController {
     
     var frc: NSFetchedResultsController!
     
-//    var frcRequest: NSFetchedResultsController!
-//    var frcFriend: NSFetchedResultsController!
-    
-//    var friendCount: Int! {
-//        if let sectionInfo = frcFriend.sections?[0] as? NSFetchedResultsSectionInfo {
-//            return sectionInfo.numberOfObjects
-//        }
-//        
-//        return 0
-//    }
-//    
-//    var requestCount: Int! {
-//        if let sectionInfo = frcRequest.sections?[0] as? NSFetchedResultsSectionInfo {
-//            return sectionInfo.numberOfObjects
-//        }
-//        
-//        return 0
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -150,16 +131,9 @@ extension ContactViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
-//        if requestCount > 0 && indexPath.section == 0 {
-//            return
-//        }
         let roster = frc.objectAtIndexPath(indexPath) as XMPPUserCoreDataStorageObject
         
-//        Util.enterMessageViewControllerWithFriend(roster, from: self)
-        let vc = Util.createViewControllerWithIdentifier("ContactDetailViewController", storyboardName: "Common") as ContactDetailViewController
-        vc.jid = roster.jid
-        self.navigationController?.pushViewController(vc, animated: true)
+        Util.enterFriendDetailViewController(roster.jid, from: self, isTalking: false)
     }
 }
 

@@ -264,6 +264,33 @@ extension XMPPManager: XMPPStreamDelegate {
     
     func xmppStream(sender: XMPPStream!, didReceiveIQ iq: XMPPIQ!) -> Bool {
         println(iq)
+        
+        if let id = iq.elementID() {
+            if id == "searchByUserName" {
+                let report = XMPPSearchReported.reportWithElement(iq) as XMPPSearchReported
+                if report.items?.count > 0 {
+                    var accounts = [XMPPAccount]()
+                    for item in report.items {
+                        // TODO: custom init
+                        var account = XMPPAccount()
+                        account.email = item["Email"] as? String
+                        account.name = item["Name"] as? String
+                        account.username = item["Username"] as? String
+                        account.jid = item["jid"] as? String
+                        
+                        accounts.append(account)
+                    }
+                    
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        NSNotificationCenter.defaultCenter().postNotificationName(kXMPPSearchAccountComplete, object: accounts)
+                    })
+                } else {
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        NSNotificationCenter.defaultCenter().postNotificationName(kXMPPSearchAccountComplete, object: nil)
+                    })
+                }
+            }
+        }
 //        dispatch_async(dispatch_get_main_queue(), { () -> Void in
 //            SVProgressHUD.dismiss()
 //        })
@@ -279,28 +306,7 @@ extension XMPPManager: XMPPStreamDelegate {
 //            }
 //        }
         
-        let report = XMPPSearchReported.reportWithElement(iq) as XMPPSearchReported
-        if report.items?.count > 0 {
-            var accounts = [XMPPAccount]()
-            for item in report.items {
-                // TODO: custom init
-                var account = XMPPAccount()
-                account.email = item["Email"] as? String
-                account.name = item["Name"] as? String
-                account.username = item["Username"] as? String
-                account.jid = item["jid"] as? String
-                
-                accounts.append(account)
-            }
-            
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                NSNotificationCenter.defaultCenter().postNotificationName(kXMPPSearchAccountComplete, object: accounts)
-            })
-        } else {
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                NSNotificationCenter.defaultCenter().postNotificationName(kXMPPSearchAccountComplete, object: nil)
-            })
-        }
+
         
         return false
     }
@@ -466,4 +472,11 @@ extension XMPPManager {
 
     }
     
+    func isFriend(jid: XMPPJID) -> Bool {
+        return xmppRosterStorage.userExistsWithJID(jid, xmppStream: xmppStream)
+    }
+    
+    func isMe(jid: XMPPJID) -> Bool {
+        return jid.bare() == account.username
+    }
 }

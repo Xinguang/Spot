@@ -18,6 +18,8 @@ class AddFriendSelectViewController: UITableViewController {
         super.viewDidLoad()
 
         var resultVC = storyboard?.instantiateViewControllerWithIdentifier("FriendSearchResultTableViewController") as FriendSearchResultTableViewController
+        resultVC.delegate = self
+        
         searchController = UISearchController(searchResultsController: resultVC)
 //        searchController.searchResultsUpdater = self
         searchController.searchBar.sizeToFit()
@@ -107,4 +109,8 @@ extension AddFriendSelectViewController: UISearchBarDelegate {
     }
 }
 
-
+extension AddFriendSelectViewController: FriendSearchResultTableViewControllerDelegate {
+    func didSelectJID(jid: XMPPJID) {
+        Util.enterFriendDetailViewController(jid, from: self, isTalking: false)
+    }
+}
