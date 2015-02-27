@@ -34,7 +34,7 @@
                     <navigationItem key="navigationItem" id="KEg-JL-CBf">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="lfs-tk-TmR">
-                            <rect key="frame" x="79.5" y="7" width="161" height="30"/>
+                            <rect key="frame" x="80" y="7" width="161" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="付近"/>

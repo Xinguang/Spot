@@ -28,6 +28,10 @@ class LoginViewController: BaseViewController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("xmppLoginFailed:"), name: kXMPPLoginFail, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("xmppLoginSuccess:"), name: kXMPPLoginSuccess, object: nil)
+        
+        //self.usernameTF?.addTarget(self, action: Selector("endEdit:"), forControlEvents: UIControlEvents.EditingDidEndOnExit)
+        self.passwordTF?.addTarget(self, action: Selector("endEdit:"), forControlEvents: UIControlEvents.EditingDidEndOnExit)
+
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -95,6 +99,11 @@ class LoginViewController: BaseViewController {
     
     @IBAction func wxBtnTapped(sender: AnyObject) {
         SNSController.instance.wxCheckAuth({ (res) -> () in
+            
+            SVProgressHUD.showWithMaskType(.Clear)
+            
+            XMPPManager.instance.connectWithJID("hikaru" + "@" + kOpenFireDomainName, myPassword: "123456")
+            /*
             ///////////////////////////////////////////////
             let account = User.MR_createEntity() as User
             
@@ -108,6 +117,7 @@ class LoginViewController: BaseViewController {
             println(res)
             ///////////////////////////////////////////////
             self.performSegueWithIdentifier("SegueTabBar", sender: nil)
+            */
             }, failure: { (errCode, errMessage) -> () in
                 println(errMessage)
         })
@@ -117,13 +127,17 @@ class LoginViewController: BaseViewController {
         //self.test()
         //QQ auth
         SNSController.instance.qqCheckAuth({ (res) -> () in
-            println(res)
-            self.test()
-            self.performSegueWithIdentifier("SegueTabBar", sender: nil)
+            SVProgressHUD.showWithMaskType(.Clear)
+            
+            XMPPManager.instance.connectWithJID("hikaru" + "@" + kOpenFireDomainName, myPassword: "123456")
+            
             }, failure: { (errCode, errMessage) -> () in
                 println(errMessage)
         })
 
+    }
+    func endEdit(sender:AnyObject){
+        sender.resignFirstResponder()
     }
     func test(){
         //

@@ -75,6 +75,19 @@ class AddFriendSelectViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        switch indexPath.row {
+        case 1 : //QQ
+            SNSController.instance.qqShare(0, title: "現場TOMO", description: "招待テストテストテストテストテスト", url: "http://www.e-business.co.jp")
+            break;
+        case 2://weChat
+            SNSController.instance.wxShare(0, title: "現場TOMO", description: "招待テストテストテストテストテスト")
+            break;
+        case 3://weChat
+            SNSController.instance.wxShare(1, title: "現場TOMO", description: "招待テストテストテストテストテスト")
+            break;
+        default:
+            break
+        }
     }
     /*
     // MARK: - Navigation

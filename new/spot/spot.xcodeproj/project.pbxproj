@@ -981,7 +981,7 @@
 					"$(SRCROOT)/Vendors/**",
 				);
 				INFOPLIST_FILE = spot/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "e067abd7-ffb7-4ba7-b1a2-ca2610dbd039";
@@ -1022,7 +1022,7 @@
 					"$(SRCROOT)/Vendors/**",
 				);
 				INFOPLIST_FILE = spot/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "03a88fed-8922-42a5-b10b-0db42106302d";
