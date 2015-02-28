@@ -22,6 +22,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GMSServices.provideAPIKey(kGoogleApiKey);
         
+        var types: UIUserNotificationType = UIUserNotificationType.Badge |
+            UIUserNotificationType.Alert |
+            UIUserNotificationType.Sound
+        
+        var settings: UIUserNotificationSettings = UIUserNotificationSettings( forTypes: types, categories: nil )
+        
+        application.registerUserNotificationSettings( settings )
+        application.registerForRemoteNotifications()
+        
         application.applicationIconBadgeNumber = 0
         autoLogin()
         
@@ -41,6 +50,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    func reLogin() {
+        if XMPPManager.instance.account != nil && XMPPManager.instance.xmppStream.isDisconnected() {
+            XMPPManager.instance.connectWithPassword(XMPPManager.instance.account.password)
+        }
+    }
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -51,6 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
+        reLogin()
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
 
@@ -72,5 +88,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return WXApi.handleOpenURL(url, delegate: SNSController.instance)//||TencentOAuth.HandleOpenURL(url);
     }
 
+    func application( application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData ) {
+        
+        // <>と" "(空白)を取る
+        var characterSet: NSCharacterSet = NSCharacterSet( charactersInString: "<>" )
+        
+        var deviceTokenString: String = ( deviceToken.description as NSString )
+            .stringByTrimmingCharactersInSet( characterSet )
+            .stringByReplacingOccurrencesOfString( " ", withString: "" ) as String
+        
+        XMPPManager.instance.deviceToken = deviceTokenString
+        
+    }
+    
+    func application(application: UIApplication!, didFailToRegisterForRemoteNotificationsWithError error: NSError!) {
+        // プッシュ通知が利用不可であればerrorが返ってくる
+        println("error: " + "\(error)")
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        println(__FUNCTION__)
+    }
 }
 

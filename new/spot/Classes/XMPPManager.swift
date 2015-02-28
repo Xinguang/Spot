@@ -12,6 +12,14 @@ class XMPPManager: NSObject {
 //    @property (nonatomic, strong) OTRXMPPAccount *account;
 //    @property (nonatomic) OTRProtocolConnectionStatus connectionStatus;
     var account: User!
+    var deviceToken: String! {
+        didSet {
+            if didUploadedToken == false && xmppStream.isAuthenticated() {
+                uploadDeviceToken()
+            }
+        }
+    }
+    var didUploadedToken = false
     
     var xmppStream: XMPPStream!
     var xmppReconnect: XMPPReconnect!
@@ -168,6 +176,10 @@ class XMPPManager: NSObject {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             NSNotificationCenter.defaultCenter().postNotificationName(kXMPPLoginSuccess, object: self)
         })
+        
+        if didUploadedToken == false && deviceToken != nil {
+            uploadDeviceToken()
+        }
         
         xmppStream.sendElement(XMPPPresence())
     }
@@ -444,6 +456,17 @@ extension XMPPManager {
 // MARK: - Support
 
 extension XMPPManager {
+    
+    func uploadDeviceToken() {
+        didUploadedToken = true
+        
+        let query = XMPPElement(name: "query", xmlns: "urn:xmpp:apns")
+        let token = XMPPElement(name: "token", stringValue: deviceToken)
+        query.addChild(token)
+        
+        let iq = XMPPIQ(type: "set", to: XMPPJID.jidWithString(kOpenFireDomainName), elementID: "123", child: query)
+        xmppStream.sendElement(iq)
+    }
     
     func photoOfJid(jid: XMPPJID) -> UIImage {
         var orgImage = UIImage(named: "avatar")
