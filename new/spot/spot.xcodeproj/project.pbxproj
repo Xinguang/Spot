@@ -63,6 +63,8 @@
 		298FE3CC1A956FBC007AB117 /* _SNS.m in Sources */ = {isa = PBXBuildFile; fileRef = 298FE3C41A956FBC007AB117 /* _SNS.m */; };
 		298FE3CE1A956FBC007AB117 /* _User.m in Sources */ = {isa = PBXBuildFile; fileRef = 298FE3C81A956FBC007AB117 /* _User.m */; };
 		29E623351A9B004A00383DEA /* AccountNameEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E623341A9B004A00383DEA /* AccountNameEditTableViewController.swift */; };
+		29EE09C11AA4B3A5005F6509 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EE09C01AA4B3A5005F6509 /* UserController.swift */; };
+		29EE09F51AA4B801005F6509 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EE09F41AA4B801005F6509 /* LoadingViewController.swift */; };
 		29F5D4241A996D1F00D0AF54 /* AccountEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F5D4231A996D1F00D0AF54 /* AccountEditViewController.swift */; };
 		5F6DCE83C393AD717AAB7030 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A5D3641F258F85CB0ABCED /* libPods.a */; };
 		DC4109B81A81C15200E11CAB /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4109B71A81C15200E11CAB /* TabBarController.swift */; };
@@ -155,6 +157,8 @@
 		2991E80E1A94351C00C94552 /* FriendRequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendRequestCell.swift; path = Classes/FriendRequestCell.swift; sourceTree = "<group>"; };
 		29E623341A9B004A00383DEA /* AccountNameEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountNameEditTableViewController.swift; path = Classes/AccountNameEditTableViewController.swift; sourceTree = "<group>"; };
 		29EB19581A9881DB0085BFC7 /* Model2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model2.xcdatamodel; sourceTree = "<group>"; };
+		29EE09C01AA4B3A5005F6509 /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserController.swift; path = Classes/UserController.swift; sourceTree = "<group>"; };
+		29EE09F41AA4B801005F6509 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingViewController.swift; path = Classes/LoadingViewController.swift; sourceTree = "<group>"; };
 		29F5D4231A996D1F00D0AF54 /* AccountEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountEditViewController.swift; path = Classes/AccountEditViewController.swift; sourceTree = "<group>"; };
 		4CAB4A8089D8A99280C16B78 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		67192A0B6C2C674435DC4219 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -295,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				DCB539231A81B99B00C216D7 /* LoginViewController.swift */,
+				29EE09F41AA4B801005F6509 /* LoadingViewController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -525,6 +530,7 @@
 			isa = PBXGroup;
 			children = (
 				DCF538EA1A82244800C83FE5 /* gpx.json */,
+				29EE09C01AA4B3A5005F6509 /* UserController.swift */,
 				178AE0441A8CBAAA00D91542 /* SNSController.swift */,
 				2966239F1A898D41002608EF /* DatabaseManager.swift */,
 				296623E01A8D89E8002608EF /* XMPP */,
@@ -697,6 +703,7 @@
 				DC4109D21A81C50A00E11CAB /* NSArray.swift in Sources */,
 				178AE0451A8CBAAA00D91542 /* SNSController.swift in Sources */,
 				DC4109CC1A81C50A00E11CAB /* Dictionary.swift in Sources */,
+				29EE09F51AA4B801005F6509 /* LoadingViewController.swift in Sources */,
 				298FE3CA1A956FBC007AB117 /* _Friend.m in Sources */,
 				298FE3CC1A956FBC007AB117 /* _SNS.m in Sources */,
 				298FE3BC1A956FAD007AB117 /* User.m in Sources */,
@@ -727,6 +734,7 @@
 				DC410A0A1A8200EA00E11CAB /* ContactCell.swift in Sources */,
 				178AE0581A8DC27300D91542 /* NetUploadTask.swift in Sources */,
 				296623E41A8DFD2B002608EF /* ContactViewController.swift in Sources */,
+				29EE09C11AA4B3A5005F6509 /* UserController.swift in Sources */,
 				178AE0591A8DC27300D91542 /* Reachability.swift in Sources */,
 				DC4109D41A81C50A00E11CAB /* Range.swift in Sources */,
 				DCB539201A81B65B00C216D7 /* AppDelegate.swift in Sources */,

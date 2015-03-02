@@ -258,6 +258,8 @@ extension XMPPManager: XMPPStreamDelegate {
     func xmppStreamDidRegister(sender: XMPPStream!) {
         isRegisteringNewAccount = false
         
+        connectWithPassword(password)
+        
         NSNotificationCenter.defaultCenter().postNotificationName(kXMPPRegisterSuccess, object: nil)
     }
     

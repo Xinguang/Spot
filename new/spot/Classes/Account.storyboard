@@ -41,7 +41,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s23-B8-NTM">
-                                                    <rect key="frame" x="90" y="48" width="35.5" height="17"/>
+                                                    <rect key="frame" x="90" y="48" width="189" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -52,6 +52,7 @@
                                                 <constraint firstItem="8Ri-Yx-lP3" firstAttribute="leading" secondItem="MPk-O0-CrV" secondAttribute="leading" constant="10" id="AUM-tT-y4y"/>
                                                 <constraint firstItem="Not-Su-oCb" firstAttribute="leading" secondItem="8Ri-Yx-lP3" secondAttribute="trailing" constant="8" id="M0a-Bq-bRL"/>
                                                 <constraint firstItem="Not-Su-oCb" firstAttribute="top" secondItem="MPk-O0-CrV" secondAttribute="top" constant="20" id="T8x-Mn-cKd"/>
+                                                <constraint firstAttribute="trailing" secondItem="s23-B8-NTM" secondAttribute="trailing" constant="8" id="eTR-Bk-210"/>
                                                 <constraint firstItem="s23-B8-NTM" firstAttribute="leading" secondItem="8Ri-Yx-lP3" secondAttribute="trailing" constant="8" id="gnq-SA-OZF"/>
                                                 <constraint firstAttribute="centerY" secondItem="8Ri-Yx-lP3" secondAttribute="centerY" id="jg9-eV-uIL"/>
                                             </constraints>

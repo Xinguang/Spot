@@ -13,6 +13,8 @@ class LoginViewController: BaseViewController {
     @IBOutlet weak var usernameTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     
+    var isAnonymousLogin = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,6 +45,15 @@ class LoginViewController: BaseViewController {
     }
     
     func xmppLoginSuccess(notification: NSNotification) {
+        //already saved
+        if isAnonymousLogin {
+            SVProgressHUD.dismiss()
+            
+            self.performSegueWithIdentifier("SegueTabBar", sender: nil)
+            
+            return
+        }
+        
         let account = User.MR_createEntity() as User
         account.uniqueIdentifier = NSUUID().UUIDString.lowercaseString
         account.username = usernameTF.text.trimmed() + "@" + kOpenFireDomainName
@@ -76,22 +87,10 @@ class LoginViewController: BaseViewController {
     }
     
     @IBAction func skipBtnTapped(sender: AnyObject) {
-//        SNSController.instance.SendAuth()
-//        SVProgressHUD.show()
-//        
-//        User.signInComplete { (error) -> Void in
-//            SVProgressHUD.dismiss()
-//            
-//            if let error = error {
-//                println(error.localizedDescription)
-//            } else {
-//                self.performSegueWithIdentifier("SegueTabBar", sender: nil)
-//            }
-//        }
-    }
-    
-    @IBAction func debug(sender: AnyObject) {
-//        User.removeUser()
+        SVProgressHUD.show()
+        
+        isAnonymousLogin = true
+        UserController.anonymousLogin()
     }
 
 }

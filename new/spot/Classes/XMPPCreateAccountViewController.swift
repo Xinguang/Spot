@@ -68,7 +68,7 @@ class XMPPCreateAccountViewController: BaseViewController {
         // TODO: change loading text
         account.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
         
-        XMPPManager.instance.connectWithPassword(newAccountTableViewController.passwordTF.text)
+//        XMPPManager.instance.connectWithPassword(newAccountTableViewController.passwordTF.text)
     }
     
     func xmppRegisterFailed(notification: NSNotification) {

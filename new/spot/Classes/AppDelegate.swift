@@ -32,23 +32,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerForRemoteNotifications()
         
         application.applicationIconBadgeNumber = 0
-        autoLogin()
+        
+        if UserController.shouldAutoLogin() {
+            let vc = Util.createViewControllerWithIdentifier("LoadingViewController", storyboardName: "Main")
+            self.window?.rootViewController = vc
+            
+            UserController.autoLogin()
+        }
         
         return true
     }
 
-    func autoLogin() {
-        if let user = DatabaseManager.instance.autoLoginAccount() {
-            XMPPManager.instance.account = user
-            
-            if user.password != nil {
-                XMPPManager.instance.connectWithPassword(user.password)
-            
-                let vc = Util.createViewControllerWithIdentifier("TabBarController", storyboardName: "Main")
-                self.window?.rootViewController = vc
-            }
-        }
-    }
+//    func autoLogin() {
+//        if let user = DatabaseManager.instance.autoLoginAccount() {
+//            XMPPManager.instance.account = user
+//            
+//            if user.password != nil {
+//                XMPPManager.instance.connectWithPassword(user.password)
+//            
+//                let vc = Util.createViewControllerWithIdentifier("TabBarController", storyboardName: "Main")
+//                self.window?.rootViewController = vc
+//            }
+//        }
+//    }
     
     func reLogin() {
         if XMPPManager.instance.account != nil && XMPPManager.instance.xmppStream.isDisconnected() {

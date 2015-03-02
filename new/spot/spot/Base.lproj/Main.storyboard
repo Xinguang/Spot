@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="L70-Ti-d1U">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
@@ -141,13 +140,50 @@
             </objects>
             <point key="canvasLocation" x="-73" y="-2"/>
         </scene>
+        <!--Loading View Controller-->
+        <scene sceneID="yqo-cV-oQX">
+            <objects>
+                <viewController storyboardIdentifier="LoadingViewController" id="Dfd-ea-kvP" customClass="LoadingViewController" customModule="spot" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pDs-fb-ULo"/>
+                        <viewControllerLayoutGuide type="bottom" id="pGD-Jf-UGq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EPr-m6-hIW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="XYS-1V-3Xk">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pGD-Jf-UGq" firstAttribute="top" secondItem="XYS-1V-3Xk" secondAttribute="bottom" id="WCD-vL-wUl"/>
+                            <constraint firstItem="XYS-1V-3Xk" firstAttribute="top" secondItem="EPr-m6-hIW" secondAttribute="top" id="YlF-z8-8AJ"/>
+                            <constraint firstItem="XYS-1V-3Xk" firstAttribute="leading" secondItem="EPr-m6-hIW" secondAttribute="leading" id="hix-lu-EqU"/>
+                            <constraint firstAttribute="trailing" secondItem="XYS-1V-3Xk" secondAttribute="trailing" id="kFo-fH-mwG"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="VT8-Le-CAQ"/>
+                    <connections>
+                        <segue destination="49e-Tb-3d3" kind="modal" identifier="SegueTabModal" modalTransitionStyle="crossDissolve" id="zWy-L5-KKL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i3H-QR-g2p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-73" y="665"/>
+        </scene>
     </scenes>
     <resources>
         <image name="background" width="320" height="568"/>
+        <image name="launch" width="320" height="568"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="zWy-L5-KKL"/>
+    </inferredMetricsTieBreakers>
 </document>
