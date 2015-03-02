@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.setApplicationId(kParseId, clientKey: kClientKey)
         
         
-        GMSServices.provideAPIKey(kGoogleApiKey);
+//        GMSServices.provideAPIKey(kGoogleApiKey);
         
         var types: UIUserNotificationType = UIUserNotificationType.Badge |
             UIUserNotificationType.Alert |

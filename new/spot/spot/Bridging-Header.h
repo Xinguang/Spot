@@ -55,7 +55,6 @@
 #import "XMPPUserCoreDataStorageObject.h"
 #import "XMPPMessageArchivingCoreDataStorage.h"
 
-#import <GoogleMaps/GoogleMaps.h>
 
 
 #import "Friend.h"

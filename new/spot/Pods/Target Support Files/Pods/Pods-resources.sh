@@ -44,7 +44,6 @@ install_resource()
   esac
 }
           install_resource "DXYTencentOpenAPI/TencentOpenAPI/TencentOpenApi_IOS_Bundle.bundle"
-                    install_resource "Google-Maps-iOS-SDK/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"
                     install_resource "JSQMessagesViewController/JSQMessagesViewController/Assets/JSQMessagesAssets.bundle"
                     install_resource "JSQMessagesViewController/JSQMessagesViewController/Assets/Strings/Base.lproj"
                     install_resource "JSQMessagesViewController/JSQMessagesViewController/Assets/Strings/de.lproj"

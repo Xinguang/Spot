@@ -7,42 +7,51 @@
 //
 
 import UIKit
-//import MapKit
+import MapKit
 
-class MapViewController: BaseViewController, GMSMapViewDelegate {
+class MapViewController: BaseViewController {
 
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
+    let lm = CLLocationManager()
+    
+    var didGetUserLocation = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        
-        
-        var target: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 34.689197, longitude: 135.502321)
-        var camera: GMSCameraPosition = GMSCameraPosition(target: target, zoom: 12, bearing: 0, viewingAngle: 0)
-        var mapView = GMSMapView(
-            frame: CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height)
-        )
-        mapView.myLocationEnabled = true
-        mapView.camera = camera
-        mapView.delegate = self
-        
-        var marker: GMSMarker = GMSMarker()
-        marker.position = CLLocationCoordinate2DMake(34.689197, 135.502321)
-        marker.title = "notice"
-        marker.snippet = "japan"
-        marker.map = mapView
-        
-        self.view.addSubview(mapView)
-        
+
+        lm.delegate = self
+        lm.requestWhenInUseAuthorization()
+        lm.startUpdatingLocation()
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+    
+    func centerToLocation(location: CLLocation) {
+        //0.01~0.1
+        let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.02,longitudeDelta: 0.02);
+
+        let region = MKCoordinateRegionMake(location.coordinate, span)
+
+        mapView.setRegion(region, animated: true)
+    }
+
 }
-/*
+
 extension MapViewController: MKMapViewDelegate {
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
@@ -69,20 +78,30 @@ extension MapViewController: MKMapViewDelegate {
 //        pinView.image = image//UIImage(named: imageName)!
         pinView.image = img
         pinView.canShowCallout = true;
-        return pinView;
+        return pinView; 
     }
+    
+//    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+//        
+//    }
 }
 
 extension MapViewController: CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        let location = locations.last as CLLocation
-        
-        //0.01~0.1
-        let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.02,longitudeDelta: 0.02);
-        
-        let region = MKCoordinateRegionMake(location.coordinate, span)
+        if let l = locations.last as? CLLocation {
+            if !didGetUserLocation {
+                didGetUserLocation = true
+                centerToLocation(l)
+            }
+        }
 
-        mapView.setRegion(region, animated: true)
+//        let location = locations.last as CLLocation
+//        
+//        //0.01~0.1
+//        let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.02,longitudeDelta: 0.02);
+//        
+//        let region = MKCoordinateRegionMake(location.coordinate, span)
+//
+//        mapView.setRegion(region, animated: true)
     }
 }
-*/
