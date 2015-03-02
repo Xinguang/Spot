@@ -27,7 +27,7 @@ class ContactDetailFooterView: UITableViewHeaderFooterView {
                 telBtn.hidden = true
             }
             
-            if XMPPManager.instance.isFriend(jid) {
+            if !XMPPManager.instance.isFriend(jid) {
                 telBtn.hidden = true
                 chatBtn.setTitle("追加", forState: .Normal)
             }
