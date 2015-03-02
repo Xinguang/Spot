@@ -20,6 +20,8 @@
 #import "JSBadgeView.h"
 #import "NYXImagesKit.h"
 #import "UIColor+HexString.h"
+#import "JSONModel.h"
+#import "GPSModel.h"
 
 #define HAVE_XMPP_SUBSPEC_BANDWIDTHMONITOR
 #define HAVE_XMPP_SUBSPEC_GOOGLESHAREDSTATUS

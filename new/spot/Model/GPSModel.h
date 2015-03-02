@@ -7,10 +7,28 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <JSONModel.h>
 
-@interface GPSModel : NSObject
+@protocol PositionModel
+@end
+
+@interface PositionModel : JSONModel
 
 @property(nonatomic) double lat;
 @property(nonatomic) double lon;
 
 @end
+
+@implementation PositionModel
+@end
+
+@interface GPSModel : JSONModel
+
+@property (strong, nonatomic) NSArray<PositionModel>* positions;
+
+@end
+
+
+
+
+

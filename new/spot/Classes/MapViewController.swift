@@ -24,6 +24,9 @@ class MapViewController: BaseViewController {
         lm.delegate = self
         lm.requestWhenInUseAuthorization()
         lm.startUpdatingLocation()
+        
+        let gpsModel = MapDataConroller.stationUsers()
+        println(gpsModel)
     }
 
     override func didReceiveMemoryWarning() {
