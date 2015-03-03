@@ -18,6 +18,17 @@ class MapViewController: BaseViewController {
     
     var didGetUserLocation = false
     
+    var gpsModel: GPSModel!
+    var polygon: MKPolygon!
+    var annotations: [UserAnnotation]!
+    
+    enum ShowType {
+        case Polygon
+        case Point
+    }
+    
+    var showType = ShowType.Polygon
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,10 +36,40 @@ class MapViewController: BaseViewController {
         lm.requestWhenInUseAuthorization()
         lm.startUpdatingLocation()
         
-        let gpsModel = MapDataConroller.stationUsers()
-        println(gpsModel)
+        gpsModel = MapDataConroller.stationUsers()
+        
+        addModelToMapView()
     }
 
+    func addModelToMapView() {
+        if showType == .Polygon {
+            if polygon == nil {
+            var coors = [CLLocationCoordinate2D]()
+            
+            gpsModel.positions.each { (i, position) -> () in
+                let coor = CLLocationCoordinate2D(latitude: position.lat, longitude: position.lon)
+                coors.append(coor)
+            }
+            
+            polygon = MKPolygon(coordinates: &coors, count: coors.count)
+            }
+            mapView.addOverlay(polygon)
+        }
+
+        if showType == .Point {
+            if annotations == nil {
+                annotations = [UserAnnotation]()
+                
+                gpsModel.positions.each { (i, position) -> () in
+                    let anno = UserAnnotation(model: position as PositionModel)
+                    self.annotations.append(anno)
+                }
+            }
+            
+            mapView.addAnnotations(annotations)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -53,9 +94,35 @@ class MapViewController: BaseViewController {
         mapView.setRegion(region, animated: true)
     }
 
+    // MARK: - Action
+    
+    @IBAction func debug(sender: AnyObject) {
+        mapView.removeAnnotations(annotations)
+        mapView.removeOverlay(polygon)
+
+        if showType == .Polygon {
+            showType = .Point
+        } else {
+            showType = .Polygon
+        }
+        
+        addModelToMapView()
+    }
+    
 }
 
 extension MapViewController: MKMapViewDelegate {
+    
+    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+//        let polygon = overlay as MKPolygon
+        
+        let render = MKPolygonRenderer(overlay: overlay)
+        
+        render.fillColor = UIColor(hexString: "#4AE664")
+        render.strokeColor = UIColor(hexString: "#4AE664")
+        render.lineWidth = 5
+        return render
+    }
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
         if annotation is MKUserLocation {
@@ -63,20 +130,21 @@ extension MapViewController: MKMapViewDelegate {
         }
         
         let pinView = MKAnnotationView(annotation:annotation,reuseIdentifier:"ID");
-        var pincolor:UInt = 0xFF00FF;
-        switch segmentedControl.selectedSegmentIndex
-        {
-        case 0:
-            pincolor = 0xFF00FF;
-        case 1:
-            pincolor = 0x00FFFF;
-        case 2:
-            pincolor = 0xFFFF00;
-        default:
-            pincolor = 0xFF00FF;
-        }
+        let img = UIImage(named: "userPin")
+//        var pincolor:UInt = 0xFF00FF;
+//        switch segmentedControl.selectedSegmentIndex
+//        {
+//        case 0:
+//            pincolor = 0xFF00FF;
+//        case 1:
+//            pincolor = 0x00FFFF;
+//        case 2:
+//            pincolor = 0xFFFF00;
+//        default:
+//            pincolor = 0xFF00FF;
+//        }
         
-        let img = UIImage(named: "mappin")!
+//        let img = UIImage(named: "mappin")!
 //        let image = CommonHelper.instance.coloredImage(img, color: CommonHelper.instance.UIColorFromRGB(pincolor, alpha: 0.1))
 //        pinView.image = image//UIImage(named: imageName)!
         pinView.image = img

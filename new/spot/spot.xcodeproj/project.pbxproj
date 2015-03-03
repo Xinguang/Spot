@@ -64,6 +64,7 @@
 		298FE3CE1A956FBC007AB117 /* _User.m in Sources */ = {isa = PBXBuildFile; fileRef = 298FE3C81A956FBC007AB117 /* _User.m */; };
 		29BE110E1AA46A120087287F /* GPSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BE110D1AA46A120087287F /* GPSModel.m */; };
 		29BE112D1AA476100087287F /* MapDataConroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BE112C1AA476100087287F /* MapDataConroller.swift */; };
+		29BE112F1AA5753C0087287F /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BE112E1AA5753C0087287F /* UserAnnotation.swift */; };
 		29E623351A9B004A00383DEA /* AccountNameEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E623341A9B004A00383DEA /* AccountNameEditTableViewController.swift */; };
 		29EE09C11AA4B3A5005F6509 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EE09C01AA4B3A5005F6509 /* UserController.swift */; };
 		29EE09F51AA4B801005F6509 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EE09F41AA4B801005F6509 /* LoadingViewController.swift */; };
@@ -160,6 +161,7 @@
 		29BE110C1AA46A120087287F /* GPSModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSModel.h; sourceTree = "<group>"; };
 		29BE110D1AA46A120087287F /* GPSModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPSModel.m; sourceTree = "<group>"; };
 		29BE112C1AA476100087287F /* MapDataConroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapDataConroller.swift; path = Classes/MapDataConroller.swift; sourceTree = "<group>"; };
+		29BE112E1AA5753C0087287F /* UserAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
 		29E623341A9B004A00383DEA /* AccountNameEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountNameEditTableViewController.swift; path = Classes/AccountNameEditTableViewController.swift; sourceTree = "<group>"; };
 		29EB19581A9881DB0085BFC7 /* Model2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model2.xcdatamodel; sourceTree = "<group>"; };
 		29EE09C01AA4B3A5005F6509 /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserController.swift; path = Classes/UserController.swift; sourceTree = "<group>"; };
@@ -492,6 +494,7 @@
 				DC4109F11A81DEF400E11CAB /* Machine */,
 				29BE110C1AA46A120087287F /* GPSModel.h */,
 				29BE110D1AA46A120087287F /* GPSModel.m */,
+				29BE112E1AA5753C0087287F /* UserAnnotation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -739,6 +742,7 @@
 				DC4109CE1A81C50A00E11CAB /* ExSwift.swift in Sources */,
 				296623DC1A8CA28C002608EF /* XMPPSearchReported.m in Sources */,
 				2911ACE81A96E35B00DF1F84 /* TalkSearchResultTableViewController.swift in Sources */,
+				29BE112F1AA5753C0087287F /* UserAnnotation.swift in Sources */,
 				29BE112D1AA476100087287F /* MapDataConroller.swift in Sources */,
 				29BE110E1AA46A120087287F /* GPSModel.m in Sources */,
 				DC410A0A1A8200EA00E11CAB /* ContactCell.swift in Sources */,

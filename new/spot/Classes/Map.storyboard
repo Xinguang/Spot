@@ -18,6 +18,9 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" showsBuildings="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fda-Cp-mmG">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <connections>
+                                    <outlet property="delegate" destination="7ew-8U-gkW" id="61Q-hD-vjJ"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -39,6 +42,11 @@
                                 <segment title="掲示板"/>
                             </segments>
                         </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" title="Debug" id="IOQ-bk-EdE">
+                            <connections>
+                                <action selector="debug:" destination="7ew-8U-gkW" id="qmt-ll-mLg"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="Fda-Cp-mmG" id="RmL-jY-IUG"/>
