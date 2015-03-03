@@ -30,10 +30,19 @@ class UserController: NSObject {
         }
     }
     
-    class func loginWithQQ(res: Dictionary<String, AnyObject>) {
+    class func loginWithSNS(type: OpenIDRequestType, res: Dictionary<String, AnyObject>) {
         let account = createAnonymousUser()
-        account.displayName = res["nickname"] as? String
-        account.figureurl = res["figureurl_qq_2"] as? String
+        
+        if type == .QQ {
+            account.displayName = res["nickname"] as? String
+            account.figureurl = res["figureurl_qq_2"] as? String
+        }
+
+        if type == .WeChat {
+            account.displayName = res["nickname"] as? String
+            account.figureurl = res["headimgurl"] as? String
+        }
+        
         account.managedObjectContext?.MR_saveToPersistentStoreAndWait()
         
         XMPPManager.instance.account = account

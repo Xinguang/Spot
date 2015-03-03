@@ -35,7 +35,7 @@ extension SNSController {
             SVProgressHUD.showInfoWithStatus("WeiChatはインストールされていません")
             return;
         }
-        SVProgressHUD.showWithMaskType(.Black);
+//        SVProgressHUD.showWithMaskType(.Black);
         if let wxconfig = self.getWxConfig(){
             let params = ["access_token": wxconfig.access_token!, "openid": wxconfig.openid!]
             // 认证授权
@@ -144,7 +144,7 @@ extension SNSController {
                     if(!contains(result.keys, "errcode")){
                         self.whenSuccess?(res: result)
                         self.setCoreDataUserInfo(result,type: .WeChat)
-                        SVProgressHUD.dismiss()
+//                        SVProgressHUD.dismiss()
                     }else{
                         let errcode = result["errcode"] as Int;
                         let errmsg = result["errmsg"] as String;

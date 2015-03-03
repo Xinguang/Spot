@@ -236,14 +236,7 @@ class XMPPManager: NSObject {
 
                     
                 }).resume()
-                
-//                Net().GET(figureurl, params: nil, successHandler: {(resData) -> () in
-//                    myvCardTemp.photo = UIImagePNGRepresentation(resData)
-//                    }, failureHandler: {(err) -> () in }).resume()
-            }
-//            myvCardTemp.photo = UIImagePNGRepresentation(image)
-        
-//            xmppvCardTempModule.updateMyvCardTemp(myvCardTemp)
+             }
         }
     }
     

@@ -98,44 +98,26 @@ class LoginViewController: BaseViewController {
     }
     
     @IBAction func wxBtnTapped(sender: AnyObject) {
-        SNSController.instance.wxCheckAuth({ (res) -> () in
-            
-            SVProgressHUD.showWithMaskType(.Clear)
-            
-            XMPPManager.instance.connectWithJID("hikaru" + "@" + kOpenFireDomainName, myPassword: "123456")
-            /*
-            ///////////////////////////////////////////////
-            let account = User.MR_createEntity() as User
-            
-            account.username = res["nickname"] as? String;
-            
-            account.uniqueIdentifier = NSUUID().UUIDString.lowercaseString
-            
-            account.password = NSUUID().UUIDString.lowercaseString
-            
-            
-            println(res)
-            ///////////////////////////////////////////////
-            self.performSegueWithIdentifier("SegueTabBar", sender: nil)
-            */
-            }, failure: { (errCode, errMessage) -> () in
-                println(errMessage)
+        SVProgressHUD.showWithMaskType(.Clear)
+        // TODO: change Flg name
+        isAnonymousLogin = true
+        
+        gcd.async(.Main, closure: { () -> () in
+            SNSController.instance.wxCheckAuth({ (res) -> () in
+                UserController.loginWithSNS(.WeChat, res:res)
+                }, failure: { (errCode, errMessage) -> () in
+                    println(errMessage)
+            })
         })
     }
     
     @IBAction func qqBtnTapped(sender: AnyObject) {
-        //self.test()
-        //QQ auth
-        
         SVProgressHUD.showWithMaskType(.Clear)
         isAnonymousLogin = true
         
         gcd.async(.Main, closure: { () -> () in
             SNSController.instance.qqCheckAuth({ (res) -> () in
-                
-                UserController.loginWithQQ(res)
-                //            XMPPManager.instance.connectWithJID("hikaru" + "@" + kOpenFireDomainName, myPassword: "123456")
-                
+                UserController.loginWithSNS(.QQ, res:res)
                 }, failure: { (errCode, errMessage) -> () in
                     println(errMessage)
             })
