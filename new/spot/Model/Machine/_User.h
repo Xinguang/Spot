@@ -8,6 +8,7 @@ extern const struct UserAttributes {
 	__unsafe_unretained NSString *avatarData;
 	__unsafe_unretained NSString *birthday;
 	__unsafe_unretained NSString *displayName;
+	__unsafe_unretained NSString *figureurl;
 	__unsafe_unretained NSString *nickName;
 	__unsafe_unretained NSString *uniqueIdentifier;
 	__unsafe_unretained NSString *username;
@@ -42,6 +43,10 @@ extern const struct UserAttributes {
 
 //- (BOOL)validateDisplayName:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSString* figureurl;
+
+//- (BOOL)validateFigureurl:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSString* nickName;
 
 //- (BOOL)validateNickName:(id*)value_ error:(NSError**)error_;
@@ -72,6 +77,9 @@ extern const struct UserAttributes {
 
 - (NSString*)primitiveDisplayName;
 - (void)setPrimitiveDisplayName:(NSString*)value;
+
+- (NSString*)primitiveFigureurl;
+- (void)setPrimitiveFigureurl:(NSString*)value;
 
 - (NSString*)primitiveNickName;
 - (void)setPrimitiveNickName:(NSString*)value;

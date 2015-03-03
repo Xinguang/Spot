@@ -126,16 +126,22 @@ class LoginViewController: BaseViewController {
     @IBAction func qqBtnTapped(sender: AnyObject) {
         //self.test()
         //QQ auth
-        SNSController.instance.qqCheckAuth({ (res) -> () in
-            SVProgressHUD.showWithMaskType(.Clear)
-            
-            XMPPManager.instance.connectWithJID("hikaru" + "@" + kOpenFireDomainName, myPassword: "123456")
-            
-            }, failure: { (errCode, errMessage) -> () in
-                println(errMessage)
+        
+        SVProgressHUD.showWithMaskType(.Clear)
+        isAnonymousLogin = true
+        
+        gcd.async(.Main, closure: { () -> () in
+            SNSController.instance.qqCheckAuth({ (res) -> () in
+                
+                UserController.loginWithQQ(res)
+                //            XMPPManager.instance.connectWithJID("hikaru" + "@" + kOpenFireDomainName, myPassword: "123456")
+                
+                }, failure: { (errCode, errMessage) -> () in
+                    println(errMessage)
+            })
         })
-
     }
+    
     func endEdit(sender:AnyObject){
         sender.resignFirstResponder()
     }

@@ -16,6 +16,7 @@
         <attribute name="avatarData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="birthday" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="figureurl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nickName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uniqueIdentifier" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
@@ -23,6 +24,6 @@
     <elements>
         <element name="Friend" positionX="-54" positionY="18" width="128" height="73"/>
         <element name="SNS" positionX="-54" positionY="45" width="128" height="118"/>
-        <element name="User" positionX="-63" positionY="-18" width="128" height="150"/>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="165"/>
     </elements>
 </model>

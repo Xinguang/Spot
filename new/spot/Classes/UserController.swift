@@ -11,20 +11,9 @@ import UIKit
 class UserController: NSObject {
     
     class func anonymousLogin() {
-        let openfireId = NSUUID().UUIDString.lowercaseString
-        let password = NSUUID().UUIDString.lowercaseString
-        
-        let account = User.MR_createEntity() as User
-
-        account.username = openfireId + "@" + kOpenFireDomainName;
-        account.uniqueIdentifier = NSUUID().UUIDString.lowercaseString
-        account.password = password
-        account.displayName = ""
-
-        account.managedObjectContext?.MR_saveToPersistentStoreWithCompletion({ (b, error) -> Void in
-            XMPPManager.instance.account = account
-            XMPPManager.instance.registerNewAccountWithPassword(password)
-        })
+        let account = createAnonymousUser()
+        XMPPManager.instance.account = account
+        XMPPManager.instance.registerNewAccountWithPassword(account.password)
     }
     
     class func shouldAutoLogin() -> Bool {
@@ -41,4 +30,30 @@ class UserController: NSObject {
         }
     }
     
+    class func loginWithQQ(res: Dictionary<String, AnyObject>) {
+        let account = createAnonymousUser()
+        account.displayName = res["nickname"] as? String
+        account.figureurl = res["figureurl_qq_2"] as? String
+        account.managedObjectContext?.MR_saveToPersistentStoreAndWait()
+        
+        XMPPManager.instance.account = account
+        XMPPManager.instance.needUpdateVcard = true
+        XMPPManager.instance.registerNewAccountWithPassword(account.password)
+    }
+    
+    class func createAnonymousUser() -> User {
+        let openfireId = NSUUID().UUIDString.lowercaseString
+        let password = NSUUID().UUIDString.lowercaseString
+        
+        let account = User.MR_createEntity() as User
+        
+        account.username = openfireId + "@" + kOpenFireDomainName;
+        account.uniqueIdentifier = NSUUID().UUIDString.lowercaseString
+        account.password = password
+        account.displayName = ""
+        
+        account.managedObjectContext?.MR_saveToPersistentStoreAndWait()
+        
+        return account
+    }
 }

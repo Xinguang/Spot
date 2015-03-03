@@ -31,7 +31,7 @@ extension SNSController {
             self.showError(-4, errMessage: "ネットワークに接続してください")
             return;
         }
-        SVProgressHUD.showWithMaskType(.Black);
+//        SVProgressHUD.showWithMaskType(.Black);
         let accessToken = _tencentOAuth?.accessToken
         if (accessToken != nil && "" != accessToken)
         {
@@ -60,7 +60,7 @@ extension SNSController {
             qq.expirationDate =  _tencentOAuth?.expirationDate
             
             qq.type = OpenIDRequestType.QQ.toString()
-            qq.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
+            qq.managedObjectContext?.MR_saveToPersistentStoreAndWait()
             //parse
             self.setCoreDataSNSInfo(qq,type:.QQ)
         }
@@ -158,8 +158,8 @@ extension SNSController: TencentSessionDelegate {
             self.qqSendAuth()
         }else{
             self.whenSuccess?(res: res)
-            self.setCoreDataUserInfo(res,type: .QQ)
-            SVProgressHUD.dismiss()
+//            self.setCoreDataUserInfo(res,type: .QQ)
+//            SVProgressHUD.dismiss()
         }
     }
 }

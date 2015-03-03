@@ -40,6 +40,7 @@ class XMPPManager: NSObject {
     
     let workQueue = dispatch_queue_create("jp.co.e-business.spot.Workqueue", DISPATCH_QUEUE_SERIAL)
     
+    var needUpdateVcard = false
 //    @property (nonatomic, strong) XMPPStream *xmppStream;
 //    @property (nonatomic, strong) XMPPReconnect *xmppReconnect;
 //    @property (nonatomic, strong) XMPPRoster *xmppRoster;
@@ -216,6 +217,36 @@ class XMPPManager: NSObject {
         xmppvCardTempModule.updateMyvCardTemp(myvCardTemp)
     }
     
+    func updateVcard() {
+        if let myvCardTemp = xmppvCardTempModule.myvCardTemp {
+            
+            if let figureurl = account.figureurl {
+                
+                NSURLSession.sharedSession().downloadTaskWithURL(NSURL(string: figureurl)!, completionHandler: { (path, res, error) -> Void in
+                    let localCard = self.xmppvCardTempModule.myvCardTemp
+                    
+                    if let displayName = self.account.displayName {
+                        localCard.formattedName = displayName
+                    }
+                    
+                    localCard.photo = NSData(contentsOfURL: path)
+                    
+                    self.xmppvCardTempModule.updateMyvCardTemp(localCard)
+                    self.needUpdateVcard = false
+
+                    
+                }).resume()
+                
+//                Net().GET(figureurl, params: nil, successHandler: {(resData) -> () in
+//                    myvCardTemp.photo = UIImagePNGRepresentation(resData)
+//                    }, failureHandler: {(err) -> () in }).resume()
+            }
+//            myvCardTemp.photo = UIImagePNGRepresentation(image)
+        
+//            xmppvCardTempModule.updateMyvCardTemp(myvCardTemp)
+        }
+    }
+    
     // MARK: - Message
     
     func sendMessage(message: NSString, to: XMPPJID) {
@@ -380,6 +411,11 @@ extension XMPPManager: XMPPRosterDelegate {
 extension XMPPManager: XMPPvCardTempModuleDelegate {
     
     func xmppvCardTempModule(vCardTempModule: XMPPvCardTempModule!, didReceivevCardTemp vCardTemp: XMPPvCardTemp!, forJID jid: XMPPJID!) {
+        if isMe(jid) && needUpdateVcard {
+            
+            updateVcard()
+        }
+        
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             NSNotificationCenter.defaultCenter().postNotificationName(kXMPPDidReceivevCardTemp, object: nil)
         })
