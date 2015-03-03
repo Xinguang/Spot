@@ -591,8 +591,6 @@
 				1737A4901AA03BDC007B8281 /* SNS */,
 				DCF538EA1A82244800C83FE5 /* gpx.json */,
 				29EE09C01AA4B3A5005F6509 /* UserController.swift */,
-				178AE0441A8CBAAA00D91542 /* SNSController.swift */,
-
 				2966239F1A898D41002608EF /* DatabaseManager.swift */,
 				296623E01A8D89E8002608EF /* XMPP */,
 				29BE112C1AA476100087287F /* MapDataConroller.swift */,
@@ -981,7 +979,7 @@
 					"$(SRCROOT)/Vendors/**",
 				);
 				INFOPLIST_FILE = spot/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "e067abd7-ffb7-4ba7-b1a2-ca2610dbd039";
@@ -1022,7 +1020,7 @@
 					"$(SRCROOT)/Vendors/**",
 				);
 				INFOPLIST_FILE = spot/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "03a88fed-8922-42a5-b10b-0db42106302d";
