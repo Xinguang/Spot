@@ -33,11 +33,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         application.applicationIconBadgeNumber = 0
         
-        if UserController.shouldAutoLogin() {
+        if let user = UserController.autoLoginUser() {
             let vc = Util.createViewControllerWithIdentifier("LoadingViewController", storyboardName: "Main")
             self.window?.rootViewController = vc
             
-            UserController.autoLogin()
+            XMPPManager.loginWithUser(user, isSNS: false)
         }
         
         return true

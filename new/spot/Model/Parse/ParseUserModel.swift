@@ -47,9 +47,13 @@ class ParseUserModel :ParseModel{
     
     init(user: User) {
         self.username = user.username
-        self.password = CocoaSecurity.aesEncrypt(user.password, key: kAESKey).hexLower
+        self.password = CocoaSecurity.aesEncrypt(user.password, key: kAESKey).base64
         self.openfireId = user.openfireId
         self.displayName = user.displayName
+    }
+    
+    func aesDecryptPassword() -> String {
+        return CocoaSecurity.aesDecryptWithBase64(password, key: kAESKey).utf8String
     }
 //    
 //    override func toPFObject()->PFObject{

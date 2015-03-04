@@ -15,7 +15,7 @@ import UIKit
 class XMPPCreateAccountViewController: BaseViewController {
 
     var newAccountTableViewController: NewAccountTableViewController!
-    var account: User!
+    var user: User!
     weak var delegate: XMPPCreateAccountViewControllerDelegate?
     
     override func viewDidLoad() {
@@ -53,18 +53,18 @@ class XMPPCreateAccountViewController: BaseViewController {
     }
     
     func xmppLoginSuccess(notification: NSNotification) {
-        SVProgressHUD.dismiss()
-
-        account.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
+        user.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
         
         //upload to Parse
-        ParseController.uploadUser(account, done: { (error) -> Void in
+        ParseController.uploadUser(user, done: { (error) -> Void in
             if let error = error {
                 SVProgressHUD.showErrorWithStatus(error.localizedDescription)
                 return
             }
             
             self.dismissViewControllerAnimated(true, completion: {
+                SVProgressHUD.dismiss()
+
                 if let delegate = self.delegate {
                     delegate.createAccountViewControllerDidLogin()
                 }
@@ -76,7 +76,7 @@ class XMPPCreateAccountViewController: BaseViewController {
     
     func xmppRegisterSuccess(notification: NSNotification) {
         // TODO: change loading text
-        account.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
+        user.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
         
 //        XMPPManager.instance.connectWithPassword(newAccountTableViewController.passwordTF.text)
     }
@@ -104,19 +104,11 @@ class XMPPCreateAccountViewController: BaseViewController {
         
         newAccountTableViewController.usernameTF.text = fixedUsername
         
-        account = User.MR_createEntity() as User
-        
-        account.username = fixedUsername;
-        
-        account.openfireId = NSUUID().UUIDString.lowercaseString + "@" + kOpenFireDomainName
+        SVProgressHUD.showWithMaskType(.Clear)
 
-        account.password = password
-        account.displayName = newAccountTableViewController.displayNameTF.text
+        user = UserController.userWith(username: fixedUsername, password: password, displayName: newAccountTableViewController.displayNameTF.text)
         
-        SVProgressHUD.show()
-        
-        XMPPManager.instance.account = account
-        XMPPManager.instance.registerNewAccountWithPassword(newAccountTableViewController.passwordTF.text)
+        XMPPManager.registerWithUser(user)
     }
     
     // MARK: - Navigation

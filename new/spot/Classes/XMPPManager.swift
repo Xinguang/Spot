@@ -41,23 +41,6 @@ class XMPPManager: NSObject {
     let workQueue = dispatch_queue_create("jp.co.e-business.spot.Workqueue", DISPATCH_QUEUE_SERIAL)
     
     var needUpdateVcard = false
-//    @property (nonatomic, strong) XMPPStream *xmppStream;
-//    @property (nonatomic, strong) XMPPReconnect *xmppReconnect;
-//    @property (nonatomic, strong) XMPPRoster *xmppRoster;
-//    @property (nonatomic, strong) XMPPvCardTempModule *xmppvCardTempModule;
-//    @property (nonatomic, strong) XMPPvCardAvatarModule *xmppvCardAvatarModule;
-//    @property (nonatomic, strong) XMPPCapabilities *xmppCapabilities;
-//    @property (nonatomic, strong) NSString *password;
-//    @property (nonatomic, strong) XMPPJID *JID;
-//    @property (nonatomic, strong) XMPPCapabilitiesCoreDataStorage *xmppCapabilitiesStorage;
-//    @property (nonatomic, strong) OTRYapDatabaseRosterStorage * xmppRosterStorage;
-//    @property (nonatomic, strong) OTRCertificatePinning * certificatePinningModule;
-//    @property (nonatomic, readwrite) BOOL isXmppConnected;
-//    @property (nonatomic, strong) NSMutableDictionary * buddyTimers;
-//    @property (nonatomic) dispatch_queue_t workQueue;
-//    @property (nonatomic) BOOL isRegisteringNewAccount;
-//    
-//    @property (nonatomic, strong) YapDatabaseConnection *databaseConnection;
     
     class var instance : XMPPManager {
         struct Static {
@@ -70,7 +53,6 @@ class XMPPManager: NSObject {
     override init() {
         super.init()
         
-//        workQueue = dispatch_queue_create("jp.co.e-business.spot.Workqueue", 0)
         setupStream()
     }
     
@@ -128,6 +110,18 @@ class XMPPManager: NSObject {
         
         xmppCapabilities.addDelegate(self, delegateQueue: workQueue)
         xmppMessageArchiving.addDelegate(self, delegateQueue: workQueue)
+    }
+    
+    class func registerWithUser(user: User) {
+        instance.account = user
+        instance.registerNewAccountWithPassword(user.password)
+    }
+    
+    class func loginWithUser(user: User, isSNS: Bool) {
+        instance.account = user
+        instance.needUpdateVcard = isSNS
+        
+        instance.connectWithJID(user.openfireId!, myPassword: user.password)
     }
     
     func registerNewAccountWithPassword(password: String) {
@@ -284,7 +278,9 @@ extension XMPPManager: XMPPStreamDelegate {
         
         connectWithPassword(password)
         
-        NSNotificationCenter.defaultCenter().postNotificationName(kXMPPRegisterSuccess, object: nil)
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            NSNotificationCenter.defaultCenter().postNotificationName(kXMPPRegisterSuccess, object: nil)
+        })
     }
     
     func xmppStream(sender: XMPPStream!, didNotRegister error: DDXMLElement!) {

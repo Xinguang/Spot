@@ -18,6 +18,14 @@ class ParseController: NSObject {
         }
     }
     
+    class func getUserByUsername(username: String, result: (ParseUserModel?, NSError?) -> Void) {
+        let user =  ParseUserModel()
+        user.getQuery().whereKey("username", equalTo: username)
+        user.getFirst(ParseUserModel.self, complete: { (res, error) -> () in
+            result(res, error)
+        })
+    }
+    
     class func getUserByOpenfireID(id: String, result: (ParseUserModel?, NSError?) -> Void) {
 //        let q = PFQuery(className: "User")
 //        q.whereKey("openfireId", equalTo: id)

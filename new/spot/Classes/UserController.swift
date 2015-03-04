@@ -10,28 +10,12 @@ import UIKit
 
 class UserController: NSObject {
     
-    class func anonymousLogin() {
-        let account = createAnonymousUser()
-        XMPPManager.instance.account = account
-        XMPPManager.instance.registerNewAccountWithPassword(account.password)
+    class func autoLoginUser() -> User? {
+        return User.MR_findFirst() as? User
     }
     
-    class func shouldAutoLogin() -> Bool {
-        return User.MR_countOfEntities() > 0
-    }
-    
-    class func autoLogin() {
-        let autoLoginUser = User.MR_findFirst() as User
-        
-        XMPPManager.instance.account = autoLoginUser
-        
-        if autoLoginUser.password != nil {
-            XMPPManager.instance.connectWithPassword(autoLoginUser.password)
-        }
-    }
-    
-    class func loginWithSNS(type: OpenIDRequestType, res: Dictionary<String, AnyObject>) {
-        let account = createAnonymousUser()
+    class func snsUser(type: OpenIDRequestType, res: Dictionary<String, AnyObject>) -> User {
+        let account = anonymousUser()
         
         if type == .QQ {
             account.displayName = res["nickname"] as? String
@@ -45,12 +29,10 @@ class UserController: NSObject {
         
         account.managedObjectContext?.MR_saveToPersistentStoreAndWait()
         
-        XMPPManager.instance.account = account
-        XMPPManager.instance.needUpdateVcard = true
-        XMPPManager.instance.registerNewAccountWithPassword(account.password)
+        return account
     }
     
-    class func createAnonymousUser() -> User {
+    class func anonymousUser() -> User {
         let openfireId = NSUUID().UUIDString.lowercaseString
         let password = NSUUID().UUIDString.lowercaseString
         
@@ -64,5 +46,27 @@ class UserController: NSObject {
         account.managedObjectContext?.MR_saveToPersistentStoreAndWait()
         
         return account
+    }
+    
+    class func userWith(#username: String, password: String, displayName: String) -> User {
+        let user = User.MR_createEntity() as User
+        user.username = username
+        user.openfireId = NSUUID().UUIDString.lowercaseString + "@" + kOpenFireDomainName
+        user.displayName = displayName
+        user.password = password
+        
+        return user
+    }
+    
+    class func saveWithParseUser(parseUser: ParseUserModel) -> User {
+        let user = User.MR_createEntity() as User
+        user.username = parseUser.username
+        user.openfireId = parseUser.openfireId
+        user.displayName = parseUser.displayName
+        user.password = parseUser.aesDecryptPassword()
+        
+        user.managedObjectContext?.MR_saveToPersistentStoreAndWait()
+        
+        return user
     }
 }

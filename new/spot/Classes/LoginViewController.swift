@@ -9,7 +9,7 @@
 import UIKit
 
 enum LoginType {
-    case Skip,Auto,SNS,SignUp
+    case Skip,Auto,SNS,SignUp,SignIn
 }
 
 class LoginViewController: BaseViewController {
@@ -54,7 +54,7 @@ class LoginViewController: BaseViewController {
     }
     
     func xmppLoginSuccess(notification: NSNotification) {
-        if loginType == .Skip {
+        if loginType == .Skip || loginType == .SignIn {
             // TODO: change save to here
             
             SVProgressHUD.dismiss()
@@ -130,9 +130,42 @@ class LoginViewController: BaseViewController {
     }
     
     @IBAction func signinBtnClicked(sender: AnyObject) {
+        loginType = .SignIn
+        
+        let username = usernameTF.text.trimmed()
+        let password = passwordTF.text
+        
+        if username.length == 0 || password.length == 0 {
+            SVProgressHUD.showErrorWithStatus("入力エラー", maskType: .Gradient)
+            return
+        }
+        
         SVProgressHUD.showWithMaskType(.Clear)
         
-        XMPPManager.instance.connectWithJID(usernameTF.text.trimmed() + "@" + kOpenFireDomainName, myPassword: passwordTF.text)
+        ParseController.getUserByUsername(username, result: { (parseUserModel, error) -> Void in
+            if let error = error {
+                // TODO: error info
+                //Error Domain=Parse Code=101 "The operation couldn’t be completed. (Parse error 101.)" UserInfo=0x7fb801285210 {error=no results matched the query, code=101}
+                SVProgressHUD.showErrorWithStatus(error.localizedDescription, maskType: .Gradient)
+                return
+            }
+            
+            if let parseUserModel = parseUserModel {
+                let openfireId = parseUserModel.openfireId
+                let passwordOnParse = parseUserModel.aesDecryptPassword()
+                if password != passwordOnParse {
+                    SVProgressHUD.showErrorWithStatus("パスワードが間違っています。", maskType: .Gradient)
+                    return
+                }
+                
+                let user = UserController.saveWithParseUser(parseUserModel)
+                
+                XMPPManager.loginWithUser(user, isSNS: false)
+
+            } else {
+                SVProgressHUD.showErrorWithStatus("ユーザーが存在しません", maskType: .Gradient)
+            }
+        })
     }
     
     @IBAction func skipBtnTapped(sender: AnyObject) {
@@ -140,7 +173,7 @@ class LoginViewController: BaseViewController {
         
         loginType = .Skip
         isAnonymousLogin = true
-        UserController.anonymousLogin()
+        XMPPManager.loginWithUser(UserController.anonymousUser(), isSNS: false)
     }
     
     @IBAction func wxBtnTapped(sender: AnyObject) {
@@ -150,7 +183,7 @@ class LoginViewController: BaseViewController {
         
         gcd.async(.Main, closure: { () -> () in
             SNSController.instance.wxCheckAuth({ (res) -> () in
-                UserController.loginWithSNS(.WeChat, res:res)
+                XMPPManager.loginWithUser(UserController.snsUser(.WeChat, res: res), isSNS: true)
                 }, failure: { (errCode, errMessage) -> () in
                     println(errMessage)
             })
@@ -163,7 +196,7 @@ class LoginViewController: BaseViewController {
         
         gcd.async(.Main, closure: { () -> () in
             SNSController.instance.qqCheckAuth({ (res) -> () in
-                UserController.loginWithSNS(.QQ, res:res)
+                XMPPManager.loginWithUser(UserController.snsUser(.QQ, res: res), isSNS: true)
                 }, failure: { (errCode, errMessage) -> () in
                     println(errMessage)
             })
