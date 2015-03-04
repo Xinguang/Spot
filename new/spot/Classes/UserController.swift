@@ -56,10 +56,10 @@ class UserController: NSObject {
         
         let account = User.MR_createEntity() as User
         
-        account.username = openfireId + "@" + kOpenFireDomainName;
-        account.uniqueIdentifier = NSUUID().UUIDString.lowercaseString
+        account.username = ""
+        account.openfireId = openfireId + "@" + kOpenFireDomainName;
         account.password = password
-        account.displayName = ""
+        account.displayName = "匿名"
         
         account.managedObjectContext?.MR_saveToPersistentStoreAndWait()
         

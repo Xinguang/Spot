@@ -10,7 +10,7 @@ const struct UserAttributes UserAttributes = {
 	.displayName = @"displayName",
 	.figureurl = @"figureurl",
 	.nickName = @"nickName",
-	.uniqueIdentifier = @"uniqueIdentifier",
+	.openfireId = @"openfireId",
 	.username = @"username",
 };
 
@@ -79,7 +79,7 @@ const struct UserAttributes UserAttributes = {
 
 @dynamic nickName;
 
-@dynamic uniqueIdentifier;
+@dynamic openfireId;
 
 @dynamic username;
 

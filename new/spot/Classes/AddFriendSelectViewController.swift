@@ -56,7 +56,7 @@ class AddFriendSelectViewController: UITableViewController {
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.font = UIFont.systemFontOfSize(14)
         // TODO: 
-        let jid = XMPPJID.jidWithString(XMPPManager.instance.account.username)
+        let jid = XMPPJID.jidWithString(XMPPManager.instance.account.openfireId)
         label.text = "私の現場トモID:\(jid.user)"
         view.addSubview(label)
         

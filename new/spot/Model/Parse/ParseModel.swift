@@ -125,6 +125,17 @@ extension ParseModel {
         return nil
     }
     
+    func getFirst<T:ParseModel>(cls:T.Type,complete:(result: T?, error: NSError?)->()){
+        let q = self.getQuery()
+        q.getFirstObjectInBackgroundWithBlock { (obj, error) -> Void in
+            if let error = error {
+                complete(result: nil, error: error)
+                return
+            }
+            
+            complete(result: T(pfObject: obj), error: nil)
+        }
+    }
     
     func find<T:ParseModel>(cls:T.Type,complete:(result: [T]?)->()){
         let q = self.getQuery()

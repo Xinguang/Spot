@@ -27,7 +27,7 @@ let kXMPPReceivedMessage = "ReceivedMessageNotification"
 
 let kGoogleApiKey = "bV4WSVpD7XG2iCoGZabJSe9pOEl4NcA"
 
-
+let kAESKey = "386A3785-F371-4A30-85D7-868DCEDA0E15"
 
 class SpotConstants: NSObject {
    

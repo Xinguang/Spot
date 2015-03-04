@@ -25,6 +25,7 @@
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <TencentOpenAPI/QQApi.h>
 #import <TencentOpenAPI/QQApiInterface.h>
+#import "CocoaSecurity.h"
 
 #define HAVE_XMPP_SUBSPEC_BANDWIDTHMONITOR
 #define HAVE_XMPP_SUBSPEC_GOOGLESHAREDSTATUS

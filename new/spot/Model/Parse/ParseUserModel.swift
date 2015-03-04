@@ -11,30 +11,45 @@ class ParseUserModel :ParseModel{
     // MARK: - Properties
     var username: String = ""
     var password: String = ""
-    var authData: String = ""
-    var emailVerified: String = ""
-    var email: String = ""
-    var userInfo: ParseUserInfoModel = ParseUserInfoModel()
-    var firends:[ParseUserModel] = []
+    var openfireId: String = ""
+    var displayName = ""
+    
+//    var authData: String = ""
+//    var emailVerified: String = ""
+//    var email: String = ""
+//    var userInfo: ParseUserInfoModel = ParseUserInfoModel()
+//    var firends:[ParseUserModel] = []
     override init(){
         
     }
     convenience init(
         username: String
         , password: String
-        , authData: String
-        , emailVerified: String
-        , email: String
-        , userInfo: ParseUserInfoModel
-        , firends:[ParseUserModel]){
+        , openfireId: String
+        , displayName: String) {
+//        , authData: String
+//        , emailVerified: String
+//        , email: String
+//        , userInfo: ParseUserInfoModel
+//        , firends:[ParseUserModel]){
             self.init()
             self.username = username
             self.password = password
-            self.authData = authData
-            self.emailVerified = emailVerified
-            self.email = email
-            self.userInfo = userInfo
-            self.firends = firends
+            self.openfireId = openfireId
+            self.displayName = displayName
+            
+//            self.authData = authData
+//            self.emailVerified = emailVerified
+//            self.email = email
+//            self.userInfo = userInfo
+//            self.firends = firends
+    }
+    
+    init(user: User) {
+        self.username = user.username
+        self.password = CocoaSecurity.aesEncrypt(user.password, key: kAESKey).hexLower
+        self.openfireId = user.openfireId
+        self.displayName = user.displayName
     }
 //    
 //    override func toPFObject()->PFObject{

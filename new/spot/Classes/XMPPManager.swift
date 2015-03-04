@@ -138,11 +138,11 @@ class XMPPManager: NSObject {
             xmppStream.disconnect()
         }
     
-        connectWithJID(account.username!, myPassword: password)
+        connectWithJID(account.openfireId!, myPassword: password)
     }
     
     func connectWithPassword(myPassword: String) {
-        connectWithJID(account.username!, myPassword: myPassword)
+        connectWithJID(account.openfireId!, myPassword: myPassword)
     }
     
     func connectWithJID(myJID: String, myPassword: String) {
@@ -436,7 +436,7 @@ extension XMPPManager {
 
 //        var iq = XMPPIQ()
 //        iq.addAttributeWithName("type", stringValue: "get")
-//        iq.addAttributeWithName("from", stringValue: account.username)
+//        iq.addAttributeWithName("from", stringValue: account.openfireId)
 //        iq.addAttributeWithName("to", stringValue: "search." + kOpenFireDomainName)
 //        iq.addAttributeWithName("id", stringValue: "search1")
 //        
@@ -447,7 +447,7 @@ extension XMPPManager {
         
         var iq = XMPPIQ()
         iq.addAttributeWithName("type", stringValue: "set")
-        iq.addAttributeWithName("from", stringValue: account.username)
+        iq.addAttributeWithName("from", stringValue: account.openfireId)
         iq.addAttributeWithName("to", stringValue: "search." + kOpenFireDomainName)
 //        iq.addAttributeWithName("id", stringValue: "search2")
         iq.addAttributeWithName("id", stringValue: "searchByUserName")
@@ -531,6 +531,6 @@ extension XMPPManager {
     }
     
     func isMe(jid: XMPPJID) -> Bool {
-        return jid.bare() == account.username
+        return jid.bare() == account.openfireId
     }
 }

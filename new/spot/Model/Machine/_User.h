@@ -10,7 +10,7 @@ extern const struct UserAttributes {
 	__unsafe_unretained NSString *displayName;
 	__unsafe_unretained NSString *figureurl;
 	__unsafe_unretained NSString *nickName;
-	__unsafe_unretained NSString *uniqueIdentifier;
+	__unsafe_unretained NSString *openfireId;
 	__unsafe_unretained NSString *username;
 } UserAttributes;
 
@@ -51,9 +51,9 @@ extern const struct UserAttributes {
 
 //- (BOOL)validateNickName:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSString* uniqueIdentifier;
+@property (nonatomic, strong) NSString* openfireId;
 
-//- (BOOL)validateUniqueIdentifier:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateOpenfireId:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* username;
 
@@ -84,8 +84,8 @@ extern const struct UserAttributes {
 - (NSString*)primitiveNickName;
 - (void)setPrimitiveNickName:(NSString*)value;
 
-- (NSString*)primitiveUniqueIdentifier;
-- (void)setPrimitiveUniqueIdentifier:(NSString*)value;
+- (NSString*)primitiveOpenfireId;
+- (void)setPrimitiveOpenfireId:(NSString*)value;
 
 - (NSString*)primitiveUsername;
 - (void)setPrimitiveUsername:(NSString*)value;

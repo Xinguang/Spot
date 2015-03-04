@@ -59,7 +59,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="必須" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6SJ-ju-BSy">
                                                     <rect key="frame" x="91" y="13.5" width="221" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="irz-49-IV2" id="Vyt-dN-rD4"/>
                                                     </connections>

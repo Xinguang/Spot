@@ -54,14 +54,24 @@ class XMPPCreateAccountViewController: BaseViewController {
     
     func xmppLoginSuccess(notification: NSNotification) {
         SVProgressHUD.dismiss()
-        
+
         account.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
         
-        self.dismissViewControllerAnimated(true, completion: {
-            if let delegate = self.delegate {
-                delegate.createAccountViewControllerDidLogin()
+        //upload to Parse
+        ParseController.uploadUser(account, done: { (error) -> Void in
+            if let error = error {
+                SVProgressHUD.showErrorWithStatus(error.localizedDescription)
+                return
             }
+            
+            self.dismissViewControllerAnimated(true, completion: {
+                if let delegate = self.delegate {
+                    delegate.createAccountViewControllerDidLogin()
+                }
+            })
         })
+        
+
     }
     
     func xmppRegisterSuccess(notification: NSNotification) {
@@ -84,16 +94,23 @@ class XMPPCreateAccountViewController: BaseViewController {
     }
     
     @IBAction func save(sender: AnyObject) {
-        let fixedUsername = newAccountTableViewController.usernameTF.text.trimmed() + "@" + kOpenFireDomainName
+        let fixedUsername = newAccountTableViewController.usernameTF.text.trimmed()
+        let password = newAccountTableViewController.passwordTF.text
+        
+        if fixedUsername.length == 0 || password.length == 0 {
+            SVProgressHUD.showErrorWithStatus("入力エラー")
+            return
+        }
+        
         newAccountTableViewController.usernameTF.text = fixedUsername
         
         account = User.MR_createEntity() as User
         
         account.username = fixedUsername;
         
-        account.uniqueIdentifier = NSUUID().UUIDString.lowercaseString
+        account.openfireId = NSUUID().UUIDString.lowercaseString + "@" + kOpenFireDomainName
 
-        account.password = newAccountTableViewController.passwordTF.text
+        account.password = password
         account.displayName = newAccountTableViewController.displayNameTF.text
         
         SVProgressHUD.show()

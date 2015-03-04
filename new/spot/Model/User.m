@@ -14,11 +14,11 @@ NSString *kSpotServiceName = @"jp.co.e-bussiness.spot.Spot";
 @implementation User
 
 - (NSString *)password {
-    return [SSKeychain passwordForService:kSpotServiceName account:self.uniqueIdentifier];
+    return [SSKeychain passwordForService:kSpotServiceName account:self.openfireId];
 }
 
 - (void)setPassword:(NSString *)password {
-    [SSKeychain setPassword:password forService:kSpotServiceName account:self.uniqueIdentifier];
+    [SSKeychain setPassword:password forService:kSpotServiceName account:self.openfireId];
 }
 
 - (UIImage *)avatarImage {

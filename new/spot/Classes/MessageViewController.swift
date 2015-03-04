@@ -162,7 +162,7 @@ extension MessageViewController: JSQMessagesCollectionViewDataSource {
     }
     
     func senderId() -> String! {
-        return XMPPManager.instance.account.username;
+        return XMPPManager.instance.account.openfireId;
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {

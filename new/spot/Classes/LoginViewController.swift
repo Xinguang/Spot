@@ -8,12 +8,17 @@
 
 import UIKit
 
+enum LoginType {
+    case Skip,Auto,SNS,SignUp
+}
+
 class LoginViewController: BaseViewController {
 
     @IBOutlet weak var usernameTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     
     var isAnonymousLogin = false
+    var loginType: LoginType!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +54,19 @@ class LoginViewController: BaseViewController {
     }
     
     func xmppLoginSuccess(notification: NSNotification) {
+        if loginType == .Skip {
+            // TODO: change save to here
+            
+            SVProgressHUD.dismiss()
+            
+            self.performSegueWithIdentifier("SegueTabBar", sender: nil)
+        }
+        
+//        if loginType == .SignUp {
+//            
+//        }
+        
+        /*
         //already saved
         if isAnonymousLogin {
             SVProgressHUD.dismiss()
@@ -65,9 +83,36 @@ class LoginViewController: BaseViewController {
         account.managedObjectContext?.MR_saveToPersistentStoreWithCompletion({ (b, error) -> Void in
             XMPPManager.instance.account = account
             SVProgressHUD.dismiss()
-            
+
+//            let userinfo = ParseUserInfoModel()
+//            userinfo.nickname = "sssss"
+//            
+//            let sns = ParseSNSModel()
+//            sns.openid = "ssssssss"
+//            userinfo.openids = [sns]
+//            
+//            userinfo.toPFObject().save()
+//            
+//            
+//            userinfo.getQuery()
+//                .whereKey("objectId", equalTo: "sssss")
+//                .whereKey("objectId", equalTo: "sssss")
+//                .whereKey("objectId", equalTo: "sssss")
+//                .whereKey("objectId", equalTo: "sssss")
+//                .whereKey("objectId", equalTo: "sssss")
+//                .whereKey("objectId", equalTo: "sssss")
+//                .whereKey("objectId", equalTo: "sssss")
+//            userinfo.getFirst()
+//            
+//            
+//            userinfo.find(ParseUserInfoModel.self, complete: { (result) -> () in
+//                println(result)    //[ParseUserInfoModel]
+//            })
+
+
             self.performSegueWithIdentifier("SegueTabBar", sender: nil)
         })
+*/
     }
     
     // MARK: - Navigation
@@ -93,6 +138,7 @@ class LoginViewController: BaseViewController {
     @IBAction func skipBtnTapped(sender: AnyObject) {
         SVProgressHUD.show()
         
+        loginType = .Skip
         isAnonymousLogin = true
         UserController.anonymousLogin()
     }
