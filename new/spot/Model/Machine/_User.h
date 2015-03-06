@@ -8,6 +8,7 @@ extern const struct UserAttributes {
 	__unsafe_unretained NSString *avatarData;
 	__unsafe_unretained NSString *birthday;
 	__unsafe_unretained NSString *displayName;
+	__unsafe_unretained NSString *gender;
 	__unsafe_unretained NSString *openfireId;
 	__unsafe_unretained NSString *username;
 } UserAttributes;
@@ -46,6 +47,10 @@ extern const struct UserRelationships {
 @property (nonatomic, strong) NSString* displayName;
 
 //- (BOOL)validateDisplayName:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSString* gender;
+
+//- (BOOL)validateGender:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* openfireId;
 
@@ -92,6 +97,9 @@ extern const struct UserRelationships {
 
 - (NSString*)primitiveDisplayName;
 - (void)setPrimitiveDisplayName:(NSString*)value;
+
+- (NSString*)primitiveGender;
+- (void)setPrimitiveGender:(NSString*)value;
 
 - (NSString*)primitiveOpenfireId;
 - (void)setPrimitiveOpenfireId:(NSString*)value;

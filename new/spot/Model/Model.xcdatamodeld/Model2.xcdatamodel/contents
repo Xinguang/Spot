@@ -19,6 +19,7 @@
         <attribute name="avatarData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="birthday" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="openfireId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="snses" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="SNS" inverseName="user" inverseEntity="SNS" syncable="YES"/>
@@ -26,6 +27,6 @@
     <elements>
         <element name="Friend" positionX="-54" positionY="18" width="128" height="73"/>
         <element name="SNS" positionX="-54" positionY="45" width="128" height="163"/>
-        <element name="User" positionX="-63" positionY="-18" width="128" height="28"/>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="163"/>
     </elements>
 </model>

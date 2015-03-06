@@ -10,6 +10,11 @@ import UIKit
 
 class UserController: NSObject {
     
+    class func isAnonymousUser() -> Bool {
+        let user = User.MR_findFirst() as User
+        return user.username == nil && user.snses.count == 0
+    }
+    
     class func autoLoginUser() -> User? {
         assert(NSThread.currentThread().isMainThread, "not main thread")
         
@@ -58,7 +63,6 @@ class UserController: NSObject {
         
         let account = User.MR_createEntity() as User
         
-        account.username = ""
         account.openfireId = openfireId + "@" + kOpenFireDomainName;
         account.password = password
                 

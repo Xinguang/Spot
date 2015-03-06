@@ -88,7 +88,7 @@
             </objects>
             <point key="canvasLocation" x="547" y="382"/>
         </scene>
-        <!--Account Edit View Controller-->
+        <!--マイプロフィール-->
         <scene sceneID="2Ot-pi-VHa">
             <objects>
                 <tableViewController id="O57-Yn-YCJ" customClass="AccountEditViewController" customModule="spot" customModuleProvider="target" sceneMemberID="viewController">
@@ -164,7 +164,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5um-Wg-EYQ">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.5725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -174,25 +174,33 @@
                             </tableViewSection>
                             <tableViewSection id="JXk-Pa-6go">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="E8t-nz-TyN" detailTextLabel="72J-y6-UZd" style="IBUITableViewCellStyleValue1" id="IXL-Dy-qx8">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="IXL-Dy-qx8">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IXL-Dy-qx8" id="0a5-wM-hmR">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="性別" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E8t-nz-TyN">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="性別" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5AR-yR-rmq">
+                                                    <rect key="frame" x="15" y="11" width="34" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="72J-y6-UZd">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0T4-bI-8hH">
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.5725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="0T4-bI-8hH" secondAttribute="centerY" id="YG0-c3-zUg"/>
+                                                <constraint firstAttribute="centerY" secondItem="5AR-yR-rmq" secondAttribute="centerY" id="nva-rE-MmY"/>
+                                                <constraint firstAttribute="trailing" secondItem="0T4-bI-8hH" secondAttribute="trailing" id="rpw-cW-DGa"/>
+                                                <constraint firstItem="5AR-yR-rmq" firstAttribute="leading" secondItem="0a5-wM-hmR" secondAttribute="leading" constant="15" id="sca-jh-OHn"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="TZ5-TD-1gH" kind="push" identifier="SegueGender" id="SVU-d7-sZV"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Mgj-dk-YYq" detailTextLabel="4Me-XB-SUZ" style="IBUITableViewCellStyleValue1" id="IJH-gv-5RR">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -205,7 +213,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4Me-XB-SUZ">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4Me-XB-SUZ">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -222,11 +230,11 @@
                             <outlet property="delegate" destination="O57-Yn-YCJ" id="bXY-LY-5iT"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Jji-C3-Nlf"/>
+                    <navigationItem key="navigationItem" title="マイプロフィール" id="Jji-C3-Nlf"/>
                     <connections>
                         <outlet property="idLabel" destination="5um-Wg-EYQ" id="kkH-pm-3H4"/>
                         <outlet property="nameLabel" destination="CiR-43-nWs" id="gig-Wu-clu"/>
-                        <outlet property="sexLabel" destination="72J-y6-UZd" id="JhK-uU-8S4"/>
+                        <outlet property="sexLabel" destination="0T4-bI-8hH" id="EDO-bJ-frL"/>
                         <outlet property="stationLabel" destination="4Me-XB-SUZ" id="VOU-dr-TcK"/>
                         <outlet property="userImage" destination="Bqu-dn-RPC" id="2mj-Fv-uJo"/>
                     </connections>
@@ -235,7 +243,7 @@
             </objects>
             <point key="canvasLocation" x="966" y="385"/>
         </scene>
-        <!--Account Name Edit Table View Controller-->
+        <!--名前-->
         <scene sceneID="32F-7P-4Mz">
             <objects>
                 <tableViewController id="uBH-W8-VgM" customClass="AccountNameEditTableViewController" customModule="spot" customModuleProvider="target" sceneMemberID="viewController">
@@ -273,7 +281,7 @@
                             <outlet property="delegate" destination="uBH-W8-VgM" id="doi-1o-5F2"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Jpf-bs-5kX">
+                    <navigationItem key="navigationItem" title="名前" id="Jpf-bs-5kX">
                         <barButtonItem key="leftBarButtonItem" title="キャンセル" id="Vd9-bE-SPO">
                             <connections>
                                 <action selector="cancel:" destination="uBH-W8-VgM" id="0E3-0i-wZG"/>
@@ -291,7 +299,64 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JW2-Pr-wGJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1303" y="385"/>
+            <point key="canvasLocation" x="1357" y="-13"/>
+        </scene>
+        <!--性別-->
+        <scene sceneID="zqO-EV-ZXA">
+            <objects>
+                <tableViewController id="TZ5-TD-1gH" customClass="GenderSelectViewController" customModule="spot" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="HMh-Gc-Ao5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                        <sections>
+                            <tableViewSection id="mO8-rJ-SOY">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="4BI-7n-w2g" style="IBUITableViewCellStyleDefault" id="Yvn-Ke-jMP">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yvn-Ke-jMP" id="eMt-PY-eTJ">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="男性" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4BI-7n-w2g" userLabel="男性">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="Uxe-Wd-Yiz" style="IBUITableViewCellStyleDefault" id="aRk-v4-Zh9">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aRk-v4-Zh9" id="yym-Bi-1Eu">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="女性" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Uxe-Wd-Yiz" userLabel="女性">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="TZ5-TD-1gH" id="hyo-bg-vRT"/>
+                            <outlet property="delegate" destination="TZ5-TD-1gH" id="Gi7-b4-JJM"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="性別" id="YAb-1z-D3J"/>
+                    <connections>
+                        <outlet property="fCell" destination="aRk-v4-Zh9" id="ekk-66-kCu"/>
+                        <outlet property="mCell" destination="Yvn-Ke-jMP" id="9eW-xf-P7d"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W25-bb-aan" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1357" y="644"/>
         </scene>
         <!--本人-->
         <scene sceneID="fsf-pj-kgY">

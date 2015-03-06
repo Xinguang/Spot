@@ -42,6 +42,7 @@
 		178AE0571A8DC27300D91542 /* NetResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178AE04D1A8DC27300D91542 /* NetResponseData.swift */; };
 		178AE0581A8DC27300D91542 /* NetUploadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178AE04E1A8DC27300D91542 /* NetUploadTask.swift */; };
 		178AE0591A8DC27300D91542 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178AE0501A8DC27300D91542 /* Reachability.swift */; };
+		2906BD091AA9919400D75C05 /* GenderSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2906BD081AA9919300D75C05 /* GenderSelectViewController.swift */; };
 		2911ACE81A96E35B00DF1F84 /* TalkSearchResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2911ACE71A96E35B00DF1F84 /* TalkSearchResultTableViewController.swift */; };
 		2911ACEA1A96E37A00DF1F84 /* RecentlyFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2911ACE91A96E37A00DF1F84 /* RecentlyFriendCell.swift */; };
 		2911ACEE1A96E6A800DF1F84 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4109C61A81C50A00E11CAB /* NSDate.swift */; };
@@ -139,6 +140,7 @@
 		178AE04D1A8DC27300D91542 /* NetResponseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetResponseData.swift; sourceTree = "<group>"; };
 		178AE04E1A8DC27300D91542 /* NetUploadTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetUploadTask.swift; sourceTree = "<group>"; };
 		178AE0501A8DC27300D91542 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		2906BD081AA9919300D75C05 /* GenderSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenderSelectViewController.swift; path = Classes/GenderSelectViewController.swift; sourceTree = "<group>"; };
 		2911ACE71A96E35B00DF1F84 /* TalkSearchResultTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TalkSearchResultTableViewController.swift; path = Classes/TalkSearchResultTableViewController.swift; sourceTree = "<group>"; };
 		2911ACE91A96E37A00DF1F84 /* RecentlyFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecentlyFriendCell.swift; path = Classes/RecentlyFriendCell.swift; sourceTree = "<group>"; };
 		292A35D41AA6A2C4004D6C89 /* ParseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseController.swift; path = Classes/ParseController.swift; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 				DCD9CB881A84BC01009C4468 /* AccountViewController.swift */,
 				29F5D4231A996D1F00D0AF54 /* AccountEditViewController.swift */,
 				29E623341A9B004A00383DEA /* AccountNameEditTableViewController.swift */,
+				2906BD081AA9919300D75C05 /* GenderSelectViewController.swift */,
 			);
 			name = Account;
 			sourceTree = "<group>";
@@ -789,6 +792,7 @@
 				296623D01A8C990E002608EF /* XMPPAccount.swift in Sources */,
 				178AE0541A8DC27300D91542 /* NetDownloadTask.swift in Sources */,
 				2911ACEA1A96E37A00DF1F84 /* RecentlyFriendCell.swift in Sources */,
+				2906BD091AA9919400D75C05 /* GenderSelectViewController.swift in Sources */,
 				296623AD1A8C47F5002608EF /* AddFriendSelectViewController.swift in Sources */,
 				296623AB1A89C586002608EF /* XMPPManager.swift in Sources */,
 				29F5D4241A996D1F00D0AF54 /* AccountEditViewController.swift in Sources */,

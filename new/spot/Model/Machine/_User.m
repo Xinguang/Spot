@@ -8,6 +8,7 @@ const struct UserAttributes UserAttributes = {
 	.avatarData = @"avatarData",
 	.birthday = @"birthday",
 	.displayName = @"displayName",
+	.gender = @"gender",
 	.openfireId = @"openfireId",
 	.username = @"username",
 };
@@ -76,6 +77,8 @@ const struct UserRelationships UserRelationships = {
 @dynamic birthday;
 
 @dynamic displayName;
+
+@dynamic gender;
 
 @dynamic openfireId;
 

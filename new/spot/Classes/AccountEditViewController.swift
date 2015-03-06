@@ -18,6 +18,7 @@ class AccountEditViewController: UITableViewController {
     
     var user: User!
     var nameEditVC: AccountNameEditTableViewController?
+//    var genderSelectVC: GenderSelectViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,12 @@ class AccountEditViewController: UITableViewController {
         }
         
         idLabel.text = user.username
+        
+        if let gender = user.gender {
+            sexLabel.text = user.genderStr()
+        }
+        
+        tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -54,6 +61,11 @@ class AccountEditViewController: UITableViewController {
         if segue.identifier == "SegueNameEdit" {
             nameEditVC = segue.destinationViewController as? AccountNameEditTableViewController
             nameEditVC?.orgName = nameLabel.text
+        }
+        
+        if segue.identifier == "SegueGender" {
+            let vc = segue.destinationViewController as GenderSelectViewController
+            vc.user = user
         }
     }
 

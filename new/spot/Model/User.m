@@ -46,4 +46,12 @@ NSString *kSpotServiceName = @"jp.co.e-bussiness.spot.Spot";
     self.avatarData = card.xmppvCardTempModule.myvCardTemp.photo;
 }
 
+- (NSString *)genderStr {
+    if ([self.gender isEqualToString:@"M"]) {
+        return @"男性";
+    }
+    
+    return @"女性";
+}
+
 @end

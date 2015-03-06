@@ -40,6 +40,19 @@ class ParseController: NSObject {
         }
     }
     
+    class func updateGenderOfUser(user: User, done: (NSError?) -> Void) {
+        let query = PFQuery(className: "User")
+        query.whereKey("openfireId", equalTo: user.openfireId)
+        
+        query.getFirstObjectInBackgroundWithBlock { (obj, err) -> Void in
+            obj["gender"] = user.gender
+            
+            obj.saveInBackgroundWithBlock({ (b, err) -> Void in
+                done(nil)
+            })
+        }
+    }
+    
     class func getUserByUsername(username: String, result: (ParseUserModel?, NSError?) -> Void) {
         let user =  ParseUserModel()
         user.getQuery().whereKey("username", equalTo: username)

@@ -9,4 +9,6 @@
 - (UIImage *)avatarImage;
 - (void)updateWithVcard: (XMPPvCardAvatarModule *)card;
 
+- (NSString *)genderStr;
+
 @end
