@@ -8,11 +8,15 @@ extern const struct UserAttributes {
 	__unsafe_unretained NSString *avatarData;
 	__unsafe_unretained NSString *birthday;
 	__unsafe_unretained NSString *displayName;
-	__unsafe_unretained NSString *figureurl;
-	__unsafe_unretained NSString *nickName;
 	__unsafe_unretained NSString *openfireId;
 	__unsafe_unretained NSString *username;
 } UserAttributes;
+
+extern const struct UserRelationships {
+	__unsafe_unretained NSString *snses;
+} UserRelationships;
+
+@class SNS;
 
 @interface UserID : NSManagedObjectID {}
 @end
@@ -43,14 +47,6 @@ extern const struct UserAttributes {
 
 //- (BOOL)validateDisplayName:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSString* figureurl;
-
-//- (BOOL)validateFigureurl:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* nickName;
-
-//- (BOOL)validateNickName:(id*)value_ error:(NSError**)error_;
-
 @property (nonatomic, strong) NSString* openfireId;
 
 //- (BOOL)validateOpenfireId:(id*)value_ error:(NSError**)error_;
@@ -58,6 +54,25 @@ extern const struct UserAttributes {
 @property (nonatomic, strong) NSString* username;
 
 //- (BOOL)validateUsername:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSOrderedSet *snses;
+
+- (NSMutableOrderedSet*)snsesSet;
+
+@end
+
+@interface _User (SnsesCoreDataGeneratedAccessors)
+- (void)addSnses:(NSOrderedSet*)value_;
+- (void)removeSnses:(NSOrderedSet*)value_;
+- (void)addSnsesObject:(SNS*)value_;
+- (void)removeSnsesObject:(SNS*)value_;
+
+- (void)insertObject:(SNS*)value inSnsesAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromSnsesAtIndex:(NSUInteger)idx;
+- (void)insertSnses:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removeSnsesAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInSnsesAtIndex:(NSUInteger)idx withObject:(SNS*)value;
+- (void)replaceSnsesAtIndexes:(NSIndexSet *)indexes withSnses:(NSArray *)values;
 
 @end
 
@@ -78,16 +93,13 @@ extern const struct UserAttributes {
 - (NSString*)primitiveDisplayName;
 - (void)setPrimitiveDisplayName:(NSString*)value;
 
-- (NSString*)primitiveFigureurl;
-- (void)setPrimitiveFigureurl:(NSString*)value;
-
-- (NSString*)primitiveNickName;
-- (void)setPrimitiveNickName:(NSString*)value;
-
 - (NSString*)primitiveOpenfireId;
 - (void)setPrimitiveOpenfireId:(NSString*)value;
 
 - (NSString*)primitiveUsername;
 - (void)setPrimitiveUsername:(NSString*)value;
+
+- (NSMutableOrderedSet*)primitiveSnses;
+- (void)setPrimitiveSnses:(NSMutableOrderedSet*)value;
 
 @end

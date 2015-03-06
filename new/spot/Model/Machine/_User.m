@@ -8,10 +8,12 @@ const struct UserAttributes UserAttributes = {
 	.avatarData = @"avatarData",
 	.birthday = @"birthday",
 	.displayName = @"displayName",
-	.figureurl = @"figureurl",
-	.nickName = @"nickName",
 	.openfireId = @"openfireId",
 	.username = @"username",
+};
+
+const struct UserRelationships UserRelationships = {
+	.snses = @"snses",
 };
 
 @implementation UserID
@@ -75,13 +77,80 @@ const struct UserAttributes UserAttributes = {
 
 @dynamic displayName;
 
-@dynamic figureurl;
-
-@dynamic nickName;
-
 @dynamic openfireId;
 
 @dynamic username;
 
+@dynamic snses;
+
+- (NSMutableOrderedSet*)snsesSet {
+	[self willAccessValueForKey:@"snses"];
+
+	NSMutableOrderedSet *result = (NSMutableOrderedSet*)[self mutableOrderedSetValueForKey:@"snses"];
+
+	[self didAccessValueForKey:@"snses"];
+	return result;
+}
+
+@end
+
+@implementation _User (SnsesCoreDataGeneratedAccessors)
+- (void)addSnses:(NSOrderedSet*)value_ {
+	[self.snsesSet unionOrderedSet:value_];
+}
+- (void)removeSnses:(NSOrderedSet*)value_ {
+	[self.snsesSet minusOrderedSet:value_];
+}
+- (void)addSnsesObject:(SNS*)value_ {
+	[self.snsesSet addObject:value_];
+}
+- (void)removeSnsesObject:(SNS*)value_ {
+	[self.snsesSet removeObject:value_];
+}
+- (void)insertObject:(SNS*)value inSnsesAtIndex:(NSUInteger)idx {
+    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
+    [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"snses"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self snses]];
+    [tmpOrderedSet insertObject:value atIndex:idx];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"snses"];
+    [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"snses"];
+}
+- (void)removeObjectFromSnsesAtIndex:(NSUInteger)idx {
+    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
+    [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"snses"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self snses]];
+    [tmpOrderedSet removeObjectAtIndex:idx];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"snses"];
+    [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"snses"];
+}
+- (void)insertSnses:(NSArray *)value atIndexes:(NSIndexSet *)indexes {
+    [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"snses"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self snses]];
+    [tmpOrderedSet insertObjects:value atIndexes:indexes];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"snses"];
+    [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"snses"];
+}
+- (void)removeSnsesAtIndexes:(NSIndexSet *)indexes {
+    [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"snses"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self snses]];
+    [tmpOrderedSet removeObjectsAtIndexes:indexes];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"snses"];
+    [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"snses"];
+}
+- (void)replaceObjectInSnsesAtIndex:(NSUInteger)idx withObject:(SNS*)value {
+    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
+    [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"snses"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self snses]];
+    [tmpOrderedSet replaceObjectAtIndex:idx withObject:value];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"snses"];
+    [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"snses"];
+}
+- (void)replaceSnsesAtIndexes:(NSIndexSet *)indexes withSnses:(NSArray *)value {
+    [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"snses"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self snses]];
+    [tmpOrderedSet replaceObjectsAtIndexes:indexes withObjects:value];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"snses"];
+    [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"snses"];
+}
 @end
 

@@ -25,12 +25,15 @@ enum OpenIDRequestType {
 
 class SNSController: NSObject {
     
-    typealias snsSuccessHandler = (res:Dictionary<String, AnyObject>) -> ()
+    typealias snsSuccessHandler = (sns: SNS) -> ()
     typealias snsFailureHandler = (errCode:Int32,errMessage:String) -> ()
     var whenSuccess:snsSuccessHandler?
     var whenfailure:snsFailureHandler?
     
     let net = Net()
+    
+    var sns: SNS!
+    
     //インスタンス
     class var instance : SNSController {
         struct Static {
@@ -84,14 +87,13 @@ extension SNSController{
             
         }else if let res = result as? Dictionary<String, AnyObject>{
             if(type == .WeChat){//wechat
-                let wx = SNS.MR_createEntity() as SNS
-                wx.openid = result["openid"] as String?
-                wx.access_token = result["access_token"] as String?
-                wx.refresh_token = result["refresh_token"] as String?
-                wx.type = type.toString()
-                wx.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
-                //parse
-                self.setParseSNSInfo(wx)
+                assert(NSThread.currentThread().isMainThread, "not main thread")
+                
+                sns = SNS.MR_createEntity() as SNS
+                sns.openid = result["openid"] as String?
+                sns.access_token = result["access_token"] as String?
+                sns.refresh_token = result["refresh_token"] as String?
+                sns.type = type.toString()
             }
         }
     }

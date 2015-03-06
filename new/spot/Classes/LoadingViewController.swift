@@ -17,10 +17,15 @@ class LoadingViewController: BaseViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("xmppConnectTimeout:"), name: kXMPPConnectTimeout, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("xmppLoginFailed:"), name: kXMPPLoginFail, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("xmppLoginSuccess:"), name: kXMPPLoginSuccess, object: nil)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
-        SVProgressHUD.showWithMaskType(SVProgressHUDMaskType.Gradient)
+        SVProgressHUD.showWithStatus("ログイン", maskType: .Clear)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -37,10 +42,12 @@ class LoadingViewController: BaseViewController {
 
     // MARK: - Notification
     
+    func xmppConnectTimeout(notification: NSNotification) {
+        SVProgressHUD.showErrorWithStatus("タイムアウト", maskType: .Clear)
+    }
+    
     func xmppLoginFailed(notification: NSNotification) {
-        SVProgressHUD.dismiss()
-        
-        // TODO:
+        SVProgressHUD.showErrorWithStatus("タイムアウト", maskType: .Clear)
     }
     
     func xmppLoginSuccess(notification: NSNotification) {

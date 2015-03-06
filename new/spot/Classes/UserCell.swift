@@ -26,8 +26,14 @@ class UserCell: UITableViewCell {
                 nameLabel.text = ""
             }
             // TODO: 
-            let jid = XMPPJID.jidWithString(user.username)
-            idLabel.text = jid.user
+//            let jid = XMPPJID.jidWithString(user.username)
+            if let username = user.username {
+                if username.length > 0 {
+                    idLabel.text = "現場トモID:" + user.username
+                }
+            }
+            
+            
         }
     }
     

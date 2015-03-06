@@ -12,7 +12,11 @@ class ParseSNSModel :ParseModel{
     var openid: String = ""
     var access_token: String = ""
     var refresh_token: String = ""
-    var expirationDate: String = ""
+    var expirationDate: NSDate?
+    var nickName = ""
+    var figureurl = ""
+    var type = ""
+    
     override init(){
         
     }
@@ -20,7 +24,7 @@ class ParseSNSModel :ParseModel{
         openid: String
         , access_token:String
         , refresh_token:String
-        , expirationDate:String){
+        , expirationDate:NSDate?){
             self.init()
             self.openid = openid
             self.access_token = access_token
@@ -28,6 +32,15 @@ class ParseSNSModel :ParseModel{
             self.expirationDate = expirationDate
     }
     
+    init(sns: SNS) {
+        openid = sns.openid
+        nickName = sns.nickName
+        refresh_token = sns.refresh_token ?? ""
+        figureurl = sns.figureurl
+        expirationDate = sns.expirationDate
+        access_token = sns.access_token
+        type = sns.type
+    }
 //    override func toPFObject()->PFObject{
 //        var pfObject = super.toPFObject()
 //    

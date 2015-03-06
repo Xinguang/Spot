@@ -8,17 +8,13 @@
 
 import UIKit
 
-enum LoginType {
-    case Skip,Auto,SNS,SignUp,SignIn
-}
-
 class LoginViewController: BaseViewController {
 
     @IBOutlet weak var usernameTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     
-    var isAnonymousLogin = false
-    var loginType: LoginType!
+    var user: User!
+    var needUploadToParse = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +29,8 @@ class LoginViewController: BaseViewController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("xmppLoginFailed:"), name: kXMPPLoginFail, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("xmppLoginSuccess:"), name: kXMPPLoginSuccess, object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("xmppRegisterFailed:"), name: kXMPPRegisterFailed, object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("xmppRegisterSuccess:"), name: kXMPPRegisterSuccess, object: nil)
         
         //self.usernameTF?.addTarget(self, action: Selector("endEdit:"), forControlEvents: UIControlEvents.EditingDidEndOnExit)
         self.passwordTF?.addTarget(self, action: Selector("endEdit:"), forControlEvents: UIControlEvents.EditingDidEndOnExit)
@@ -48,71 +46,30 @@ class LoginViewController: BaseViewController {
     // MARK: - Notification
     
     func xmppLoginFailed(notification: NSNotification) {
-        SVProgressHUD.dismiss()
+        SVProgressHUD.showErrorWithStatus("ログイン失敗", maskType: .Clear)
         
         // TODO:
     }
     
     func xmppLoginSuccess(notification: NSNotification) {
-        if loginType == .Skip || loginType == .SignIn {
-            // TODO: change save to here
-            
-            SVProgressHUD.dismiss()
-            
-            self.performSegueWithIdentifier("SegueTabBar", sender: nil)
+        if needUploadToParse {
+            ParseController.uploadUser(user, done: { (error) -> Void in
+                if let error = error {
+                    SVProgressHUD.showErrorWithStatus(error.localizedDescription, maskType: .Clear)
+                } else {
+                    self.goToTabView()
+                }
+            })
+        } else {
+            self.goToTabView()
         }
+    }
+    
+    func goToTabView() {
+        SVProgressHUD.dismiss()
+        self.performSegueWithIdentifier("SegueTabBar", sender: nil)
         
-//        if loginType == .SignUp {
-//            
-//        }
-        
-        /*
-        //already saved
-        if isAnonymousLogin {
-            SVProgressHUD.dismiss()
-            
-            self.performSegueWithIdentifier("SegueTabBar", sender: nil)
-            
-            return
-        }
-        
-        let account = User.MR_createEntity() as User
-        account.uniqueIdentifier = NSUUID().UUIDString.lowercaseString
-        account.username = usernameTF.text.trimmed() + "@" + kOpenFireDomainName
-        account.password = passwordTF.text
-        account.managedObjectContext?.MR_saveToPersistentStoreWithCompletion({ (b, error) -> Void in
-            XMPPManager.instance.account = account
-            SVProgressHUD.dismiss()
-
-//            let userinfo = ParseUserInfoModel()
-//            userinfo.nickname = "sssss"
-//            
-//            let sns = ParseSNSModel()
-//            sns.openid = "ssssssss"
-//            userinfo.openids = [sns]
-//            
-//            userinfo.toPFObject().save()
-//            
-//            
-//            userinfo.getQuery()
-//                .whereKey("objectId", equalTo: "sssss")
-//                .whereKey("objectId", equalTo: "sssss")
-//                .whereKey("objectId", equalTo: "sssss")
-//                .whereKey("objectId", equalTo: "sssss")
-//                .whereKey("objectId", equalTo: "sssss")
-//                .whereKey("objectId", equalTo: "sssss")
-//                .whereKey("objectId", equalTo: "sssss")
-//            userinfo.getFirst()
-//            
-//            
-//            userinfo.find(ParseUserInfoModel.self, complete: { (result) -> () in
-//                println(result)    //[ParseUserInfoModel]
-//            })
-
-
-            self.performSegueWithIdentifier("SegueTabBar", sender: nil)
-        })
-*/
+        UserController.saveUser(self.user)
     }
     
     // MARK: - Navigation
@@ -130,8 +87,6 @@ class LoginViewController: BaseViewController {
     }
     
     @IBAction func signinBtnClicked(sender: AnyObject) {
-        loginType = .SignIn
-        
         let username = usernameTF.text.trimmed()
         let password = passwordTF.text
         
@@ -158,9 +113,9 @@ class LoginViewController: BaseViewController {
                     return
                 }
                 
-                let user = UserController.saveWithParseUser(parseUserModel)
+                self.user = UserController.userFromParseUser(parseUserModel)
                 
-                XMPPManager.loginWithUser(user, isSNS: false)
+                XMPPManager.loginWithUser(self.user, isSNS: false)
 
             } else {
                 SVProgressHUD.showErrorWithStatus("ユーザーが存在しません", maskType: .Gradient)
@@ -169,22 +124,23 @@ class LoginViewController: BaseViewController {
     }
     
     @IBAction func skipBtnTapped(sender: AnyObject) {
-        SVProgressHUD.show()
+        SVProgressHUD.showWithMaskType(.Clear)
         
-        loginType = .Skip
-        isAnonymousLogin = true
-        XMPPManager.loginWithUser(UserController.anonymousUser(), isSNS: false)
+        user = UserController.anonymousUser()
+        XMPPManager.registerWithUser(user)
     }
     
     @IBAction func wxBtnTapped(sender: AnyObject) {
         SVProgressHUD.showWithMaskType(.Clear)
         // TODO: change Flg name
-        isAnonymousLogin = true
         
         gcd.async(.Main, closure: { () -> () in
-            SNSController.instance.wxCheckAuth({ (res) -> () in
-                XMPPManager.loginWithUser(UserController.snsUser(.WeChat, res: res), isSNS: true)
-                }, failure: { (errCode, errMessage) -> () in
+            SNSController.instance.wxCheckAuth({ (sns) -> () in
+                assert(NSThread.currentThread().isMainThread, "not main thread")
+                
+                self.loginOrRegisterWithSNS(sns)
+                
+            }, failure: { (errCode, errMessage) -> () in
                     println(errMessage)
             })
         })
@@ -192,15 +148,28 @@ class LoginViewController: BaseViewController {
     
     @IBAction func qqBtnTapped(sender: AnyObject) {
         SVProgressHUD.showWithMaskType(.Clear)
-        isAnonymousLogin = true
         
         gcd.async(.Main, closure: { () -> () in
-            SNSController.instance.qqCheckAuth({ (res) -> () in
-                XMPPManager.loginWithUser(UserController.snsUser(.QQ, res: res), isSNS: true)
-                }, failure: { (errCode, errMessage) -> () in
+            SNSController.instance.qqCheckAuth({ (sns) -> () in
+                assert(NSThread.currentThread().isMainThread, "not main thread")
+                
+                self.loginOrRegisterWithSNS(sns)
+            }, failure: { (errCode, errMessage) -> () in
                     println(errMessage)
             })
         })
+    }
+    
+    func loginOrRegisterWithSNS(sns: SNS) {
+        //already have openfireid
+        if let parseUser = ParseController.parseUserByOpenid(sns.openid) {
+            self.user = UserController.snsUser(sns, parseUser: parseUser)
+            XMPPManager.loginWithUser(self.user, isSNS: true)
+        } else {
+            self.user = UserController.snsUser(sns, parseUser: nil)
+            self.needUploadToParse = true
+            XMPPManager.registerWithUser(self.user)
+        }
     }
     
     func endEdit(sender:AnyObject){

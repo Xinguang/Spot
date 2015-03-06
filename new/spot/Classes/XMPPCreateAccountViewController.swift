@@ -53,7 +53,7 @@ class XMPPCreateAccountViewController: BaseViewController {
     }
     
     func xmppLoginSuccess(notification: NSNotification) {
-        user.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
+        UserController.saveUser(user)
         
         //upload to Parse
         ParseController.uploadUser(user, done: { (error) -> Void in
@@ -75,10 +75,7 @@ class XMPPCreateAccountViewController: BaseViewController {
     }
     
     func xmppRegisterSuccess(notification: NSNotification) {
-        // TODO: change loading text
-        user.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
-        
-//        XMPPManager.instance.connectWithPassword(newAccountTableViewController.passwordTF.text)
+        SVProgressHUD.setStatus("ログイン")
     }
     
     func xmppRegisterFailed(notification: NSNotification) {
@@ -104,7 +101,7 @@ class XMPPCreateAccountViewController: BaseViewController {
         
         newAccountTableViewController.usernameTF.text = fixedUsername
         
-        SVProgressHUD.showWithMaskType(.Clear)
+        SVProgressHUD.showWithStatus("登録", maskType: .Clear)
 
         user = UserController.userWith(username: fixedUsername, password: password, displayName: newAccountTableViewController.displayNameTF.text)
         

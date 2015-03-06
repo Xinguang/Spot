@@ -114,6 +114,8 @@ class XMPPManager: NSObject {
     
     class func registerWithUser(user: User) {
         instance.account = user
+        instance.needUpdateVcard = true
+
         instance.registerNewAccountWithPassword(user.password)
     }
     
@@ -151,10 +153,11 @@ class XMPPManager: NSObject {
         xmppStream.hostName = kOpenFireDomainName
         var error: NSError?
         
-        if !xmppStream.connectWithTimeout(XMPPStreamTimeoutNone, error: &error) {
+        if !xmppStream.connectWithTimeout(15, error: &error) {
             failedToConnect(error?)
         }
     }
+    
     
     func failedToConnect(error: NSError?) {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -181,6 +184,7 @@ class XMPPManager: NSObject {
     
     func goOffline() {
         xmppStream.sendElement(XMPPPresence(type: "unavailable"))
+        
     }
     
 //    func addFriend(friend: Friend) {
@@ -214,13 +218,13 @@ class XMPPManager: NSObject {
     func updateVcard() {
         if let myvCardTemp = xmppvCardTempModule.myvCardTemp {
             
-            if let figureurl = account.figureurl {
+            if let figureurl = (account.snses.lastObject as SNS?)?.figureurl {
                 
                 NSURLSession.sharedSession().downloadTaskWithURL(NSURL(string: figureurl)!, completionHandler: { (path, res, error) -> Void in
                     let localCard = self.xmppvCardTempModule.myvCardTemp
                     
-                    if let displayName = self.account.displayName {
-                        localCard.formattedName = displayName
+                    if let nickName = (self.account.snses.lastObject as SNS?)?.nickName {
+                        localCard.formattedName = nickName
                     }
                     
                     localCard.photo = NSData(contentsOfURL: path)
@@ -230,7 +234,15 @@ class XMPPManager: NSObject {
 
                     
                 }).resume()
+                
+                return
              }
+            
+            if let displayName = self.account.displayName {
+                myvCardTemp.formattedName = displayName
+                self.xmppvCardTempModule.updateMyvCardTemp(myvCardTemp)
+                self.needUpdateVcard = false
+            }
         }
     }
     
@@ -250,6 +262,7 @@ class XMPPManager: NSObject {
 // MARK: - XMPPStreamDelegate
 
 extension XMPPManager: XMPPStreamDelegate {
+    
     func xmppStreamDidConnect(sender: XMPPStream!) {
         if isRegisteringNewAccount {
             var error: NSError?
@@ -271,6 +284,12 @@ extension XMPPManager: XMPPStreamDelegate {
         } else {
             xmppStream.authenticateWithPassword(password, error: nil)
         }
+    }
+    
+    func xmppStreamConnectDidTimeout(sender: XMPPStream!) {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            NSNotificationCenter.defaultCenter().postNotificationName(kXMPPConnectTimeout, object: nil)
+        })
     }
     
     func xmppStreamDidRegister(sender: XMPPStream!) {

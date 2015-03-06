@@ -49,7 +49,7 @@ class ParseUserModel :ParseModel{
         self.username = user.username
         self.password = CocoaSecurity.aesEncrypt(user.password, key: kAESKey).base64
         self.openfireId = user.openfireId
-        self.displayName = user.displayName
+        self.displayName = user.displayName ?? ""
     }
     
     func aesDecryptPassword() -> String {

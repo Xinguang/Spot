@@ -54,15 +54,14 @@ extension SNSController {
         
         let accessToken = _tencentOAuth?.accessToken
         if (accessToken != nil && "" != accessToken){
-            let qq = SNS.MR_createEntity() as SNS
-            qq.openid = _tencentOAuth?.openId
-            qq.access_token = _tencentOAuth?.accessToken
-            qq.expirationDate =  _tencentOAuth?.expirationDate
+            assert(NSThread.currentThread().isMainThread, "not main thread")
             
-            qq.type = OpenIDRequestType.QQ.toString()
-            qq.managedObjectContext?.MR_saveToPersistentStoreAndWait()
-            //parse
-            self.setCoreDataSNSInfo(qq,type:.QQ)
+            sns = SNS.MR_createEntity() as SNS
+            sns.openid = _tencentOAuth?.openId
+            sns.access_token = _tencentOAuth?.accessToken
+            sns.expirationDate =  _tencentOAuth?.expirationDate
+            
+            sns.type = OpenIDRequestType.QQ.toString()
         }
     }
     
@@ -157,7 +156,12 @@ extension SNSController: TencentSessionDelegate {
             //SettingHelper.instance.set("qq_accessToken", value: "")
             self.qqSendAuth()
         }else{
-            self.whenSuccess?(res: res)
+            assert(NSThread.currentThread().isMainThread, "not main thread")
+            
+            sns?.nickName = res["nickname"] as String
+            sns?.figureurl = res["figureurl_qq_2"] as String
+            
+            self.whenSuccess?(sns: sns)
 //            self.setCoreDataUserInfo(res,type: .QQ)
 //            SVProgressHUD.dismiss()
         }

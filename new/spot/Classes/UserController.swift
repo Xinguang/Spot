@@ -11,28 +11,48 @@ import UIKit
 class UserController: NSObject {
     
     class func autoLoginUser() -> User? {
+        assert(NSThread.currentThread().isMainThread, "not main thread")
+        
         return User.MR_findFirst() as? User
     }
     
-    class func snsUser(type: OpenIDRequestType, res: Dictionary<String, AnyObject>) -> User {
-        let account = anonymousUser()
+    class func snsUser(sns: SNS, parseUser: ParseUserModel?) -> User {
+        assert(NSThread.currentThread().isMainThread, "not main thread")
         
-        if type == .QQ {
-            account.displayName = res["nickname"] as? String
-            account.figureurl = res["figureurl_qq_2"] as? String
-        }
+        var user: User
 
-        if type == .WeChat {
-            account.displayName = res["nickname"] as? String
-            account.figureurl = res["headimgurl"] as? String
+        if let parseUser = parseUser {
+            user = self.userFromParseUser(parseUser)
+        } else {
+            user = anonymousUser()
         }
         
-        account.managedObjectContext?.MR_saveToPersistentStoreAndWait()
-        
-        return account
+        sns.user = user
+ 
+        return user
     }
     
+//    class func snsUser(type: OpenIDRequestType, res: Dictionary<String, AnyObject>) -> User {
+//        assert(NSThread.currentThread().isMainThread, "not main thread")
+//        
+//        let account = anonymousUser()
+//        
+//        if type == .QQ {
+//            account.displayName = res["nickname"] as? String
+//            account.figureurl = res["figureurl_qq_2"] as? String
+//        }
+//
+//        if type == .WeChat {
+//            account.displayName = res["nickname"] as? String
+//            account.figureurl = res["headimgurl"] as? String
+//        }
+//        
+//        return account
+//    }
+    
     class func anonymousUser() -> User {
+        assert(NSThread.currentThread().isMainThread, "not main thread")
+        
         let openfireId = NSUUID().UUIDString.lowercaseString
         let password = NSUUID().UUIDString.lowercaseString
         
@@ -41,14 +61,13 @@ class UserController: NSObject {
         account.username = ""
         account.openfireId = openfireId + "@" + kOpenFireDomainName;
         account.password = password
-        account.displayName = "匿名"
-        
-        account.managedObjectContext?.MR_saveToPersistentStoreAndWait()
-        
+                
         return account
     }
     
     class func userWith(#username: String, password: String, displayName: String) -> User {
+        assert(NSThread.currentThread().isMainThread, "not main thread")
+        
         let user = User.MR_createEntity() as User
         user.username = username
         user.openfireId = NSUUID().UUIDString.lowercaseString + "@" + kOpenFireDomainName
@@ -58,15 +77,22 @@ class UserController: NSObject {
         return user
     }
     
-    class func saveWithParseUser(parseUser: ParseUserModel) -> User {
+    class func userFromParseUser(parseUser: ParseUserModel) -> User {
+        assert(NSThread.currentThread().isMainThread, "not main thread")
+        
         let user = User.MR_createEntity() as User
         user.username = parseUser.username
         user.openfireId = parseUser.openfireId
         user.displayName = parseUser.displayName
         user.password = parseUser.aesDecryptPassword()
-        
-        user.managedObjectContext?.MR_saveToPersistentStoreAndWait()
-        
+                
         return user
     }
+    
+    class func saveUser(user: User) {
+        assert(NSThread.currentThread().isMainThread, "not main thread")
+        
+        user.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
+    }
+
 }

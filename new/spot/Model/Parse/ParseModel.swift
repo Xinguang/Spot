@@ -42,6 +42,13 @@ class ParseModel :NSObject{
             if let key = NSString(CString: property_getName(propertiesInAClass[i]), encoding: NSUTF8StringEncoding) {
                 var val: AnyObject? = pfObject[key]
                 
+               if key == "expirationDate" {
+                    if let date = val as? NSDate {
+                        self.setValue(date, forKey: key)
+                    }
+                    continue
+                }
+
                 if let str = val as? String{
                     self.setValue(str, forKey: key)
                 }else if let pf = val as? PFRelation{
@@ -137,6 +144,18 @@ extension ParseModel {
         }
     }
     
+    func count<T:ParseModel>(cls:T.Type,complete:(count: Int32, error: NSError?)->()){
+        let q = self.getQuery()
+        q.countObjectsInBackgroundWithBlock { (count, error) -> Void in
+            complete(count: count, error: error)
+        }
+    }
+    
+    func countObjects() -> Int {
+        let q = self.getQuery()
+        return q.countObjects()
+    }
+    
     func find<T:ParseModel>(cls:T.Type,complete:(result: [T]?)->()){
         let q = self.getQuery()
         q.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
@@ -189,6 +208,13 @@ extension ParseModel {
             if let key = NSString(CString: property_getName(propertiesInAClass[i]), encoding: NSUTF8StringEncoding) {
                 var val: AnyObject? = self.valueForKey(key)
                 
+               if key == "expirationDate" {
+                    if let date = val as? NSDate {
+                        pfObject[key] = date
+                    }
+                    continue
+                }
+
                 if let str = val as? String{
                     pfObject[key] = str
                 }else if let pm = val as? ParseModel{

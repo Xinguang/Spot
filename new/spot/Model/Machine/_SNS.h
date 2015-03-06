@@ -6,10 +6,18 @@
 extern const struct SNSAttributes {
 	__unsafe_unretained NSString *access_token;
 	__unsafe_unretained NSString *expirationDate;
+	__unsafe_unretained NSString *figureurl;
+	__unsafe_unretained NSString *nickName;
 	__unsafe_unretained NSString *openid;
 	__unsafe_unretained NSString *refresh_token;
 	__unsafe_unretained NSString *type;
 } SNSAttributes;
+
+extern const struct SNSRelationships {
+	__unsafe_unretained NSString *user;
+} SNSRelationships;
+
+@class User;
 
 @interface SNSID : NSManagedObjectID {}
 @end
@@ -28,6 +36,14 @@ extern const struct SNSAttributes {
 
 //- (BOOL)validateExpirationDate:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSString* figureurl;
+
+//- (BOOL)validateFigureurl:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSString* nickName;
+
+//- (BOOL)validateNickName:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSString* openid;
 
 //- (BOOL)validateOpenid:(id*)value_ error:(NSError**)error_;
@@ -40,6 +56,10 @@ extern const struct SNSAttributes {
 
 //- (BOOL)validateType:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) User *user;
+
+//- (BOOL)validateUser:(id*)value_ error:(NSError**)error_;
+
 @end
 
 @interface _SNS (CoreDataGeneratedPrimitiveAccessors)
@@ -50,10 +70,19 @@ extern const struct SNSAttributes {
 - (NSDate*)primitiveExpirationDate;
 - (void)setPrimitiveExpirationDate:(NSDate*)value;
 
+- (NSString*)primitiveFigureurl;
+- (void)setPrimitiveFigureurl:(NSString*)value;
+
+- (NSString*)primitiveNickName;
+- (void)setPrimitiveNickName:(NSString*)value;
+
 - (NSString*)primitiveOpenid;
 - (void)setPrimitiveOpenid:(NSString*)value;
 
 - (NSString*)primitiveRefresh_token;
 - (void)setPrimitiveRefresh_token:(NSString*)value;
+
+- (User*)primitiveUser;
+- (void)setPrimitiveUser:(User*)value;
 
 @end

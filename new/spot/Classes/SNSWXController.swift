@@ -84,15 +84,18 @@ extension SNSController {
         self.net.GET(absoluteUrl: wx_url_access_token,
             params: params,
             successHandler: { responseData in
-                let result = responseData.json(error: nil) as Dictionary<String, AnyObject>;
-                if(!contains(result.keys, "errcode")){
-                    self.setCoreDataSNSInfo(result,type: .WeChat)
-                    self.getUserInfo()
-                }else{
-                    let errcode = result["errcode"] as Int;
-                    let errmsg = result["errmsg"] as String;
-                    self.showError(Int32(errcode), errMessage: errmsg + __FUNCTION__)
-                }
+                gcd.async(.Main, closure: { () -> () in
+                    let result = responseData.json(error: nil) as Dictionary<String, AnyObject>;
+                    if(!contains(result.keys, "errcode")){
+                        self.setCoreDataSNSInfo(result,type: .WeChat)
+                        self.getUserInfo()
+                    }else{
+                        let errcode = result["errcode"] as Int;
+                        let errmsg = result["errmsg"] as String;
+                        self.showError(Int32(errcode), errMessage: errmsg + __FUNCTION__)
+                    }
+                })
+
             },
             failureHandler: { error in
                 NSLog("Error")
@@ -142,8 +145,14 @@ extension SNSController {
                 let result = responseData.json(error: nil) as Dictionary<String, AnyObject>;
                 gcd.async(.Main) {
                     if(!contains(result.keys, "errcode")){
-                        self.whenSuccess?(res: result)
-                        self.setCoreDataUserInfo(result,type: .WeChat)
+                        assert(NSThread.currentThread().isMainThread, "not main thread")
+                        
+                        self.sns.nickName = result["nickname"] as String
+                        self.sns.figureurl = result["headimgurl"] as String
+                        
+                        self.whenSuccess?(sns: self.sns)
+//                        self.whenSuccess?(res: result)
+//                        self.setCoreDataUserInfo(result,type: .WeChat)
 //                        SVProgressHUD.dismiss()
                     }else{
                         let errcode = result["errcode"] as Int;
