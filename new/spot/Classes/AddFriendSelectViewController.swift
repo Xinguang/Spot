@@ -120,6 +120,12 @@ extension AddFriendSelectViewController: UISearchControllerDelegate {
 }
 
 extension AddFriendSelectViewController: UISearchBarDelegate {
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        self.resultVC.isEmpty = false
+        self.resultVC.tableView.reloadData()
+    }
+    
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         // TODO: change timing
         SVProgressHUD.showWithMaskType(.Clear)
@@ -128,7 +134,14 @@ extension AddFriendSelectViewController: UISearchBarDelegate {
         
         ParseController.getUserByUsername(searchBar.text, result: { (pUserModel, error) -> Void in
             if let error = error {
-                SVProgressHUD.showErrorWithStatus(error.localizedDescription, maskType: .Clear)
+                if error.code == 101 {
+                    SVProgressHUD.dismiss()
+
+                    self.resultVC.isEmpty = true
+                    self.resultVC.tableView.reloadData()
+                } else {
+                    SVProgressHUD.showErrorWithStatus(error.localizedDescription, maskType: .Clear)
+                }
             } else if let pUserModel = pUserModel {
 //                self.resultVC.pUserModels = [pUserModel]
 //                self.resultVC.tableView.reloadData()
@@ -142,6 +155,8 @@ extension AddFriendSelectViewController: UISearchBarDelegate {
                 })
 
             } else {
+                SVProgressHUD.dismiss()
+
                 self.resultVC.isEmpty = true
                 self.resultVC.tableView.reloadData()
             }
