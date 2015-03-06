@@ -38,12 +38,16 @@ class AccountNameEditTableViewController: UITableViewController {
 
     @IBAction func save(sender: AnyObject) {
         let str = nameTF.text.trimmed()
-        if str.length > 0 && str != orgName {
+        if str.length == 0 {
+            return
+        }
+        
+        if str != orgName {
             isSaved = true
             XMPPManager.instance.updateMyName(str)
-        
-            self.navigationController?.popViewControllerAnimated(true)
         }
+        
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     @IBAction func cancel(sender: AnyObject) {

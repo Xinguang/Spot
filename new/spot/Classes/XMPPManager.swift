@@ -119,9 +119,8 @@ class XMPPManager: NSObject {
         instance.registerNewAccountWithPassword(user.password)
     }
     
-    class func loginWithUser(user: User, isSNS: Bool) {
+    class func loginWithUser(user: User) {
         instance.account = user
-        instance.needUpdateVcard = isSNS
         
         instance.connectWithJID(user.openfireId!, myPassword: user.password)
     }
