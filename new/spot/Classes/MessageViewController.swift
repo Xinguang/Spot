@@ -196,7 +196,7 @@ extension MessageViewController: JSQMessagesCollectionViewDelegateFlowLayout {
     override func collectionView(collectionView: JSQMessagesCollectionView!, didTapAvatarImageView avatarImageView: UIImageView!, atIndexPath indexPath: NSIndexPath!) {
         let message = frc.objectAtIndexPath(indexPath) as XMPPMessageArchiving_Message_CoreDataObject
         let jid = XMPPJID.jidWithString(message.senderId())
-        Util.enterFriendDetailViewController(jid, from: self, isTalking: true)
+        Util.enterFriendDetailViewController(jid, username: nil, from: self, isTalking: true)
     }
 }
 

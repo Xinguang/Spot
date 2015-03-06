@@ -40,9 +40,11 @@ class Util: NSObject {
         from.navigationController?.pushViewController(messageViewController, animated: true)
     }
     
-    class func enterFriendDetailViewController(jid: XMPPJID, from: UIViewController, isTalking: Bool) {
+    class func enterFriendDetailViewController(jid: XMPPJID, username: String?, from: UIViewController, isTalking: Bool) {
         let vc = Util.createViewControllerWithIdentifier("ContactDetailViewController", storyboardName: "Common") as ContactDetailViewController
         vc.jid = jid
+        vc.username = username
+        
         vc.isFromMessageViewController = isTalking
         
         from.navigationController?.pushViewController(vc, animated: true)

@@ -11,6 +11,8 @@ import UIKit
 class ContactDetailViewController: BaseViewController {
 
     var jid: XMPPJID!
+    var username: String?
+    
     var isFromMessageViewController = false
     
     override func viewDidLoad() {
@@ -69,6 +71,7 @@ extension ContactDetailViewController: UITableViewDataSource, UITableViewDelegat
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = Util.createViewWithNibName("ContactDetailHeaderView") as ContactDetailHeaderView
         view.jid = jid
+        view.username = username
         
         return view
     }

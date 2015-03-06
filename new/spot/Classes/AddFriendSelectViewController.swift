@@ -11,13 +11,14 @@ import UIKit
 class AddFriendSelectViewController: UITableViewController {
 
     var searchController :UISearchController!
+    var resultVC: FriendSearchResultTableViewController!
     
     @IBOutlet weak var searchBarCell: UITableViewCell!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var resultVC = storyboard?.instantiateViewControllerWithIdentifier("FriendSearchResultTableViewController") as FriendSearchResultTableViewController
+        resultVC = storyboard?.instantiateViewControllerWithIdentifier("FriendSearchResultTableViewController") as FriendSearchResultTableViewController
         resultVC.delegate = self
         
         searchController = UISearchController(searchResultsController: resultVC)
@@ -55,9 +56,14 @@ class AddFriendSelectViewController: UITableViewController {
         let label = UILabel()
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.font = UIFont.systemFontOfSize(14)
-        // TODO: 
-        let jid = XMPPJID.jidWithString(XMPPManager.instance.account.openfireId)
-        label.text = "私の現場トモID:\(jid.user)"
+        label.text = "私の現場トモID:未設定"
+        
+        if let username = XMPPManager.instance.account.username {
+            if username.length > 0 {
+                label.text = "私の現場トモID:\(username)"
+            }
+        }
+        
         view.addSubview(label)
         
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[label]", options: nil, metrics: nil, views: ["label" : label]))
@@ -116,14 +122,35 @@ extension AddFriendSelectViewController: UISearchControllerDelegate {
 extension AddFriendSelectViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         // TODO: change timing
-        SVProgressHUD.showWithStatus("検索中...", maskType: .Clear)
+        SVProgressHUD.showWithMaskType(.Clear)
 
-        XMPPManager.instance.search(searchBar.text)
+//        XMPPManager.instance.search(searchBar.text)
+        
+        ParseController.getUserByUsername(searchBar.text, result: { (pUserModel, error) -> Void in
+            if let error = error {
+                SVProgressHUD.showErrorWithStatus(error.localizedDescription, maskType: .Clear)
+            } else if let pUserModel = pUserModel {
+//                self.resultVC.pUserModels = [pUserModel]
+//                self.resultVC.tableView.reloadData()
+                
+                //get vcard
+                XMPPManager.getVCard(pUserModel.xmppJID(), done: { () -> Void in
+                    SVProgressHUD.dismiss()
+                    
+                    // go to detail
+                    Util.enterFriendDetailViewController(pUserModel.xmppJID(), username: pUserModel.username, from: self, isTalking: false)
+                })
+
+            } else {
+                self.resultVC.isEmpty = true
+                self.resultVC.tableView.reloadData()
+            }
+        })
     }
 }
 
 extension AddFriendSelectViewController: FriendSearchResultTableViewControllerDelegate {
     func didSelectJID(jid: XMPPJID) {
-        Util.enterFriendDetailViewController(jid, from: self, isTalking: false)
+        Util.enterFriendDetailViewController(jid, username: nil, from: self, isTalking: false)
     }
 }

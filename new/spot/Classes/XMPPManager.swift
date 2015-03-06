@@ -42,6 +42,8 @@ class XMPPManager: NSObject {
     
     var needUpdateVcard = false
     
+    var getVCardDone: (() -> Void)?
+    
     class var instance : XMPPManager {
         struct Static {
             static let instance : XMPPManager = XMPPManager()
@@ -424,6 +426,8 @@ extension XMPPManager: XMPPvCardTempModuleDelegate {
         }
         
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.getVCardDone?()
+
             NSNotificationCenter.defaultCenter().postNotificationName(kXMPPDidReceivevCardTemp, object: nil)
         })
     }
@@ -546,5 +550,15 @@ extension XMPPManager {
     
     func isMe(jid: XMPPJID) -> Bool {
         return jid.bare() == account.openfireId
+    }
+    
+    class func getVCard(jid: XMPPJID, done: (() -> Void)?) {
+        instance.getVCardDone = done
+        
+        instance.xmppvCardTempModule.fetchvCardTempForJID(jid, ignoreStorage: true)
+    }
+    
+    class func vCardOfJid(jid: XMPPJID) -> XMPPvCardTemp? {
+        return instance.xmppvCardTempModule.vCardTempForJID(jid, shouldFetch: true)
     }
 }

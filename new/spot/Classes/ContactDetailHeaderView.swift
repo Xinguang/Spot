@@ -17,8 +17,19 @@ class ContactDetailHeaderView: UITableViewHeaderFooterView {
 
     var jid: XMPPJID! {
         didSet {
-            idLabel.text = "現場トモID:\(jid.user)"
-            updateIgnoreStorage(true)
+//            updateIgnoreStorage(true)
+            imageView.image = XMPPManager.instance.photoOfJid(jid)
+            
+            if let vCard = XMPPManager.vCardOfJid(jid) {
+                nameLabel.text = vCard.formattedName ?? "匿名"
+            }
+        }
+    }
+    var username: String? {
+        didSet {
+            if let username = username {
+                idLabel.text = "現場トモID:\(username)"
+            }
         }
     }
     

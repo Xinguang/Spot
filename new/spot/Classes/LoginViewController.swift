@@ -115,7 +115,7 @@ class LoginViewController: BaseViewController {
                 
                 self.user = UserController.userFromParseUser(parseUserModel)
                 
-                XMPPManager.loginWithUser(self.user, isSNS: false)
+                XMPPManager.loginWithUser(self.user)
 
             } else {
                 SVProgressHUD.showErrorWithStatus("ユーザーが存在しません", maskType: .Gradient)
@@ -164,7 +164,7 @@ class LoginViewController: BaseViewController {
         //already have openfireid
         if let parseUser = ParseController.parseUserByOpenid(sns.openid) {
             self.user = UserController.snsUser(sns, parseUser: parseUser)
-            XMPPManager.loginWithUser(self.user, isSNS: true)
+            XMPPManager.loginWithUser(self.user)
         } else {
             self.user = UserController.snsUser(sns, parseUser: nil)
             self.needUploadToParse = true

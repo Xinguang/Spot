@@ -64,82 +64,12 @@ class ParseController: NSObject {
         return nil
     }
     
-    class func getUserByOpenid(openid: String, result: (ParseUserModel?, NSError?) -> Void) {
-        let user =  ParseUserModel()
-        user.getQuery().whereKey("openid", equalTo: openid)
-        user.getFirst(ParseUserModel.self, complete: { (res, error) -> () in
-            result(res, error)
-        })
-    }
-    
     class func getUserByOpenfireID(id: String, result: (ParseUserModel?, NSError?) -> Void) {
-//        let q = PFQuery(className: "User")
-//        q.whereKey("openfireId", equalTo: id)
-//        
-//        q.getFirstObjectInBackgroundWithBlock { (obj, error) -> Void in
-//            if let error = error {
-//                result(nil, error)
-//                return
-//            }
-//            
-//            
-//        }
-        
         let user =  ParseUserModel()
         user.getQuery().whereKey("openfireId", equalTo: id)
         user.getFirst(ParseUserModel.self, complete: { (res, error) -> () in
             result(res, error)
         })
-        
     }
     
-//    class func toPFObject(obj: NSManagedObject) -> PFObject {
-//        var pfObject = PFObject(className:getClassName(obj))
-//        
-//        var aClass : AnyClass? = obj.dynamicType
-//        
-//        var propertiesCount : CUnsignedInt = 0
-//        let propertiesInAClass : UnsafeMutablePointer<objc_property_t> = class_copyPropertyList(aClass, &propertiesCount)
-//        
-//        for var i = 0; i < Int(propertiesCount); i++ {
-//            
-//            if let key = NSString(CString: property_getName(propertiesInAClass[i]), encoding: NSUTF8StringEncoding) {
-//                var val: AnyObject? = self.valueForKey(key)
-//                
-//                if let str = val as? String{
-//                    pfObject[key] = str
-//                }
-////                else if let pm = val as? ParseModel{
-////                    var relation = pfObject.relationForKey(key)
-////                    self.saveRelationObject(pm,relation:relation)
-////                }else if let arr = val as? [ParseModel]{
-////                    if arr.count > 0 {
-////                        var relation = pfObject.relationForKey(key)
-////                        relation.removeAll()
-////                        for o in arr {
-////                            self.saveRelationObject(o,relation:relation)
-////                        }
-////                    }
-////                }
-//            }
-//        }
-//        return pfObject
-//    }
-//    
-//    class func getClassName(obj: NSManagedObject) -> String {
-//        if let classname = NSString(UTF8String: class_getName(obj.dynamicType)) {
-//            return classname.substringToIndex(classname.rangeOfString("_").location)
-//        }
-//        
-//        return ""
-//    }
-//    class func isRegisteredUser(user: User) -> Bool {
-//        let query = PFQuery(className: "SNS")
-//        query.whereKey("openid", equalTo:(user.snses.lastObject as? SNS)?.openid)
-//        if let pfObject = query.getFirstObject() {
-//            
-//        }
-//        
-//        return false
-//    }
 }

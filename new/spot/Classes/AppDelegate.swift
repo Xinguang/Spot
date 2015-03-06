@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let vc = Util.createViewControllerWithIdentifier("LoadingViewController", storyboardName: "Main")
             self.window?.rootViewController = vc
             
-            XMPPManager.loginWithUser(user, isSNS: false)
+            XMPPManager.loginWithUser(user)
         }
         
         return true

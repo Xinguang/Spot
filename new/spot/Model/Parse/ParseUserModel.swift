@@ -55,6 +55,10 @@ class ParseUserModel :ParseModel{
     func aesDecryptPassword() -> String {
         return CocoaSecurity.aesDecryptWithBase64(password, key: kAESKey).utf8String
     }
+    
+    func xmppJID() -> XMPPJID {
+        return XMPPJID.jidWithString(openfireId)
+    }
 //    
 //    override func toPFObject()->PFObject{
 //        var pfObject = super.toPFObject()

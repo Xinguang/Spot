@@ -15,7 +15,8 @@ import UIKit
 
 class FriendSearchResultTableViewController: UITableViewController {
 
-    var accounts = [XMPPAccount]()
+    var pUserModels = [ParseUserModel]()
+    var isEmpty = false
     var delegate: FriendSearchResultTableViewControllerDelegate?
     
     override func viewDidLoad() {
@@ -31,16 +32,13 @@ class FriendSearchResultTableViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("searchAccountComplete:"), name: kXMPPSearchAccountComplete, object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("searchAccountComplete:"), name: kXMPPSearchAccountComplete, object: nil)
     }
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-        
-        // TODO: change timing
-//        accounts = [XMPPAccount]()
+//        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,44 +48,52 @@ class FriendSearchResultTableViewController: UITableViewController {
     
     // MARK: - Notification
     
-    func searchAccountComplete(notification: NSNotification) {
-        SVProgressHUD.dismiss()
-        
-        if let obj = notification.object as? [XMPPAccount] {
-            accounts = obj
-            tableView.reloadData()
-        } else {
-            // TODO:
-        }
-    }
+//    func searchAccountComplete(notification: NSNotification) {
+//        SVProgressHUD.dismiss()
+//        
+//        if let obj = notification.object as? [XMPPAccount] {
+//            accounts = obj
+//            tableView.reloadData()
+//        } else {
+//            // TODO:
+//        }
+//    }
 
 }
 
 extension FriendSearchResultTableViewController: UITableViewDataSource, UITableViewDelegate {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
-        return accounts.count
+        if isEmpty {
+            return 1
+        }
+        
+        return pUserModels.count
     }
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if isEmpty {
+            let cell = tableView.dequeueReusableCellWithIdentifier("EmptyCell", forIndexPath: indexPath) as UITableViewCell
+            return cell
+        }
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("AccountCell", forIndexPath: indexPath) as UITableViewCell
         
-        let account = accounts[indexPath.row]
-        cell.textLabel?.text = account.username
-        cell.detailTextLabel?.text = account.name
+        let pUserModel = pUserModels[indexPath.row]
+        
+        cell.textLabel?.text = pUserModel.displayName
+        cell.detailTextLabel?.text = pUserModel.username
         
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let account = accounts[indexPath.row]
+//        let pUserModel = pUserModels![indexPath.row]
         
 //        XMPPManager.instance.xmppRoster.addUser(XMPPJID.jidWithString(account.jid), withNickname: nil)
         
-        delegate?.didSelectJID(XMPPJID.jidWithString(account.jid))
+//        delegate?.didSelectJID(XMPPJID.jidWithString(account.jid))
         
 //        var friend = Friend.MR_findFirstByAttribute("accountName", withValue: account.jid) as? Friend
 //        if friend == nil {

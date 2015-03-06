@@ -133,7 +133,7 @@ extension ContactViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let roster = frc.objectAtIndexPath(indexPath) as XMPPUserCoreDataStorageObject
         
-        Util.enterFriendDetailViewController(roster.jid, from: self, isTalking: false)
+        Util.enterFriendDetailViewController(roster.jid, username: nil, from: self, isTalking: false)
     }
 }
 
