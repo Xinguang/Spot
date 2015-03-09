@@ -15,9 +15,11 @@ extern const struct UserAttributes {
 
 extern const struct UserRelationships {
 	__unsafe_unretained NSString *snses;
+	__unsafe_unretained NSString *stations;
 } UserRelationships;
 
 @class SNS;
+@class Station;
 
 @interface UserID : NSManagedObjectID {}
 @end
@@ -64,6 +66,10 @@ extern const struct UserRelationships {
 
 - (NSMutableOrderedSet*)snsesSet;
 
+@property (nonatomic, strong) NSOrderedSet *stations;
+
+- (NSMutableOrderedSet*)stationsSet;
+
 @end
 
 @interface _User (SnsesCoreDataGeneratedAccessors)
@@ -78,6 +84,21 @@ extern const struct UserRelationships {
 - (void)removeSnsesAtIndexes:(NSIndexSet *)indexes;
 - (void)replaceObjectInSnsesAtIndex:(NSUInteger)idx withObject:(SNS*)value;
 - (void)replaceSnsesAtIndexes:(NSIndexSet *)indexes withSnses:(NSArray *)values;
+
+@end
+
+@interface _User (StationsCoreDataGeneratedAccessors)
+- (void)addStations:(NSOrderedSet*)value_;
+- (void)removeStations:(NSOrderedSet*)value_;
+- (void)addStationsObject:(Station*)value_;
+- (void)removeStationsObject:(Station*)value_;
+
+- (void)insertObject:(Station*)value inStationsAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromStationsAtIndex:(NSUInteger)idx;
+- (void)insertStations:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removeStationsAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInStationsAtIndex:(NSUInteger)idx withObject:(Station*)value;
+- (void)replaceStationsAtIndexes:(NSIndexSet *)indexes withStations:(NSArray *)values;
 
 @end
 
@@ -109,5 +130,8 @@ extern const struct UserRelationships {
 
 - (NSMutableOrderedSet*)primitiveSnses;
 - (void)setPrimitiveSnses:(NSMutableOrderedSet*)value;
+
+- (NSMutableOrderedSet*)primitiveStations;
+- (void)setPrimitiveStations:(NSMutableOrderedSet*)value;
 
 @end

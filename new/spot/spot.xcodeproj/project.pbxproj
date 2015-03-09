@@ -62,6 +62,10 @@
 		296623DC1A8CA28C002608EF /* XMPPSearchReported.m in Sources */ = {isa = PBXBuildFile; fileRef = 296623D71A8CA28C002608EF /* XMPPSearchReported.m */; };
 		296623DD1A8CA28C002608EF /* XMPPSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 296623D91A8CA28C002608EF /* XMPPSearchResult.m */; };
 		296623E41A8DFD2B002608EF /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296623E31A8DFD2B002608EF /* ContactViewController.swift */; };
+		296D54FE1AA9A829005FC650 /* StationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296D54FD1AA9A829005FC650 /* StationTableViewController.swift */; };
+		296D55001AA9B1D7005FC650 /* StationAddTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296D54FF1AA9B1D7005FC650 /* StationAddTableViewController.swift */; };
+		296D55031AA9BACD005FC650 /* _Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 296D55021AA9BACD005FC650 /* _Station.m */; };
+		296D55061AA9BAE1005FC650 /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 296D55051AA9BAE1005FC650 /* Station.m */; };
 		297235A31A9DBF17006E5F32 /* ContactDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297235A21A9DBF17006E5F32 /* ContactDetailViewController.swift */; };
 		297235A51A9DC054006E5F32 /* ContactDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297235A41A9DC054006E5F32 /* ContactDetailHeaderView.xib */; };
 		297235A71A9DC34A006E5F32 /* ContactDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297235A61A9DC34A006E5F32 /* ContactDetailHeaderView.swift */; };
@@ -164,6 +168,12 @@
 		296623D91A8CA28C002608EF /* XMPPSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPSearchResult.m; sourceTree = "<group>"; };
 		296623DE1A8D89C1002608EF /* DatabaseRosterStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatabaseRosterStorage.swift; path = Classes/DatabaseRosterStorage.swift; sourceTree = "<group>"; };
 		296623E31A8DFD2B002608EF /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactViewController.swift; path = Classes/ContactViewController.swift; sourceTree = "<group>"; };
+		296D54FD1AA9A829005FC650 /* StationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StationTableViewController.swift; path = Classes/StationTableViewController.swift; sourceTree = "<group>"; };
+		296D54FF1AA9B1D7005FC650 /* StationAddTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StationAddTableViewController.swift; path = Classes/StationAddTableViewController.swift; sourceTree = "<group>"; };
+		296D55011AA9BACD005FC650 /* _Station.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Station.h; sourceTree = "<group>"; };
+		296D55021AA9BACD005FC650 /* _Station.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Station.m; sourceTree = "<group>"; };
+		296D55041AA9BAE1005FC650 /* Station.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Station.h; sourceTree = "<group>"; };
+		296D55051AA9BAE1005FC650 /* Station.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Station.m; sourceTree = "<group>"; };
 		297235A21A9DBF17006E5F32 /* ContactDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactDetailViewController.swift; path = Classes/ContactDetailViewController.swift; sourceTree = "<group>"; };
 		297235A41A9DC054006E5F32 /* ContactDetailHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ContactDetailHeaderView.xib; path = Classes/ContactDetailHeaderView.xib; sourceTree = "<group>"; };
 		297235A61A9DC34A006E5F32 /* ContactDetailHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactDetailHeaderView.swift; path = Classes/ContactDetailHeaderView.swift; sourceTree = "<group>"; };
@@ -316,6 +326,8 @@
 				29F5D4231A996D1F00D0AF54 /* AccountEditViewController.swift */,
 				29E623341A9B004A00383DEA /* AccountNameEditTableViewController.swift */,
 				2906BD081AA9919300D75C05 /* GenderSelectViewController.swift */,
+				296D54FD1AA9A829005FC650 /* StationTableViewController.swift */,
+				296D54FF1AA9B1D7005FC650 /* StationAddTableViewController.swift */,
 			);
 			name = Account;
 			sourceTree = "<group>";
@@ -437,6 +449,8 @@
 		DC4109F11A81DEF400E11CAB /* Machine */ = {
 			isa = PBXGroup;
 			children = (
+				296D55011AA9BACD005FC650 /* _Station.h */,
+				296D55021AA9BACD005FC650 /* _Station.m */,
 				298FE3BF1A956FBC007AB117 /* _Friend.h */,
 				298FE3C01A956FBC007AB117 /* _Friend.m */,
 				298FE3C31A956FBC007AB117 /* _SNS.h */,
@@ -536,6 +550,8 @@
 		DCB539131A81B00700C216D7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				296D55041AA9BAE1005FC650 /* Station.h */,
+				296D55051AA9BAE1005FC650 /* Station.m */,
 				1737A4981AA03C5C007B8281 /* Parse */,
 				298FE3AD1A956FAD007AB117 /* Friend.h */,
 				298FE3AE1A956FAD007AB117 /* Friend.m */,
@@ -795,11 +811,13 @@
 				2906BD091AA9919400D75C05 /* GenderSelectViewController.swift in Sources */,
 				296623AD1A8C47F5002608EF /* AddFriendSelectViewController.swift in Sources */,
 				296623AB1A89C586002608EF /* XMPPManager.swift in Sources */,
+				296D54FE1AA9A829005FC650 /* StationTableViewController.swift in Sources */,
 				29F5D4241A996D1F00D0AF54 /* AccountEditViewController.swift in Sources */,
 				1737A4A21AA03C5C007B8281 /* ParseMessageModel.swift in Sources */,
 				DC4109CB1A81C50A00E11CAB /* Character.swift in Sources */,
 				DC4109CE1A81C50A00E11CAB /* ExSwift.swift in Sources */,
 				296623DC1A8CA28C002608EF /* XMPPSearchReported.m in Sources */,
+				296D55001AA9B1D7005FC650 /* StationAddTableViewController.swift in Sources */,
 				2911ACE81A96E35B00DF1F84 /* TalkSearchResultTableViewController.swift in Sources */,
 				29BE112F1AA5753C0087287F /* UserAnnotation.swift in Sources */,
 				29BE112D1AA476100087287F /* MapDataConroller.swift in Sources */,
@@ -812,6 +830,7 @@
 				296623E41A8DFD2B002608EF /* ContactViewController.swift in Sources */,
 				29EE09C11AA4B3A5005F6509 /* UserController.swift in Sources */,
 				178AE0591A8DC27300D91542 /* Reachability.swift in Sources */,
+				296D55061AA9BAE1005FC650 /* Station.m in Sources */,
 				1737A4A11AA03C5C007B8281 /* ParseDeviceModel.swift in Sources */,
 				DC4109D41A81C50A00E11CAB /* Range.swift in Sources */,
 				DCB539201A81B65B00C216D7 /* AppDelegate.swift in Sources */,
@@ -819,6 +838,7 @@
 				DC4109B81A81C15200E11CAB /* TabBarController.swift in Sources */,
 				DCC671DC1A82089B001781ED /* MapViewController.swift in Sources */,
 				DC4109D61A81C50A00E11CAB /* String.swift in Sources */,
+				296D55031AA9BACD005FC650 /* _Station.m in Sources */,
 				1737A4951AA03C0F007B8281 /* SNSQQController.swift in Sources */,
 				178AE0561A8DC27300D91542 /* NetRequestSerialization.swift in Sources */,
 				DC4109CD1A81C50A00E11CAB /* Double.swift in Sources */,

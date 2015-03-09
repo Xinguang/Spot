@@ -47,7 +47,11 @@ class AccountEditViewController: UITableViewController {
             sexLabel.text = user.genderStr()
         }
         
-        tableView.reloadData()
+        if let station = user.stations.firstObject as? Station {
+            stationLabel.text = station.name
+        } else {
+            stationLabel.text = ""
+        }
     }
     
     override func didReceiveMemoryWarning() {

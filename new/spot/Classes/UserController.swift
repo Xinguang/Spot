@@ -92,11 +92,70 @@ class UserController: NSObject {
                 
         return user
     }
-    
+
+    class func updateUserWithParseUser(user: User, parseUser: PFObject) {
+        //displayName
+        user.displayName = parseUser["displayName"] as? String
+        //性別
+        user.gender = parseUser["gender"] as? String
+        //駅
+        let relation = parseUser.relationForKey("stations")
+        let query = relation.query()
+
+        if let array = query.findObjects() as? [PFObject] {
+            addStationsToUser(array, user: user)
+        }
+    }
+
     class func saveUser(user: User) {
         assert(NSThread.currentThread().isMainThread, "not main thread")
         
         user.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
     }
+    
+    class func saveUserAndWait(user: User) {
+        assert(NSThread.currentThread().isMainThread, "not main thread")
+        
+        user.managedObjectContext?.MR_saveToPersistentStoreAndWait()
+    }
 
+    // MARK: - Station
+    
+    class func saveStations(stations: [PFObject], user: User) {
+        user.stationsSet().removeAllObjects()
+        
+        for station in stations {
+            let s = Station.MR_createEntity() as Station
+            s.name = station["name"] as String
+            
+            user.stationsSet().addObject(s)
+        }
+        
+        user.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
+    }
+    
+    class func isStationOfUser(station: PFObject, user: User) -> Bool {
+//        if Station.MR_findFirstByAttribute("name", withValue: station["name"]) != nil {
+//            return true
+//        }
+        
+        if User.MR_findFirstWithPredicate(NSPredicate(format: "ANY stations.name = %@", argumentArray: [station["name"]])) != nil {
+            return true
+        }
+        
+        return false
+    }
+    
+    class func addStationToUser(station: PFObject, user: User) {
+        addStationsToUser([station], user: user)
+    }
+
+    class func addStationsToUser(stations: [PFObject], user: User) {
+        for station in stations {
+            let s = Station.MR_createEntity() as Station
+            s.name = station["name"] as String
+
+            user.stationsSet().addObject(s)
+        }
+    }
 }

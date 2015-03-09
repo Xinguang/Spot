@@ -53,6 +53,15 @@ class ParseController: NSObject {
         }
     }
     
+    class func getUserFromParse(user: User, done: (pUser: PFObject?, error: NSError?) -> Void) {
+        let query = PFQuery(className: "User")
+        query.whereKey("openfireId", equalTo: user.openfireId)
+        
+        query.getFirstObjectInBackgroundWithBlock { (obj, err) -> Void in
+            done(pUser: obj, error: err)
+        }
+    }
+    
     class func getUserByUsername(username: String, result: (ParseUserModel?, NSError?) -> Void) {
         let user =  ParseUserModel()
         user.getQuery().whereKey("username", equalTo: username)
@@ -85,4 +94,56 @@ class ParseController: NSObject {
         })
     }
     
+    // MARK: - Station
+    
+    class func addStationToUser(station: PFObject, user: User) {
+        getUserFromParse(user, done: { (pUser, error) -> Void in
+            if let user = pUser {
+                station.saveInBackgroundWithBlock({ (b, err) -> Void in
+                    var relation = user.relationForKey("stations")
+                    relation.addObject(station)
+                    
+                    user.saveInBackgroundWithBlock({ (b, err) -> Void in
+                        
+                    })
+                })
+                
+                
+            }
+        })
+    }
+    
+    class func getStations(done: (res: [PFObject]?, error: NSError?) -> Void) {
+        let query = PFQuery(className: "Station")
+        query.findObjectsInBackgroundWithBlock { (res, err) -> Void in
+            done(res: res as? [PFObject], error: err)
+        }
+    }
+    
+    class func saveStations(stations: [PFObject], user: User) {
+        getUserFromParse(user, done: { (pUser, error) -> Void in
+            if let user = pUser {
+                let relation = user.relationForKey("stations")
+                let query = relation.query()
+                
+                if let array = query.findObjects() as? [PFObject] {
+                    for oldStation in array {
+                        relation.removeObject(oldStation)
+                    }
+                }
+                
+                for station in stations {
+                    station.saveInBackgroundWithBlock({ (b, err) -> Void in
+                    relation.addObject(station)
+                    })
+                }
+                
+                user.saveInBackgroundWithBlock({ (b, err) -> Void in
+                    println(__FUNCTION__)
+                })
+                
+                
+            }
+        })
+    }
 }

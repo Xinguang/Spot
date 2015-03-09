@@ -66,5 +66,6 @@
 #import "Friend.h"
 #import "SNS.h"
 #import "User.h"
+#import "Station.h"
 
 #endif

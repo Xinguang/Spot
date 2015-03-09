@@ -15,6 +15,7 @@ const struct UserAttributes UserAttributes = {
 
 const struct UserRelationships UserRelationships = {
 	.snses = @"snses",
+	.stations = @"stations",
 };
 
 @implementation UserID
@@ -95,6 +96,17 @@ const struct UserRelationships UserRelationships = {
 	return result;
 }
 
+@dynamic stations;
+
+- (NSMutableOrderedSet*)stationsSet {
+	[self willAccessValueForKey:@"stations"];
+
+	NSMutableOrderedSet *result = (NSMutableOrderedSet*)[self mutableOrderedSetValueForKey:@"stations"];
+
+	[self didAccessValueForKey:@"stations"];
+	return result;
+}
+
 @end
 
 @implementation _User (SnsesCoreDataGeneratedAccessors)
@@ -154,6 +166,66 @@ const struct UserRelationships UserRelationships = {
     [tmpOrderedSet replaceObjectsAtIndexes:indexes withObjects:value];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"snses"];
     [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"snses"];
+}
+@end
+
+@implementation _User (StationsCoreDataGeneratedAccessors)
+- (void)addStations:(NSOrderedSet*)value_ {
+	[self.stationsSet unionOrderedSet:value_];
+}
+- (void)removeStations:(NSOrderedSet*)value_ {
+	[self.stationsSet minusOrderedSet:value_];
+}
+- (void)addStationsObject:(Station*)value_ {
+	[self.stationsSet addObject:value_];
+}
+- (void)removeStationsObject:(Station*)value_ {
+	[self.stationsSet removeObject:value_];
+}
+- (void)insertObject:(Station*)value inStationsAtIndex:(NSUInteger)idx {
+    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
+    [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"stations"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self stations]];
+    [tmpOrderedSet insertObject:value atIndex:idx];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"stations"];
+    [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"stations"];
+}
+- (void)removeObjectFromStationsAtIndex:(NSUInteger)idx {
+    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
+    [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"stations"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self stations]];
+    [tmpOrderedSet removeObjectAtIndex:idx];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"stations"];
+    [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"stations"];
+}
+- (void)insertStations:(NSArray *)value atIndexes:(NSIndexSet *)indexes {
+    [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"stations"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self stations]];
+    [tmpOrderedSet insertObjects:value atIndexes:indexes];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"stations"];
+    [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"stations"];
+}
+- (void)removeStationsAtIndexes:(NSIndexSet *)indexes {
+    [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"stations"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self stations]];
+    [tmpOrderedSet removeObjectsAtIndexes:indexes];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"stations"];
+    [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"stations"];
+}
+- (void)replaceObjectInStationsAtIndex:(NSUInteger)idx withObject:(Station*)value {
+    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
+    [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"stations"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self stations]];
+    [tmpOrderedSet replaceObjectAtIndex:idx withObject:value];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"stations"];
+    [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"stations"];
+}
+- (void)replaceStationsAtIndexes:(NSIndexSet *)indexes withStations:(NSArray *)value {
+    [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"stations"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self stations]];
+    [tmpOrderedSet replaceObjectsAtIndexes:indexes withObjects:value];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"stations"];
+    [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"stations"];
 }
 @end
 

@@ -8,12 +8,19 @@
 
 import UIKit
 
+enum LoginType {
+    case SNS,SignIn,Skip
+}
+
 class LoginViewController: BaseViewController {
 
     @IBOutlet weak var usernameTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     
     var user: User!
+
+    var loginType: LoginType!
+
     var needUploadToParse = false
     
     override func viewDidLoad() {
@@ -52,24 +59,37 @@ class LoginViewController: BaseViewController {
     }
     
     func xmppLoginSuccess(notification: NSNotification) {
-        if needUploadToParse {
+        if loginType == .SNS {
             ParseController.uploadUser(user, done: { (error) -> Void in
                 if let error = error {
                     SVProgressHUD.showErrorWithStatus(error.localizedDescription, maskType: .Clear)
+                    return
                 } else {
+                    UserController.saveUser(self.user)
                     self.goToTabView()
                 }
             })
-        } else {
-            self.goToTabView()
+        } else if loginType == .SignIn {
+            //get user from parse
+            ParseController.getUserFromParse(user, done: {
+                (obj, err) -> Void in
+                if let error = err {
+                    SVProgressHUD.showErrorWithStatus(error.localizedDescription, maskType: .Clear)
+                    return
+                } else if let obj = obj {
+                    UserController.updateUserWithParseUser(self.user, parseUser: obj)
+                    UserController.saveUserAndWait(self.user)
+                }
+            }
+            )
         }
+
+        self.goToTabView()
     }
     
     func goToTabView() {
         SVProgressHUD.dismiss()
         self.performSegueWithIdentifier("SegueTabBar", sender: nil)
-        
-        UserController.saveUser(self.user)
     }
     
     // MARK: - Navigation
@@ -114,7 +134,7 @@ class LoginViewController: BaseViewController {
                 }
                 
                 self.user = UserController.userFromParseUser(parseUserModel)
-                
+                self.loginType = .SignIn
                 XMPPManager.loginWithUser(self.user)
 
             } else {
@@ -124,10 +144,13 @@ class LoginViewController: BaseViewController {
     }
     
     @IBAction func skipBtnTapped(sender: AnyObject) {
-        SVProgressHUD.showWithMaskType(.Clear)
-        
-        user = UserController.anonymousUser()
-        XMPPManager.registerWithUser(user)
+        SVProgressHUD.showInfoWithStatus("暂时停止匿名登陆", maskType: .Clear)
+//        SVProgressHUD.showWithMaskType(.Clear)
+//
+//        user = UserController.anonymousUser()
+//        loginType = .Skip
+//
+//        XMPPManager.registerWithUser(user)
     }
     
     @IBAction func wxBtnTapped(sender: AnyObject) {
@@ -161,6 +184,8 @@ class LoginViewController: BaseViewController {
     }
     
     func loginOrRegisterWithSNS(sns: SNS) {
+        loginType = .SNS
+
         //already have openfireid
         if let parseUser = ParseController.parseUserByOpenid(sns.openid) {
             self.user = UserController.snsUser(sns, parseUser: parseUser)
