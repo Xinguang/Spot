@@ -44,6 +44,13 @@ class XMPPManager: NSObject {
     
     var getVCardDone: (() -> Void)?
     
+    var xmppMuc: XMPPMUC!
+//    var joinedRooms = [XMPPRoom]()
+    
+    class var roomContext: NSManagedObjectContext {
+        return XMPPRoomCoreDataStorage.sharedInstance().mainThreadManagedObjectContext
+    }
+    
     class var instance : XMPPManager {
         struct Static {
             static let instance : XMPPManager = XMPPManager()
@@ -98,17 +105,21 @@ class XMPPManager: NSObject {
         xmppCapabilitiesStorage = XMPPCapabilitiesCoreDataStorage(inMemoryStore:())
         xmppCapabilities = XMPPCapabilities(capabilitiesStorage: xmppCapabilitiesStorage)
         
+        xmppMuc = XMPPMUC()
+        
         xmppReconnect.activate(xmppStream)
         xmppCapabilities.activate(xmppStream)
         xmppRoster.activate(xmppStream)
         xmppvCardTempModule.activate(xmppStream)
         xmppvCardAvatarModule.activate(xmppStream)
         xmppMessageArchiving.activate(xmppStream)
+        xmppMuc.activate(xmppStream)
         
         xmppStream.addDelegate(self, delegateQueue: workQueue)
         xmppRoster.addDelegate(self, delegateQueue: workQueue)
         xmppvCardTempModule.addDelegate(self, delegateQueue: workQueue)
         xmppvCardAvatarModule.addDelegate(self, delegateQueue: workQueue)
+        xmppMuc.addDelegate(self, delegateQueue: workQueue)
         
         xmppCapabilities.addDelegate(self, delegateQueue: workQueue)
         xmppMessageArchiving.addDelegate(self, delegateQueue: workQueue)
@@ -181,6 +192,8 @@ class XMPPManager: NSObject {
         }
         
         xmppStream.sendElement(XMPPPresence())
+        
+        createJoinedRooms()
     }
     
     func goOffline() {
@@ -317,59 +330,74 @@ extension XMPPManager: XMPPStreamDelegate {
     }
     
     func xmppStream(sender: XMPPStream!, didReceiveIQ iq: XMPPIQ!) -> Bool {
-        println(iq)
-        
-        if let id = iq.elementID() {
-            if id == "searchByUserName" {
-                let report = XMPPSearchReported.reportWithElement(iq) as XMPPSearchReported
-                if report.items?.count > 0 {
-                    var accounts = [XMPPAccount]()
-                    for item in report.items {
-                        // TODO: custom init
-                        var account = XMPPAccount()
-                        account.email = item["Email"] as? String
-                        account.name = item["Name"] as? String
-                        account.username = item["Username"] as? String
-                        account.jid = item["jid"] as? String
-                        
-                        accounts.append(account)
-                    }
-                    
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        NSNotificationCenter.defaultCenter().postNotificationName(kXMPPSearchAccountComplete, object: accounts)
-                    })
-                } else {
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        NSNotificationCenter.defaultCenter().postNotificationName(kXMPPSearchAccountComplete, object: nil)
-                    })
-                }
-            }
-        }
-//        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//            SVProgressHUD.dismiss()
-//        })
-//        
-//        if let query = iq.elementForName("query", xmlns: "jabber:iq:search") {
-//            if let x = query.elementForName("x", xmlns: "jabber:x:data") {
-//                if let item = x.elementForName("item") {
-//                    let items = item.elementsForName("Field") as [XMPPElement]
-//                    for element in items {
-////                        element.el
+        println("RECV:\(iq)")
+//
+//        if let id = iq.elementID() {
+//            if id == "searchByUserName" {
+//                let report = XMPPSearchReported.reportWithElement(iq) as XMPPSearchReported
+//                if report.items?.count > 0 {
+//                    var accounts = [XMPPAccount]()
+//                    for item in report.items {
+//                        // TODO: custom init
+//                        var account = XMPPAccount()
+//                        account.email = item["Email"] as? String
+//                        account.name = item["Name"] as? String
+//                        account.username = item["Username"] as? String
+//                        account.jid = item["jid"] as? String
+//                        
+//                        accounts.append(account)
 //                    }
+//                    
+//                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                        NSNotificationCenter.defaultCenter().postNotificationName(kXMPPSearchAccountComplete, object: accounts)
+//                    })
+//                } else {
+//                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                        NSNotificationCenter.defaultCenter().postNotificationName(kXMPPSearchAccountComplete, object: nil)
+//                    })
 //                }
 //            }
 //        }
-        
-
-        
-        return false
+////        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+////            SVProgressHUD.dismiss()
+////        })
+////        
+////        if let query = iq.elementForName("query", xmlns: "jabber:iq:search") {
+////            if let x = query.elementForName("x", xmlns: "jabber:x:data") {
+////                if let item = x.elementForName("item") {
+////                    let items = item.elementsForName("Field") as [XMPPElement]
+////                    for element in items {
+//////                        element.el
+////                    }
+////                }
+////            }
+////        }
+//        
+//
+//        
+        return true
     }
     
     func xmppStream(sender: XMPPStream!, didSendIQ iq: XMPPIQ!) {
-        println(iq)
+        println("SEND:\(iq)")
+    }
+    
+    func xmppStream(sender: XMPPStream!, didReceivePresence presence: XMPPPresence!) {
+        println("RECV:\(presence)")
+    }
+    
+    
+    func xmppStream(sender: XMPPStream!, didSendPresence presence: XMPPPresence!) {
+        println("SEND:\(presence)")
     }
     
     func xmppStream(sender: XMPPStream!, didReceiveMessage message: XMPPMessage!) {
+        println("RECV:\(message)")
+        
+        if xmppMuc.isMUCRoomMessage(message) {
+            return
+        }
+        
         if UIApplication.sharedApplication().applicationState != .Active {
             Friend.saveUnreadMessage(message, done: { () -> Void in
                 self.showLocalNotification(message)
@@ -502,6 +530,76 @@ extension XMPPManager {
 
 }
 
+// MARK: - XMPPMUCDelegate
+
+extension XMPPManager: XMPPMUCDelegate {
+    
+//    func xmppMUC(sender: XMPPMUC!, didDiscoverServices services: [AnyObject]!) {
+//        for service in services {
+//            if let s = service as? DDXMLElement {
+//                let jid = s.attributeStringValueForName("jid")
+//                sender.discoverRoomsForServiceNamed(jid)
+//            }
+//        }
+//    }
+    
+    func xmppMUC(sender: XMPPMUC!, didDiscoverRooms rooms: [AnyObject]!, forServiceNamed serviceName: String!) {
+        for room in rooms {
+            if let e = room as? DDXMLElement {
+                let roomJID = XMPPJID.jidWithString(e.attributeStringValueForName("jid"))
+                self.dynamicType.createRoomWithRoomJId(roomJID)
+            }
+        }
+    }
+    
+    func xmppMUC(sender: XMPPMUC!, roomJID: XMPPJID!, didReceiveInvitation message: XMPPMessage!) {
+        println("RECV:\(message)")
+        
+        gcd.async(.Main, closure: { () -> () in
+            self.dynamicType.createRoomWithRoomJId(roomJID)
+        })
+    }
+}
+
+// MARK: - XMPPRoomDelegate
+
+extension XMPPManager: XMPPRoomDelegate {
+    
+//    func xmppRoom(sender: XMPPRoom!, didFetchConfigurationForm configForm: DDXMLElement!) {
+//        sender.configureRoomUsingOptions(nil)
+//        
+//        sender.joinRoomUsingNickname(account.username, history: nil)
+//    }
+    
+    func xmppRoom(sender: XMPPRoom!, didFetchMembersList items: [AnyObject]!) {
+        
+    }
+    
+    func xmppRoomDidCreate(sender: XMPPRoom!) {
+        println(__FUNCTION__)
+        
+        sender.configureRoomUsingOptions(nil)
+        
+        gcd.async(.Main, closure: { () -> () in
+            NSNotificationCenter.defaultCenter().postNotificationName(kXMPPRoomCreated, object: sender)
+        })
+//        sender.sendMessageWithBody("test")
+    }
+    
+    func xmppRoomDidJoin(sender: XMPPRoom!) {
+        println(__FUNCTION__)
+        
+        gcd.async(.Main, closure: { () -> () in
+            NSNotificationCenter.defaultCenter().postNotificationName(kXMPPRoomJoined, object: sender)
+        })
+    }
+    
+    func xmppRoom(sender: XMPPRoom!, didReceiveMessage message: XMPPMessage!, fromOccupant occupantJID: XMPPJID!) {
+        
+    }
+    
+}
+
 // MARK: - Support
 
 extension XMPPManager {
@@ -560,5 +658,51 @@ extension XMPPManager {
     
     class func vCardOfJid(jid: XMPPJID) -> XMPPvCardTemp? {
         return instance.xmppvCardTempModule.vCardTempForJID(jid, shouldFetch: true)
+    }
+
+    func createJoinedRooms() {
+//        let res = XMPPRoomMessageCoreDataStorageObject.MR_findAllInContext(roomContext) as? [XMPPRoomMessageCoreDataStorageObject]
+//        
+//        if let res = res {
+//            if res.count > 0 {
+//                for obj in res {
+//                    createRoomWithRoomJId(obj.roomJID)
+//                }
+//            }
+//        }
+        
+//        xmppMuc.discoverServices()
+        xmppMuc.discoverRoomsForServiceNamed(kRoomPath)
+    }
+    
+    class func createNewRoom() {
+        let uuid = NSUUID().UUIDString.lowercaseString
+        
+        let roomJID = XMPPJID.jidWithString("\(uuid)@\(kRoomPath)")
+        
+        createRoomWithRoomJId(roomJID)
+    }
+    
+//    class func createRoomWithFriends(friends: [XMPPUserCoreDataStorageObject]) {
+//        let uuid = NSUUID().UUIDString.lowercaseString
+//
+//        let roomJID = XMPPJID.jidWithString("\(uuid)@\(kRoomPath)")
+//
+//        createRoomWithRoomJId(roomJID)
+//    }
+
+    class func createRoomWithRoomJId(roomJID: XMPPJID) {
+        let room = XMPPRoom(roomStorage: XMPPRoomCoreDataStorage.sharedInstance(), jid: roomJID, dispatchQueue: dispatch_get_main_queue())
+        room.activate(instance.xmppStream)
+        room.addDelegate(instance, delegateQueue: instance.workQueue)
+//        room.fetchConfigurationForm()
+        
+        room.joinRoomUsingNickname(instance.account.username, history: nil)
+        
+//        instance.joinedRooms.append(room)
+    }
+    
+    class func inviteUserToRoom(room: XMPPRoom, jid: XMPPJID) {
+        room.inviteUser(jid, withMessage: "invite")
     }
 }

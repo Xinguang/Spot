@@ -26,6 +26,8 @@
 #import <TencentOpenAPI/QQApi.h>
 #import <TencentOpenAPI/QQApiInterface.h>
 #import "CocoaSecurity.h"
+#import "DDLog.h"
+#import "DDTTYLogger.h"
 
 #define HAVE_XMPP_SUBSPEC_BANDWIDTHMONITOR
 #define HAVE_XMPP_SUBSPEC_GOOGLESHAREDSTATUS
@@ -60,8 +62,8 @@
 #import "XMPPRosterCoreDataStorage.h"
 #import "XMPPUserCoreDataStorageObject.h"
 #import "XMPPMessageArchivingCoreDataStorage.h"
-
-
+#import "XMPPRoomCoreDataStorage.h"
+#import "XMPPRoomMessageCoreDataStorageObject.h"
 
 #import "Friend.h"
 #import "SNS.h"

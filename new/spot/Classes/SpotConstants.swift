@@ -9,6 +9,7 @@
 import UIKit
 
 let kOpenFireDomainName = "www5371ui.sakura.ne.jp"
+let kRoomPath = "conference.www5371ui.sakura.ne.jp"
 
 let kParseId = "5EdLCTAmNTVTSWzCymdwdWcKOmAZsbSPYxcc3RUG"
 let kClientKey = "6VW4lyCEoeJyMiVi3fxv3SbmiuzTIzf8cyqHYkpL"
@@ -24,6 +25,8 @@ let kXMPPDidReceivevCardTemp = "DidReceivevCardTempNotification"
 let kXMPPDidReceiveAvata = "DidReceiveAvataNotification"
 let kXMPPEnterMessageViewController = "EnterMessageViewController"
 let kXMPPReceivedMessage = "ReceivedMessageNotification"
+let kXMPPRoomCreated = "kXMPPRoomCreated"
+let kXMPPRoomJoined = "kXMPPRoomJoined"
 
 let kGoogleApiKey = "bV4WSVpD7XG2iCoGZabJSe9pOEl4NcA"
 

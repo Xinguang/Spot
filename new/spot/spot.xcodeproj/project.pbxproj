@@ -49,6 +49,10 @@
 		292A35D51AA6A2C5004D6C89 /* ParseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292A35D41AA6A2C4004D6C89 /* ParseController.swift */; };
 		293DC7B81A9DD5F700332124 /* ContactDetailFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 293DC7B71A9DD5F700332124 /* ContactDetailFooterView.xib */; };
 		293DC7BA1A9DD81600332124 /* ContactDetailFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293DC7B91A9DD81600332124 /* ContactDetailFooterView.swift */; };
+		294347E21AAE8DD8003578C8 /* FriendsPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294347E11AAE8DD8003578C8 /* FriendsPickerViewController.swift */; };
+		294347E41AAEBBD9003578C8 /* GroupChat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 294347E31AAEBBD9003578C8 /* GroupChat.storyboard */; };
+		294347E71AAEC027003578C8 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294347E61AAEC027003578C8 /* FriendCell.swift */; };
+		294347E91AAEC77E003578C8 /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294347E81AAEC77E003578C8 /* FriendListViewController.swift */; };
 		296623A01A898D41002608EF /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2966239F1A898D41002608EF /* DatabaseManager.swift */; };
 		296623A31A898E70002608EF /* SpotConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296623A21A898E70002608EF /* SpotConstants.swift */; };
 		296623A61A89A640002608EF /* XMPPCreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296623A51A89A640002608EF /* XMPPCreateAccountViewController.swift */; };
@@ -292,6 +296,10 @@
 		292A35D41AA6A2C4004D6C89 /* ParseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseController.swift; path = Classes/ParseController.swift; sourceTree = "<group>"; };
 		293DC7B71A9DD5F700332124 /* ContactDetailFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ContactDetailFooterView.xib; path = Classes/ContactDetailFooterView.xib; sourceTree = "<group>"; };
 		293DC7B91A9DD81600332124 /* ContactDetailFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactDetailFooterView.swift; path = Classes/ContactDetailFooterView.swift; sourceTree = "<group>"; };
+		294347E11AAE8DD8003578C8 /* FriendsPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsPickerViewController.swift; path = Classes/FriendsPickerViewController.swift; sourceTree = "<group>"; };
+		294347E31AAEBBD9003578C8 /* GroupChat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = GroupChat.storyboard; path = Classes/GroupChat.storyboard; sourceTree = "<group>"; };
+		294347E61AAEC027003578C8 /* FriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendCell.swift; path = Classes/FriendCell.swift; sourceTree = "<group>"; };
+		294347E81AAEC77E003578C8 /* FriendListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendListViewController.swift; path = Classes/FriendListViewController.swift; sourceTree = "<group>"; };
 		2966239F1A898D41002608EF /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatabaseManager.swift; path = Classes/DatabaseManager.swift; sourceTree = "<group>"; };
 		296623A21A898E70002608EF /* SpotConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpotConstants.swift; path = Classes/SpotConstants.swift; sourceTree = "<group>"; };
 		296623A51A89A640002608EF /* XMPPCreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XMPPCreateAccountViewController.swift; path = Classes/XMPPCreateAccountViewController.swift; sourceTree = "<group>"; };
@@ -746,6 +754,15 @@
 				178AE0501A8DC27300D91542 /* Reachability.swift */,
 			);
 			path = Reachability;
+			sourceTree = "<group>";
+		};
+		294347E51AAEBC6E003578C8 /* GroupChat */ = {
+			isa = PBXGroup;
+			children = (
+				294347E11AAE8DD8003578C8 /* FriendsPickerViewController.swift */,
+				294347E81AAEC77E003578C8 /* FriendListViewController.swift */,
+			);
+			name = GroupChat;
 			sourceTree = "<group>";
 		};
 		296623A11A898E4F002608EF /* Utils */ = {
@@ -1845,6 +1862,7 @@
 				298AD04C1A946C6E00D3BCD0 /* Message.storyboard */,
 				297235A41A9DC054006E5F32 /* ContactDetailHeaderView.xib */,
 				293DC7B71A9DD5F700332124 /* ContactDetailFooterView.xib */,
+				294347E31AAEBBD9003578C8 /* GroupChat.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -1893,6 +1911,7 @@
 		DCB539151A81B01A00C216D7 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				294347E51AAEBC6E003578C8 /* GroupChat */,
 				298EB0F31A95BEAA00315946 /* Login */,
 				298EB0F61A95BEEB00315946 /* Talk */,
 				298EB0F51A95BEE100315946 /* Map */,
@@ -1912,6 +1931,7 @@
 				2991E80E1A94351C00C94552 /* FriendRequestCell.swift */,
 				2989E0C31A98A8A100029F6B /* UserCell.swift */,
 				297235A61A9DC34A006E5F32 /* ContactDetailHeaderView.swift */,
+				294347E61AAEC027003578C8 /* FriendCell.swift */,
 			);
 			name = CustomView;
 			sourceTree = "<group>";
@@ -2023,6 +2043,7 @@
 				298AD04D1A946C6E00D3BCD0 /* Message.storyboard in Resources */,
 				DC4109BA1A81C27500E11CAB /* Localizable.strings in Resources */,
 				DCB539191A81B49600C216D7 /* Talk.storyboard in Resources */,
+				294347E41AAEBBD9003578C8 /* GroupChat.storyboard in Resources */,
 				298EB0F81A95C10000315946 /* Common.storyboard in Resources */,
 				DCB538F91A81AE9C00C216D7 /* Images.xcassets in Resources */,
 				DCB5391D1A81B4F500C216D7 /* Contact.storyboard in Resources */,
@@ -2159,6 +2180,7 @@
 				178AE0511A8DC27300D91542 /* GCD.swift in Sources */,
 				29FA93171AADA6F100151E10 /* XMPPCoreDataStorage.m in Sources */,
 				29FA93051AADA6F100151E10 /* XMPPDigestMD5Authentication.m in Sources */,
+				294347E21AAE8DD8003578C8 /* FriendsPickerViewController.swift in Sources */,
 				29FA93251AADA6F100151E10 /* XMPPUserMemoryStorageObject.m in Sources */,
 				29FA932D1AADA6F100151E10 /* XMPPPrivacy.m in Sources */,
 				29FA93801AADA6F100151E10 /* DDAbstractDatabaseLogger.m in Sources */,
@@ -2167,6 +2189,7 @@
 				29FA937C1AADA6F100151E10 /* XMPPSRVResolver.m in Sources */,
 				29FA933E1AADA6F100151E10 /* XMPPvCardCoreDataStorage.m in Sources */,
 				2989E0C41A98A8A100029F6B /* UserCell.swift in Sources */,
+				294347E71AAEC027003578C8 /* FriendCell.swift in Sources */,
 				29FA93311AADA6F100151E10 /* XMPPRoomOccupantCoreDataStorageObject.m in Sources */,
 				29FA935D1AADA6F100151E10 /* XMPPMessageArchiving_Contact_CoreDataObject.m in Sources */,
 				296623A31A898E70002608EF /* SpotConstants.swift in Sources */,
@@ -2253,6 +2276,7 @@
 				DC4109D41A81C50A00E11CAB /* Range.swift in Sources */,
 				29FA938B1AADA6F100151E10 /* DDXMLElement.m in Sources */,
 				29FA93081AADA6F100151E10 /* XMPPXFacebookPlatformAuthentication.m in Sources */,
+				294347E91AAEC77E003578C8 /* FriendListViewController.swift in Sources */,
 				29FA93751AADA6F100151E10 /* XMPPMessage+XEP_0308.m in Sources */,
 				29FA93841AADA6F100151E10 /* DDTTYLogger.m in Sources */,
 				DCB539201A81B65B00C216D7 /* AppDelegate.swift in Sources */,
@@ -2534,6 +2558,7 @@
 					"\"Social\"",
 					"-lxml2",
 				);
+				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "e067abd7-ffb7-4ba7-b1a2-ca2610dbd039";
 				SWIFT_OBJC_BRIDGING_HEADER = "spot/Bridging-Header.h";
@@ -2650,6 +2675,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "03a88fed-8922-42a5-b10b-0db42106302d";
 				SWIFT_OBJC_BRIDGING_HEADER = "spot/Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Release;
 		};
