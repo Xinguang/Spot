@@ -25,7 +25,7 @@ class TalkViewController: BaseViewController {
     override func awakeFromNib() {
 //        frc = Friend.MR_fetchAllGroupedBy(nil, withPredicate: NSPredicate(format: "lastMessageDate!=nil", argumentArray: nil), sortedBy: "lastMessageDate", ascending: false)
 //        frc.delegate = self
-        
+                
         frc = XMPPMessageArchiving_Contact_CoreDataObject.MR_fetchAllGroupedBy(nil, withPredicate: nil, sortedBy: "mostRecentMessageTimestamp", ascending: false, inContext: XMPPManager.instance.xmppMessageArchivingCoreDataStorage.mainThreadManagedObjectContext)
         frc.delegate = self
         
@@ -118,7 +118,7 @@ class TalkViewController: BaseViewController {
     
     func isTalkingWithJid(jid: XMPPJID) -> Bool {
         if let vc = self.navigationController?.topViewController as? MessageViewController {
-            if vc.roster.jid.isEqualToJID(jid, options: XMPPJIDCompareUser) {
+            if vc.jid.isEqualToJID(jid, options: XMPPJIDCompareUser) {
                 return true
             }
         }
@@ -180,10 +180,13 @@ extension TalkViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let friend = frc.objectAtIndexPath(indexPath) as XMPPMessageArchiving_Contact_CoreDataObject
-//        let roster = XMPPUserCoreDataStorageObject.MR_findFirstInContext(XMPPManager.instance.xmppRosterStorage.mainThreadManagedObjectContext) as XMPPUserCoreDataStorageObject
-
-        let roster = XMPPUserCoreDataStorageObject.MR_findFirstByAttribute("jidStr", withValue: friend.bareJidStr, inContext: XMPPManager.instance.xmppRosterStorage.mainThreadManagedObjectContext) as XMPPUserCoreDataStorageObject
-        Util.enterMessageViewControllerWithFriend(roster, from: self)
+        
+        if friend.isGroupChat() {
+            Util.enterGroupMessageViewController(friend, from: self)
+        } else {
+            let roster = XMPPUserCoreDataStorageObject.MR_findFirstByAttribute("jidStr", withValue: friend.bareJidStr, inContext: XMPPManager.instance.xmppRosterStorage.mainThreadManagedObjectContext) as XMPPUserCoreDataStorageObject
+            Util.enterMessageViewControllerWithFriend(roster, from: self)
+        }
 //        friend.bareJidStr
 //        Util.enterMessageViewControllerWithFriend(friend, from: self)
     }

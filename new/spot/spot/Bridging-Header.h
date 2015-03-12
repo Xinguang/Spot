@@ -64,6 +64,7 @@
 #import "XMPPMessageArchivingCoreDataStorage.h"
 #import "XMPPRoomCoreDataStorage.h"
 #import "XMPPRoomMessageCoreDataStorageObject.h"
+#import "XMPPMessage+XEP0045.h"
 
 #import "Friend.h"
 #import "SNS.h"

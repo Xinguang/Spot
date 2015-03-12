@@ -10,8 +10,13 @@ import UIKit
 
 class MessageViewController: JSQMessagesViewController {
 
-    var roster: XMPPUserCoreDataStorageObject!
+//    var roster: XMPPUserCoreDataStorageObject!
     
+    var jidStr: String!
+    var jid: XMPPJID! {
+        return XMPPJID.jidWithString(jidStr)
+    }
+
     var meImage: JSQMessagesAvatarImage!
     var friendImage: JSQMessagesAvatarImage!
     
@@ -20,7 +25,7 @@ class MessageViewController: JSQMessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let friend = Friend(ofJid: roster.jidStr)
+        let friend = Friend(ofJid: jidStr)
         if friend != nil {
             friend.unreadMessagesValue = 0
             friend.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
@@ -29,33 +34,27 @@ class MessageViewController: JSQMessagesViewController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"), name: kXMPPDidReceivevCardTemp, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"), name: kXMPPDidReceiveAvata, object: nil)
-        
-        self.collectionView.frame = self.view.bounds
-        
+
+//        collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeZero
+//        collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero
+
+        showLoadEarlierMessagesHeader = true
+
         reloadUI()
         
 //        let meImage = JSQMessagesAvatarImageFactory.avatarImageWithUserInitials("我", backgroundColor: UIColor(white: 0.85, alpha: 1.0), textColor: UIColor(white: 0.6, alpha: 1.0), font: UIFont.systemFontOfSize(14), diameter: kJSQMessagesCollectionViewAvatarSizeDefault)
         
         self.meImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(XMPPManager.instance.account.avatarImage(), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
         
-        let rosterImage = XMPPManager.instance.photoOfJid(roster.jid)
+        let rosterImage = XMPPManager.instance.photoOfJid(jid)
         self.friendImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(rosterImage, diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
         
-        frc = XMPPMessageArchiving_Message_CoreDataObject.MR_fetchAllGroupedBy(nil, withPredicate: NSPredicate(format: "bareJidStr=%@", argumentArray: [roster.jidStr]), sortedBy: "timestamp", ascending: true, inContext: XMPPManager.instance.xmppMessageArchivingCoreDataStorage.mainThreadManagedObjectContext)
+        loadMessage()
+    }
+
+    func loadMessage() {
+        frc = XMPPMessageArchiving_Message_CoreDataObject.MR_fetchAllGroupedBy(nil, withPredicate: NSPredicate(format: "bareJidStr=%@", argumentArray: [jidStr]), sortedBy: "timestamp", ascending: true, inContext: XMPPManager.instance.xmppMessageArchivingCoreDataStorage.mainThreadManagedObjectContext)
         frc.delegate = self
-        
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-
-//        self.friend.addObserver(self, forKeyPath: "messages", options: NSKeyValueObservingOptions.New, context: nil)
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-//        self.friend.removeObserver(self, forKeyPath: "messages")
     }
     
     override func didReceiveMemoryWarning() {
@@ -63,39 +62,29 @@ class MessageViewController: JSQMessagesViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func messageAtIndexPath(indexPath: NSIndexPath) -> JSQMessageData {
+        return frc.objectAtIndexPath(indexPath) as JSQMessageData
+    }
+    
     // MARK: - Notification
     
     func reloadUI() {
-        if let vCard = XMPPManager.instance.xmppvCardTempModule.vCardTempForJID(roster.jid, shouldFetch: true) {
-            self.title = vCard.formattedName ?? roster.jid.user
+
+        
+        if let vCard = XMPPManager.instance.xmppvCardTempModule.vCardTempForJID(jid, shouldFetch: true) {
+            self.title = vCard.formattedName ?? jid.user
 //            XMPPManager.instance.xmppvCardTempModule.fetchvCardTempForJID(roster.jid, ignoreStorage:true)
         } else {
-            self.title = roster.jid.user
+            self.title = jid.user
         }
-        
-        
     }
     
     // MARK: - JSQMessagesViewController method overrides
     
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
-        XMPPManager.instance.sendMessage(text, to: roster.jid)
-        
+        XMPPManager.instance.sendMessage(text, to: jid)
+
         self.finishSendingMessageAnimated(true)
-        
-//        let message = SpotMessage.MR_createEntity() as SpotMessage
-//        
-//        message.text = text
-//        message.read = true as Bool
-//        
-//        message.friend = self.friend
-//        self.friend.lastMessageDate = message.createAt
-//        
-//        NSManagedObjectContext.MR_defaultContext().MR_saveToPersistentStoreWithCompletion { (b, error) -> Void in
-//            XMPPManager.instance.sendMessage(message)
-//            
-//            self.finishSendingMessageAnimated(true)
-//        }
     }
     
     override func didPressAccessoryButton(sender: UIButton!) {
@@ -136,7 +125,7 @@ extension MessageViewController: UICollectionViewDataSource {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as JSQMessagesCollectionViewCell
         
-        let message = frc.objectAtIndexPath(indexPath) as XMPPMessageArchiving_Message_CoreDataObject
+        let message = messageAtIndexPath(indexPath)
         
 //        let message = self.friend.messages[indexPath.item] as SpotMessage
         
@@ -166,11 +155,11 @@ extension MessageViewController: JSQMessagesCollectionViewDataSource {
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
-        return frc.objectAtIndexPath(indexPath) as XMPPMessageArchiving_Message_CoreDataObject
+        return messageAtIndexPath(indexPath)
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageAvatarImageDataSource! {
-        let message = frc.objectAtIndexPath(indexPath) as XMPPMessageArchiving_Message_CoreDataObject
+        let message = messageAtIndexPath(indexPath)
         
         if message.senderId() == self.senderId {
             return self.meImage
@@ -181,7 +170,7 @@ extension MessageViewController: JSQMessagesCollectionViewDataSource {
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageBubbleImageDataSource! {
         let bubbleFactory = JSQMessagesBubbleImageFactory()
-        let message = frc.objectAtIndexPath(indexPath) as XMPPMessageArchiving_Message_CoreDataObject
+        let message = messageAtIndexPath(indexPath)
         if message.senderId() == self.senderId {
             return bubbleFactory.outgoingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor())
         }
@@ -189,14 +178,78 @@ extension MessageViewController: JSQMessagesCollectionViewDataSource {
         return bubbleFactory.incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleGreenColor())
     }
     
+    override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForCellTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
+        if indexPath.item % 3 == 0 {
+            let message = messageAtIndexPath(indexPath)
+            return JSQMessagesTimestampFormatter.sharedFormatter().attributedTimestampForDate(message.date())
+        }
+        
+        return nil
+    }
+    
+    override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
+        let message = messageAtIndexPath(indexPath)
+        
+        if message.senderId() == senderId {
+            return nil
+        }
+        
+        if indexPath.item - 1 > 0 {
+            let preMessage = messageAtIndexPath(NSIndexPath(forItem: indexPath.item - 1, inSection: 0))
+            
+            if preMessage.senderId() == message.senderId() {
+                return nil
+            }
+        }
+        
+        return NSAttributedString(string: message.senderDisplayName())
+    }
+    
+    override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForCellBottomLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
+        return nil
+    }
+    
 }
 
 extension MessageViewController: JSQMessagesCollectionViewDelegateFlowLayout {
     
+    override func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForCellTopLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+        if indexPath.item % 3 == 0 {
+            return kJSQMessagesCollectionViewCellLabelHeightDefault
+        }
+        
+        return 0
+    }
+    
+    override func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+        let message = messageAtIndexPath(indexPath)
+        if message.senderId() == senderId {
+            return 0
+        }
+        
+        if indexPath.item - 1 > 0 {
+            let preMessage = messageAtIndexPath(NSIndexPath(forItem: indexPath.item - 1, inSection: 0))
+            
+            if preMessage.senderId() == message.senderId() {
+                return 0
+            }
+        }
+        
+        return kJSQMessagesCollectionViewCellLabelHeightDefault
+    }
+    
+    override func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForCellBottomLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+        return 0
+    }
+    
     override func collectionView(collectionView: JSQMessagesCollectionView!, didTapAvatarImageView avatarImageView: UIImageView!, atIndexPath indexPath: NSIndexPath!) {
-        let message = frc.objectAtIndexPath(indexPath) as XMPPMessageArchiving_Message_CoreDataObject
+        let message = messageAtIndexPath(indexPath)
         let jid = XMPPJID.jidWithString(message.senderId())
         Util.enterFriendDetailViewController(jid, username: nil, from: self, isTalking: true)
+    }
+    
+    override func collectionView(collectionView: JSQMessagesCollectionView!, header headerView: JSQMessagesLoadEarlierHeaderView!, didTapLoadEarlierMessagesButton sender: UIButton!) {
+        SVProgressHUD.showInfoWithStatus("TODO", maskType: .Clear)
     }
 }
 
@@ -205,6 +258,6 @@ extension MessageViewController: JSQMessagesCollectionViewDelegateFlowLayout {
 extension MessageViewController: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         collectionView.reloadData()
-        scrollToBottomAnimated(true)
+        finishReceivingMessageAnimated(true)
     }
 }

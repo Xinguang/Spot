@@ -4,8 +4,10 @@
 #import "XMPP.h"
 #import "XMPPRoom.h"
 
+@protocol JSQMessageData;
 
-@interface XMPPRoomMessageCoreDataStorageObject : NSManagedObject <XMPPRoomMessage>
+
+@interface XMPPRoomMessageCoreDataStorageObject : NSManagedObject <XMPPRoomMessage,JSQMessageData>
 
 /**
  * The properties below are documented in the XMPPRoomMessage protocol.

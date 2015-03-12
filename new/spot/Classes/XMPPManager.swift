@@ -45,7 +45,7 @@ class XMPPManager: NSObject {
     var getVCardDone: (() -> Void)?
     
     var xmppMuc: XMPPMUC!
-//    var joinedRooms = [XMPPRoom]()
+    var joinedRooms = Dictionary<String, XMPPRoom>()
     
     class var roomContext: NSManagedObjectContext {
         return XMPPRoomCoreDataStorage.sharedInstance().mainThreadManagedObjectContext
@@ -588,6 +588,8 @@ extension XMPPManager: XMPPRoomDelegate {
     
     func xmppRoomDidJoin(sender: XMPPRoom!) {
         println(__FUNCTION__)
+        
+        joinedRooms[sender.roomJID.bare()] = sender
         
         gcd.async(.Main, closure: { () -> () in
             NSNotificationCenter.defaultCenter().postNotificationName(kXMPPRoomJoined, object: sender)

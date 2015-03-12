@@ -1,3 +1,4 @@
+#import <JSQMessagesViewController/JSQMessageData.h>
 #import "XMPPRoomMessageCoreDataStorageObject.h"
 
 #if ! __has_feature(objc_arc)
@@ -202,4 +203,28 @@
 	[self didChangeValueForKey:@"messageStr"];
 }
 
+- (NSString *)senderId {
+    if ([self isFromMe]) {
+        return self.streamBareJidStr;
+    }
+    
+    return self.message.fromStr;
+}
+
+- (NSString *)senderDisplayName {
+    return @"ユーザー名";
+}
+
+- (NSDate *)date {
+    return self.localTimestamp;
+}
+
+
+- (BOOL)isMediaMessage {
+    return NO;
+}
+
+- (NSString *)text {
+    return self.body;
+}
 @end

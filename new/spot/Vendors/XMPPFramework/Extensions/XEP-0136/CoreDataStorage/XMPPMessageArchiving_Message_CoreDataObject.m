@@ -177,7 +177,7 @@
 }
 
 - (NSString *)senderDisplayName {
-    return @"test";
+    return @"ユーザー名";
 }
 
 - (NSDate *)date {

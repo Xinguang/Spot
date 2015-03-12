@@ -34,8 +34,16 @@ class Util: NSObject {
         let messageViewController = Util.createViewControllerWithIdentifier(nil, storyboardName: "Message") as MessageViewController
         
         //        let messageViewController = MessageViewController()
-        messageViewController.roster = roster
+        messageViewController.jidStr = roster.jidStr
 //        friend.setAllMessagesRead()
+        
+        from.navigationController?.pushViewController(messageViewController, animated: true)
+    }
+    
+    class func enterGroupMessageViewController(room: XMPPMessageArchiving_Contact_CoreDataObject, from: UIViewController) {
+        let messageViewController = Util.createViewControllerWithIdentifier("GroupMessageViewController", storyboardName: "Message") as GroupMessageViewController
+        
+        messageViewController.jidStr = room.bareJidStr
         
         from.navigationController?.pushViewController(messageViewController, animated: true)
     }

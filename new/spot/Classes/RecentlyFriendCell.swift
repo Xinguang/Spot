@@ -21,17 +21,21 @@ class RecentlyFriendCell: UITableViewCell {
     
     var friend: XMPPMessageArchiving_Contact_CoreDataObject! {
         didSet {
-//            self.friendNameLabel.text = friend.bareJidStr ?? "友人の名前"
             
-            if let vCard = XMPPManager.instance.xmppvCardTempModule.vCardTempForJID(friend.bareJid, shouldFetch: true) {
-                friendNameLabel.text = vCard.formattedName ?? friend.bareJid.user
+            if !friend.isGroupChat() {
+                if let vCard = XMPPManager.instance.xmppvCardTempModule.vCardTempForJID(friend.bareJid, shouldFetch: true) {
+                    friendNameLabel.text = vCard.formattedName ?? friend.bareJid.user
+                    
+                } else {
+                    friendNameLabel.text = friend.bareJid.user
+                }
+                
+                friendImageView.image = XMPPManager.instance.photoOfJid(friend.bareJid)
 
             } else {
-              friendNameLabel.text = friend.bareJid.user
+                friendNameLabel.text = "グループ名"
             }
             
-            
-            friendImageView.image = XMPPManager.instance.photoOfJid(friend.bareJid)
             
             self.messageLabel.text = friend.mostRecentMessageBody
             
@@ -71,4 +75,15 @@ class RecentlyFriendCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+}
+
+extension XMPPMessageArchiving_Contact_CoreDataObject {
+    
+    func isGroupChat() -> Bool {
+        if let m = XMPPMessageArchiving_Message_CoreDataObject.MR_findFirstByAttribute("bareJidStr", withValue: self.bareJidStr, inContext: XMPPManager.instance.xmppMessageArchivingCoreDataStorage.mainThreadManagedObjectContext) as? XMPPMessageArchiving_Message_CoreDataObject {
+            return m.message.isGroupChatMessage()
+        }
+        
+        return false
+    }
 }

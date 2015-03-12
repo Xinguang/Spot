@@ -86,6 +86,7 @@
 		29BE110E1AA46A120087287F /* GPSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BE110D1AA46A120087287F /* GPSModel.m */; };
 		29BE112D1AA476100087287F /* MapDataConroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BE112C1AA476100087287F /* MapDataConroller.swift */; };
 		29BE112F1AA5753C0087287F /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BE112E1AA5753C0087287F /* UserAnnotation.swift */; };
+		29C11D241AB19042008CC707 /* GroupMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C11D221AB15E7F008CC707 /* GroupMessageViewController.swift */; };
 		29E623351A9B004A00383DEA /* AccountNameEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E623341A9B004A00383DEA /* AccountNameEditTableViewController.swift */; };
 		29EE09C11AA4B3A5005F6509 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EE09C01AA4B3A5005F6509 /* UserController.swift */; };
 		29EE09F51AA4B801005F6509 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EE09F41AA4B801005F6509 /* LoadingViewController.swift */; };
@@ -348,6 +349,7 @@
 		29BE110D1AA46A120087287F /* GPSModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPSModel.m; sourceTree = "<group>"; };
 		29BE112C1AA476100087287F /* MapDataConroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapDataConroller.swift; path = Classes/MapDataConroller.swift; sourceTree = "<group>"; };
 		29BE112E1AA5753C0087287F /* UserAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
+		29C11D221AB15E7F008CC707 /* GroupMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupMessageViewController.swift; path = Classes/GroupMessageViewController.swift; sourceTree = "<group>"; };
 		29E623341A9B004A00383DEA /* AccountNameEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountNameEditTableViewController.swift; path = Classes/AccountNameEditTableViewController.swift; sourceTree = "<group>"; };
 		29EB19581A9881DB0085BFC7 /* Model2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model2.xcdatamodel; sourceTree = "<group>"; };
 		29EE09C01AA4B3A5005F6509 /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserController.swift; path = Classes/UserController.swift; sourceTree = "<group>"; };
@@ -838,6 +840,7 @@
 				296623A51A89A640002608EF /* XMPPCreateAccountViewController.swift */,
 				296623A81A89AC3B002608EF /* NewAccountTableViewController.swift */,
 				298AD04E1A946C9100D3BCD0 /* MessageViewController.swift */,
+				29C11D221AB15E7F008CC707 /* GroupMessageViewController.swift */,
 				DCB539251A81BE0B00C216D7 /* BaseViewController.swift */,
 				DC4109B71A81C15200E11CAB /* TabBarController.swift */,
 				297235A21A9DBF17006E5F32 /* ContactDetailViewController.swift */,
@@ -2325,6 +2328,7 @@
 				29FA933C1AADA6F100151E10 /* XMPPvCard.xcdatamodeld in Sources */,
 				29FA93241AADA6F100151E10 /* XMPPRosterMemoryStorage.m in Sources */,
 				29E623351A9B004A00383DEA /* AccountNameEditTableViewController.swift in Sources */,
+				29C11D241AB19042008CC707 /* GroupMessageViewController.swift in Sources */,
 				DCB539221A81B7BE00C216D7 /* Util.swift in Sources */,
 				29FA937F1AADA6F100151E10 /* GCDAsyncSocket.m in Sources */,
 				29FA93091AADA6F100151E10 /* XMPPXOAuth2Google.m in Sources */,
