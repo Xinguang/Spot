@@ -110,7 +110,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="トーク" id="dBa-ol-liv">
-                        <barButtonItem key="rightBarButtonItem" title="Group" id="buz-mw-L2N">
+                        <barButtonItem key="rightBarButtonItem" title="グループ" id="buz-mw-L2N">
                             <connections>
                                 <action selector="groupBtnTapped:" destination="RFO-Qk-cA2" id="P5A-pd-UXS"/>
                             </connections>

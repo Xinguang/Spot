@@ -135,10 +135,10 @@ extension FriendsPickerViewController: UITableViewDataSource, UITableViewDelegat
         }
         
         if selectedFriends.count > 0 {
-            okBtn.title = "OK(\(selectedFriends.count))"
+            okBtn.title = "確定(\(selectedFriends.count))"
             okBtn.enabled = true
         } else {
-            okBtn.title = "OK"
+            okBtn.title = "確定"
             okBtn.enabled = false
         }
         

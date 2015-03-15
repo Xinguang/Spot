@@ -52,7 +52,7 @@
 		294347E21AAE8DD8003578C8 /* FriendsPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294347E11AAE8DD8003578C8 /* FriendsPickerViewController.swift */; };
 		294347E41AAEBBD9003578C8 /* GroupChat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 294347E31AAEBBD9003578C8 /* GroupChat.storyboard */; };
 		294347E71AAEC027003578C8 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294347E61AAEC027003578C8 /* FriendCell.swift */; };
-		294347E91AAEC77E003578C8 /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294347E81AAEC77E003578C8 /* FriendListViewController.swift */; };
+		294347E91AAEC77E003578C8 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294347E81AAEC77E003578C8 /* UserListViewController.swift */; };
 		296623A01A898D41002608EF /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2966239F1A898D41002608EF /* DatabaseManager.swift */; };
 		296623A31A898E70002608EF /* SpotConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296623A21A898E70002608EF /* SpotConstants.swift */; };
 		296623A61A89A640002608EF /* XMPPCreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296623A51A89A640002608EF /* XMPPCreateAccountViewController.swift */; };
@@ -85,7 +85,7 @@
 		298FE3CE1A956FBC007AB117 /* _User.m in Sources */ = {isa = PBXBuildFile; fileRef = 298FE3C81A956FBC007AB117 /* _User.m */; };
 		29BE110E1AA46A120087287F /* GPSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BE110D1AA46A120087287F /* GPSModel.m */; };
 		29BE112D1AA476100087287F /* MapDataConroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BE112C1AA476100087287F /* MapDataConroller.swift */; };
-		29BE112F1AA5753C0087287F /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BE112E1AA5753C0087287F /* UserAnnotation.swift */; };
+		29BE112F1AA5753C0087287F /* StationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BE112E1AA5753C0087287F /* StationAnnotation.swift */; };
 		29C11D241AB19042008CC707 /* GroupMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C11D221AB15E7F008CC707 /* GroupMessageViewController.swift */; };
 		29E623351A9B004A00383DEA /* AccountNameEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E623341A9B004A00383DEA /* AccountNameEditTableViewController.swift */; };
 		29EE09C11AA4B3A5005F6509 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EE09C01AA4B3A5005F6509 /* UserController.swift */; };
@@ -300,7 +300,7 @@
 		294347E11AAE8DD8003578C8 /* FriendsPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsPickerViewController.swift; path = Classes/FriendsPickerViewController.swift; sourceTree = "<group>"; };
 		294347E31AAEBBD9003578C8 /* GroupChat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = GroupChat.storyboard; path = Classes/GroupChat.storyboard; sourceTree = "<group>"; };
 		294347E61AAEC027003578C8 /* FriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendCell.swift; path = Classes/FriendCell.swift; sourceTree = "<group>"; };
-		294347E81AAEC77E003578C8 /* FriendListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendListViewController.swift; path = Classes/FriendListViewController.swift; sourceTree = "<group>"; };
+		294347E81AAEC77E003578C8 /* UserListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserListViewController.swift; path = Classes/UserListViewController.swift; sourceTree = "<group>"; };
 		2966239F1A898D41002608EF /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatabaseManager.swift; path = Classes/DatabaseManager.swift; sourceTree = "<group>"; };
 		296623A21A898E70002608EF /* SpotConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpotConstants.swift; path = Classes/SpotConstants.swift; sourceTree = "<group>"; };
 		296623A51A89A640002608EF /* XMPPCreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XMPPCreateAccountViewController.swift; path = Classes/XMPPCreateAccountViewController.swift; sourceTree = "<group>"; };
@@ -348,7 +348,7 @@
 		29BE110C1AA46A120087287F /* GPSModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSModel.h; sourceTree = "<group>"; };
 		29BE110D1AA46A120087287F /* GPSModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPSModel.m; sourceTree = "<group>"; };
 		29BE112C1AA476100087287F /* MapDataConroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapDataConroller.swift; path = Classes/MapDataConroller.swift; sourceTree = "<group>"; };
-		29BE112E1AA5753C0087287F /* UserAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
+		29BE112E1AA5753C0087287F /* StationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationAnnotation.swift; sourceTree = "<group>"; };
 		29C11D221AB15E7F008CC707 /* GroupMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupMessageViewController.swift; path = Classes/GroupMessageViewController.swift; sourceTree = "<group>"; };
 		29E623341A9B004A00383DEA /* AccountNameEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountNameEditTableViewController.swift; path = Classes/AccountNameEditTableViewController.swift; sourceTree = "<group>"; };
 		29EB19581A9881DB0085BFC7 /* Model2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model2.xcdatamodel; sourceTree = "<group>"; };
@@ -762,7 +762,6 @@
 			isa = PBXGroup;
 			children = (
 				294347E11AAE8DD8003578C8 /* FriendsPickerViewController.swift */,
-				294347E81AAEC77E003578C8 /* FriendListViewController.swift */,
 			);
 			name = GroupChat;
 			sourceTree = "<group>";
@@ -852,6 +851,7 @@
 			isa = PBXGroup;
 			children = (
 				DCC671DB1A82089B001781ED /* MapViewController.swift */,
+				294347E81AAEC77E003578C8 /* UserListViewController.swift */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -1894,7 +1894,7 @@
 				DC4109F11A81DEF400E11CAB /* Machine */,
 				29BE110C1AA46A120087287F /* GPSModel.h */,
 				29BE110D1AA46A120087287F /* GPSModel.m */,
-				29BE112E1AA5753C0087287F /* UserAnnotation.swift */,
+				29BE112E1AA5753C0087287F /* StationAnnotation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2231,7 +2231,7 @@
 				29FA93101AADA6F100151E10 /* XMPPMessage.m in Sources */,
 				296D55001AA9B1D7005FC650 /* StationAddTableViewController.swift in Sources */,
 				2911ACE81A96E35B00DF1F84 /* TalkSearchResultTableViewController.swift in Sources */,
-				29BE112F1AA5753C0087287F /* UserAnnotation.swift in Sources */,
+				29BE112F1AA5753C0087287F /* StationAnnotation.swift in Sources */,
 				29FA933D1AADA6F100151E10 /* XMPPvCardAvatarCoreDataStorageObject.m in Sources */,
 				29FA930F1AADA6F100151E10 /* XMPPJID.m in Sources */,
 				29FA931C1AADA6F100151E10 /* XMPPProcessOne.m in Sources */,
@@ -2279,7 +2279,7 @@
 				DC4109D41A81C50A00E11CAB /* Range.swift in Sources */,
 				29FA938B1AADA6F100151E10 /* DDXMLElement.m in Sources */,
 				29FA93081AADA6F100151E10 /* XMPPXFacebookPlatformAuthentication.m in Sources */,
-				294347E91AAEC77E003578C8 /* FriendListViewController.swift in Sources */,
+				294347E91AAEC77E003578C8 /* UserListViewController.swift in Sources */,
 				29FA93751AADA6F100151E10 /* XMPPMessage+XEP_0308.m in Sources */,
 				29FA93841AADA6F100151E10 /* DDTTYLogger.m in Sources */,
 				DCB539201A81B65B00C216D7 /* AppDelegate.swift in Sources */,

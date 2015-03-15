@@ -79,12 +79,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="iHp-Bh-6yB">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="sTb-Nn-T75">
+                        <barButtonItem key="leftBarButtonItem" title="キャンセル" id="sTb-Nn-T75">
                             <connections>
                                 <action selector="close:" destination="GQY-2d-BEI" id="W4I-rL-geZ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="OK" id="pKP-Hx-JC5">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="確定" id="pKP-Hx-JC5">
                             <connections>
                                 <action selector="okBtnTapped:" destination="GQY-2d-BEI" id="UEF-Re-Xss"/>
                             </connections>

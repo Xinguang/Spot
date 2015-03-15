@@ -117,6 +117,34 @@ class ParseController: NSObject {
         let query = PFQuery(className: "Station")
         query.findObjectsInBackgroundWithBlock { (res, err) -> Void in
             done(res: res as? [PFObject], error: err)
+            
+//            var results = [PFObject]()
+//            
+//            // TODO: improve performance
+//            if let res = res as? [PFObject] {
+//                for station in res {
+//                    station["count"] = self.userCountOfStation(station)
+//                    results.append(station)
+//                }
+//            }
+//            
+//            done(res: results, error: err)
+        }
+    }
+    
+//    class func userCountOfStation(station: PFObject) -> Int {
+//        let q = PFQuery(className: "User")
+//        q.whereKey("stations", equalTo: station)
+//        
+//        return q.countObjects()
+//    }
+    
+    class func getUsersOfStation(station: PFObject, done: (res: [PFObject]?, error: NSError?) -> Void) {
+        let q = PFQuery(className: "User")
+        q.whereKey("stations", equalTo: station)
+        
+        q.findObjectsInBackgroundWithBlock { (res, err) -> Void in
+            done(res: res as? [PFObject], error: err)
         }
     }
     

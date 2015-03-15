@@ -8,10 +8,11 @@
 
 import UIKit
 
-class UserAnnotation: NSObject, MKAnnotation {
+class StationAnnotation: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     var title: String
     var subtitle: String
+    var pfObject: PFObject!
     
     init(coordinate: CLLocationCoordinate2D, title: String, subtitle: String) {
         self.coordinate = coordinate
@@ -23,5 +24,16 @@ class UserAnnotation: NSObject, MKAnnotation {
         self.coordinate = CLLocationCoordinate2D(latitude: model.lat, longitude: model.lon)
         self.title = "title"
         self.subtitle = "subtitle"
+    }
+    
+    init(obj: PFObject) {
+        pfObject = obj
+        
+        self.coordinate = CLLocationCoordinate2D(latitude: (obj["lat"] as String).toDouble()!, longitude: (obj["lon"] as String).toDouble()!)
+        self.title = obj["name"] as String
+        self.subtitle = ""
+//        let count = obj["count"] as Int
+        
+//        self.subtitle = "\(count)人"
     }
 }
