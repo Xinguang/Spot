@@ -107,6 +107,11 @@ class TalkViewController: BaseViewController {
             return
         }
         
+        //chou
+        if (message.isGroupChatMessage()) {
+            return
+        }
+        
         Friend.saveUnreadMessage(message, done: { () -> Void in
             if self.navigationController?.tabBarController?.selectedIndex == 0 {
                 if self.navigationController?.topViewController == self {
@@ -182,7 +187,7 @@ extension TalkViewController: UITableViewDataSource, UITableViewDelegate {
         let friend = frc.objectAtIndexPath(indexPath) as XMPPMessageArchiving_Contact_CoreDataObject
         
         if friend.isGroupChat() {
-            Util.enterGroupMessageViewController(friend, from: self)
+            Util.enterGroupMessageViewController(friend.bareJidStr, from: self)
         } else {
             let roster = XMPPUserCoreDataStorageObject.MR_findFirstByAttribute("jidStr", withValue: friend.bareJidStr, inContext: XMPPManager.instance.xmppRosterStorage.mainThreadManagedObjectContext) as XMPPUserCoreDataStorageObject
             Util.enterMessageViewControllerWithFriend(roster, from: self)
@@ -198,5 +203,9 @@ extension TalkViewController: FriendsPickerViewControllerDelegate {
     
     func friendsPickerDidDismissWithRoster(roster: XMPPUserCoreDataStorageObject) {
         Util.enterMessageViewControllerWithFriend(roster, from: self)
+    }
+    
+    func friendsPickerDidDismissWithRoomJidStr(jidStr: String) {
+        Util.enterGroupMessageViewController(jidStr, from: self)
     }
 }

@@ -38,6 +38,25 @@ class GroupMessageViewController: MessageViewController {
         }
     }
     
+    override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
+        let message = messageAtIndexPath(indexPath) as XMPPRoomMessageCoreDataStorageObject
+        
+        if message.senderId() == senderId {
+            return nil
+        }
+        
+        if indexPath.item - 1 > 0 {
+            let preMessage = messageAtIndexPath(NSIndexPath(forItem: indexPath.item - 1, inSection: 0))
+            
+            if preMessage.senderId() == message.senderId() {
+                return nil
+            }
+        }
+        
+        let nickName = message.message.from().resource
+        
+        return NSAttributedString(string: nickName)
+    }
 }
 
 extension GroupMessageViewController: JSQMessagesCollectionViewDelegateFlowLayout {

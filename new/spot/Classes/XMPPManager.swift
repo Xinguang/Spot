@@ -394,9 +394,13 @@ extension XMPPManager: XMPPStreamDelegate {
     func xmppStream(sender: XMPPStream!, didReceiveMessage message: XMPPMessage!) {
         println("RECV:\(message)")
         
-        if xmppMuc.isMUCRoomMessage(message) {
+        if self.dynamicType.isInviteMessage(message) {
             return
         }
+        
+//        if xmppMuc.isMUCRoomMessage(message) {
+//            return
+//        }
         
         if UIApplication.sharedApplication().applicationState != .Active {
             Friend.saveUnreadMessage(message, done: { () -> Void in
@@ -571,8 +575,9 @@ extension XMPPManager: XMPPRoomDelegate {
 //        sender.joinRoomUsingNickname(account.username, history: nil)
 //    }
     
+    
     func xmppRoom(sender: XMPPRoom!, didFetchMembersList items: [AnyObject]!) {
-        
+        println(items)
     }
     
     func xmppRoomDidCreate(sender: XMPPRoom!) {
@@ -590,6 +595,8 @@ extension XMPPManager: XMPPRoomDelegate {
         println(__FUNCTION__)
         
         joinedRooms[sender.roomJID.bare()] = sender
+        
+//        sender.fetchMembersList()
         
         gcd.async(.Main, closure: { () -> () in
             NSNotificationCenter.defaultCenter().postNotificationName(kXMPPRoomJoined, object: sender)
@@ -637,11 +644,21 @@ extension XMPPManager {
         var from = message.from().user
     
         if let user = self.xmppvCardTempModule.vCardTempForJID(message.from(), shouldFetch: false) {
-            from = user.formattedName ?? message.from().user
+            from = user.formattedName ?? "匿名"
         }
         
         return from
 
+    }
+    
+    func displayNameOfJid(jid: XMPPJID) -> String {
+        let user = userForJID(jid)
+        
+        if let card = xmppvCardTempModule.vCardTempForJID(jid, shouldFetch: true) {
+            return card.formattedName ?? "匿名"
+        }
+        
+        return "匿名"
     }
     
     func isFriend(jid: XMPPJID) -> Bool {
@@ -699,6 +716,7 @@ extension XMPPManager {
         room.addDelegate(instance, delegateQueue: instance.workQueue)
 //        room.fetchConfigurationForm()
         
+//        let history = XMPPElement(name: "history", numberValue: 0)
         room.joinRoomUsingNickname(instance.account.username, history: nil)
         
 //        instance.joinedRooms.append(room)
@@ -706,5 +724,27 @@ extension XMPPManager {
     
     class func inviteUserToRoom(room: XMPPRoom, jid: XMPPJID) {
         room.inviteUser(jid, withMessage: "invite")
+    }
+    
+    class func jidOfNickname(nickname: String, room: XMPPRoom) {
+        
+    }
+    
+    class func isInviteMessage(message: XMPPMessage) -> Bool {
+        if let x = message.elementForName("x", xmlns: "http://jabber.org/protocol/muc#user") {
+            if let invite = x.elementForName("invite") {
+                return true
+            }
+            
+            if let decline = x.elementForName("decline") {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    class func countOfRoom(jidStr: String) -> UInt {
+        return XMPPRoomOccupantCoreDataStorageObject.MR_countOfEntitiesWithPredicate(NSPredicate(format: "roomJIDStr = %@", argumentArray: [jidStr]), inContext: roomContext)
     }
 }

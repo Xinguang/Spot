@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="L70-Ti-d1U">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="L70-Ti-d1U">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -20,32 +19,29 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="HSh-XA-zJB">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aU4-q5-hWW">
-                                <rect key="frame" x="144" y="320" width="31" height="30"/>
-                                <state key="normal" title="Skip">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="skipBtnTapped:" destination="OPT-jn-QXI" eventType="touchUpInside" id="p8G-hs-imp"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="現場TOMOID" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3sb-ZF-dDS">
-                                <rect key="frame" x="70" y="181" width="180" height="30"/>
+                                <rect key="frame" x="20" y="80" width="280" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="es2-5H-7Cm"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="next"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OkM-ll-CRE">
-                                <rect key="frame" x="85" y="286" width="30" height="30"/>
-                                <state key="normal" title="登録">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OkM-ll-CRE">
+                                <rect key="frame" x="20" y="287" width="280" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="VVH-UF-hwT"/>
+                                </constraints>
+                                <state key="normal" title="登録" backgroundImage="signUp">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="signUpBtnClicked:" destination="OPT-jn-QXI" eventType="touchUpInside" id="3ed-0g-s4h"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i9L-cY-B0o">
-                                <rect key="frame" x="175" y="286" width="60" height="30"/>
-                                <state key="normal" title="ログイン">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i9L-cY-B0o">
+                                <rect key="frame" x="20" y="203" width="280" height="44"/>
+                                <state key="normal" title="ログイン" backgroundImage="login_btn_blue_nor">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -53,53 +49,92 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="パスワード" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="fnK-aP-DCU">
-                                <rect key="frame" x="70" y="226" width="180" height="30"/>
+                                <rect key="frame" x="20" y="139" width="280" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="mXa-RM-F7p"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="liH-Zc-2Sn">
-                                <rect key="frame" x="85" y="402" width="30" height="30"/>
-                                <state key="normal" title="微信">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NzG-yZ-3cG">
+                                <rect key="frame" x="58" y="361" width="204" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wcg-UQ-GUq">
+                                        <rect key="frame" x="144" y="0.0" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="PKg-OU-FsV"/>
+                                            <constraint firstAttribute="width" constant="60" id="h0m-UN-BRI"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="icon_qq">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="qqBtnTapped:" destination="OPT-jn-QXI" eventType="touchUpInside" id="RM5-z8-jhm"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="liH-Zc-2Sn">
+                                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="E05-SV-ok6"/>
+                                            <constraint firstAttribute="height" constant="60" id="oem-qw-cE7"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="wechat_icon">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="wxBtnTapped:" destination="OPT-jn-QXI" eventType="touchUpInside" id="O3J-qV-i75"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="liH-Zc-2Sn" firstAttribute="top" secondItem="NzG-yZ-3cG" secondAttribute="top" id="39k-46-TFM"/>
+                                    <constraint firstItem="liH-Zc-2Sn" firstAttribute="leading" secondItem="NzG-yZ-3cG" secondAttribute="leading" id="AUC-tG-8b2"/>
+                                    <constraint firstAttribute="height" constant="60" id="CWI-A3-PXs"/>
+                                    <constraint firstAttribute="trailing" secondItem="Wcg-UQ-GUq" secondAttribute="trailing" id="m60-II-YFQ"/>
+                                    <constraint firstItem="Wcg-UQ-GUq" firstAttribute="top" secondItem="NzG-yZ-3cG" secondAttribute="top" id="uy1-UJ-aY9"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aU4-q5-hWW">
+                                <rect key="frame" x="20" y="494" width="280" height="44"/>
+                                <state key="normal" title="Skip" backgroundImage="skip">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="wxBtnTapped:" destination="OPT-jn-QXI" eventType="touchUpInside" id="O3J-qV-i75"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wcg-UQ-GUq">
-                                <rect key="frame" x="205" y="402" width="30" height="30"/>
-                                <state key="normal" title="QQ">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="qqBtnTapped:" destination="OPT-jn-QXI" eventType="touchUpInside" id="RM5-z8-jhm"/>
+                                    <action selector="skipBtnTapped:" destination="OPT-jn-QXI" eventType="touchUpInside" id="p8G-hs-imp"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="HSh-XA-zJB" firstAttribute="top" secondItem="Xbp-p7-aMg" secondAttribute="top" id="2lp-wY-5rt"/>
-                            <constraint firstItem="OkM-ll-CRE" firstAttribute="top" secondItem="fnK-aP-DCU" secondAttribute="bottom" constant="30" id="5Bx-vu-IXe"/>
-                            <constraint firstItem="liH-Zc-2Sn" firstAttribute="top" secondItem="aU4-q5-hWW" secondAttribute="bottom" constant="52" id="7Zh-xd-gKB"/>
-                            <constraint firstItem="Wcg-UQ-GUq" firstAttribute="top" secondItem="aU4-q5-hWW" secondAttribute="bottom" constant="52" id="ADb-gj-m7c"/>
+                            <constraint firstItem="HO2-yo-byo" firstAttribute="top" secondItem="aU4-q5-hWW" secondAttribute="bottom" constant="30" id="3XY-Cc-mYk"/>
+                            <constraint firstAttribute="centerX" secondItem="aU4-q5-hWW" secondAttribute="centerX" id="8tN-Su-gvW"/>
+                            <constraint firstAttribute="centerX" secondItem="i9L-cY-B0o" secondAttribute="centerX" id="BJB-Pe-DPp"/>
+                            <constraint firstAttribute="centerX" secondItem="OkM-ll-CRE" secondAttribute="centerX" id="BkP-En-4WG"/>
+                            <constraint firstItem="NzG-yZ-3cG" firstAttribute="leading" secondItem="Xbp-p7-aMg" secondAttribute="leading" constant="58" id="E44-ez-Ufk"/>
+                            <constraint firstItem="NzG-yZ-3cG" firstAttribute="top" secondItem="OkM-ll-CRE" secondAttribute="bottom" constant="30" id="Ghh-Qc-X7a"/>
                             <constraint firstItem="HO2-yo-byo" firstAttribute="top" secondItem="HSh-XA-zJB" secondAttribute="bottom" id="Ist-9a-tGq"/>
-                            <constraint firstAttribute="centerX" secondItem="aU4-q5-hWW" secondAttribute="centerX" id="L9M-uL-kxM"/>
-                            <constraint firstItem="liH-Zc-2Sn" firstAttribute="leading" secondItem="OkM-ll-CRE" secondAttribute="leading" id="LoR-CU-XgS"/>
-                            <constraint firstItem="fnK-aP-DCU" firstAttribute="leading" secondItem="Xbp-p7-aMg" secondAttribute="leading" constant="70" id="Qk7-aY-8ig"/>
+                            <constraint firstItem="i9L-cY-B0o" firstAttribute="leading" secondItem="Xbp-p7-aMg" secondAttribute="leading" constant="20" id="J8W-o6-Cdt"/>
+                            <constraint firstAttribute="centerX" secondItem="NzG-yZ-3cG" secondAttribute="centerX" id="LMI-3s-5y5"/>
+                            <constraint firstAttribute="trailing" secondItem="aU4-q5-hWW" secondAttribute="trailing" constant="20" id="NFm-No-UHg"/>
                             <constraint firstAttribute="centerX" secondItem="fnK-aP-DCU" secondAttribute="centerX" id="SUv-PI-jWb"/>
-                            <constraint firstAttribute="trailing" secondItem="i9L-cY-B0o" secondAttribute="trailing" constant="85" id="TDX-Oh-gxp"/>
-                            <constraint firstAttribute="trailing" secondItem="fnK-aP-DCU" secondAttribute="trailing" constant="70" id="TwH-IR-rKB"/>
-                            <constraint firstItem="3sb-ZF-dDS" firstAttribute="top" secondItem="wyV-Fh-Cfq" secondAttribute="bottom" constant="161" id="ZlN-9Y-0C7"/>
-                            <constraint firstItem="i9L-cY-B0o" firstAttribute="top" secondItem="fnK-aP-DCU" secondAttribute="bottom" constant="30" id="feb-8K-JRK"/>
+                            <constraint firstItem="3sb-ZF-dDS" firstAttribute="top" secondItem="wyV-Fh-Cfq" secondAttribute="bottom" constant="60" id="ZlN-9Y-0C7"/>
+                            <constraint firstAttribute="trailing" secondItem="NzG-yZ-3cG" secondAttribute="trailing" constant="58" id="dSW-A5-4HX"/>
+                            <constraint firstAttribute="trailing" secondItem="OkM-ll-CRE" secondAttribute="trailing" constant="20" id="eIr-Td-jAR"/>
+                            <constraint firstItem="i9L-cY-B0o" firstAttribute="top" secondItem="fnK-aP-DCU" secondAttribute="bottom" constant="20" id="feb-8K-JRK"/>
                             <constraint firstItem="fnK-aP-DCU" firstAttribute="top" secondItem="3sb-ZF-dDS" secondAttribute="bottom" constant="15" id="kaP-av-mRN"/>
-                            <constraint firstItem="3sb-ZF-dDS" firstAttribute="leading" secondItem="Xbp-p7-aMg" secondAttribute="leading" constant="70" id="mbx-va-deo"/>
-                            <constraint firstItem="aU4-q5-hWW" firstAttribute="top" secondItem="wyV-Fh-Cfq" secondAttribute="bottom" constant="300" id="o1v-Cv-gcx"/>
+                            <constraint firstItem="3sb-ZF-dDS" firstAttribute="leading" secondItem="Xbp-p7-aMg" secondAttribute="leading" constant="20" id="mbx-va-deo"/>
+                            <constraint firstItem="aU4-q5-hWW" firstAttribute="leading" secondItem="Xbp-p7-aMg" secondAttribute="leading" constant="20" id="nMe-Pw-A81"/>
+                            <constraint firstItem="3sb-ZF-dDS" firstAttribute="leading" secondItem="fnK-aP-DCU" secondAttribute="leading" id="na5-e4-1cY"/>
                             <constraint firstItem="HSh-XA-zJB" firstAttribute="leading" secondItem="Xbp-p7-aMg" secondAttribute="leading" id="os0-4j-Nek"/>
-                            <constraint firstAttribute="trailing" secondItem="3sb-ZF-dDS" secondAttribute="trailing" constant="70" id="sak-xP-DwR"/>
+                            <constraint firstItem="3sb-ZF-dDS" firstAttribute="trailing" secondItem="fnK-aP-DCU" secondAttribute="trailing" id="p1n-SQ-6Br"/>
+                            <constraint firstItem="OkM-ll-CRE" firstAttribute="top" secondItem="i9L-cY-B0o" secondAttribute="bottom" constant="40" id="sDh-XE-J24"/>
+                            <constraint firstAttribute="trailing" secondItem="3sb-ZF-dDS" secondAttribute="trailing" constant="20" id="sak-xP-DwR"/>
+                            <constraint firstAttribute="trailing" secondItem="i9L-cY-B0o" secondAttribute="trailing" constant="20" id="sft-s4-DkD"/>
                             <constraint firstAttribute="centerX" secondItem="3sb-ZF-dDS" secondAttribute="centerX" id="sqT-46-ePZ"/>
-                            <constraint firstItem="OkM-ll-CRE" firstAttribute="leading" secondItem="Xbp-p7-aMg" secondAttribute="leading" constant="85" id="wAB-M4-PWg"/>
+                            <constraint firstItem="OkM-ll-CRE" firstAttribute="leading" secondItem="Xbp-p7-aMg" secondAttribute="leading" constant="20" id="tCt-SI-ee5"/>
                             <constraint firstAttribute="trailing" secondItem="HSh-XA-zJB" secondAttribute="trailing" id="wWg-e8-Grd"/>
-                            <constraint firstItem="i9L-cY-B0o" firstAttribute="trailing" secondItem="Wcg-UQ-GUq" secondAttribute="trailing" id="zjJ-p1-Upu"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hhM-SV-Cq1"/>
@@ -183,7 +218,12 @@
     </scenes>
     <resources>
         <image name="background" width="320" height="568"/>
+        <image name="icon_qq" width="64" height="64"/>
         <image name="launch" width="320" height="568"/>
+        <image name="login_btn_blue_nor" width="5" height="44"/>
+        <image name="signUp" width="5" height="44"/>
+        <image name="skip" width="5" height="44"/>
+        <image name="wechat_icon" width="60" height="60"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -191,6 +231,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="zWy-L5-KKL"/>
+        <segue reference="YWj-NZ-BsO"/>
     </inferredMetricsTieBreakers>
 </document>

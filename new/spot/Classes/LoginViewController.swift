@@ -66,7 +66,6 @@ class LoginViewController: BaseViewController {
                     return
                 } else {
                     UserController.saveUser(self.user)
-                    self.goToTabView()
                 }
             })
         } else if loginType == .SignIn {

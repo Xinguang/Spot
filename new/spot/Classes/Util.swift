@@ -40,10 +40,10 @@ class Util: NSObject {
         from.navigationController?.pushViewController(messageViewController, animated: true)
     }
     
-    class func enterGroupMessageViewController(room: XMPPMessageArchiving_Contact_CoreDataObject, from: UIViewController) {
+    class func enterGroupMessageViewController(jidStr: String, from: UIViewController) {
         let messageViewController = Util.createViewControllerWithIdentifier("GroupMessageViewController", storyboardName: "Message") as GroupMessageViewController
         
-        messageViewController.jidStr = room.bareJidStr
+        messageViewController.jidStr = jidStr
         
         from.navigationController?.pushViewController(messageViewController, animated: true)
     }
@@ -69,5 +69,22 @@ class Util: NSObject {
     class func canSendNotifications() -> Bool {
         let notificationSettings = UIApplication.sharedApplication().currentUserNotificationSettings()
         return notificationSettings.types == .Badge | .Sound | .Alert
+    }
+}
+
+extension UIApplication {
+    
+    class func appVersion() -> String {
+        return NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as String
+    }
+    
+    class func appBuild() -> String {
+        return NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey as NSString) as String
+    }
+    
+    class func versionBuild() -> String {
+        let version = appVersion(), build = appBuild()
+        
+        return version == build ? "v\(version)" : "v\(version)(\(build))"
     }
 }

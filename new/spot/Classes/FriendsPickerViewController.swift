@@ -9,7 +9,8 @@
 import UIKit
 
 protocol FriendsPickerViewControllerDelegate {
-    func friendsPickerDidDismissWithRoster(roster: XMPPUserCoreDataStorageObject) -> ()
+    func friendsPickerDidDismissWithRoster(roster: XMPPUserCoreDataStorageObject)
+    func friendsPickerDidDismissWithRoomJidStr(jidStr: String)
 }
 
 class FriendsPickerViewController: ContactViewController {
@@ -39,20 +40,24 @@ class FriendsPickerViewController: ContactViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - Action
+    
     @IBAction func close(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 
     @IBAction func okBtnTapped(sender: AnyObject) {
-//        if selectedFriends.count == 1 {
-//            self.dismissViewControllerAnimated(false, completion: { () -> Void in
-//                if let delegate = self.delegate {
-//                    delegate.friendsPickerDidDismissWithRoster(self.selectedFriends.firstObject as XMPPUserCoreDataStorageObject)
-//                }
-//            })
-//        } else {
+        if selectedFriends.count == 1 {
+            self.dismissViewControllerAnimated(false, completion: { () -> Void in
+                if let delegate = self.delegate {
+                    delegate.friendsPickerDidDismissWithRoster(self.selectedFriends.firstObject as XMPPUserCoreDataStorageObject)
+                }
+            })
+        } else {
+            SVProgressHUD.showWithMaskType(.Clear)
+        
             XMPPManager.createNewRoom()
-//        }
+        }
     }
     
     // MARK: - Notification
@@ -73,6 +78,14 @@ class FriendsPickerViewController: ContactViewController {
                 XMPPManager.inviteUserToRoom(room, jid: roster.jid)
             }
         }
+        
+        SVProgressHUD.dismiss()
+        
+        self.dismissViewControllerAnimated(false, completion: { () -> Void in
+            if let delegate = self.delegate {
+                delegate.friendsPickerDidDismissWithRoomJidStr(room.roomJID.bare())
+            }
+        })
     }
     
     /*

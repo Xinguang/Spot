@@ -10,6 +10,7 @@ import UIKit
 
 class RecentlyFriendCell: UITableViewCell {
 
+    @IBOutlet weak var membersCountLabel: UILabel!
     @IBOutlet weak var friendImageView: UIImageView!
     @IBOutlet weak var friendNameLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
@@ -23,6 +24,8 @@ class RecentlyFriendCell: UITableViewCell {
         didSet {
             
             if !friend.isGroupChat() {
+                membersCountLabel.hidden = true
+                
                 if let vCard = XMPPManager.instance.xmppvCardTempModule.vCardTempForJID(friend.bareJid, shouldFetch: true) {
                     friendNameLabel.text = vCard.formattedName ?? friend.bareJid.user
                     
@@ -34,6 +37,8 @@ class RecentlyFriendCell: UITableViewCell {
 
             } else {
                 friendNameLabel.text = "グループ名"
+//                membersCountLabel.hidden = false
+                membersCountLabel.text = "\(XMPPManager.countOfRoom(friend.bareJidStr))"
             }
             
             
@@ -64,6 +69,8 @@ class RecentlyFriendCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        membersCountLabel.hidden = true
         
         badgeView = JSBadgeView(parentView: badgeBackView, alignment: .CenterRight)
         badgeView.badgeBackgroundColor = UIColor(hexString: "#0EAA00")

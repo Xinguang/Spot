@@ -46,7 +46,7 @@ class ParseUserModel :ParseModel{
     }
     
     init(user: User) {
-        self.username = user.username
+        self.username = user.username ?? ""
         self.password = CocoaSecurity.aesEncrypt(user.password, key: kAESKey).base64
         self.openfireId = user.openfireId
         self.displayName = user.displayName ?? ""

@@ -202,7 +202,7 @@ extension MessageViewController: JSQMessagesCollectionViewDataSource {
             }
         }
         
-        return NSAttributedString(string: message.senderDisplayName())
+        return NSAttributedString(string: XMPPManager.instance.displayNameOfJid(XMPPJID.jidWithString(message.senderId())))
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForCellBottomLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
