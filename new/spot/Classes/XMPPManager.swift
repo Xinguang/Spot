@@ -201,21 +201,18 @@ class XMPPManager: NSObject {
         
     }
     
-//    func addFriend(friend: Friend) {
-//        let jid = XMPPJID.jidWithString(friend.accountName)
-//        // TODO: nickName
-//        xmppRoster.addUser(jid, withNickname: friend.displayName)
-//    }
-    
-    func updateMyName(name: String) {
-        var myvCardTemp = xmppvCardTempModule.myvCardTemp
-        if myvCardTemp == nil {
-            println("myvCardTemp==nil")
-        }
+    class func updateUser(user: User) {
+        let query = XMPPElement(name: "query", xmlns: "jabber:iq:register")
+        let username = XMPPElement(name: "username", stringValue: XMPPJID.jidWithString(user.openfireId).user)
+        let name = XMPPElement(name: "name", stringValue: user.displayName)
         
-        myvCardTemp.formattedName = name
+        query.addChild(username)
+        query.addChild(name)
         
-        xmppvCardTempModule.updateMyvCardTemp(myvCardTemp)
+        let iq = XMPPIQ(type: "set", to: XMPPJID.jidWithString(kOpenFireDomainName))
+        iq.addChild(query)
+        
+        instance.xmppStream.sendElement(iq)
     }
     
     func updateMyImage(image: UIImage) {
@@ -746,5 +743,9 @@ extension XMPPManager {
     
     class func countOfRoom(jidStr: String) -> UInt {
         return XMPPRoomOccupantCoreDataStorageObject.MR_countOfEntitiesWithPredicate(NSPredicate(format: "roomJIDStr = %@", argumentArray: [jidStr]), inContext: roomContext)
+    }
+    
+    class func updateUserIn(user: User) {
+        
     }
 }

@@ -32,14 +32,7 @@ class AccountEditViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         userImage.image = user.avatarImage()
-        //        nameLabel.text = user.displayName
-        if let vc = nameEditVC {
-            if vc.isSaved {
-                nameLabel.text = vc.nameTF.text
-            }
-        } else {
-            nameLabel.text = XMPPManager.instance.xmppvCardTempModule.myvCardTemp?.formattedName? ?? ""
-        }
+        nameLabel.text = user.displayName
         
         idLabel.text = user.username
         
@@ -64,7 +57,7 @@ class AccountEditViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "SegueNameEdit" {
             nameEditVC = segue.destinationViewController as? AccountNameEditTableViewController
-            nameEditVC?.orgName = nameLabel.text
+            nameEditVC?.user = user
         }
         
         if segue.identifier == "SegueGender" {

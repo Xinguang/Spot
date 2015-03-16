@@ -17,15 +17,15 @@ class UserCell: UITableViewCell {
     var user: User! {
         didSet {
             userImage.image = user.avatarImage()
-//            nameLabel.text = user.displayName
+            nameLabel.text = user.displayName
             
-            if let vCard = XMPPManager.instance.xmppvCardTempModule.myvCardTemp {
-                nameLabel.text = vCard.formattedName ?? ""
-                
-            } else {
-                nameLabel.text = ""
-            }
-            // TODO: 
+//            if let vCard = XMPPManager.instance.xmppvCardTempModule.myvCardTemp {
+//                nameLabel.text = vCard.formattedName ?? ""
+//                
+//            } else {
+//                nameLabel.text = ""
+//            }
+            // TODO:
 //            let jid = XMPPJID.jidWithString(user.username)
             if let username = user.username {
                 if username.length > 0 {
@@ -35,17 +35,6 @@ class UserCell: UITableViewCell {
             
             
         }
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

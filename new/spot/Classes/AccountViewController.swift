@@ -8,18 +8,18 @@
 
 import UIKit
 
-//let circleImageName = "31-circle-plus-large"
-
 class AccountViewController: BaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var user :User?
+    var user :User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        setupVersionLabel()
+        user = User.MR_findFirst() as? User
+
+        setupVersionLabel()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"), name: kXMPPDidReceivevCardTemp, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"), name: kXMPPDidReceiveAvata, object: nil)
@@ -43,14 +43,9 @@ class AccountViewController: BaseViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        user = User.MR_findFirst() as? User
-                
         tableView.reloadData()
     }
-    
-    override func viewDidAppear(animated: Bool) {
-        setupVersionLabel()
-    }
+
     // MARK: - Notification
     
     func reloadUI() {
@@ -72,7 +67,7 @@ class AccountViewController: BaseViewController {
 extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return user != nil ? 1 : 0
+        return 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

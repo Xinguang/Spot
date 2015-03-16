@@ -54,8 +54,7 @@ class GenderSelectViewController: UITableViewController {
         
         if user.gender != org {
             UserController.saveUser(user)
-            ParseController.updateGenderOfUser(user, done: { (err) -> Void in
-                println("updateGenderOfUserDone")
+            ParseController.updateUser(user, done: { (err) -> Void in
             })
         }
         

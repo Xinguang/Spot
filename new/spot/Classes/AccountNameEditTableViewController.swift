@@ -11,18 +11,13 @@ import UIKit
 class AccountNameEditTableViewController: UITableViewController {
 
     @IBOutlet weak var nameTF: UITextField!
-    var isSaved = false
-    var orgName: String!
+    
+    var user: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        nameTF.text = orgName
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        nameTF.text = user.displayName
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -39,12 +34,15 @@ class AccountNameEditTableViewController: UITableViewController {
     @IBAction func save(sender: AnyObject) {
         let str = nameTF.text.trimmed()
         if str.length == 0 {
+            SVProgressHUD.showInfoWithStatus("入力エラー")
             return
         }
         
-        if str != orgName {
-            isSaved = true
-            XMPPManager.instance.updateMyName(str)
+        if str != user.displayName {
+            user.displayName = str
+            UserController.saveUserAndWait(user)
+            XMPPManager.updateUser(user)
+            ParseController.updateUser(user, done: nil)
         }
         
         self.navigationController?.popViewControllerAnimated(true)

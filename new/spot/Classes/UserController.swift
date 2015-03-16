@@ -119,6 +119,10 @@ class UserController: NSObject {
         user.managedObjectContext?.MR_saveToPersistentStoreAndWait()
     }
 
+    func updateDisplayName(user: User, newName: String) {
+        user.displayName = newName
+    }
+    
     // MARK: - Station
     
     class func saveStations(stations: [PFObject], user: User) {
