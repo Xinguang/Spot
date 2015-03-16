@@ -25,6 +25,12 @@ class MessageViewController: JSQMessagesViewController {
     
     var frc: NSFetchedResultsController!
     
+    var icon_speaker_normal:UIImage!
+    var icon_speaker_highlighted:UIImage!
+    var icon_keyboard_normal:UIImage!
+    var icon_keyboard_highlighted:UIImage!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -91,12 +97,8 @@ class MessageViewController: JSQMessagesViewController {
         self.finishSendingMessageAnimated(true)
     }
     
-    override func didPressAccessoryButton(sender: UIButton!) {
-        println()
-    }
-    
 //    // MARK: - KVO
-//    
+//
 //    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
 //        if keyPath == "messages" {
 //            self.collectionView.reloadData()

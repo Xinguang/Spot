@@ -77,4 +77,9 @@
 #import "User.h"
 #import "Station.h"
 
+//voice
+#include "interf_dec.h"
+#include "interf_enc.h"
+#include "amrFileCodec.h"
+
 #endif

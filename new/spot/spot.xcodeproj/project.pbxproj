@@ -25,6 +25,11 @@
 		1737A4951AA03C0F007B8281 /* SNSQQController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1737A4921AA03C0F007B8281 /* SNSQQController.swift */; };
 		1737A4961AA03C0F007B8281 /* SNSWXController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1737A4931AA03C0F007B8281 /* SNSWXController.swift */; };
 		1737A4AA1AA03EA4007B8281 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1737A4A91AA03EA4007B8281 /* StringExtension.swift */; };
+		177412321AB0698F000A1077 /* VoiceMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177412311AB0698F000A1077 /* VoiceMessageController.swift */; };
+		1774123E1AB06EBF000A1077 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1774123C1AB06EBF000A1077 /* libopencore-amrnb.a */; };
+		1774123F1AB06EBF000A1077 /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1774123D1AB06EBF000A1077 /* libopencore-amrwb.a */; };
+		1774124A1AB11FAD000A1077 /* VoiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177412491AB11FAD000A1077 /* VoiceController.swift */; };
+		1774124D1AB13858000A1077 /* amrFileCodec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1774124C1AB13858000A1077 /* amrFileCodec.m */; };
 		178AE0511A8DC27300D91542 /* GCD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178AE0471A8DC27300D91542 /* GCD.swift */; };
 		178AE0521A8DC27300D91542 /* Net.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178AE0481A8DC27300D91542 /* Net.swift */; };
 		178AE0531A8DC27300D91542 /* NetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178AE0491A8DC27300D91542 /* NetData.swift */; };
@@ -131,6 +136,14 @@
 		1737A49F1AA03C5C007B8281 /* ParseUserInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseUserInfoModel.swift; sourceTree = "<group>"; };
 		1737A4A01AA03C5C007B8281 /* ParseUserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseUserModel.swift; sourceTree = "<group>"; };
 		1737A4A91AA03EA4007B8281 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtension.swift; path = Classes/StringExtension.swift; sourceTree = "<group>"; };
+		177412311AB0698F000A1077 /* VoiceMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VoiceMessageController.swift; path = Classes/VoiceMessageController.swift; sourceTree = "<group>"; };
+		177412361AB06EBF000A1077 /* interf_dec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interf_dec.h; sourceTree = "<group>"; };
+		177412371AB06EBF000A1077 /* interf_enc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interf_enc.h; sourceTree = "<group>"; };
+		1774123C1AB06EBF000A1077 /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
+		1774123D1AB06EBF000A1077 /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
+		177412491AB11FAD000A1077 /* VoiceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VoiceController.swift; path = Classes/VoiceController.swift; sourceTree = "<group>"; };
+		1774124B1AB13858000A1077 /* amrFileCodec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = amrFileCodec.h; sourceTree = "<group>"; };
+		1774124C1AB13858000A1077 /* amrFileCodec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = amrFileCodec.m; sourceTree = "<group>"; };
 		178AE0471A8DC27300D91542 /* GCD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCD.swift; sourceTree = "<group>"; };
 		178AE0481A8DC27300D91542 /* Net.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Net.swift; sourceTree = "<group>"; };
 		178AE0491A8DC27300D91542 /* NetData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetData.swift; sourceTree = "<group>"; };
@@ -290,6 +303,51 @@
 			path = Parse;
 			sourceTree = "<group>";
 		};
+		177412331AB06EBF000A1077 /* opencore-amr */ = {
+			isa = PBXGroup;
+			children = (
+				1774124B1AB13858000A1077 /* amrFileCodec.h */,
+				1774124C1AB13858000A1077 /* amrFileCodec.m */,
+				177412341AB06EBF000A1077 /* include */,
+				1774123B1AB06EBF000A1077 /* lib */,
+			);
+			path = "opencore-amr";
+			sourceTree = "<group>";
+		};
+		177412341AB06EBF000A1077 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				177412351AB06EBF000A1077 /* opencore-amrnb */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		177412351AB06EBF000A1077 /* opencore-amrnb */ = {
+			isa = PBXGroup;
+			children = (
+				177412361AB06EBF000A1077 /* interf_dec.h */,
+				177412371AB06EBF000A1077 /* interf_enc.h */,
+			);
+			path = "opencore-amrnb";
+			sourceTree = "<group>";
+		};
+		1774123B1AB06EBF000A1077 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				1774123C1AB06EBF000A1077 /* libopencore-amrnb.a */,
+				1774123D1AB06EBF000A1077 /* libopencore-amrwb.a */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		177412401AB06EF0000A1077 /* Voice */ = {
+			isa = PBXGroup;
+			children = (
+				177412491AB11FAD000A1077 /* VoiceController.swift */,
+			);
+			name = Voice;
+			sourceTree = "<group>";
+		};
 		178AE0461A8DC27300D91542 /* Net */ = {
 			isa = PBXGroup;
 			children = (
@@ -398,6 +456,7 @@
 				DCB539251A81BE0B00C216D7 /* BaseViewController.swift */,
 				DC4109B71A81C15200E11CAB /* TabBarController.swift */,
 				297235A21A9DBF17006E5F32 /* ContactDetailViewController.swift */,
+				177412311AB0698F000A1077 /* VoiceMessageController.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -591,6 +650,7 @@
 			children = (
 				296765041ABA7C1000E59C66 /* XMPPMessageArchiving_Message_CoreDataObject_JSQMessageData.h */,
 				296765051ABA7D6500E59C66 /* XMPPRoomMessageCoreDataStorageObject_JSQMessageData.h */,
+				177412331AB06EBF000A1077 /* opencore-amr */,
 				178AE0461A8DC27300D91542 /* Net */,
 				178AE04F1A8DC27300D91542 /* Reachability */,
 				296623D11A8CA28C002608EF /* XMPP-0055 */,
@@ -630,6 +690,7 @@
 		DCB539171A81B04700C216D7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				177412401AB06EF0000A1077 /* Voice */,
 				1737A4901AA03BDC007B8281 /* SNS */,
 				DCF538EA1A82244800C83FE5 /* gpx.json */,
 				29EE09C01AA4B3A5005F6509 /* UserController.swift */,
@@ -834,9 +895,13 @@
 				296623AD1A8C47F5002608EF /* AddFriendSelectViewController.swift in Sources */,
 				296623AB1A89C586002608EF /* XMPPManager.swift in Sources */,
 				296D54FE1AA9A829005FC650 /* StationTableViewController.swift in Sources */,
+				1774124D1AB13858000A1077 /* amrFileCodec.m in Sources */,
 				29F5D4241A996D1F00D0AF54 /* AccountEditViewController.swift in Sources */,
+				177412321AB0698F000A1077 /* VoiceMessageController.swift in Sources */,
+				1737A4A21AA03C5C007B8281 /* ParseMessageModel.swift in Sources */,
 				DC4109CB1A81C50A00E11CAB /* Character.swift in Sources */,
 				DC4109CE1A81C50A00E11CAB /* ExSwift.swift in Sources */,
+				1774124A1AB11FAD000A1077 /* VoiceController.swift in Sources */,
 				296623DC1A8CA28C002608EF /* XMPPSearchReported.m in Sources */,
 				296D55001AA9B1D7005FC650 /* StationAddTableViewController.swift in Sources */,
 				2911ACE81A96E35B00DF1F84 /* TalkSearchResultTableViewController.swift in Sources */,
