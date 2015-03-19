@@ -9,6 +9,9 @@
 #ifndef spot_Bridging_Header_h
 #define spot_Bridging_Header_h
 
+#import "DDLog.h"
+#import "DDTTYLogger.h"
+#import "XMPPLogging.h"
 #import "CoreData+MagicalRecord.h"
 #import "APAddressBook-Bridging.h"
 #import "SVProgressHUD.h"

@@ -190,8 +190,10 @@ extension TalkViewController: UITableViewDataSource, UITableViewDelegate {
         if friend.isGroupChat() {
             Util.enterGroupMessageViewController(friend.bareJidStr, from: self)
         } else {
-            let roster = XMPPUserCoreDataStorageObject.MR_findFirstByAttribute("jidStr", withValue: friend.bareJidStr, inContext: XMPPManager.instance.xmppRosterStorage.mainThreadManagedObjectContext) as XMPPUserCoreDataStorageObject
-            Util.enterMessageViewControllerWithFriend(roster, from: self)
+            Util.showTodo()
+            
+//            let roster = XMPPUserCoreDataStorageObject.MR_findFirstByAttribute("jidStr", withValue: friend.bareJidStr, inContext: XMPPManager.instance.xmppRosterStorage.mainThreadManagedObjectContext) as XMPPUserCoreDataStorageObject
+//            Util.enterMessageViewControllerWithFriend(roster, from: self)
         }
 //        friend.bareJidStr
 //        Util.enterMessageViewControllerWithFriend(friend, from: self)
@@ -203,7 +205,8 @@ extension TalkViewController: UITableViewDataSource, UITableViewDelegate {
 extension TalkViewController: FriendsPickerViewControllerDelegate {
     
     func friendsPickerDidDismissWithRoster(roster: XMPPUserCoreDataStorageObject) {
-        Util.enterMessageViewControllerWithFriend(roster, from: self)
+        Util.showTodo()
+//        Util.enterMessageViewControllerWithFriend(roster, from: self)
     }
     
     func friendsPickerDidDismissWithRoomJidStr(jidStr: String) {

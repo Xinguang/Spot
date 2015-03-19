@@ -146,10 +146,11 @@ extension AddFriendSelectViewController: UISearchBarDelegate {
                 
 //                //get vcard
 //                XMPPManager.getVCard(pUserModel.xmppJID(), done: { () -> Void in
-//                    SVProgressHUD.dismiss()
-//                    
-//                    // go to detail
-//                    Util.enterFriendDetailViewController(pUserModel.xmppJID(), username: pUserModel.username, from: self, isTalking: false)
+                
+                    SVProgressHUD.dismiss()
+//
+                    // go to detail
+                    Util.enterFriendDetailViewController(pUser, from: self, isTalking: false)
 //                })
                 
             } else {
@@ -165,6 +166,7 @@ extension AddFriendSelectViewController: UISearchBarDelegate {
 
 extension AddFriendSelectViewController: FriendSearchResultTableViewControllerDelegate {
     func didSelectJID(jid: XMPPJID) {
-        Util.enterFriendDetailViewController(jid, username: nil, from: self, isTalking: false)
+        Util.showTodo()
+//        Util.enterFriendDetailViewController(jid, username: nil, from: self, isTalking: false)
     }
 }

@@ -47,20 +47,11 @@ class TabBarController: UITabBarController {
     
     // MARK: - Navigation
 
-    func enterMessageViewController(notification: NSNotification) {
-        let jid = notification.object as XMPPJID
-        
+    func enterMessageViewControllerWithPUser(pUser: PFObject) {        
         selectedIndex = 0
         
         let talkVC = (selectedViewController as UINavigationController).topViewController as TalkViewController
-        Util.enterMessageViewControllerWithJid(jid, from: talkVC)
-    }
-    
-    func enterMessageViewControllerWithJid(jid: XMPPJID) {
-        selectedIndex = 0
-        
-        let talkVC = (selectedViewController as UINavigationController).topViewController as TalkViewController
-        Util.enterMessageViewControllerWithJid(jid, from: talkVC)
+        Util.enterMessageViewControllerWithPUser(pUser, from: talkVC)
     }
 
 }

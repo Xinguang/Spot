@@ -20,6 +20,12 @@ class ContactDetailFooterView: UITableViewHeaderFooterView {
     
     weak var delegate: ContactDetailFooterViewDelegate?
     
+    var pUser: PFObject! {
+        didSet {
+            jid = XMPPJID.jidWithString(pUser["openfireId"] as String)
+        }
+    }
+    
     var jid: XMPPJID! {
         didSet {
             if XMPPManager.instance.isMe(jid) {
@@ -52,4 +58,9 @@ class ContactDetailFooterView: UITableViewHeaderFooterView {
         }
         
     }
+    
+    @IBAction func voipCallBtnTapped(sender: AnyObject) {
+        Util.showTodo()
+    }
+    
 }

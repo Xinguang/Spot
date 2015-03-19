@@ -327,7 +327,7 @@ extension XMPPManager: XMPPStreamDelegate {
     }
     
     func xmppStream(sender: XMPPStream!, didReceiveIQ iq: XMPPIQ!) -> Bool {
-        println("RECV:\(iq)")
+//        println("RECV:\(iq)")
 //
 //        if let id = iq.elementID() {
 //            if id == "searchByUserName" {
@@ -376,20 +376,20 @@ extension XMPPManager: XMPPStreamDelegate {
     }
     
     func xmppStream(sender: XMPPStream!, didSendIQ iq: XMPPIQ!) {
-        println("SEND:\(iq)")
+//        println("SEND:\(iq)")
     }
     
     func xmppStream(sender: XMPPStream!, didReceivePresence presence: XMPPPresence!) {
-        println("RECV:\(presence)")
+//        println("RECV:\(presence)")
     }
     
     
     func xmppStream(sender: XMPPStream!, didSendPresence presence: XMPPPresence!) {
-        println("SEND:\(presence)")
+//        println("SEND:\(presence)")
     }
     
     func xmppStream(sender: XMPPStream!, didReceiveMessage message: XMPPMessage!) {
-        println("RECV:\(message)")
+//        println("RECV:\(message)")
         
         if self.dynamicType.isInviteMessage(message) {
             return
@@ -554,7 +554,7 @@ extension XMPPManager: XMPPMUCDelegate {
     }
     
     func xmppMUC(sender: XMPPMUC!, roomJID: XMPPJID!, didReceiveInvitation message: XMPPMessage!) {
-        println("RECV:\(message)")
+//        println("RECV:\(message)")
         
         gcd.async(.Main, closure: { () -> () in
             self.dynamicType.createRoomWithRoomJId(roomJID)
@@ -609,6 +609,13 @@ extension XMPPManager: XMPPRoomDelegate {
 // MARK: - Support
 
 extension XMPPManager {
+    
+    class func addFriend(pUser: PFObject) {
+        let jid = XMPPJID.jidWithString(pUser["openfireId"] as String)
+        let nickName = pUser["displayName"] as? String
+            
+        instance.xmppRoster.addUser(jid, withNickname: nickName)
+    }
     
     func uploadDeviceToken() {
         didUploadedToken = true

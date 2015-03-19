@@ -62,6 +62,6 @@ extension UserListViewController: UITableViewDataSource, UITableViewDelegate {
         let jidStr = user["openfireId"] as String
         let username = user["username"] as String
         
-        Util.enterFriendDetailViewController(XMPPJID.jidWithString(jidStr), username: username, from: self, isTalking: false)
+        Util.enterFriendDetailViewController(user, from: self, isTalking: false)
     }
 }

@@ -22,36 +22,54 @@ class Util: NSObject {
     class func createViewWithNibName(name: String) -> UIView {
         return UINib(nibName: name, bundle: nil).instantiateWithOwner(self, options: nil)[0] as UIView
     }
- 
-    class func enterMessageViewControllerWithJid(jid: XMPPJID, from: UIViewController) {
-        if let user = XMPPManager.instance.userForJID(jid) {
-            enterMessageViewControllerWithFriend(user, from: from)
-        }
-    }
     
-    class func enterMessageViewControllerWithFriend(roster: XMPPUserCoreDataStorageObject, from: UIViewController) {
-        // TODO: setAllMessagesRead
+    class func enterMessageViewControllerWithPUser(pUser: PFObject, from: UIViewController) {
         let messageViewController = Util.createViewControllerWithIdentifier(nil, storyboardName: "Message") as MessageViewController
         
-        //        let messageViewController = MessageViewController()
-        messageViewController.jidStr = roster.jidStr
-//        friend.setAllMessagesRead()
+        messageViewController.pUser = pUser
         
         from.navigationController?.pushViewController(messageViewController, animated: true)
     }
+ 
+    class func enterMessageViewControllerWithJid(jid: XMPPJID, from: UIViewController) {
+//        if let user = XMPPManager.instance.userForJID(jid) {
+//            enterMessageViewControllerWithFriend(user, from: from)
+//        }
+    }
+    
+//    class func enterMessageViewControllerWithFriend(roster: XMPPUserCoreDataStorageObject, from: UIViewController) {
+//        // TODO: setAllMessagesRead
+//        let messageViewController = Util.createViewControllerWithIdentifier(nil, storyboardName: "Message") as MessageViewController
+//        
+//        //        let messageViewController = MessageViewController()
+//        messageViewController.jidStr = roster.jidStr
+////        friend.setAllMessagesRead()
+//        
+//        from.navigationController?.pushViewController(messageViewController, animated: true)
+//    }
     
     class func enterGroupMessageViewController(jidStr: String, from: UIViewController) {
-        let messageViewController = Util.createViewControllerWithIdentifier("GroupMessageViewController", storyboardName: "Message") as GroupMessageViewController
-        
-        messageViewController.jidStr = jidStr
-        
-        from.navigationController?.pushViewController(messageViewController, animated: true)
+//        let messageViewController = Util.createViewControllerWithIdentifier("GroupMessageViewController", storyboardName: "Message") as GroupMessageViewController
+//        
+//        messageViewController.jidStr = jidStr
+//        
+//        from.navigationController?.pushViewController(messageViewController, animated: true)
     }
     
-    class func enterFriendDetailViewController(jid: XMPPJID, username: String?, from: UIViewController, isTalking: Bool) {
+    //from search
+    class func enterFriendDetailViewController(pUser: PFObject, from: UIViewController, isTalking: Bool) {
         let vc = Util.createViewControllerWithIdentifier("ContactDetailViewController", storyboardName: "Common") as ContactDetailViewController
-        vc.jid = jid
-        vc.username = username
+        vc.pUser = pUser
+        
+        vc.isFromMessageViewController = isTalking
+        
+        from.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    //from contact list
+    class func enterFriendDetailViewController(roster: XMPPUserCoreDataStorageObject, from: UIViewController, isTalking: Bool) {
+        let vc = Util.createViewControllerWithIdentifier("ContactDetailViewController", storyboardName: "Common") as ContactDetailViewController
+        vc.roster = roster
         
         vc.isFromMessageViewController = isTalking
         
@@ -69,6 +87,34 @@ class Util: NSObject {
     class func canSendNotifications() -> Bool {
         let notificationSettings = UIApplication.sharedApplication().currentUserNotificationSettings()
         return notificationSettings.types == .Badge | .Sound | .Alert
+    }
+    
+    class func avatarImage(orgImage: UIImage, diameter: UInt) -> UIImage? {
+        var data = UIImagePNGRepresentation(orgImage)
+        
+        return avatarImage(data, diameter: diameter)
+    }
+    
+    class func avatarImage(data: NSData?, diameter: UInt) -> UIImage? {
+        var orgImage: UIImage?
+        
+        if let data = data {
+            orgImage = UIImage(data: data)
+        } else {
+            orgImage = UIImage(named: "avatar")
+        }
+        
+        let image = JSQMessagesAvatarImageFactory.avatarImageWithImage(orgImage, diameter: diameter)
+        
+        return image.avatarImage
+    }
+    
+    class func showTodo() {
+        SVProgressHUD.showInfoWithStatus("TODO", maskType: .Clear)
+    }
+    
+    class func showError(error: NSError) {
+        SVProgressHUD.showErrorWithStatus(error.localizedDescription, maskType: .Clear)
     }
 }
 
@@ -139,5 +185,5 @@ extension XMPPMessageArchiving_Message_CoreDataObject: JSQMessageData {
     public func text() -> String! {
         return body
     }
-    
+
 }

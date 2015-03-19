@@ -9,10 +9,12 @@
 import UIKit
 
 class MessageViewController: JSQMessagesViewController {
-
-//    var roster: XMPPUserCoreDataStorageObject!
+    var pUser: PFObject!
     
-    var jidStr: String!
+    var jidStr: String! {
+        return pUser["openfireId"] as String
+    }
+    
     var jid: XMPPJID! {
         return XMPPJID.jidWithString(jidStr)
     }
@@ -243,9 +245,10 @@ extension MessageViewController: JSQMessagesCollectionViewDelegateFlowLayout {
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, didTapAvatarImageView avatarImageView: UIImageView!, atIndexPath indexPath: NSIndexPath!) {
-        let message = messageAtIndexPath(indexPath)
-        let jid = XMPPJID.jidWithString(message.senderId())
-        Util.enterFriendDetailViewController(jid, username: nil, from: self, isTalking: true)
+        SVProgressHUD.showInfoWithStatus("TODO", maskType: .Clear)
+//        let message = messageAtIndexPath(indexPath)
+//        let jid = XMPPJID.jidWithString(message.senderId())
+//        Util.enterFriendDetailViewController(jid, username: nil, from: self, isTalking: true)
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, header headerView: JSQMessagesLoadEarlierHeaderView!, didTapLoadEarlierMessagesButton sender: UIButton!) {

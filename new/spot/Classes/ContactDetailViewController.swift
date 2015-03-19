@@ -10,15 +10,33 @@ import UIKit
 
 class ContactDetailViewController: BaseViewController {
 
-    var jid: XMPPJID!
-    var username: String?
+    @IBOutlet weak var tableView: UITableView!
+    
+    var pUser: PFObject?
+    var roster: XMPPUserCoreDataStorageObject?
     
     var isFromMessageViewController = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        if pUser == nil {
+            SVProgressHUD.show()
+            
+            ParseController.getUserByKey("openfireId", value: roster!.jidStr, result: { (pUser, error) -> Void in
+                
+                SVProgressHUD.dismiss()
+                
+                if let error = error {
+                    Util.showError(error)
+                    return
+                }
+                
+                self.pUser = pUser
+                self.tableView.reloadData()
+            })
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,7 +62,7 @@ class ContactDetailViewController: BaseViewController {
 extension ContactDetailViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return pUser != nil ? 2 : 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -61,27 +79,34 @@ extension ContactDetailViewController: UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 90
+            return 90
     }
     
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 150
+            return 150
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = Util.createViewWithNibName("ContactDetailHeaderView") as ContactDetailHeaderView
-//        view.jid = jid
-//        view.username = username
+        if let pUser = pUser {
+            let view = Util.createViewWithNibName("ContactDetailHeaderView") as ContactDetailHeaderView
+            view.pUser = pUser
         
-        return view
+            return view
+        }
+        
+        return nil
     }
     
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let view = Util.createViewWithNibName("ContactDetailFooterView") as ContactDetailFooterView
-        view.delegate = self
-        view.jid = jid
+        if let pUser = pUser {
+            let view = Util.createViewWithNibName("ContactDetailFooterView") as ContactDetailFooterView
+            view.delegate = self
+            view.pUser = pUser
         
-        return view
+            return view
+        }
+        
+        return nil
     }
 }
 
@@ -93,21 +118,16 @@ extension ContactDetailViewController: ContactDetailFooterViewDelegate {
         if isFromMessageViewController {
             self.navigationController?.popViewControllerAnimated(true)
         } else {
-            
             let tabController = self.navigationController?.tabBarController as? TabBarController
             
-//            self.navigationController?.popViewControllerAnimated(false)
-            
-            tabController?.enterMessageViewControllerWithJid(jid)
-
-//            NSNotificationCenter.defaultCenter().postNotificationName(kXMPPEnterMessageViewController, object: jid)
-
+            tabController?.enterMessageViewControllerWithPUser(pUser!)
         }
     }
     
     func didTappedAddFriendBtn(footerView: ContactDetailFooterView) {
-        XMPPManager.instance.xmppRoster.addUser(jid, withNickname: nil)
+        let pUser = footerView.pUser
+        XMPPManager.addFriend(pUser)
         
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
 }

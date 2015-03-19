@@ -14,7 +14,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {        
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        DDLog.addLogger(DDTTYLogger.sharedInstance(), withLogLevel: XMPP_LOG_FLAG_SEND)
+        DDLog.addLogger(DDTTYLogger.sharedInstance(), withLogLevel: XMPP_LOG_FLAG_RECV_POST)
+        
         MagicalRecord.setupAutoMigratingCoreDataStack()
         
         Parse.setApplicationId(kParseId, clientKey: kClientKey)

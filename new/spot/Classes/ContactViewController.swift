@@ -19,8 +19,7 @@ class ContactViewController: BaseViewController {
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"), name: kXMPPDidReceivevCardTemp, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"), name: kXMPPDidReceiveAvata, object: nil)
-//        rosters = XMPPUserCoreDataStorageObject.MR_findAllInContext(XMPPManager.instance.xmppRosterStorage.mainThreadManagedObjectContext) as [XMPPUserCoreDataStorageObject]
-//        XMPPManager.instance.xmppRosterStorage.mainThreadManagedObjectContext
+
         frc = XMPPUserCoreDataStorageObject.MR_fetchAllGroupedBy(nil, withPredicate: nil, sortedBy: "sectionNum", ascending: true, inContext: XMPPManager.instance.xmppRosterStorage.mainThreadManagedObjectContext)
         frc.delegate = self
 //
@@ -90,38 +89,49 @@ extension ContactViewController: UITableViewDataSource, UITableViewDelegate {
 //    }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        if requestCount > 0 && indexPath.section == 0 {
-//            let cell = tableView.dequeueReusableCellWithIdentifier("FriendRequestCell", forIndexPath: indexPath) as FriendRequestCell
-//            
-//            cell.friendRequest = frcRequest.objectAtIndexPath(indexPath) as FriendRequest
-//            cell.delegate = self
-//            
-//            return cell
-//        }
-//        
-//        if let sectionInfo = frcFriend.sections?[0] as? NSFetchedResultsSectionInfo {
-//            let friend = sectionInfo.objects[indexPath.row] as Friend
         let roster = frc.objectAtIndexPath(indexPath) as XMPPUserCoreDataStorageObject
-     
+        let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as UITableViewCell
         
+        let imageView = cell.viewWithTag(1) as UIImageView!
+        let label = cell.viewWithTag(2) as UILabel!
         
+//        imageView.image = XMPPManager.instance.photoOfJid(roster.jid)
         
-            let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as UITableViewCell
+        //use local image here, get newest from parse when show detail
+        if let image = roster.photo {
+            imageView.image = Util.avatarImage(image, diameter: kAvatarImageSize)
+        } else {
+            //default avatar
+            imageView.image = Util.avatarImage(nil, diameter: kAvatarImageSize)
             
-            let imageView = cell.viewWithTag(1) as UIImageView!
-            let label = cell.viewWithTag(2) as UILabel!
-            
-//            imageView.image = friend.avatarImage()
+            ParseController.getUserByKey("openfireId", value: roster.jidStr, result: { (pUser, error) -> Void in
+                if let error = error {
+//                    Util.showError(error)
+                    return
+                }
+                
+                if let thumbnailFile = pUser?["avatarThumbnail"] as? PFFile {
+                    thumbnailFile.getDataInBackgroundWithBlock({(data, error) in
+                        if let error = error {
+//                            Util.showError(error)
+                            return
+                        }
+                        
+                        if let data = data {
+                            imageView.image = Util.avatarImage(data, diameter: kAvatarImageSize)
+                            roster.photo = UIImage(data: data)
+                            roster.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
+                        }
+                    })
+                }
+            })
+        }
         
-//        if let vCard = XMPPManager.instance.xmppvCardTempModule.vCardTempForJID(roster.jid, shouldFetch: true) {
-//            label.text = vCard.formattedName ?? roster.jid.user
-//        } else {
-//            label.text = roster.jid.user
-//        }
-        
-        imageView.image = XMPPManager.instance.photoOfJid(roster.jid)
-        
-//            label.text = roster.displayName ?? "匿名"
+        if let nickname = roster.nickname {
+            label.text = nickname
+        } else {
+            label.text = roster.jid.user
+        }
         
             return cell
 //        }
@@ -131,9 +141,10 @@ extension ContactViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//        Util.showTodo()
         let roster = frc.objectAtIndexPath(indexPath) as XMPPUserCoreDataStorageObject
-        
-        Util.enterFriendDetailViewController(roster.jid, username: nil, from: self, isTalking: false)
+
+        Util.enterFriendDetailViewController(roster, from: self, isTalking: false)
     }
 }
 

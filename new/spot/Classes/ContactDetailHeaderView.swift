@@ -18,7 +18,8 @@ class ContactDetailHeaderView: UITableViewHeaderFooterView {
     var pUser: PFObject! {
         didSet {
             if let thumbnailFile = pUser["avatarThumbnail"] as? PFFile {
-                
+                imageView.file = thumbnailFile
+                imageView.loadInBackground(nil)
             }
             
             if let gender = pUser["gender"] as? String {
