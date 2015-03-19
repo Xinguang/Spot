@@ -10,8 +10,7 @@ import UIKit
 
 class UserController: NSObject {
     
-    class func isAnonymousUser() -> Bool {
-        let user = User.MR_findFirst() as User
+    class func isAnonymousUser(user: User) -> Bool {
         return user.username == nil && user.snses.count == 0
     }
     
@@ -21,39 +20,23 @@ class UserController: NSObject {
         return User.MR_findFirst() as? User
     }
     
-    class func snsUser(sns: SNS, parseUser: ParseUserModel?) -> User {
+    class func snsUser(sns: SNS) -> User {
         assert(NSThread.currentThread().isMainThread, "not main thread")
         
         var user: User
-
-        if let parseUser = parseUser {
-            user = self.userFromParseUser(parseUser)
-        } else {
-            user = anonymousUser()
-        }
-        
+        user = anonymousUser()
         sns.user = user
  
+        if let gender = sns.gender {
+            user.gender = gender
+        }
+        
+        if let name = sns.nickName {
+            user.displayName = name
+        }
+        
         return user
     }
-    
-//    class func snsUser(type: OpenIDRequestType, res: Dictionary<String, AnyObject>) -> User {
-//        assert(NSThread.currentThread().isMainThread, "not main thread")
-//        
-//        let account = anonymousUser()
-//        
-//        if type == .QQ {
-//            account.displayName = res["nickname"] as? String
-//            account.figureurl = res["figureurl_qq_2"] as? String
-//        }
-//
-//        if type == .WeChat {
-//            account.displayName = res["nickname"] as? String
-//            account.figureurl = res["headimgurl"] as? String
-//        }
-//        
-//        return account
-//    }
     
     class func anonymousUser() -> User {
         assert(NSThread.currentThread().isMainThread, "not main thread")
@@ -69,6 +52,7 @@ class UserController: NSObject {
         return account
     }
     
+    //新規登録
     class func userWith(#username: String, password: String, displayName: String) -> User {
         assert(NSThread.currentThread().isMainThread, "not main thread")
         
@@ -81,30 +65,88 @@ class UserController: NSObject {
         return user
     }
     
-    class func userFromParseUser(parseUser: ParseUserModel) -> User {
+    //既存ユーザーログイン
+    class func userFromParseUser(parseUser: PFObject) -> User {
         assert(NSThread.currentThread().isMainThread, "not main thread")
         
         let user = User.MR_createEntity() as User
-        user.username = parseUser.username
-        user.openfireId = parseUser.openfireId
-        user.displayName = parseUser.displayName
-        user.password = parseUser.aesDecryptPassword()
-                
+        user.username = parseUser["username"] as? String
+        user.openfireId = parseUser["openfireId"] as? String
+        user.displayName = parseUser["displayName"] as? String
+        user.gender = parseUser["gender"] as? String
+        user.password = CocoaSecurity.aesDecryptWithBase64(parseUser["password"] as String, key: kAESKey).utf8String
+        
+        //thumbnail
+        if let file = parseUser["avatarThumbnail"] as? PFFile {
+            if let imageData = file.getData() {
+                user.avatarThumbnail = imageData
+            }
+        }
+        
+        //station
+        let relation = parseUser.relationForKey("stations")
+        let query = relation.query()
+        
+        if let stations = query.findObjects(nil) {
+            for station in stations {
+                let s = Station.MR_createEntity() as Station
+                s.name = station["name"] as String
+                s.user = user
+            }
+        }
+
         return user
     }
 
     class func updateUserWithParseUser(user: User, parseUser: PFObject) {
         //displayName
-        user.displayName = parseUser["displayName"] as? String
-        //性別
-        user.gender = parseUser["gender"] as? String
-        //駅
-        let relation = parseUser.relationForKey("stations")
-        let query = relation.query()
-
-        if let array = query.findObjects() as? [PFObject] {
-            addStationsToUser(array, user: user)
+        if let displayName = parseUser["displayName"] as? String {
+            user.displayName = displayName
         }
+        
+        //性別
+        if let gender = parseUser["gender"] as? String {
+            user.gender = gender
+        }
+        
+        //駅
+        if let stations = parseUser["stations"] as? [PFObject] {
+            addStationsToUser(stations, user: user)
+        }
+        
+//        let relation = parseUser.relationForKey("stations")
+//        let query = relation.
+//
+//        if let array = query.findObjects() as? [PFObject] {
+//            addStationsToUser(array, user: user)
+//        }
+    }
+    
+    //download sns avatar
+    
+    class func downloadUserAvatar(user: User, done: (NSData?) -> Void) {
+        let sns = user.snses.firstObject as SNS
+        
+        if let figureurl = sns.figureurl {
+
+            NSURLSession.sharedSession().downloadTaskWithURL(NSURL(string: figureurl)!, completionHandler: { (path, res, error) -> Void in
+                if let path = path {
+                    let data = NSData(contentsOfURL: path)
+                    
+                    gcd.async(.Main, closure: { () -> () in
+                        done(data)
+                    })
+                    return
+                }
+                
+                gcd.async(.Main, closure: { () -> () in
+                    //use default
+                    done(UIImagePNGRepresentation(user.defaultSNSImage()))
+                })
+            }).resume()
+            
+            return
+         }
     }
 
     class func saveUser(user: User) {
@@ -134,8 +176,6 @@ class UserController: NSObject {
             
             user.stationsSet().addObject(s)
         }
-        
-        user.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
     }
     
     class func isStationOfUser(station: PFObject, user: User) -> Bool {

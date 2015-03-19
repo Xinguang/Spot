@@ -15,7 +15,7 @@ import UIKit
 
 class FriendSearchResultTableViewController: UITableViewController {
 
-    var pUserModels = [ParseUserModel]()
+    var pUsers = [PFObject]()
     var isEmpty = false
     var delegate: FriendSearchResultTableViewControllerDelegate?
     
@@ -68,7 +68,7 @@ extension FriendSearchResultTableViewController: UITableViewDataSource, UITableV
             return 1
         }
         
-        return pUserModels.count
+        return pUsers.count
     }
     
     
@@ -80,10 +80,10 @@ extension FriendSearchResultTableViewController: UITableViewDataSource, UITableV
         
         let cell = tableView.dequeueReusableCellWithIdentifier("AccountCell", forIndexPath: indexPath) as UITableViewCell
         
-        let pUserModel = pUserModels[indexPath.row]
-        
-        cell.textLabel?.text = pUserModel.displayName
-        cell.detailTextLabel?.text = pUserModel.username
+//        let pUserModel = pUsers[indexPath.row]
+//        
+//        cell.textLabel?.text = pUserModel.displayName
+//        cell.detailTextLabel?.text = pUserModel.username
         
         return cell
     }

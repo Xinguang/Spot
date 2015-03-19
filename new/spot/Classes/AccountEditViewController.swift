@@ -106,11 +106,15 @@ extension AccountEditViewController: UINavigationControllerDelegate {
 extension AccountEditViewController: UIImagePickerControllerDelegate {
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         let smallImage = image.scaleToFitSize(CGSize(width: 250, height: 250))
-//        userImage.image = image
-        user.avatarData = UIImagePNGRepresentation(smallImage)
-        user.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
+        let orgImage = image.scaleToFitSize(CGSize(width: 750, height: 750))
+        
+        user.avatarThumbnail = UIImagePNGRepresentation(smallImage)
+        user.avatarOrg = UIImagePNGRepresentation(orgImage)
+        
+        UserController.saveUser(user)
+        
         self.dismissViewControllerAnimated(true, completion: nil)
         
-        XMPPManager.instance.updateMyImage(smallImage)
+        ParseController.updateUserImage(user, thumbnail: smallImage, org: orgImage)
     }
 }

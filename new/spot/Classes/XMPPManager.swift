@@ -24,8 +24,8 @@ class XMPPManager: NSObject {
     var xmppStream: XMPPStream!
     var xmppReconnect: XMPPReconnect!
     var xmppRoster: XMPPRoster!
-    var xmppvCardTempModule: XMPPvCardTempModule!
-    var xmppvCardAvatarModule: XMPPvCardAvatarModule!
+//    var xmppvCardTempModule: XMPPvCardTempModule!
+//    var xmppvCardAvatarModule: XMPPvCardAvatarModule!
     var xmppCapabilities: XMPPCapabilities!
     var password: String!
     var JID: XMPPJID!
@@ -98,9 +98,9 @@ class XMPPManager: NSObject {
         xmppMessageArchiving.clientSideMessageArchivingOnly = true
         
         
-        let vCardCoreDataStorage = XMPPvCardCoreDataStorage.sharedInstance() as XMPPvCardCoreDataStorage
-        xmppvCardTempModule = XMPPvCardTempModule(withvCardStorage: vCardCoreDataStorage, dispatchQueue: nil)
-        xmppvCardAvatarModule = XMPPvCardAvatarModule(withvCardTempModule: xmppvCardTempModule, dispatchQueue:nil)
+//        let vCardCoreDataStorage = XMPPvCardCoreDataStorage.sharedInstance() as XMPPvCardCoreDataStorage
+//        xmppvCardTempModule = XMPPvCardTempModule(withvCardStorage: vCardCoreDataStorage, dispatchQueue: nil)
+//        xmppvCardAvatarModule = XMPPvCardAvatarModule(withvCardTempModule: xmppvCardTempModule, dispatchQueue:nil)
         
         xmppCapabilitiesStorage = XMPPCapabilitiesCoreDataStorage(inMemoryStore:())
         xmppCapabilities = XMPPCapabilities(capabilitiesStorage: xmppCapabilitiesStorage)
@@ -110,16 +110,16 @@ class XMPPManager: NSObject {
         xmppReconnect.activate(xmppStream)
         xmppCapabilities.activate(xmppStream)
         xmppRoster.activate(xmppStream)
-        xmppvCardTempModule.activate(xmppStream)
-        xmppvCardAvatarModule.activate(xmppStream)
+//        xmppvCardTempModule.activate(xmppStream)
+//        xmppvCardAvatarModule.activate(xmppStream)
         xmppMessageArchiving.activate(xmppStream)
         xmppMuc.activate(xmppStream)
         
         xmppStream.addDelegate(self, delegateQueue: workQueue)
         xmppRoster.addDelegate(self, delegateQueue: workQueue)
-        xmppvCardTempModule.addDelegate(self, delegateQueue: workQueue)
-        xmppvCardAvatarModule.addDelegate(self, delegateQueue: workQueue)
-        xmppMuc.addDelegate(self, delegateQueue: workQueue)
+//        xmppvCardTempModule.addDelegate(self, delegateQueue: workQueue)
+//        xmppvCardAvatarModule.addDelegate(self, delegateQueue: workQueue)
+//        xmppMuc.addDelegate(self, delegateQueue: workQueue)
         
         xmppCapabilities.addDelegate(self, delegateQueue: workQueue)
         xmppMessageArchiving.addDelegate(self, delegateQueue: workQueue)
@@ -215,47 +215,47 @@ class XMPPManager: NSObject {
         instance.xmppStream.sendElement(iq)
     }
     
-    func updateMyImage(image: UIImage) {
-        var myvCardTemp = xmppvCardTempModule.myvCardTemp
-        if myvCardTemp == nil {
-            println("myvCardTemp==nil")
-        }
-        
-        myvCardTemp.photo = UIImagePNGRepresentation(image)
-        
-        xmppvCardTempModule.updateMyvCardTemp(myvCardTemp)
-    }
-    
-    func updateVcard() {
-        if let myvCardTemp = xmppvCardTempModule.myvCardTemp {
-            
-            if let figureurl = (account.snses.lastObject as SNS?)?.figureurl {
-                
-                NSURLSession.sharedSession().downloadTaskWithURL(NSURL(string: figureurl)!, completionHandler: { (path, res, error) -> Void in
-                    let localCard = self.xmppvCardTempModule.myvCardTemp
-                    
-                    if let nickName = (self.account.snses.lastObject as SNS?)?.nickName {
-                        localCard.formattedName = nickName
-                    }
-                    
-                    localCard.photo = NSData(contentsOfURL: path)
-                    
-                    self.xmppvCardTempModule.updateMyvCardTemp(localCard)
-                    self.needUpdateVcard = false
-
-                    
-                }).resume()
-                
-                return
-             }
-            
-            if let displayName = self.account.displayName {
-                myvCardTemp.formattedName = displayName
-                self.xmppvCardTempModule.updateMyvCardTemp(myvCardTemp)
-                self.needUpdateVcard = false
-            }
-        }
-    }
+//    func updateMyImage(image: UIImage) {
+//        var myvCardTemp = xmppvCardTempModule.myvCardTemp
+//        if myvCardTemp == nil {
+//            println("myvCardTemp==nil")
+//        }
+//        
+//        myvCardTemp.photo = UIImagePNGRepresentation(image)
+//        
+//        xmppvCardTempModule.updateMyvCardTemp(myvCardTemp)
+//    }
+//    
+//    func updateVcard() {
+//        if let myvCardTemp = xmppvCardTempModule.myvCardTemp {
+//            
+//            if let figureurl = (account.snses.lastObject as SNS?)?.figureurl {
+//                
+//                NSURLSession.sharedSession().downloadTaskWithURL(NSURL(string: figureurl)!, completionHandler: { (path, res, error) -> Void in
+//                    let localCard = self.xmppvCardTempModule.myvCardTemp
+//                    
+//                    if let nickName = (self.account.snses.lastObject as SNS?)?.nickName {
+//                        localCard.formattedName = nickName
+//                    }
+//                    
+//                    localCard.photo = NSData(contentsOfURL: path)
+//                    
+//                    self.xmppvCardTempModule.updateMyvCardTemp(localCard)
+//                    self.needUpdateVcard = false
+//
+//                    
+//                }).resume()
+//                
+//                return
+//             }
+//            
+//            if let displayName = self.account.displayName {
+//                myvCardTemp.formattedName = displayName
+//                self.xmppvCardTempModule.updateMyvCardTemp(myvCardTemp)
+//                self.needUpdateVcard = false
+//            }
+//        }
+//    }
     
     // MARK: - Message
     
@@ -451,7 +451,7 @@ extension XMPPManager: XMPPvCardTempModuleDelegate {
     func xmppvCardTempModule(vCardTempModule: XMPPvCardTempModule!, didReceivevCardTemp vCardTemp: XMPPvCardTemp!, forJID jid: XMPPJID!) {
         if isMe(jid) && needUpdateVcard {
             
-            updateVcard()
+//            updateVcard()
         }
         
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -464,16 +464,16 @@ extension XMPPManager: XMPPvCardTempModuleDelegate {
 
 // MARK: - XMPPvCardAvatarDelegate
 
-extension XMPPManager: XMPPvCardAvatarDelegate {
-    
-    func xmppvCardAvatarModule(vCardTempModule: XMPPvCardAvatarModule!, didReceivePhoto photo: UIImage!, forJID jid: XMPPJID!) {
-            account.updateWithVcard(vCardTempModule)
-        
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            NSNotificationCenter.defaultCenter().postNotificationName(kXMPPDidReceiveAvata, object: nil)
-        })
-    }
-}
+//extension XMPPManager: XMPPvCardAvatarDelegate {
+//    
+//    func xmppvCardAvatarModule(vCardTempModule: XMPPvCardAvatarModule!, didReceivePhoto photo: UIImage!, forJID jid: XMPPJID!) {
+//            account.updateWithVcard(vCardTempModule)
+//        
+//        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//            NSNotificationCenter.defaultCenter().postNotificationName(kXMPPDidReceiveAvata, object: nil)
+//        })
+//    }
+//}
 
 // MARK: - Search
 
@@ -624,9 +624,9 @@ extension XMPPManager {
     func photoOfJid(jid: XMPPJID) -> UIImage {
         var orgImage = UIImage(named: "avatar")
         
-        if let data = XMPPManager.instance.xmppvCardAvatarModule.photoDataForJID(jid) {
-            orgImage = UIImage(data: data)
-        }
+//        if let data = XMPPManager.instance.xmppvCardAvatarModule.photoDataForJID(jid) {
+//            orgImage = UIImage(data: data)
+//        }
         
         let image = JSQMessagesAvatarImageFactory.avatarImageWithImage(orgImage, diameter: 75)
 
@@ -640,9 +640,9 @@ extension XMPPManager {
     func fromStrOfMessage(message: XMPPMessage) -> String {
         var from = message.from().user
     
-        if let user = self.xmppvCardTempModule.vCardTempForJID(message.from(), shouldFetch: false) {
-            from = user.formattedName ?? "匿名"
-        }
+//        if let user = self.xmppvCardTempModule.vCardTempForJID(message.from(), shouldFetch: false) {
+//            from = user.formattedName ?? "匿名"
+//        }
         
         return from
 
@@ -651,9 +651,9 @@ extension XMPPManager {
     func displayNameOfJid(jid: XMPPJID) -> String {
         let user = userForJID(jid)
         
-        if let card = xmppvCardTempModule.vCardTempForJID(jid, shouldFetch: true) {
-            return card.formattedName ?? "匿名"
-        }
+//        if let card = xmppvCardTempModule.vCardTempForJID(jid, shouldFetch: true) {
+//            return card.formattedName ?? "匿名"
+//        }
         
         return "匿名"
     }
@@ -669,12 +669,12 @@ extension XMPPManager {
     class func getVCard(jid: XMPPJID, done: (() -> Void)?) {
         instance.getVCardDone = done
         
-        instance.xmppvCardTempModule.fetchvCardTempForJID(jid, ignoreStorage: true)
+//        instance.xmppvCardTempModule.fetchvCardTempForJID(jid, ignoreStorage: true)
     }
     
-    class func vCardOfJid(jid: XMPPJID) -> XMPPvCardTemp? {
-        return instance.xmppvCardTempModule.vCardTempForJID(jid, shouldFetch: true)
-    }
+//    class func vCardOfJid(jid: XMPPJID) -> XMPPvCardTemp? {
+//        return instance.xmppvCardTempModule.vCardTempForJID(jid, shouldFetch: true)
+//    }
 
     func createJoinedRooms() {
 //        let res = XMPPRoomMessageCoreDataStorageObject.MR_findAllInContext(roomContext) as? [XMPPRoomMessageCoreDataStorageObject]

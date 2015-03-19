@@ -26,12 +26,12 @@ class RecentlyFriendCell: UITableViewCell {
             if !friend.isGroupChat() {
                 membersCountLabel.hidden = true
                 
-                if let vCard = XMPPManager.instance.xmppvCardTempModule.vCardTempForJID(friend.bareJid, shouldFetch: true) {
-                    friendNameLabel.text = vCard.formattedName ?? friend.bareJid.user
-                    
-                } else {
-                    friendNameLabel.text = friend.bareJid.user
-                }
+//                if let vCard = XMPPManager.instance.xmppvCardTempModule.vCardTempForJID(friend.bareJid, shouldFetch: true) {
+//                    friendNameLabel.text = vCard.formattedName ?? friend.bareJid.user
+//                    
+//                } else {
+//                    friendNameLabel.text = friend.bareJid.user
+//                }
                 
                 friendImageView.image = XMPPManager.instance.photoOfJid(friend.bareJid)
 

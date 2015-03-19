@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14C109" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14C1510" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Friend" representedClassName="Friend" syncable="YES">
         <attribute name="jidStr" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="unreadMessages" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -8,6 +8,7 @@
         <attribute name="access_token" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="expirationDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="figureurl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nickName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="openid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="refresh_token" optional="YES" attributeType="String" syncable="YES"/>
@@ -20,7 +21,8 @@
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="age" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="avatarData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="avatarOrg" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="avatarThumbnail" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="birthday" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
@@ -31,8 +33,8 @@
     </entity>
     <elements>
         <element name="Friend" positionX="-54" positionY="18" width="128" height="73"/>
-        <element name="SNS" positionX="-54" positionY="45" width="128" height="163"/>
-        <element name="User" positionX="-63" positionY="-18" width="128" height="178"/>
+        <element name="SNS" positionX="-54" positionY="45" width="128" height="180"/>
         <element name="Station" positionX="-63" positionY="81" width="128" height="73"/>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="195"/>
     </elements>
 </model>

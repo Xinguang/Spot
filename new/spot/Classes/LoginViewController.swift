@@ -60,27 +60,18 @@ class LoginViewController: BaseViewController {
     
     func xmppLoginSuccess(notification: NSNotification) {
         if loginType == .SNS {
-            ParseController.uploadUser(user, done: { (error) -> Void in
-                if let error = error {
-                    SVProgressHUD.showErrorWithStatus(error.localizedDescription, maskType: .Clear)
-                    return
-                } else {
-                    UserController.saveUser(self.user)
-                }
-            })
-        } else if loginType == .SignIn {
-            //get user from parse
-            ParseController.getUserFromParse(user, done: {
-                (obj, err) -> Void in
-                if let error = err {
-                    SVProgressHUD.showErrorWithStatus(error.localizedDescription, maskType: .Clear)
-                    return
-                } else if let obj = obj {
-                    UserController.updateUserWithParseUser(self.user, parseUser: obj)
-                    UserController.saveUserAndWait(self.user)
-                }
+            UserController.saveUser(self.user)
+            
+            if needUploadToParse {
+                ParseController.uploadUser(user, done: { (error) -> Void in
+                    if let error = error {
+                        SVProgressHUD.showErrorWithStatus(error.localizedDescription, maskType: .Clear)
+                        return
+                    }
+                })
             }
-            )
+        } else if loginType == .SignIn {
+            UserController.saveUserAndWait(self.user)
         }
 
         self.goToTabView()
@@ -116,7 +107,8 @@ class LoginViewController: BaseViewController {
         
         SVProgressHUD.showWithMaskType(.Clear)
         
-        ParseController.getUserByUsername(username, result: { (parseUserModel, error) -> Void in
+//        ParseController.getFullUserInfoFromParse(username, done: { (pUser, error) -> Void in
+        ParseController.getUserByKey("username", value: username, result: { (pUser, error) -> Void in
             if let error = error {
                 // TODO: error info
                 //Error Domain=Parse Code=101 "The operation couldn’t be completed. (Parse error 101.)" UserInfo=0x7fb801285210 {error=no results matched the query, code=101}
@@ -124,19 +116,19 @@ class LoginViewController: BaseViewController {
                 return
             }
             
-            if let parseUserModel = parseUserModel {
-                let openfireId = parseUserModel.openfireId
-                let passwordOnParse = parseUserModel.aesDecryptPassword()
+            if let pUser = pUser {
+                let passwordOnParse = CocoaSecurity.aesDecryptWithBase64(pUser["password"] as String, key: kAESKey).utf8String
+                
                 if password != passwordOnParse {
                     SVProgressHUD.showErrorWithStatus("パスワードが間違っています。", maskType: .Gradient)
                     return
                 }
                 
-                self.user = UserController.userFromParseUser(parseUserModel)
+                self.user = UserController.userFromParseUser(pUser)
+                
                 self.loginType = .SignIn
                 XMPPManager.loginWithUser(self.user)
-
-            } else {
+            }  else {
                 SVProgressHUD.showErrorWithStatus("ユーザーが存在しません", maskType: .Gradient)
             }
         })
@@ -185,61 +177,34 @@ class LoginViewController: BaseViewController {
     func loginOrRegisterWithSNS(sns: SNS) {
         loginType = .SNS
 
-        //already have openfireid
-        if let parseUser = ParseController.parseUserByOpenid(sns.openid) {
-            self.user = UserController.snsUser(sns, parseUser: parseUser)
-            XMPPManager.loginWithUser(self.user)
-        } else {
-            self.user = UserController.snsUser(sns, parseUser: nil)
+        ParseController.parseUserByOpenid(sns.openid, result: { (pSNS, error) -> Void in
+            if let pSNS = pSNS {
+                if let pUser = pSNS["user"] as? PFObject {
+                    self.user = UserController.userFromParseUser(pUser)
+                    XMPPManager.loginWithUser(self.user)
+                    return
+                }
+            }
+            
+            self.user = UserController.snsUser(sns)
             self.needUploadToParse = true
             XMPPManager.registerWithUser(self.user)
-        }
+        })
+        
+//        //already have openfireid
+//        if let parseUser = ParseController.parseUserByOpenid(sns.openid) {
+//            self.user = UserController.snsUser(sns, parseUser: parseUser)
+//            XMPPManager.loginWithUser(self.user)
+//        } else {
+//            self.user = UserController.snsUser(sns, parseUser: nil)
+//            self.needUploadToParse = true
+//            XMPPManager.registerWithUser(self.user)
+//        }
     }
     
     func endEdit(sender:AnyObject){
         sender.resignFirstResponder()
     }
-    func test(){
-        //
-        //SNSController.instance.qqShare(0, title: "分享测试", description: "分享内容", url: "http://e-business.co.jp")
-        //SNSController.instance.wxShare(0,  title: "wx分享测试", description: "wx分享内容")
-        
-        
-        
-        
-        let select = ParseUserInfoModel()
-        select.find(ParseUserInfoModel.self, complete: { (result) -> () in
-            if let res = result {
-                for o in res {
-                    println(o)
-                    println("openids")
-                    println(o.openids)
-                    for sns in o.openids{
-                        println(sns.access_token)
-                    }
-                }
-            }
-            
-        })
-        /*
-        let select = ParseUserInfoModel()
-        select.objectId = "N7yMQYQYVm"
-        select.nickname = "nicknameValue"
-        let sns = ParseSNSModel(openid: "openid", access_token: "token1", refresh_token: "token2", expirationDate: "dateeeee")
-        sns.objectId = "Nk2St1QVYU"
-        //select.openids = [sns,sns]
-        let pf = select.toPFObject()
-        println(pf)
-        pf.saveInBackgroundWithBlock({ (isok, error) -> Void in
-        //select.initWithPFObject(pf)
-        println(select)
-        
-        })
-        */
-        
-        
-    }
-
 }
 
 // MARK: - XMPPCreateAccountViewControllerDelegate

@@ -10,39 +10,30 @@ import UIKit
 
 class ContactDetailHeaderView: UITableViewHeaderFooterView {
     
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var imageView: PFImageView!
     @IBOutlet weak var sexImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var idLabel: UILabel!
 
-    var jid: XMPPJID! {
+    var pUser: PFObject! {
         didSet {
-//            updateIgnoreStorage(true)
-            imageView.image = XMPPManager.instance.photoOfJid(jid)
+            if let thumbnailFile = pUser["avatarThumbnail"] as? PFFile {
+                
+            }
             
-            if let vCard = XMPPManager.vCardOfJid(jid) {
-                nameLabel.text = vCard.formattedName ?? "匿名"
+            if let gender = pUser["gender"] as? String {
+                let name = gender == "M" ? "Contact_Male" : "Contact_Female"
+                sexImageView.image = UIImage(named: name)
             }
-        }
-    }
-    var username: String? {
-        didSet {
-            if let username = username {
-                idLabel.text = "現場トモID:\(username)"
+            
+            nameLabel.text = pUser["displayName"] as? String
+            
+            var username = "未設定"
+            if let idStr = pUser["username"] as? String {
+                username = idStr
             }
+            idLabel.text = "現場トモID:\(username)"
         }
     }
     
-    func updateIgnoreStorage(ignore: Bool) {
-        imageView.image = XMPPManager.instance.photoOfJid(jid)
-        
-        if ignore {
-            XMPPManager.instance.xmppvCardTempModule.fetchvCardTempForJID(jid, ignoreStorage: ignore)
-        }
-        
-        if let vCard = XMPPManager.instance.xmppvCardTempModule.vCardTempForJID(jid, shouldFetch: true) {
-//            let sexImageName = vCard
-            nameLabel.text = vCard.formattedName ?? "匿名"
-        }
-    }
 }

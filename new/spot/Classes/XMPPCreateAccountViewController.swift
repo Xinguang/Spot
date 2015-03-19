@@ -70,8 +70,6 @@ class XMPPCreateAccountViewController: BaseViewController {
                 }
             })
         })
-        
-
     }
     
     func xmppRegisterSuccess(notification: NSNotification) {

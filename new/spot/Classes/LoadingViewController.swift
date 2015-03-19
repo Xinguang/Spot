@@ -47,7 +47,7 @@ class LoadingViewController: BaseViewController {
     }
     
     func xmppLoginFailed(notification: NSNotification) {
-        SVProgressHUD.showErrorWithStatus("タイムアウト", maskType: .Clear)
+        SVProgressHUD.showErrorWithStatus("ログイン失敗", maskType: .Clear)
     }
     
     func xmppLoginSuccess(notification: NSNotification) {

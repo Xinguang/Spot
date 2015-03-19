@@ -87,11 +87,12 @@ class TalkViewController: BaseViewController {
     // MARK: - Action
     
     @IBAction func groupBtnTapped(sender: AnyObject) {
-        let navi = Util.createViewControllerWithIdentifier(nil, storyboardName: "GroupChat") as UINavigationController
-        let friendsPickerViewController = navi.topViewController as FriendsPickerViewController
-        friendsPickerViewController.delegate = self
-        
-        self.presentViewController(navi, animated: true, completion: nil)
+        SVProgressHUD.showInfoWithStatus("一時停止", maskType: .Clear)
+//        let navi = Util.createViewControllerWithIdentifier(nil, storyboardName: "GroupChat") as UINavigationController
+//        let friendsPickerViewController = navi.topViewController as FriendsPickerViewController
+//        friendsPickerViewController.delegate = self
+//        
+//        self.presentViewController(navi, animated: true, completion: nil)
     }
     
     // MARK: - Notification

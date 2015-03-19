@@ -71,12 +71,12 @@ class MessageViewController: JSQMessagesViewController {
     func reloadUI() {
 
         
-        if let vCard = XMPPManager.instance.xmppvCardTempModule.vCardTempForJID(jid, shouldFetch: true) {
-            self.title = vCard.formattedName ?? jid.user
+//        if let vCard = XMPPManager.instance.xmppvCardTempModule.vCardTempForJID(jid, shouldFetch: true) {
+//            self.title = vCard.formattedName ?? jid.user
 //            XMPPManager.instance.xmppvCardTempModule.fetchvCardTempForJID(roster.jid, ignoreStorage:true)
-        } else {
-            self.title = jid.user
-        }
+//        } else {
+//            self.title = jid.user
+//        }
     }
     
     // MARK: - JSQMessagesViewController method overrides

@@ -19,21 +19,21 @@ class UserCell: UITableViewCell {
             userImage.image = user.avatarImage()
             nameLabel.text = user.displayName
             
-//            if let vCard = XMPPManager.instance.xmppvCardTempModule.myvCardTemp {
-//                nameLabel.text = vCard.formattedName ?? ""
-//                
-//            } else {
-//                nameLabel.text = ""
-//            }
-            // TODO:
-//            let jid = XMPPJID.jidWithString(user.username)
-            if let username = user.username {
-                if username.length > 0 {
-                    idLabel.text = "現場トモID:" + user.username
-                }
+            if user.avatarThumbnail == nil && user.snses.count > 0 {
+                UserController.downloadUserAvatar(user, done: { (data) -> Void in
+                    if let data = data {
+                        self.user.avatarThumbnail = data
+                        self.userImage.image = self.user.avatarImage()
+                        UserController.saveUser(self.user)
+                    } else {
+                        self.userImage.image = self.user.defaultSNSImage()
+                    }
+                })
             }
             
-            
+            if let username = user.username {
+                idLabel.text = "現場トモID:" + user.username
+            }
         }
     }
 

@@ -24,14 +24,6 @@
 		1737A4941AA03C0F007B8281 /* SNSController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1737A4911AA03C0F007B8281 /* SNSController.swift */; };
 		1737A4951AA03C0F007B8281 /* SNSQQController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1737A4921AA03C0F007B8281 /* SNSQQController.swift */; };
 		1737A4961AA03C0F007B8281 /* SNSWXController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1737A4931AA03C0F007B8281 /* SNSWXController.swift */; };
-		1737A4A11AA03C5C007B8281 /* ParseDeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1737A4991AA03C5C007B8281 /* ParseDeviceModel.swift */; };
-		1737A4A21AA03C5C007B8281 /* ParseMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1737A49A1AA03C5C007B8281 /* ParseMessageModel.swift */; };
-		1737A4A31AA03C5C007B8281 /* ParseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1737A49B1AA03C5C007B8281 /* ParseModel.swift */; };
-		1737A4A41AA03C5C007B8281 /* ParseSNSModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1737A49C1AA03C5C007B8281 /* ParseSNSModel.swift */; };
-		1737A4A51AA03C5C007B8281 /* ParseStationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1737A49D1AA03C5C007B8281 /* ParseStationModel.swift */; };
-		1737A4A61AA03C5C007B8281 /* ParseTagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1737A49E1AA03C5C007B8281 /* ParseTagModel.swift */; };
-		1737A4A71AA03C5C007B8281 /* ParseUserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1737A49F1AA03C5C007B8281 /* ParseUserInfoModel.swift */; };
-		1737A4A81AA03C5C007B8281 /* ParseUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1737A4A01AA03C5C007B8281 /* ParseUserModel.swift */; };
 		1737A4AA1AA03EA4007B8281 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1737A4A91AA03EA4007B8281 /* StringExtension.swift */; };
 		178AE0511A8DC27300D91542 /* GCD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178AE0471A8DC27300D91542 /* GCD.swift */; };
 		178AE0521A8DC27300D91542 /* Net.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178AE0481A8DC27300D91542 /* Net.swift */; };
@@ -59,7 +51,6 @@
 		296623A91A89AC3B002608EF /* NewAccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296623A81A89AC3B002608EF /* NewAccountTableViewController.swift */; };
 		296623AB1A89C586002608EF /* XMPPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296623AA1A89C586002608EF /* XMPPManager.swift */; };
 		296623AD1A8C47F5002608EF /* AddFriendSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296623AC1A8C47F5002608EF /* AddFriendSelectViewController.swift */; };
-		296623B01A8C4C29002608EF /* FriendSearchResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296623AF1A8C4C29002608EF /* FriendSearchResultTableViewController.swift */; };
 		296623D01A8C990E002608EF /* XMPPAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296623CF1A8C990E002608EF /* XMPPAccount.swift */; };
 		296623DA1A8CA28C002608EF /* XMPPSearchModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 296623D31A8CA28C002608EF /* XMPPSearchModule.m */; };
 		296623DB1A8CA28C002608EF /* XMPPSearchNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 296623D51A8CA28C002608EF /* XMPPSearchNode.m */; };
@@ -83,6 +74,7 @@
 		298FE3CA1A956FBC007AB117 /* _Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 298FE3C01A956FBC007AB117 /* _Friend.m */; };
 		298FE3CC1A956FBC007AB117 /* _SNS.m in Sources */ = {isa = PBXBuildFile; fileRef = 298FE3C41A956FBC007AB117 /* _SNS.m */; };
 		298FE3CE1A956FBC007AB117 /* _User.m in Sources */ = {isa = PBXBuildFile; fileRef = 298FE3C81A956FBC007AB117 /* _User.m */; };
+		29B4B0221AB6B00A00816020 /* FriendSearchResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296623AF1A8C4C29002608EF /* FriendSearchResultTableViewController.swift */; };
 		29BE110E1AA46A120087287F /* GPSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BE110D1AA46A120087287F /* GPSModel.m */; };
 		29BE112D1AA476100087287F /* MapDataConroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BE112C1AA476100087287F /* MapDataConroller.swift */; };
 		29BE112F1AA5753C0087287F /* StationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BE112E1AA5753C0087287F /* StationAnnotation.swift */; };
@@ -2123,6 +2115,7 @@
 				29FA936F1AADA6F100151E10 /* XEP_0223.m in Sources */,
 				296623DA1A8CA28C002608EF /* XMPPSearchModule.m in Sources */,
 				29FA931E1AADA6F100151E10 /* XMPPGroupCoreDataStorageObject.m in Sources */,
+				29B4B0221AB6B00A00816020 /* FriendSearchResultTableViewController.swift in Sources */,
 				296623A91A89AC3B002608EF /* NewAccountTableViewController.swift in Sources */,
 				29FA93871AADA6F100151E10 /* DDMultiFormatter.m in Sources */,
 				29FA930C1AADA6F100151E10 /* NSXMLElement+XMPP.m in Sources */,
@@ -2178,7 +2171,6 @@
 				29FA93831AADA6F100151E10 /* DDLog.m in Sources */,
 				29FA936A1AADA6F100151E10 /* XMPPAutoPing.m in Sources */,
 				29FA93581AADA6F100151E10 /* XMPPCapabilitiesCoreDataStorage.m in Sources */,
-				1737A4A61AA03C5C007B8281 /* ParseTagModel.swift in Sources */,
 				DCB539261A81BE0B00C216D7 /* BaseViewController.swift in Sources */,
 				178AE0511A8DC27300D91542 /* GCD.swift in Sources */,
 				29FA93171AADA6F100151E10 /* XMPPCoreDataStorage.m in Sources */,
@@ -2201,8 +2193,6 @@
 				29FA93361AADA6F100151E10 /* XMPPRoomMemoryStorage.m in Sources */,
 				29FA930D1AADA6F100151E10 /* XMPPElement.m in Sources */,
 				293DC7BA1A9DD81600332124 /* ContactDetailFooterView.swift in Sources */,
-				296623B01A8C4C29002608EF /* FriendSearchResultTableViewController.swift in Sources */,
-				1737A4A71AA03C5C007B8281 /* ParseUserInfoModel.swift in Sources */,
 				29FA93491AADA6F100151E10 /* NSXMLElement+XEP_0059.m in Sources */,
 				29FA93341AADA6F100151E10 /* XMPPRoomMessageHybridCoreDataStorageObject.m in Sources */,
 				296623D01A8C990E002608EF /* XMPPAccount.swift in Sources */,
@@ -2222,7 +2212,6 @@
 				29FA93291AADA6F100151E10 /* XMPPIQ+JabberRPCResonse.m in Sources */,
 				29FA93521AADA6F100151E10 /* XMPPDateTimeProfiles.m in Sources */,
 				29F5D4241A996D1F00D0AF54 /* AccountEditViewController.swift in Sources */,
-				1737A4A21AA03C5C007B8281 /* ParseMessageModel.swift in Sources */,
 				DC4109CB1A81C50A00E11CAB /* Character.swift in Sources */,
 				29FA936D1AADA6F100151E10 /* XMPPTime.m in Sources */,
 				29FA93761AADA6F100151E10 /* XMPPMessage+XEP_0333.m in Sources */,
@@ -2245,14 +2234,11 @@
 				29FA931D1AADA6F100151E10 /* XMPPReconnect.m in Sources */,
 				29FA93561AADA6F100151E10 /* NSString+XEP_0106.m in Sources */,
 				29BE110E1AA46A120087287F /* GPSModel.m in Sources */,
-				1737A4A81AA03C5C007B8281 /* ParseUserModel.swift in Sources */,
 				DC410A0A1A8200EA00E11CAB /* ContactCell.swift in Sources */,
-				1737A4A41AA03C5C007B8281 /* ParseSNSModel.swift in Sources */,
 				29FA933F1AADA6F100151E10 /* XMPPvCardCoreDataStorageObject.m in Sources */,
 				29FA935F1AADA6F100151E10 /* XMPPMessageArchivingCoreDataStorage.m in Sources */,
 				29FA934A1AADA6F100151E10 /* XMPPResultSet.m in Sources */,
 				29FA93221AADA6F100151E10 /* XMPPUserCoreDataStorageObject.m in Sources */,
-				1737A4A31AA03C5C007B8281 /* ParseModel.swift in Sources */,
 				178AE0581A8DC27300D91542 /* NetUploadTask.swift in Sources */,
 				29FA93321AADA6F100151E10 /* XMPPRoomHybrid.xcdatamodeld in Sources */,
 				296623E41A8DFD2B002608EF /* ContactViewController.swift in Sources */,
@@ -2274,7 +2260,6 @@
 				29FA93771AADA6F100151E10 /* NSXMLElement+XEP_0335.m in Sources */,
 				29FA93071AADA6F100151E10 /* XMPPSCRAMSHA1Authentication.m in Sources */,
 				29FA93531AADA6F100151E10 /* XMPPMessage+XEP_0085.m in Sources */,
-				1737A4A11AA03C5C007B8281 /* ParseDeviceModel.swift in Sources */,
 				29FA93551AADA6F100151E10 /* XMPPTransports.m in Sources */,
 				DC4109D41A81C50A00E11CAB /* Range.swift in Sources */,
 				29FA938B1AADA6F100151E10 /* DDXMLElement.m in Sources */,
@@ -2306,7 +2291,6 @@
 				29FA93041AADA6F100151E10 /* XMPPDeprecatedPlainAuthentication.m in Sources */,
 				29FA932C1AADA6F100151E10 /* XMPPLastActivity.m in Sources */,
 				297235A71A9DC34A006E5F32 /* ContactDetailHeaderView.swift in Sources */,
-				1737A4A51AA03C5C007B8281 /* ParseStationModel.swift in Sources */,
 				296623DB1A8CA28C002608EF /* XMPPSearchNode.m in Sources */,
 				29FA936B1AADA6F100151E10 /* XMPPPing.m in Sources */,
 				29FA938C1AADA6F100151E10 /* DDXMLNode.m in Sources */,

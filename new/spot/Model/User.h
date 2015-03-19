@@ -7,8 +7,9 @@
 @property (strong, nonatomic) NSString *password;
 
 - (UIImage *)avatarImage;
-- (void)updateWithVcard: (XMPPvCardAvatarModule *)card;
 
 - (NSString *)genderStr;
+
+- (UIImage *)defaultSNSImage;
 
 @end

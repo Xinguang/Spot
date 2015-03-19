@@ -7,6 +7,7 @@ extern const struct SNSAttributes {
 	__unsafe_unretained NSString *access_token;
 	__unsafe_unretained NSString *expirationDate;
 	__unsafe_unretained NSString *figureurl;
+	__unsafe_unretained NSString *gender;
 	__unsafe_unretained NSString *nickName;
 	__unsafe_unretained NSString *openid;
 	__unsafe_unretained NSString *refresh_token;
@@ -40,6 +41,10 @@ extern const struct SNSRelationships {
 
 //- (BOOL)validateFigureurl:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSString* gender;
+
+//- (BOOL)validateGender:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSString* nickName;
 
 //- (BOOL)validateNickName:(id*)value_ error:(NSError**)error_;
@@ -72,6 +77,9 @@ extern const struct SNSRelationships {
 
 - (NSString*)primitiveFigureurl;
 - (void)setPrimitiveFigureurl:(NSString*)value;
+
+- (NSString*)primitiveGender;
+- (void)setPrimitiveGender:(NSString*)value;
 
 - (NSString*)primitiveNickName;
 - (void)setPrimitiveNickName:(NSString*)value;

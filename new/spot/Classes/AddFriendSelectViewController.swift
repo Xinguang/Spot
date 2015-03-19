@@ -130,38 +130,37 @@ extension AddFriendSelectViewController: UISearchBarDelegate {
         // TODO: change timing
         SVProgressHUD.showWithMaskType(.Clear)
 
-//        XMPPManager.instance.search(searchBar.text)
-        
-        ParseController.getUserByUsername(searchBar.text, result: { (pUserModel, error) -> Void in
+        ParseController.getUserByKey("username", value: searchBar.text) { (pUser, error) -> Void in
             if let error = error {
                 if error.code == 101 {
                     SVProgressHUD.dismiss()
-
+                    
                     self.resultVC.isEmpty = true
                     self.resultVC.tableView.reloadData()
                 } else {
                     SVProgressHUD.showErrorWithStatus(error.localizedDescription, maskType: .Clear)
                 }
-            } else if let pUserModel = pUserModel {
-//                self.resultVC.pUserModels = [pUserModel]
-//                self.resultVC.tableView.reloadData()
+            } else if let pUser = pUser {
+                //                self.resultVC.pUserModels = [pUserModel]
+                //                self.resultVC.tableView.reloadData()
                 
-                //get vcard
-                XMPPManager.getVCard(pUserModel.xmppJID(), done: { () -> Void in
-                    SVProgressHUD.dismiss()
-                    
-                    // go to detail
-                    Util.enterFriendDetailViewController(pUserModel.xmppJID(), username: pUserModel.username, from: self, isTalking: false)
-                })
-
+//                //get vcard
+//                XMPPManager.getVCard(pUserModel.xmppJID(), done: { () -> Void in
+//                    SVProgressHUD.dismiss()
+//                    
+//                    // go to detail
+//                    Util.enterFriendDetailViewController(pUserModel.xmppJID(), username: pUserModel.username, from: self, isTalking: false)
+//                })
+                
             } else {
                 SVProgressHUD.dismiss()
-
+                
                 self.resultVC.isEmpty = true
                 self.resultVC.tableView.reloadData()
             }
-        })
+        }
     }
+    
 }
 
 extension AddFriendSelectViewController: FriendSearchResultTableViewControllerDelegate {

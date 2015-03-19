@@ -11,33 +11,61 @@ import UIKit
 class ParseController: NSObject {
    
     class func uploadUser(user: User, done: (NSError?) -> Void) {
-        //no sns
-        if user.snses.count == 0 {
-            let parseUserModel = ParseUserModel(user: user)
+        let pUser = PFObject(className: "User")
         
-            parseUserModel.toPFObject().saveInBackgroundWithBlock { (b, error) -> Void in
-                done(error)
+        if let username = user.username {
+            pUser["username"] = username
+        }
+        
+        pUser["password"] = CocoaSecurity.aesEncrypt(user.password, key: kAESKey).base64
+        
+        if let displayName = user.displayName {
+            pUser["displayName"] = displayName
+        }
+        
+        pUser["openfireId"] = user.openfireId
+        
+        if let snses = user.snses.array as? [SNS] {
+            for sns in snses {
+                let pSns = PFObject(className: "SNS")
+                
+                if let openid = sns.openid {
+                    pSns["openid"] = openid
+                }
+                
+                if let nickName = sns.nickName {
+                    pSns["nickName"] = nickName
+                }
+                
+                if let refresh_token = sns.refresh_token {
+                    pSns["refresh_token"] = refresh_token
+                }
+                
+                if let figureurl = sns.figureurl {
+                    pSns["figureurl"] = figureurl
+                }
+                
+                if let expirationDate = sns.expirationDate {
+                    pSns["expirationDate"] = expirationDate
+                }
+                
+                if let access_token = sns.access_token {
+                    pSns["access_token"] = access_token
+                }
+                
+                if let type = sns.type {
+                    pSns["type"] = type
+                }
+                
+                pSns["user"] = pUser
+                
+                pSns.saveInBackgroundWithBlock(nil)
             }
-            
-            return
         }
         
-        // TODO: >1
-        
-        if let sns = user.snses.lastObject as? SNS {
-            let pSNSModel = ParseSNSModel(sns: sns)
-            let pSNS = pSNSModel.toPFObject()
-            
-            let pUserModel = ParseUserModel(user: user)
-            let pUser = pUserModel.toPFObject()
-            
-            pSNS["user"] = pUser
-            
-            pSNS.saveInBackgroundWithBlock({ (b, error) -> Void in
-                done(error)
-            })
-
-        }
+        pUser.saveInBackgroundWithBlock({ (b, error) -> Void in
+            done(error)
+        })
     }
     
     class func updateUser(user: User, done: ((NSError?) -> Void)?) {
@@ -61,6 +89,26 @@ class ParseController: NSObject {
         }
     }
     
+    class func updateUserImage(user: User, thumbnail: UIImage, org: UIImage) {
+        let query = PFQuery(className: "User")
+        query.whereKey("openfireId", equalTo: user.openfireId)
+        
+        query.getFirstObjectInBackgroundWithBlock { (obj, err) -> Void in
+            let thumbnailFile = PFFile(name: "thumbnail.png", data: UIImagePNGRepresentation(thumbnail))
+            let orgFile = PFFile(name: "org.png", data: UIImagePNGRepresentation(org))
+            
+            thumbnailFile.saveInBackgroundWithBlock(nil)
+            orgFile.saveInBackgroundWithBlock(nil)
+            
+            obj["avatarThumbnail"] = thumbnailFile
+            obj["avatarOrg"] = orgFile
+            
+            obj.saveInBackgroundWithBlock({ (b, err) -> Void in
+                
+            })
+        }
+    }
+    
     class func getUserFromParse(user: User, done: (pUser: PFObject?, error: NSError?) -> Void) {
         let query = PFQuery(className: "User")
         query.whereKey("openfireId", equalTo: user.openfireId)
@@ -70,37 +118,33 @@ class ParseController: NSObject {
         }
     }
     
-    class func getUserByUsername(username: String, result: (ParseUserModel?, NSError?) -> Void) {
-        let user =  ParseUserModel()
-        user.getQuery().whereKey("username", equalTo: username)
-        user.getFirst(ParseUserModel.self, complete: { (res, error) -> () in
-            result(res, error)
-        })
+    class func getUserByKey(key: String,value: String, result: (PFObject?, NSError?) -> Void) {
+        let query = PFQuery(className: "User")
+        query.whereKey(key, equalTo: value)
+        
+        query.getFirstObjectInBackgroundWithBlock { (obj, err) -> Void in
+            result(obj, err)
+        }
     }
 
-    class func parseUserByOpenid(openid: String) -> ParseUserModel? {
-        let parseSNS =  ParseSNSModel()
-        parseSNS.getQuery().whereKey("openid", equalTo: openid)
-        if let pfObject = parseSNS.getQuery().getFirstObject() {
-            if let pUser = pfObject["user"] as? PFObject {
-                pUser.fetchIfNeeded()
-                
-                return ParseUserModel(pfObject: pUser)
-            }
-        } else {
-            return nil
-        }
+    class func parseUserByOpenid(openId: String, result: (PFObject?, NSError?) -> Void) {
+        let query = PFQuery(className: "SNS")
+        query.whereKey("openid", equalTo: openId)
         
-        return nil
+        query.includeKey("user")
+        
+        query.getFirstObjectInBackgroundWithBlock { (obj, err) -> Void in
+            result(obj, err)
+        }
     }
     
-    class func getUserByOpenfireID(id: String, result: (ParseUserModel?, NSError?) -> Void) {
-        let user =  ParseUserModel()
-        user.getQuery().whereKey("openfireId", equalTo: id)
-        user.getFirst(ParseUserModel.self, complete: { (res, error) -> () in
-            result(res, error)
-        })
-    }
+//    class func getUserByOpenfireID(id: String, result: (ParseUserModel?, NSError?) -> Void) {
+//        let user =  ParseUserModel()
+//        user.getQuery().whereKey("openfireId", equalTo: id)
+//        user.getFirst(ParseUserModel.self, complete: { (res, error) -> () in
+//            result(res, error)
+//        })
+//    }
     
     // MARK: - Station
     

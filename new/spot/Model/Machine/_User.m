@@ -5,7 +5,8 @@
 
 const struct UserAttributes UserAttributes = {
 	.age = @"age",
-	.avatarData = @"avatarData",
+	.avatarOrg = @"avatarOrg",
+	.avatarThumbnail = @"avatarThumbnail",
 	.birthday = @"birthday",
 	.displayName = @"displayName",
 	.gender = @"gender",
@@ -73,7 +74,9 @@ const struct UserRelationships UserRelationships = {
 	[self setPrimitiveAge:[NSNumber numberWithInt:value_]];
 }
 
-@dynamic avatarData;
+@dynamic avatarOrg;
+
+@dynamic avatarThumbnail;
 
 @dynamic birthday;
 

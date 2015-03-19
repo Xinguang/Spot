@@ -2,6 +2,7 @@
 #import <SSKeychain.h>
 #import <XMPPvCardTemp.h>
 #import <JSQMessagesAvatarImageFactory.h>
+#import "SNS.h"
 
 @interface User ()
 
@@ -22,28 +23,17 @@ NSString *kSpotServiceName = @"jp.co.e-bussiness.spot.Spot";
 }
 
 - (UIImage *)avatarImage {
-    UIImage *orgImage = [UIImage imageNamed:@"avatar"];
+    UIImage *orgImage;
     
-//    if let data = XMPPManager.instance.xmppvCardAvatarModule.photoDataForJID(jid) {
-//        orgImage = UIImage(data: data)
-//    }
-//    
-//    let image = JSQMessagesAvatarImageFactory.avatarImageWithImage(orgImage, diameter: 75)
-//    
-//    return image.avatarImage
-    
-    if (self.avatarData) {
-        orgImage = [UIImage imageWithData:self.avatarData];
+    if (self.avatarThumbnail) {
+        orgImage = [UIImage imageWithData:self.avatarThumbnail];
+    } else {
+        orgImage = [UIImage imageNamed:@"avatar"];
     }
     
     JSQMessagesAvatarImage *image = [JSQMessagesAvatarImageFactory avatarImageWithImage:orgImage diameter:75];
     
     return image.avatarImage;
-}
-
-- (void)updateWithVcard:(XMPPvCardAvatarModule *)card {
-    self.displayName = card.xmppvCardTempModule.myvCardTemp.formattedName;
-    self.avatarData = card.xmppvCardTempModule.myvCardTemp.photo;
 }
 
 - (NSString *)genderStr {
@@ -52,6 +42,17 @@ NSString *kSpotServiceName = @"jp.co.e-bussiness.spot.Spot";
     }
     
     return @"女性";
+}
+
+- (UIImage *)defaultSNSImage {
+    NSString *name = @"avatar";
+    
+    SNS *sns = self.snses.firstObject;
+    if (sns) {
+        name = [sns.type isEqualToString:@"qq"] ? @"icon_qq" : @"wechat_icon";
+    }
+    
+    return [UIImage imageNamed:@"name"];
 }
 
 @end

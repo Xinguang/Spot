@@ -7,6 +7,7 @@ const struct SNSAttributes SNSAttributes = {
 	.access_token = @"access_token",
 	.expirationDate = @"expirationDate",
 	.figureurl = @"figureurl",
+	.gender = @"gender",
 	.nickName = @"nickName",
 	.openid = @"openid",
 	.refresh_token = @"refresh_token",
@@ -51,6 +52,8 @@ const struct SNSRelationships SNSRelationships = {
 @dynamic expirationDate;
 
 @dynamic figureurl;
+
+@dynamic gender;
 
 @dynamic nickName;
 

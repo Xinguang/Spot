@@ -16,11 +16,11 @@ class FriendCell: UITableViewCell {
     
     var friend: XMPPUserCoreDataStorageObject! {
         didSet {
-            if let vCard = XMPPManager.instance.xmppvCardTempModule.vCardTempForJID(friend.jid, shouldFetch: true) {
-                nameLabel.text = vCard.formattedName ?? friend.jid.user
-            } else {
-                nameLabel.text = friend.jid.user
-            }
+//            if let vCard = XMPPManager.instance.xmppvCardTempModule.vCardTempForJID(friend.jid, shouldFetch: true) {
+//                nameLabel.text = vCard.formattedName ?? friend.jid.user
+//            } else {
+//                nameLabel.text = friend.jid.user
+//            }
             
             friendImageView.image = XMPPManager.instance.photoOfJid(friend.jid)
         }
