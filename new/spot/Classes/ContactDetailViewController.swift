@@ -70,8 +70,8 @@ extension ContactDetailViewController: UITableViewDataSource, UITableViewDelegat
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = Util.createViewWithNibName("ContactDetailHeaderView") as ContactDetailHeaderView
-        view.jid = jid
-        view.username = username
+//        view.jid = jid
+//        view.username = username
         
         return view
     }

@@ -88,3 +88,56 @@ extension UIApplication {
         return version == build ? "v\(version)" : "v\(version)(\(build))"
     }
 }
+
+extension XMPPRoomMessageCoreDataStorageObject: JSQMessageData {
+    public func senderId() -> String! {
+        return ""
+//        if isOutgoing {
+//            return streamBareJidStr
+//        }
+//        return bareJidStr
+    }
+    
+    public func senderDisplayName() -> String! {
+        return "ユーザー名"
+    }
+    
+    public func date() -> NSDate! {
+        return NSDate()
+    }
+    
+    public func isMediaMessage() -> Bool {
+        return false
+    }
+    
+    public func text() -> String! {
+        return body
+    }
+}
+
+extension XMPPMessageArchiving_Message_CoreDataObject: JSQMessageData {
+    
+    public func senderId() -> String! {
+        if isOutgoing {
+            return streamBareJidStr
+        }
+        return bareJidStr
+    }
+    
+    public func senderDisplayName() -> String! {
+        return "ユーザー名"
+    }
+
+    public func date() -> NSDate! {
+        return timestamp
+    }
+    
+    public func isMediaMessage() -> Bool {
+        return false
+    }
+    
+    public func text() -> String! {
+        return body
+    }
+    
+}

@@ -13,6 +13,7 @@
 #import "APAddressBook-Bridging.h"
 #import "SVProgressHUD.h"
 #import "Parse.h"
+#import "ParseUI.h"
 #import "SSKeyChain.h"
 #import "DDLog.h"
 #import "libWeChatSDK/WXApi.h"
@@ -65,6 +66,8 @@
 #import "XMPPRoomCoreDataStorage.h"
 #import "XMPPRoomMessageCoreDataStorageObject.h"
 #import "XMPPMessage+XEP0045.h"
+#import "XMPPMessageArchiving_Message_CoreDataObject_JSQMessageData.h"
+#import "XMPPRoomMessageCoreDataStorageObject_JSQMessageData.h"
 
 #import "Friend.h"
 #import "SNS.h"

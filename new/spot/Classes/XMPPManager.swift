@@ -688,7 +688,7 @@ extension XMPPManager {
 //        }
         
 //        xmppMuc.discoverServices()
-        xmppMuc.discoverRoomsForServiceNamed(kRoomPath)
+//        xmppMuc.discoverRoomsForServiceNamed(kRoomPath)
     }
     
     class func createNewRoom() {
