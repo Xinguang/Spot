@@ -34,11 +34,7 @@ class MessageViewController: JSQMessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let friend = Friend(ofJid: jidStr)
-        if friend != nil {
-            friend.unreadMessagesValue = 0
-            friend.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
-        }
+        setAccessoryButtonImageView()
 
 //        showLoadEarlierMessagesHeader = true
         
