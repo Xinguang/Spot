@@ -89,6 +89,8 @@ class VoiceController :NSObject,AVAudioRecorderDelegate{
         self.amrToWav(path, savePath: self.path_wav)
         /////
         player = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: self.path_wav), error: nil)
+        AVAudioSession.sharedInstance().overrideOutputAudioPort(.Speaker, error: nil)
+        
         player.prepareToPlay()
         player.play()
         println("play")

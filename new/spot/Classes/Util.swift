@@ -160,6 +160,10 @@ extension XMPPRoomMessageCoreDataStorageObject: JSQMessageData {
     public func text() -> String! {
         return body
     }
+    
+    public func messageHash() -> UInt {
+        return UInt(hash)
+    }
 }
 
 extension XMPPMessageArchiving_Message_CoreDataObject: JSQMessageData {
@@ -187,4 +191,7 @@ extension XMPPMessageArchiving_Message_CoreDataObject: JSQMessageData {
         return body
     }
 
+    public func messageHash() -> UInt {
+        return UInt(hash)
+    }
 }

@@ -94,7 +94,7 @@ extension MessageViewController {
     //
     func record(longPressedRecognizer:UILongPressGestureRecognizer){
         if longPressedRecognizer.state == UIGestureRecognizerState.Began {
-            btn_voice?.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
+            btn_voice?.backgroundColor = UIColor(hexString: "#0EAA00")
             VoiceController.instance.start()
             NSLog("hold Down");
             
