@@ -10,16 +10,20 @@ import UIKit
 
 class ContactDetailHeaderView: UITableViewHeaderFooterView {
     
-    @IBOutlet weak var imageView: PFImageView!
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var sexImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var idLabel: UILabel!
 
     var pUser: PFObject! {
         didSet {
+            
             if let thumbnailFile = pUser["avatarThumbnail"] as? PFFile {
-                imageView.file = thumbnailFile
-                imageView.loadInBackground(nil)
+                thumbnailFile.getDataInBackgroundWithBlock({ (data, error) -> Void in
+                    self.imageView.image = Util.avatarImageWithData(data, diameter: kAvatarImageSize)
+                })
+            } else {
+                self.imageView.image = Util.avatarImageWithData(nil, diameter: kAvatarImageSize)
             }
             
             if let gender = pUser["gender"] as? String {

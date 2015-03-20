@@ -181,6 +181,8 @@ class LoginViewController: BaseViewController {
             if let pSNS = pSNS {
                 if let pUser = pSNS["user"] as? PFObject {
                     self.user = UserController.userFromParseUser(pUser)
+                    sns.user = self.user
+                    UserController.saveUser(self.user)
                     XMPPManager.loginWithUser(self.user)
                     return
                 }

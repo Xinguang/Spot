@@ -9,8 +9,8 @@
 import UIKit
 
 @objc protocol ContactDetailFooterViewDelegate {
-    func didTappedChatBtn(footerView: ContactDetailFooterView)
-    func didTappedAddFriendBtn(footerView: ContactDetailFooterView)
+    func didTappedChatBtn(footerView: ContactDetailFooterView, pUser: PFObject)
+    func didTappedAddFriendBtn(footerView: ContactDetailFooterView, pUser: PFObject)
 }
 
 class ContactDetailFooterView: UITableViewHeaderFooterView {
@@ -52,9 +52,9 @@ class ContactDetailFooterView: UITableViewHeaderFooterView {
     
     @IBAction func chatBtnTapped(sender: AnyObject) {
         if XMPPManager.instance.isFriend(jid) {
-            delegate?.didTappedChatBtn(self)
+            delegate?.didTappedChatBtn(self, pUser: pUser)
         } else {
-            delegate?.didTappedAddFriendBtn(self)
+            delegate?.didTappedAddFriendBtn(self, pUser: pUser)
         }
         
     }

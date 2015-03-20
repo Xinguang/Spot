@@ -9,9 +9,11 @@
 import UIKit
 
 class TalkViewController: BaseViewController {
+    
     @IBOutlet weak var tableView: UITableView!
    
     var frc: NSFetchedResultsController!
+    
     var searchController :UISearchController!
     
     var friendCount: Int! {
@@ -23,14 +25,9 @@ class TalkViewController: BaseViewController {
     }
     
     override func awakeFromNib() {
-//        frc = Friend.MR_fetchAllGroupedBy(nil, withPredicate: NSPredicate(format: "lastMessageDate!=nil", argumentArray: nil), sortedBy: "lastMessageDate", ascending: false)
-//        frc.delegate = self
-                
         frc = XMPPMessageArchiving_Contact_CoreDataObject.MR_fetchAllGroupedBy(nil, withPredicate: nil, sortedBy: "mostRecentMessageTimestamp", ascending: false, inContext: XMPPManager.instance.xmppMessageArchivingCoreDataStorage.mainThreadManagedObjectContext)
         frc.delegate = self
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"), name: kXMPPDidReceivevCardTemp, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"), name: kXMPPDidReceiveAvata, object: nil)
+
          NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("didReceivedMessage:"), name: kXMPPReceivedMessage, object: nil)
     }
     
@@ -150,6 +147,7 @@ extension TalkViewController: UISearchControllerDelegate {
 
 extension TalkViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        Util.showTodo()
         // TODO: change timing
 //        SVProgressHUD.showWithStatus("検索中...", maskType: .Clear)
     }
@@ -170,33 +168,42 @@ extension TalkViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        if indexPath.section == 0 {
-//            let cell = tableView.dequeueReusableCellWithIdentifier("SearchBarCell", forIndexPath: indexPath) as UITableViewCell
-//            return cell
-//        }
-        
         let cell = tableView.dequeueReusableCellWithIdentifier("RecentlyFriendCell", forIndexPath: indexPath) as RecentlyFriendCell
+        
         let friend = frc.objectAtIndexPath(indexPath) as XMPPMessageArchiving_Contact_CoreDataObject
-
-
         cell.friend = friend
+        
+        ParseController.getPUserByKeyIncludeAvatarAndUseCache("openfireId", value: friend.bareJidStr, result: { (pUser, data, error) -> Void in
+            if let pUser = pUser {
+                cell.pUser = pUser
+            }
+            
+            cell.avatarImageData = data
+        })
         
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as RecentlyFriendCell
+        
         let friend = frc.objectAtIndexPath(indexPath) as XMPPMessageArchiving_Contact_CoreDataObject
         
         if friend.isGroupChat() {
             Util.enterGroupMessageViewController(friend.bareJidStr, from: self)
         } else {
-            Util.showTodo()
+            Friend.setAllMessageRead(friend.bareJidStr)
             
-//            let roster = XMPPUserCoreDataStorageObject.MR_findFirstByAttribute("jidStr", withValue: friend.bareJidStr, inContext: XMPPManager.instance.xmppRosterStorage.mainThreadManagedObjectContext) as XMPPUserCoreDataStorageObject
-//            Util.enterMessageViewControllerWithFriend(roster, from: self)
+            if let pUser = cell.pUser {
+                Util.enterMessageViewControllerWithPUser(pUser, avatarImageData: cell.avatarImageData, from: self)
+            } else {
+                ParseController.getPUserByKeyIncludeAvatarAndUseCache("openfireId", value: friend.bareJidStr, result: { (pUser, data, error) -> Void in
+                    if let pUser = pUser {
+                        Util.enterMessageViewControllerWithPUser(pUser, avatarImageData: cell.avatarImageData, from: self)
+                    }
+                })
+            }
         }
-//        friend.bareJidStr
-//        Util.enterMessageViewControllerWithFriend(friend, from: self)
     }
 }
 

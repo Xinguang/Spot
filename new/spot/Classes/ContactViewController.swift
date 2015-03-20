@@ -14,11 +14,10 @@ class ContactViewController: BaseViewController {
     
     var frc: NSFetchedResultsController!
     
+    var pUsers = Dictionary<NSIndexPath, PFObject?>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"), name: kXMPPDidReceivevCardTemp, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"), name: kXMPPDidReceiveAvata, object: nil)
 
         frc = XMPPUserCoreDataStorageObject.MR_fetchAllGroupedBy(nil, withPredicate: nil, sortedBy: "sectionNum", ascending: true, inContext: XMPPManager.instance.xmppRosterStorage.mainThreadManagedObjectContext)
         frc.delegate = self
@@ -27,16 +26,19 @@ class ContactViewController: BaseViewController {
 //        frcFriend.delegate = self
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //friend detail で最新の取得したため
+        tableView.reloadData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     // MARK: - Notification
-    
-    func reloadUI() {
-        tableView.reloadData()
-    }
     
     /*
     // MARK: - Navigation
@@ -52,9 +54,11 @@ class ContactViewController: BaseViewController {
 // MARK: - NSFetchedResultsControllerDelegate
 
 extension ContactViewController: NSFetchedResultsControllerDelegate {
+    
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         self.tableView.reloadData()
     }
+    
 }
 
 // MARK: - UITableViewDelegate
@@ -71,22 +75,7 @@ extension ContactViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         return 0
-//        if requestCount > 0 {
-//            if section == 0 {
-//                return requestCount
-//            }
-//        }
-//        
-//        return friendCount
     }
-    
-//    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        if requestCount > 0 && section == 0 {
-//            return "友人要求"
-//        }
-//        
-//        return "友人"
-//    }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let roster = frc.objectAtIndexPath(indexPath) as XMPPUserCoreDataStorageObject
@@ -94,57 +83,34 @@ extension ContactViewController: UITableViewDataSource, UITableViewDelegate {
         
         let imageView = cell.viewWithTag(1) as UIImageView!
         let label = cell.viewWithTag(2) as UILabel!
+        imageView.image = nil
+        label.text = ""
         
-//        imageView.image = XMPPManager.instance.photoOfJid(roster.jid)
-        
-        //use local image here, get newest from parse when show detail
-        if let image = roster.photo {
-            imageView.image = Util.avatarImage(image, diameter: kAvatarImageSize)
-        } else {
-            //default avatar
-            imageView.image = Util.avatarImage(nil, diameter: kAvatarImageSize)
+        ParseController.getPUserByKeyIncludeAvatarAndUseCache("openfireId", value: roster.jidStr) { (pUser, data, error) -> Void in
+            self.pUsers[indexPath] = pUser
             
-            ParseController.getUserByKey("openfireId", value: roster.jidStr, result: { (pUser, error) -> Void in
-                if let error = error {
-//                    Util.showError(error)
-                    return
-                }
-                
-                if let thumbnailFile = pUser?["avatarThumbnail"] as? PFFile {
-                    thumbnailFile.getDataInBackgroundWithBlock({(data, error) in
-                        if let error = error {
-//                            Util.showError(error)
-                            return
-                        }
-                        
-                        if let data = data {
-                            imageView.image = Util.avatarImage(data, diameter: kAvatarImageSize)
-                            roster.photo = UIImage(data: data)
-                            roster.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
-                        }
-                    })
-                }
-            })
+            if let error = error {
+                return
+            }
+            
+            if let name = pUser?["displayName"] as? String {
+                label.text = name
+            } else {
+                label.text = pUser?["username"] as? String
+            }
+
+            imageView.image = Util.avatarImageWithData(data, diameter: kAvatarImageSize)
         }
         
-        if let nickname = roster.nickname {
-            label.text = nickname
-        } else {
-            label.text = roster.jid.user
-        }
-        
-            return cell
-//        }
-        
-//        return UITableViewCell()
+        return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-//        Util.showTodo()
-        let roster = frc.objectAtIndexPath(indexPath) as XMPPUserCoreDataStorageObject
 
-        Util.enterFriendDetailViewController(roster, from: self, isTalking: false)
+        if let pUser = pUsers[indexPath]? as PFObject? {
+            Util.enterFriendDetailViewController(pUser, from: self, isTalking: false)
+        }
     }
 }
 

@@ -26,10 +26,6 @@ class GroupMessageViewController: MessageViewController {
         frc.delegate = self
     }
     
-    override func reloadUI() {
-        
-    }
-    
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
         if let room = XMPPManager.instance.joinedRooms[jidStr] {
             room.sendMessageWithBody(text)

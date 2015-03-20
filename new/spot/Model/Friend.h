@@ -9,4 +9,6 @@
 + (Friend *)friendOfJid: (NSString *)jidStr;
 + (void)saveUnreadMessage: (XMPPMessage *)message done:(void(^)())done;
 
++ (void)setAllMessageRead: (NSString *)jidStr;
+
 @end

@@ -127,6 +127,53 @@ class ParseController: NSObject {
         }
     }
 
+    class func getPUserByKeyIncludeAvatarAndUseCache(key: String,value: String, result: (PFObject?, NSData?, NSError?) -> Void) {
+        let query = queryOfUserForKey(key, value: value)
+        query.cachePolicy = kPFCachePolicyCacheElseNetwork
+        
+        getPUserByKeyIncludeAvatar(query, result: result)
+    }
+    
+    class func getPUserByKeyIncludeAvatarIgnoreCache(key: String,value: String, result: (PFObject?, NSData?, NSError?) -> Void) {
+        let query = queryOfUserForKey(key, value: value)
+        query.cachePolicy = kPFCachePolicyNetworkOnly
+        
+        getPUserByKeyIncludeAvatar(query, result: result)
+    }
+    
+    class func queryOfUserForKey(key: String,value: String) -> PFQuery {
+        let query = PFQuery(className: "User")
+        query.whereKey(key, equalTo: value)
+        
+        return query
+    }
+    
+    private class func getPUserByKeyIncludeAvatar(query: PFQuery, result: (PFObject?, NSData?, NSError?) -> Void) {
+        query.getFirstObjectInBackgroundWithBlock { (pUser, err) -> Void in
+            if let error = err {
+                result(nil, nil, error)
+                return
+            }
+            
+            if let pUser = pUser {
+                if let thumbnailFile = pUser["avatarThumbnail"] as? PFFile {
+                    thumbnailFile.getDataInBackgroundWithBlock({(data, error) in
+                        if let error = error {
+                            result(pUser, nil, error)
+                            return
+                        }
+                        
+                        if let data = data {
+                            result(pUser, data, nil)
+                        }
+                    })
+                } else {
+                    result(pUser, nil, nil)
+                }
+            }
+        }
+    }
+    
     class func parseUserByOpenid(openId: String, result: (PFObject?, NSError?) -> Void) {
         let query = PFQuery(className: "SNS")
         query.whereKey("openid", equalTo: openId)

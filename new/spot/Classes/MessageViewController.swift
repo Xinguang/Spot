@@ -10,6 +10,7 @@ import UIKit
 
 class MessageViewController: JSQMessagesViewController {
     var pUser: PFObject!
+    var avatarImageData: NSData?
     
     var jidStr: String! {
         return pUser["openfireId"] as String
@@ -32,28 +33,40 @@ class MessageViewController: JSQMessagesViewController {
             friend.unreadMessagesValue = 0
             friend.managedObjectContext?.MR_saveToPersistentStoreWithCompletion(nil)
         }
-        
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"), name: kXMPPDidReceivevCardTemp, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"), name: kXMPPDidReceiveAvata, object: nil)
 
-//        collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeZero
-//        collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero
-
-        showLoadEarlierMessagesHeader = true
-
-        reloadUI()
+//        showLoadEarlierMessagesHeader = true
         
-//        let meImage = JSQMessagesAvatarImageFactory.avatarImageWithUserInitials("我", backgroundColor: UIColor(white: 0.85, alpha: 1.0), textColor: UIColor(white: 0.6, alpha: 1.0), font: UIFont.systemFontOfSize(14), diameter: kJSQMessagesCollectionViewAvatarSizeDefault)
-        
-        self.meImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(XMPPManager.instance.account.avatarImage(), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
-        
-        let rosterImage = XMPPManager.instance.photoOfJid(jid)
-        self.friendImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(rosterImage, diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
+        setupAvatarImage()
         
         loadMessage()
+        
+        ParseController.getPUserByKeyIncludeAvatarIgnoreCache("openfireId", value: pUser["openfireId"] as String) { (pUser, data, error) -> Void in
+            if let error = error {
+                return
+            }
+            
+            self.pUser = pUser
+            
+            if let data = data {
+                let rosterImage = UIImage(data: data)
+                self.friendImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(rosterImage, diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
+            }
+            
+            self.collectionView.reloadData()
+        }
     }
 
+    func setupAvatarImage() {
+        self.meImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(XMPPManager.instance.account.avatarImage(), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
+        
+        var rosterImage = UIImage(named: "avatar")
+        if let data = avatarImageData {
+            rosterImage = UIImage(data: data)
+        }
+        
+        self.friendImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(rosterImage, diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
+    }
+    
     func loadMessage() {
         frc = XMPPMessageArchiving_Message_CoreDataObject.MR_fetchAllGroupedBy(nil, withPredicate: NSPredicate(format: "bareJidStr=%@", argumentArray: [jidStr]), sortedBy: "timestamp", ascending: true, inContext: XMPPManager.instance.xmppMessageArchivingCoreDataStorage.mainThreadManagedObjectContext)
         frc.delegate = self
@@ -69,17 +82,6 @@ class MessageViewController: JSQMessagesViewController {
     }
     
     // MARK: - Notification
-    
-    func reloadUI() {
-
-        
-//        if let vCard = XMPPManager.instance.xmppvCardTempModule.vCardTempForJID(jid, shouldFetch: true) {
-//            self.title = vCard.formattedName ?? jid.user
-//            XMPPManager.instance.xmppvCardTempModule.fetchvCardTempForJID(roster.jid, ignoreStorage:true)
-//        } else {
-//            self.title = jid.user
-//        }
-    }
     
     // MARK: - JSQMessagesViewController method overrides
     
@@ -204,7 +206,12 @@ extension MessageViewController: JSQMessagesCollectionViewDataSource {
             }
         }
         
-        return NSAttributedString(string: XMPPManager.instance.displayNameOfJid(XMPPJID.jidWithString(message.senderId())))
+        var displayName = "匿名"
+        if let name = pUser["displayName"] as? String {
+            displayName = name
+        }
+        
+        return NSAttributedString(string: displayName)
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForCellBottomLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {

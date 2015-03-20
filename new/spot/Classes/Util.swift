@@ -23,19 +23,20 @@ class Util: NSObject {
         return UINib(nibName: name, bundle: nil).instantiateWithOwner(self, options: nil)[0] as UIView
     }
     
-    class func enterMessageViewControllerWithPUser(pUser: PFObject, from: UIViewController) {
+    class func enterMessageViewControllerWithPUser(pUser: PFObject, avatarImageData: NSData?, from: UIViewController) {
         let messageViewController = Util.createViewControllerWithIdentifier(nil, storyboardName: "Message") as MessageViewController
         
         messageViewController.pUser = pUser
+        messageViewController.avatarImageData = avatarImageData
         
         from.navigationController?.pushViewController(messageViewController, animated: true)
     }
  
-    class func enterMessageViewControllerWithJid(jid: XMPPJID, from: UIViewController) {
+//    class func enterMessageViewControllerWithJid(jid: XMPPJID, from: UIViewController) {
 //        if let user = XMPPManager.instance.userForJID(jid) {
 //            enterMessageViewControllerWithFriend(user, from: from)
 //        }
-    }
+//    }
     
 //    class func enterMessageViewControllerWithFriend(roster: XMPPUserCoreDataStorageObject, from: UIViewController) {
 //        // TODO: setAllMessagesRead
@@ -66,15 +67,15 @@ class Util: NSObject {
         from.navigationController?.pushViewController(vc, animated: true)
     }
     
-    //from contact list
-    class func enterFriendDetailViewController(roster: XMPPUserCoreDataStorageObject, from: UIViewController, isTalking: Bool) {
-        let vc = Util.createViewControllerWithIdentifier("ContactDetailViewController", storyboardName: "Common") as ContactDetailViewController
-        vc.roster = roster
-        
-        vc.isFromMessageViewController = isTalking
-        
-        from.navigationController?.pushViewController(vc, animated: true)
-    }
+//    //from contact list
+//    class func enterFriendDetailViewController(roster: XMPPUserCoreDataStorageObject, from: UIViewController, isTalking: Bool) {
+//        let vc = Util.createViewControllerWithIdentifier("ContactDetailViewController", storyboardName: "Common") as ContactDetailViewController
+//        vc.roster = roster
+//        
+//        vc.isFromMessageViewController = isTalking
+//        
+//        from.navigationController?.pushViewController(vc, animated: true)
+//    }
     
     
     class func checkPermissions() {
@@ -89,13 +90,13 @@ class Util: NSObject {
         return notificationSettings.types == .Badge | .Sound | .Alert
     }
     
-    class func avatarImage(orgImage: UIImage, diameter: UInt) -> UIImage? {
+    class func avatarImageWithImage(orgImage: UIImage, diameter: UInt) -> UIImage? {
         var data = UIImagePNGRepresentation(orgImage)
         
-        return avatarImage(data, diameter: diameter)
+        return avatarImageWithData(data, diameter: diameter)
     }
     
-    class func avatarImage(data: NSData?, diameter: UInt) -> UIImage? {
+    class func avatarImageWithData(data: NSData?, diameter: UInt) -> UIImage? {
         var orgImage: UIImage?
         
         if let data = data {

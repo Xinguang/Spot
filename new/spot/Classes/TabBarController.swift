@@ -51,7 +51,7 @@ class TabBarController: UITabBarController {
         selectedIndex = 0
         
         let talkVC = (selectedViewController as UINavigationController).topViewController as TalkViewController
-        Util.enterMessageViewControllerWithPUser(pUser, from: talkVC)
+        Util.enterMessageViewControllerWithPUser(pUser, avatarImageData: nil, from: talkVC)
     }
 
 }

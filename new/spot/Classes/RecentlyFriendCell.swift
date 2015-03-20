@@ -20,21 +20,23 @@ class RecentlyFriendCell: UITableViewCell {
     
     var badgeView: JSBadgeView!
     
+    var pUser: PFObject! {
+        didSet {
+            self.friendNameLabel.text = pUser["displayName"] as? String
+        }
+    }
+    
+    var avatarImageData: NSData? {
+        didSet {
+            self.friendImageView.image = Util.avatarImageWithData(avatarImageData, diameter: kAvatarImageSize)
+        }
+    }
+    
     var friend: XMPPMessageArchiving_Contact_CoreDataObject! {
         didSet {
             
             if !friend.isGroupChat() {
                 membersCountLabel.hidden = true
-                
-//                if let vCard = XMPPManager.instance.xmppvCardTempModule.vCardTempForJID(friend.bareJid, shouldFetch: true) {
-//                    friendNameLabel.text = vCard.formattedName ?? friend.bareJid.user
-//                    
-//                } else {
-//                    friendNameLabel.text = friend.bareJid.user
-//                }
-                
-                friendImageView.image = XMPPManager.instance.photoOfJid(friend.bareJid)
-
             } else {
                 friendNameLabel.text = "グループ名"
 //                membersCountLabel.hidden = false
@@ -47,8 +49,6 @@ class RecentlyFriendCell: UITableViewCell {
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateStyle = .ShortStyle
             self.timeLabel.text = dateFormatter.stringFromDate(friend.mostRecentMessageTimestamp)
-
-
             
             if let friend = Friend.MR_findFirstByAttribute("jidStr", withValue: friend.bareJidStr) as? Friend {
                 if friend.unreadMessagesValue > 0 {
@@ -58,24 +58,30 @@ class RecentlyFriendCell: UITableViewCell {
                     badgeView.hidden = true
                 }
             }
-//            if roster?.unreadMessages as Int > 0 {
-//                badgeView.hidden = false
-//                badgeView.badgeText = String(roster?.unreadMessages as Int)
-//            } else {
-//                badgeView.hidden = true
-//            }
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        membersCountLabel.hidden = true
-        
+
         badgeView = JSBadgeView(parentView: badgeBackView, alignment: .CenterRight)
         badgeView.badgeBackgroundColor = UIColor(hexString: "#0EAA00")
     }
+    
+    override func prepareForReuse() {
+        setupDefault()
+    }
 
+    func setupDefault() {
+        membersCountLabel.hidden = true
+        
+        friendImageView.image = Util.avatarImageWithData(nil, diameter: kAvatarImageSize)
+        friendNameLabel.text = ""
+        messageLabel.text = ""
+        timeLabel.text = ""
+        badgeView.hidden = true
+    }
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

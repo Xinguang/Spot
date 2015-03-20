@@ -12,31 +12,20 @@ class ContactDetailViewController: BaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var pUser: PFObject?
-    var roster: XMPPUserCoreDataStorageObject?
+    var pUser: PFObject!
     
     var isFromMessageViewController = false
     
+    var headerView: ContactDetailHeaderView!
+    var footerView: ContactDetailFooterView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if pUser == nil {
-            SVProgressHUD.show()
-            
-            ParseController.getUserByKey("openfireId", value: roster!.jidStr, result: { (pUser, error) -> Void in
-                
-                SVProgressHUD.dismiss()
-                
-                if let error = error {
-                    Util.showError(error)
-                    return
-                }
-                
-                self.pUser = pUser
-                self.tableView.reloadData()
-            })
-        }
         
+        ParseController.getPUserByKeyIncludeAvatarIgnoreCache("openfireId", value: pUser["openfireId"] as String) { (pUser, data, error) -> Void in
+            self.pUser = pUser
+            self.tableView.reloadData()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,7 +51,7 @@ class ContactDetailViewController: BaseViewController {
 extension ContactDetailViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return pUser != nil ? 2 : 0
+        return 2
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -87,26 +76,24 @@ extension ContactDetailViewController: UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if let pUser = pUser {
-            let view = Util.createViewWithNibName("ContactDetailHeaderView") as ContactDetailHeaderView
-            view.pUser = pUser
-        
-            return view
+        if headerView == nil {
+            headerView = Util.createViewWithNibName("ContactDetailHeaderView") as ContactDetailHeaderView
         }
         
-        return nil
+        headerView.pUser = pUser
+    
+        return headerView
     }
     
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if let pUser = pUser {
-            let view = Util.createViewWithNibName("ContactDetailFooterView") as ContactDetailFooterView
-            view.delegate = self
-            view.pUser = pUser
-        
-            return view
+        if footerView == nil {
+            footerView = Util.createViewWithNibName("ContactDetailFooterView") as ContactDetailFooterView
+            footerView.delegate = self
         }
         
-        return nil
+        footerView.pUser = pUser
+    
+        return footerView
     }
 }
 
@@ -114,18 +101,17 @@ extension ContactDetailViewController: UITableViewDataSource, UITableViewDelegat
 
 extension ContactDetailViewController: ContactDetailFooterViewDelegate {
     
-    func didTappedChatBtn(footerView: ContactDetailFooterView) {
+    func didTappedChatBtn(footerView: ContactDetailFooterView, pUser: PFObject) {
         if isFromMessageViewController {
             self.navigationController?.popViewControllerAnimated(true)
         } else {
             let tabController = self.navigationController?.tabBarController as? TabBarController
             
-            tabController?.enterMessageViewControllerWithPUser(pUser!)
+            tabController?.enterMessageViewControllerWithPUser(pUser)
         }
     }
     
-    func didTappedAddFriendBtn(footerView: ContactDetailFooterView) {
-        let pUser = footerView.pUser
+    func didTappedAddFriendBtn(footerView: ContactDetailFooterView, pUser: PFObject) {
         XMPPManager.addFriend(pUser)
         
         self.navigationController?.popToRootViewControllerAnimated(true)

@@ -18,7 +18,6 @@
 }
 
 + (void)saveUnreadMessage:(XMPPMessage *)message done:(void (^)())done {
-    
     Friend *f = [Friend MR_findFirstByAttribute:@"jidStr" withValue: [[message from] bare]];
     if (f == nil) {
         f = [Friend MR_createEntity];
@@ -29,19 +28,12 @@
     [f.managedObjectContext MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
         done();
     }];
-    
-//    var friend = Friend.MR_findFirstByAttribute("jidStr", withValue: message.from().bare()) as? Friend
-//    if friend == nil {
-//        friend = Friend.MR_createEntity() as? Friend
-//        friend?.jidStr = message.from().bare()
-//    }
-//    
-//    friend?.unreadMessagesValue += 1
-//    
-//    friend?.managedObjectContext?.MR_saveToPersistentStoreWithCompletion({ (b, error) -> Void in
-//        
-//    })
+}
 
++ (void)setAllMessageRead:(NSString *)jidStr {
+    Friend *friend = [Friend MR_findFirstByAttribute:@"jidStr" withValue:jidStr];
+    friend.unreadMessagesValue = 0;
+    [friend.managedObjectContext MR_saveToPersistentStoreWithCompletion:nil];
 }
 
 @end
