@@ -51,6 +51,14 @@ class XMPPManager: NSObject {
         return XMPPRoomCoreDataStorage.sharedInstance().mainThreadManagedObjectContext
     }
     
+    class var messageContext: NSManagedObjectContext {
+        return instance.xmppMessageArchivingCoreDataStorage.mainThreadManagedObjectContext
+    }
+    
+    class var rosterContext: NSManagedObjectContext {
+        return instance.xmppRosterStorage.mainThreadManagedObjectContext
+    }
+    
     class var instance : XMPPManager {
         struct Static {
             static let instance : XMPPManager = XMPPManager()
@@ -138,7 +146,7 @@ class XMPPManager: NSObject {
         instance.connectWithJID(user.openfireId!, myPassword: user.password)
     }
     
-    func registerNewAccountWithPassword(password: String) {
+    private func registerNewAccountWithPassword(password: String) {
         isRegisteringNewAccount = true
         self.password = password
         
@@ -149,11 +157,12 @@ class XMPPManager: NSObject {
         connectWithJID(account.openfireId!, myPassword: password)
     }
     
+    //auto login
     func connectWithPassword(myPassword: String) {
         connectWithJID(account.openfireId!, myPassword: myPassword)
     }
     
-    func connectWithJID(myJID: String, myPassword: String) {
+    private func connectWithJID(myJID: String, myPassword: String) {
         password = myPassword
         xmppStream.myJID = XMPPJID.jidWithString(myJID)
         
@@ -755,4 +764,10 @@ extension XMPPManager {
     class func updateUserIn(user: User) {
         
     }
+    
+    class func logout() {
+        instance.xmppStream.disconnect()
+        instance.account = nil
+    }
+    
 }

@@ -12,22 +12,25 @@ class LoadingViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         
+        SVProgressHUD.showWithStatus("ログイン", maskType: .Clear)
+
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("xmppConnectTimeout:"), name: kXMPPConnectTimeout, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("xmppLoginFailed:"), name: kXMPPLoginFail, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("xmppLoginSuccess:"), name: kXMPPLoginSuccess, object: nil)
     }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        SVProgressHUD.showWithStatus("ログイン", maskType: .Clear)
+
+    //logoutも呼ばれる
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
+    //logoutも呼ばれる
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    //logout呼ばれない
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         

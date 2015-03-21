@@ -95,6 +95,53 @@ class AccountEditViewController: UITableViewController {
             
             self.presentViewController(alertController, animated: true, completion: nil)
         }
+        
+        if indexPath.section == 2 {
+            let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+            let logoutAction = UIAlertAction(title: "ログアウト", style: .Destructive, handler: { (action) -> Void in
+
+                XMPPMessageArchiving_Message_CoreDataObject.MR_truncateAllInContext(XMPPManager.messageContext)
+                XMPPMessageArchiving_Contact_CoreDataObject.MR_truncateAllInContext(XMPPManager.messageContext)
+                XMPPManager.messageContext.MR_saveToPersistentStoreAndWait()
+                
+                XMPPGroupCoreDataStorageObject.MR_truncateAllInContext(XMPPManager.rosterContext)
+                XMPPResourceCoreDataStorageObject.MR_truncateAllInContext(XMPPManager.rosterContext)
+                XMPPUserCoreDataStorageObject.MR_truncateAllInContext(XMPPManager.rosterContext)
+                XMPPManager.rosterContext.MR_saveToPersistentStoreAndWait()
+                
+                
+                //DB
+                Friend.MR_truncateAll()
+                SNS.MR_truncateAll()
+                User.MR_truncateAll()
+                Station.MR_truncateAll()
+                
+
+                NSManagedObjectContext.MR_defaultContext().MR_saveToPersistentStoreAndWait()
+
+                XMPPManager.logout()
+
+                if let navi = self.navigationController?.tabBarController?.navigationController {
+                    navi.popToRootViewControllerAnimated(false)
+                    return
+                }
+                
+                self.navigationController?.tabBarController?.dismissViewControllerAnimated(false, completion: nil)
+                    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+                    let loginViewController = Util.createViewControllerWithIdentifier(nil, storyboardName: "Main")
+                    
+                    appDelegate.window?.rootViewController = loginViewController
+            })
+
+            let cancelAction = UIAlertAction(title: "キャンセル", style: .Cancel, handler: { (action) -> Void in
+                
+            })
+            
+            alertController.addAction(logoutAction)
+            alertController.addAction(cancelAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
     }
 }
 
