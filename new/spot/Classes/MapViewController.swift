@@ -191,22 +191,23 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
-        let anno = view.annotation as StationAnnotation
+        if let anno = view.annotation as? StationAnnotation {
         
-        let station = anno.pfObject
-        
-        SVProgressHUD.showWithMaskType(.Clear)
-        
-        
-        ParseController.getUsersOfStation(station, done: { (res, error) -> Void in
-            SVProgressHUD.dismiss()
-
-            if let res = res {
-                self.userListViewController.users = res
-                self.userListViewController.tableView.reloadData()
-            }
+            let station = anno.pfObject
             
-        })
+            SVProgressHUD.showWithMaskType(.Clear)
+            
+            
+            ParseController.getUsersOfStation(station, done: { (res, error) -> Void in
+                SVProgressHUD.dismiss()
+
+                if let res = res {
+                    self.userListViewController.users = res
+                    self.userListViewController.tableView.reloadData()
+                }
+                
+            })
+        }
     }
     
 //    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
