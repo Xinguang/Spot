@@ -277,6 +277,22 @@ class XMPPManager: NSObject {
                 xmppStream.sendElement(xmppMessage)
         }
     }
+    
+    func sendLocalPhotoMessage(path: NSString, to: XMPPJID) {
+        let xmppMessage = XMPPMessage(type: "chat", to: to)
+        xmppMessage.addBody("[photo][spot_local]\(path)")
+        //                xmppMessage.addActiveChatState()
+        
+        xmppStream.sendElement(xmppMessage)
+    }
+    
+    func sendRemotePhotoMessage(path: NSString, to: XMPPJID) {
+        let xmppMessage = XMPPMessage(type: "chat", to: to)
+        xmppMessage.addBody("[photo][spot_remote]\(path)")
+        //                xmppMessage.addActiveChatState()
+        
+        xmppStream.sendElement(xmppMessage)
+    }
 }
 
 // MARK: - XMPPStreamDelegate

@@ -9,14 +9,38 @@
 import UIKit
 
 class DatabaseManager: NSObject {
-    class var instance : DatabaseManager {
-        struct Static {
-            static let instance : DatabaseManager = DatabaseManager()
-        }
-        return Static.instance
+    
+    class func autoLoginAccount() -> User? {
+        return User.MR_findFirst() as? User
     }
     
-    func autoLoginAccount() -> User? {
-        return User.MR_findFirst() as? User
+    class func dataOfPath(path: String) -> NSData? {
+        return (Resource.MR_findFirstByAttribute("path", withValue: path) as? Resource)?.data
+    }
+    
+    class func saveResourceAtPath(path: NSURL, toPath: String, done: () -> Void) {
+        let data = NSData(contentsOfURL: path)
+        
+        let r = Resource.MR_createEntity() as Resource
+        r.path = toPath
+        r.data = data
+        
+        r.managedObjectContext?.MR_saveToPersistentStoreWithCompletion({ (_, error) -> Void in
+            if error == nil {
+                done()
+            }
+        })
+    }
+    
+    class func saveDataOfPath(path: String, data: NSData, done: () -> Void) {        
+        let r = Resource.MR_createEntity() as Resource
+        r.path = path
+        r.data = data
+        
+        r.managedObjectContext?.MR_saveToPersistentStoreWithCompletion({ (_, error) -> Void in
+            if error == nil {
+                done()
+            }
+        })
     }
 }

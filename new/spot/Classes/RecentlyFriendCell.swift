@@ -43,8 +43,12 @@ class RecentlyFriendCell: UITableViewCell {
                 membersCountLabel.text = "\(XMPPManager.countOfRoom(friend.bareJidStr))"
             }
             
-            
-            self.messageLabel.text = friend.mostRecentMessageBody
+            if friend.mostRecentMessageBody.rangeOfString("[spot_local]") != nil || friend.mostRecentMessageBody.rangeOfString("[spot_remote]") != nil{
+                self.messageLabel.text = "画像"
+                // TODO: 音声
+            } else {
+                self.messageLabel.text = friend.mostRecentMessageBody
+            }
             
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateStyle = .ShortStyle

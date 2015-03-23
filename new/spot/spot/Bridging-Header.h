@@ -76,6 +76,7 @@
 #import "SNS.h"
 #import "User.h"
 #import "Station.h"
+#import "Resource.h"
 
 //voice
 #include "interf_dec.h"

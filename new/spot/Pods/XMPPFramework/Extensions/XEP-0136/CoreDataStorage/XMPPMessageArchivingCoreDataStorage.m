@@ -335,7 +335,21 @@ static XMPPMessageArchivingCoreDataStorage *sharedInstance;
 	// Message should either have a body, or be a composing notification
 	
 	NSString *messageBody = [[message elementForName:@"body"] stringValue];
-	BOOL isComposing = NO;
+
+    //spot
+    //send
+    if ([messageBody rangeOfString:@"[spot_remote]"].length > 0 && isOutgoing ) {
+        return;
+    }
+
+    //receive
+    if ([messageBody rangeOfString:@"[spot_local]"].length > 0 && !isOutgoing ) {
+        return;
+    }
+
+
+
+    BOOL isComposing = NO;
 	BOOL shouldDeleteComposingMessage = NO;
 	
 	if ([messageBody length] == 0)

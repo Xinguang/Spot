@@ -9,6 +9,9 @@
 import UIKit
 
 class MessageViewController: JSQMessagesViewController {
+//    let net = Net()
+    var pathDownloading = Dictionary<String, Net?>()
+    
     var pUser: PFObject!
     var avatarImageData: NSData?
     
@@ -34,6 +37,8 @@ class MessageViewController: JSQMessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "写真を送信", style: .Done, target: self, action: Selector("sendImage"))
+        
         setAccessoryButtonImageView()
 
 //        showLoadEarlierMessagesHeader = true
@@ -81,6 +86,43 @@ class MessageViewController: JSQMessagesViewController {
     
     func messageAtIndexPath(indexPath: NSIndexPath) -> JSQMessageData {
         return frc.objectAtIndexPath(indexPath) as JSQMessageData
+    }
+    
+    // MARK: - Action
+    
+    func sendImage() {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        let cameraAction = UIAlertAction(title: "写真を撮る", style: .Default, handler: { (action) -> Void in
+            let picker = UIImagePickerController()
+            picker.sourceType = .Camera
+            picker.allowsEditing = true
+            picker.delegate = self
+            self.presentViewController(picker, animated: true, completion: nil)
+        })
+        let albumAction = UIAlertAction(title: "写真から選択", style: .Default, handler: { (action) -> Void in
+            let picker = UIImagePickerController()
+            picker.sourceType = .PhotoLibrary
+            picker.allowsEditing = true
+            picker.delegate = self
+            self.presentViewController(picker, animated: true, completion: nil)
+        })
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .Cancel, handler: { (action) -> Void in
+            
+        })
+        
+        alertController.addAction(cameraAction)
+        alertController.addAction(albumAction)
+        alertController.addAction(cancelAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+        
+//        if let path = NSBundle.mainBundle().pathForResource("test", ofType: "png") {
+//            XMPPManager.instance.sendLocalPhotoMessage(path, to: jid)
+//        
+//            self.finishSendingMessageAnimated(true)
+//            
+//            XMPPManager.instance.sendRemotePhotoMessage("http://sourcetreeapp.com/images/sourcetree-hero-mac-log.png", to: jid)
+//        }
     }
     
     // MARK: - Notification
@@ -131,16 +173,17 @@ extension MessageViewController: UICollectionViewDataSource {
         
 //        let message = self.friend.messages[indexPath.item] as SpotMessage
         
-//        if message.isMediaMessage() == false {
+        if message.isMediaMessage() == false {
             if message.senderId() == self.senderId {
                 cell.textView.textColor = UIColor.blackColor()
             } else {
                 cell.textView.textColor = UIColor.whiteColor()
             }
-//        }
-        
-        cell.textView.linkTextAttributes = [NSForegroundColorAttributeName : cell.textView.textColor,
-            NSUnderlineStyleAttributeName : NSUnderlineStyle.StyleSingle.rawValue | NSUnderlineStyle.PatternDash.rawValue]
+            
+            cell.textView.linkTextAttributes = [NSForegroundColorAttributeName : cell.textView.textColor,
+                NSUnderlineStyleAttributeName : NSUnderlineStyle.StyleSingle.rawValue | NSUnderlineStyle.PatternDash.rawValue]
+        }
+
         return cell
     }
     
@@ -157,8 +200,37 @@ extension MessageViewController: JSQMessagesCollectionViewDataSource {
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
+        let m = messageAtIndexPath(indexPath) as XMPPMessageArchiving_Message_CoreDataObject
+        if m.isMediaMessage() {
+            
+            if m.isPhotoMessage() {
+
+                let path = m.pathOfMedia(m.isLocalMediaMessage())
+                
+                var image: UIImage?
+                
+                if let data = DatabaseManager.dataOfPath(path) {
+                    image = UIImage(data: data)
+                } else {
+                    if m.isRemoteMediaMessage() {
+                        downloadResources(path)
+                    }
+                }
+                
+                let photoItem = JSQPhotoMediaItem(image:image)
+                photoItem.appliesMediaViewMaskAsOutgoing = m.isLocalMediaMessage()
+
+                let photoMessage = JSQMessage(senderId: m.senderId(), senderDisplayName: m.senderDisplayName(), date: m.timestamp, media: photoItem)
+                
+                return photoMessage
+
+            }
+        }
+        
         return messageAtIndexPath(indexPath)
     }
+    
+    
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageAvatarImageDataSource! {
         let message = messageAtIndexPath(indexPath)
@@ -267,5 +339,71 @@ extension MessageViewController: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         collectionView.reloadData()
         finishReceivingMessageAnimated(true)
+    }
+}
+
+// MARK: - Net
+
+extension MessageViewController {
+    
+    func downloadResources(path: NSString) {
+
+//        net.download(absoluteUrl: path, startImmediately: true, progress: { (_) -> () in
+//            
+//            }) { (url, error) -> () in
+//                if let url = url {
+//                    DatabaseManager.saveResourceAtPath(url, toPath: path, done: { () -> Void in
+//                        self.collectionView.reloadData()
+//                    })
+//                }
+//        }
+        
+        if pathDownloading[path] == nil {
+            let net = Net()
+            pathDownloading[path] = net
+            
+            net.GET(absoluteUrl: path, params: nil, successHandler: { (responseData) -> () in
+                DatabaseManager.saveDataOfPath(path, data: responseData.data, done: { () -> Void in
+                    self.collectionView.reloadData()
+                    
+                    self.pathDownloading[path] = nil
+                })
+            }) { (_) -> () in
+                
+            }
+        }
+    }
+    
+//    func downloadResources(path: NSString, done: (NSURL?, NSError?) -> Void) {
+//        let net = Net()
+//        net.download(absoluteUrl: path, startImmediately: true, progress: { (_) -> () in
+//            
+//        }) { (url, error) -> () in
+//            done(url,error)
+//        }
+//    }
+}
+
+// MARK: - UIImagePickerControllerDelegate
+
+extension MessageViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+
+        let smallImage = image.scaleToFitSize(CGSize(width: 500, height: 500))
+        let orgImage = image.scaleToFitSize(CGSize(width: 750, height: 750))
+        
+        let path = NSUUID().UUIDString.lowercaseString
+        DatabaseManager.saveDataOfPath(path, data: UIImagePNGRepresentation(smallImage)) { () -> Void in
+            XMPPManager.instance.sendLocalPhotoMessage(path, to: self.jid)
+            
+            self.finishSendingMessageAnimated(true)
+
+            // TODO: UploadToS3
+            
+            XMPPManager.instance.sendRemotePhotoMessage("http://lorempixel.com/500/500/?" + NSUUID().UUIDString.lowercaseString, to: self.jid)
+            
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
 }

@@ -184,7 +184,59 @@ extension XMPPMessageArchiving_Message_CoreDataObject: JSQMessageData {
     }
     
     public func isMediaMessage() -> Bool {
+        if body.rangeOfString("[spot_local]") != nil || body.rangeOfString("[spot_remote]") != nil{
+            return true
+        }
+        
         return false
+    }
+    
+    public func isPhotoMessage() -> Bool {
+        if body.rangeOfString("[photo]") != nil {
+            return true
+        }
+        
+        return false
+    }
+    
+    public func isVoiceMessage() -> Bool {
+        if body.rangeOfString("[voice]") != nil {
+            return true
+        }
+        
+        return false
+    }
+    
+    public func isLocalMediaMessage() -> Bool {
+        if body.rangeOfString("[spot_local]") != nil {
+            return true
+        }
+        
+        return false
+    }
+    
+    public func isRemoteMediaMessage() -> Bool {
+        if body.rangeOfString("[spot_remote]") != nil {
+            return true
+        }
+        
+        return false
+    }
+    
+    public func isVideoMessage() -> Bool {
+        if body.rangeOfString("[video]") != nil {
+            return true
+        }
+        
+        return false
+    }
+    
+    public func pathOfMedia(local: Bool) -> String {
+        let str = local ? "[spot_local]" : "[spot_remote]"
+        
+        let r = (body as NSString).rangeOfString(str)
+        
+        return (body as NSString).substringFromIndex(r.location + r.length)
     }
     
     public func text() -> String! {
@@ -194,4 +246,8 @@ extension XMPPMessageArchiving_Message_CoreDataObject: JSQMessageData {
     public func messageHash() -> UInt {
         return UInt(hash)
     }
+    
+//    public func media() -> JSQMessageMediaData {
+//        let pathStr = body.stringByReplacingOccurrencesOfString("[spot_local]", withString: "", options: nil, range: nil)
+//    }
 }

@@ -38,6 +38,9 @@
 		178AE0581A8DC27300D91542 /* NetUploadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178AE04E1A8DC27300D91542 /* NetUploadTask.swift */; };
 		178AE0591A8DC27300D91542 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178AE0501A8DC27300D91542 /* Reachability.swift */; };
 		282EE7CBB8872F846D8E1439 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A5D3641F258F85CB0ABCED /* libPods.a */; };
+		290134B71ABFA6AE00BBFE29 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 290134B61ABFA6AE00BBFE29 /* test.png */; };
+		290134BA1ABFF8A700BBFE29 /* _Resource.m in Sources */ = {isa = PBXBuildFile; fileRef = 290134B91ABFF8A700BBFE29 /* _Resource.m */; };
+		290134BD1ABFF8B200BBFE29 /* Resource.m in Sources */ = {isa = PBXBuildFile; fileRef = 290134BC1ABFF8B200BBFE29 /* Resource.m */; };
 		2906BD091AA9919400D75C05 /* GenderSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2906BD081AA9919300D75C05 /* GenderSelectViewController.swift */; };
 		2911ACE81A96E35B00DF1F84 /* TalkSearchResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2911ACE71A96E35B00DF1F84 /* TalkSearchResultTableViewController.swift */; };
 		2911ACEA1A96E37A00DF1F84 /* RecentlyFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2911ACE91A96E37A00DF1F84 /* RecentlyFriendCell.swift */; };
@@ -151,6 +154,11 @@
 		178AE04D1A8DC27300D91542 /* NetResponseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetResponseData.swift; sourceTree = "<group>"; };
 		178AE04E1A8DC27300D91542 /* NetUploadTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetUploadTask.swift; sourceTree = "<group>"; };
 		178AE0501A8DC27300D91542 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		290134B61ABFA6AE00BBFE29 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
+		290134B81ABFF8A700BBFE29 /* _Resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Resource.h; sourceTree = "<group>"; };
+		290134B91ABFF8A700BBFE29 /* _Resource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Resource.m; sourceTree = "<group>"; };
+		290134BB1ABFF8B200BBFE29 /* Resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resource.h; sourceTree = "<group>"; };
+		290134BC1ABFF8B200BBFE29 /* Resource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Resource.m; sourceTree = "<group>"; };
 		2906BD081AA9919300D75C05 /* GenderSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenderSelectViewController.swift; path = Classes/GenderSelectViewController.swift; sourceTree = "<group>"; };
 		2911ACE71A96E35B00DF1F84 /* TalkSearchResultTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TalkSearchResultTableViewController.swift; path = Classes/TalkSearchResultTableViewController.swift; sourceTree = "<group>"; };
 		2911ACE91A96E37A00DF1F84 /* RecentlyFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecentlyFriendCell.swift; path = Classes/RecentlyFriendCell.swift; sourceTree = "<group>"; };
@@ -522,6 +530,8 @@
 		DC4109F11A81DEF400E11CAB /* Machine */ = {
 			isa = PBXGroup;
 			children = (
+				290134B81ABFF8A700BBFE29 /* _Resource.h */,
+				290134B91ABFF8A700BBFE29 /* _Resource.m */,
 				296D55011AA9BACD005FC650 /* _Station.h */,
 				296D55021AA9BACD005FC650 /* _Station.m */,
 				298FE3BF1A956FBC007AB117 /* _Friend.h */,
@@ -537,6 +547,7 @@
 		DCB538E11A81AE9C00C216D7 = {
 			isa = PBXGroup;
 			children = (
+				290134B61ABFA6AE00BBFE29 /* test.png */,
 				DCB539111A81AFC300C216D7 /* Storyboard */,
 				DCB539151A81B01A00C216D7 /* View Controllers */,
 				DCB539171A81B04700C216D7 /* Controllers */,
@@ -624,6 +635,8 @@
 		DCB539131A81B00700C216D7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				290134BB1ABFF8B200BBFE29 /* Resource.h */,
+				290134BC1ABFF8B200BBFE29 /* Resource.m */,
 				296D55041AA9BAE1005FC650 /* Station.h */,
 				296D55051AA9BAE1005FC650 /* Station.m */,
 				1737A4981AA03C5C007B8281 /* Parse */,
@@ -792,6 +805,7 @@
 				DC4109BA1A81C27500E11CAB /* Localizable.strings in Resources */,
 				DCB539191A81B49600C216D7 /* Talk.storyboard in Resources */,
 				294347E41AAEBBD9003578C8 /* GroupChat.storyboard in Resources */,
+				290134B71ABFA6AE00BBFE29 /* test.png in Resources */,
 				298EB0F81A95C10000315946 /* Common.storyboard in Resources */,
 				DCB538F91A81AE9C00C216D7 /* Images.xcassets in Resources */,
 				DCB5391D1A81B4F500C216D7 /* Contact.storyboard in Resources */,
@@ -879,6 +893,7 @@
 				178AE0521A8DC27300D91542 /* Net.swift in Sources */,
 				DC4109E21A81CDEB00E11CAB /* Model.xcdatamodeld in Sources */,
 				298FE3CE1A956FBC007AB117 /* _User.m in Sources */,
+				290134BA1ABFF8A700BBFE29 /* _Resource.m in Sources */,
 				DCB539261A81BE0B00C216D7 /* BaseViewController.swift in Sources */,
 				178AE0511A8DC27300D91542 /* GCD.swift in Sources */,
 				294347E21AAE8DD8003578C8 /* FriendsPickerViewController.swift in Sources */,
@@ -912,6 +927,7 @@
 				178AE0591A8DC27300D91542 /* Reachability.swift in Sources */,
 				296D55061AA9BAE1005FC650 /* Station.m in Sources */,
 				DC4109D41A81C50A00E11CAB /* Range.swift in Sources */,
+				290134BD1ABFF8B200BBFE29 /* Resource.m in Sources */,
 				294347E91AAEC77E003578C8 /* UserListViewController.swift in Sources */,
 				DCB539201A81B65B00C216D7 /* AppDelegate.swift in Sources */,
 				DC4109CA1A81C50A00E11CAB /* Array.swift in Sources */,
