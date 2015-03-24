@@ -25,16 +25,10 @@ class MessageViewController: JSQMessagesViewController {
     
     var frc: NSFetchedResultsController!
     
-    var icon_speaker_normal:UIImage!
-    var icon_speaker_highlighted:UIImage!
-    var icon_keyboard_normal:UIImage!
-    var icon_keyboard_highlighted:UIImage!
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setAccessoryButtonImageView()
+        Initialization()
 
 //        showLoadEarlierMessagesHeader = true
         

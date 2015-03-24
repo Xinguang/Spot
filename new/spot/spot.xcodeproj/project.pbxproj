@@ -302,6 +302,15 @@
 			path = Parse;
 			sourceTree = "<group>";
 		};
+		17385E6E1ABFB1D100EC536F /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				298AD04E1A946C9100D3BCD0 /* MessageViewController.swift */,
+				177412311AB0698F000A1077 /* VoiceMessageController.swift */,
+			);
+			name = Message;
+			sourceTree = "<group>";
+		};
 		177412331AB06EBF000A1077 /* opencore-amr */ = {
 			isa = PBXGroup;
 			children = (
@@ -447,14 +456,13 @@
 		298EB0F41A95BED400315946 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				17385E6E1ABFB1D100EC536F /* Message */,
 				296623A51A89A640002608EF /* XMPPCreateAccountViewController.swift */,
 				296623A81A89AC3B002608EF /* NewAccountTableViewController.swift */,
-				298AD04E1A946C9100D3BCD0 /* MessageViewController.swift */,
 				29C11D221AB15E7F008CC707 /* GroupMessageViewController.swift */,
 				DCB539251A81BE0B00C216D7 /* BaseViewController.swift */,
 				DC4109B71A81C15200E11CAB /* TabBarController.swift */,
 				297235A21A9DBF17006E5F32 /* ContactDetailViewController.swift */,
-				177412311AB0698F000A1077 /* VoiceMessageController.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -1072,7 +1080,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e067abd7-ffb7-4ba7-b1a2-ca2610dbd039";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "spot/Bridging-Header.h";
 			};
 			name = Debug;
@@ -1095,7 +1103,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "03a88fed-8922-42a5-b10b-0db42106302d";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "spot/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};

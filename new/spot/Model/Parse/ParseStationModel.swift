@@ -12,6 +12,9 @@ class ParseStationModel :ParseModel{
     var name: String = ""
     var lat: String = ""
     var lon: String = ""
+    var add: String = ""
+    var line: String = ""
+    var post: String = ""
     override init(){
         
     }
@@ -19,11 +22,17 @@ class ParseStationModel :ParseModel{
         name: String
         , lat:String
         , lon:String
+        , add:String
+        , line:String
+        , post:String
         ){
             self.init()
             self.name = name
             self.lat = lat
             self.lon = lon
+            self.add = add
+            self.line = line
+            self.post = post
     }
     
 //    override func toPFObject()->PFObject{
