@@ -41,6 +41,7 @@
 		290134B71ABFA6AE00BBFE29 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 290134B61ABFA6AE00BBFE29 /* test.png */; };
 		290134BA1ABFF8A700BBFE29 /* _Resource.m in Sources */ = {isa = PBXBuildFile; fileRef = 290134B91ABFF8A700BBFE29 /* _Resource.m */; };
 		290134BD1ABFF8B200BBFE29 /* Resource.m in Sources */ = {isa = PBXBuildFile; fileRef = 290134BC1ABFF8B200BBFE29 /* Resource.m */; };
+		290134C01AC0F8D500BBFE29 /* JSQVoiceMediaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 290134BF1AC0F8D500BBFE29 /* JSQVoiceMediaItem.m */; };
 		2906BD091AA9919400D75C05 /* GenderSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2906BD081AA9919300D75C05 /* GenderSelectViewController.swift */; };
 		2911ACE81A96E35B00DF1F84 /* TalkSearchResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2911ACE71A96E35B00DF1F84 /* TalkSearchResultTableViewController.swift */; };
 		2911ACEA1A96E37A00DF1F84 /* RecentlyFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2911ACE91A96E37A00DF1F84 /* RecentlyFriendCell.swift */; };
@@ -159,6 +160,8 @@
 		290134B91ABFF8A700BBFE29 /* _Resource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Resource.m; sourceTree = "<group>"; };
 		290134BB1ABFF8B200BBFE29 /* Resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resource.h; sourceTree = "<group>"; };
 		290134BC1ABFF8B200BBFE29 /* Resource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Resource.m; sourceTree = "<group>"; };
+		290134BE1AC0F8D500BBFE29 /* JSQVoiceMediaItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSQVoiceMediaItem.h; path = Classes/JSQVoiceMediaItem.h; sourceTree = "<group>"; };
+		290134BF1AC0F8D500BBFE29 /* JSQVoiceMediaItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSQVoiceMediaItem.m; path = Classes/JSQVoiceMediaItem.m; sourceTree = "<group>"; };
 		2906BD081AA9919300D75C05 /* GenderSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenderSelectViewController.swift; path = Classes/GenderSelectViewController.swift; sourceTree = "<group>"; };
 		2911ACE71A96E35B00DF1F84 /* TalkSearchResultTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TalkSearchResultTableViewController.swift; path = Classes/TalkSearchResultTableViewController.swift; sourceTree = "<group>"; };
 		2911ACE91A96E37A00DF1F84 /* RecentlyFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecentlyFriendCell.swift; path = Classes/RecentlyFriendCell.swift; sourceTree = "<group>"; };
@@ -349,6 +352,8 @@
 		177412401AB06EF0000A1077 /* Voice */ = {
 			isa = PBXGroup;
 			children = (
+				290134BE1AC0F8D500BBFE29 /* JSQVoiceMediaItem.h */,
+				290134BF1AC0F8D500BBFE29 /* JSQVoiceMediaItem.m */,
 				177412491AB11FAD000A1077 /* VoiceController.swift */,
 			);
 			name = Voice;
@@ -909,6 +914,7 @@
 				296623AB1A89C586002608EF /* XMPPManager.swift in Sources */,
 				296D54FE1AA9A829005FC650 /* StationTableViewController.swift in Sources */,
 				1774124D1AB13858000A1077 /* amrFileCodec.m in Sources */,
+				290134C01AC0F8D500BBFE29 /* JSQVoiceMediaItem.m in Sources */,
 				29F5D4241A996D1F00D0AF54 /* AccountEditViewController.swift in Sources */,
 				177412321AB0698F000A1077 /* VoiceMessageController.swift in Sources */,
 				DC4109CB1A81C50A00E11CAB /* Character.swift in Sources */,

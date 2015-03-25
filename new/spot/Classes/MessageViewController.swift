@@ -225,6 +225,25 @@ extension MessageViewController: JSQMessagesCollectionViewDataSource {
                 return photoMessage
 
             }
+            
+            if m.isVoiceMessage() {
+                
+                let path = m.pathOfMedia(m.isLocalMediaMessage())
+                
+                var voice = DatabaseManager.dataOfPath(path)
+                if voice == nil && m.isRemoteMediaMessage() {
+                    downloadResources(path)
+                }
+                
+                let imageName = m.isLocalMediaMessage() ? "SenderVoiceNodePlaying" : "ReceiverVoiceNodePlaying"
+                
+                let voiceItem = JSQVoiceMediaItem(voice: voice, image: UIImage(named: imageName))
+                voiceItem.appliesMediaViewMaskAsOutgoing = m.isLocalMediaMessage()
+                
+                let voiceMessage = JSQMessage(senderId: m.senderId(), senderDisplayName: m.senderDisplayName(), date: m.timestamp, media: voiceItem)
+                
+                return voiceMessage
+            }
         }
         
         return messageAtIndexPath(indexPath)
@@ -330,6 +349,22 @@ extension MessageViewController: JSQMessagesCollectionViewDelegateFlowLayout {
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, header headerView: JSQMessagesLoadEarlierHeaderView!, didTapLoadEarlierMessagesButton sender: UIButton!) {
         SVProgressHUD.showInfoWithStatus("TODO", maskType: .Clear)
+    }
+    
+    override func collectionView(collectionView: JSQMessagesCollectionView!, didTapCellAtIndexPath indexPath: NSIndexPath!, touchLocation: CGPoint) {
+        Util.showTodo()
+    }
+    
+    override func collectionView(collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAtIndexPath indexPath: NSIndexPath!) {
+//        Util.showTodo()
+        let m = messageAtIndexPath(indexPath) as XMPPMessageArchiving_Message_CoreDataObject
+        if m.isMediaMessage() {
+            if m.isVoiceMessage() {
+                if let data = DatabaseManager.dataOfPath(m.pathOfMedia(m.isLocalMediaMessage())) {
+                    VoiceController.instance.playOrStop(data)
+                }
+            }
+        }
     }
 }
 

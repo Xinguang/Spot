@@ -83,4 +83,6 @@
 #include "interf_enc.h"
 #include "amrFileCodec.h"
 
+#import "JSQVoiceMediaItem.h"
+
 #endif

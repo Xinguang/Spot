@@ -84,6 +84,26 @@ class VoiceController :NSObject,AVAudioRecorderDelegate{
         }
         return nil
     }
+
+    func playOrStop(data: NSData?) {
+        if player == nil {
+            // TODO: change to do once
+            let path = paths[0].stringByAppendingPathComponent("test.amr")
+            //        data.writeToFile(path, atomically: true)
+            
+            play(path)
+            return
+        }
+        
+        if player.playing {
+            player.stop()
+            player = nil
+        } else {
+            player.prepareToPlay()
+            player.play()
+        }
+    }
+
     func play(path:String!){
         /////
         self.amrToWav(path, savePath: self.path_wav)
