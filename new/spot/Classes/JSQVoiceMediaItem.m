@@ -86,9 +86,9 @@
         CGSize size = [self mediaViewDisplaySize];
         UIImageView *imageView = [[UIImageView alloc] initWithImage:self.image];
         imageView.frame = CGRectMake(0.0f, 0.0f, size.width, size.height);
-        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        imageView.contentMode = self.appliesMediaViewMaskAsOutgoing ? UIViewContentModeRight : UIViewContentModeLeft;
         imageView.clipsToBounds = YES;
-        imageView.backgroundColor = [UIColor jsq_messageBubbleGreenColor];
+        imageView.backgroundColor = self.appliesMediaViewMaskAsOutgoing ? [UIColor jsq_messageBubbleLightGrayColor] : [UIColor jsq_messageBubbleGreenColor];
         [JSQMessagesMediaViewBubbleImageMasker applyBubbleImageMaskToMediaView:imageView isOutgoing:self.appliesMediaViewMaskAsOutgoing];
         self.cachedImageView = imageView;
     }

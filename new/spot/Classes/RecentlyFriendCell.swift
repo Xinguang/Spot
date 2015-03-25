@@ -43,9 +43,8 @@ class RecentlyFriendCell: UITableViewCell {
                 membersCountLabel.text = "\(XMPPManager.countOfRoom(friend.bareJidStr))"
             }
             
-            if friend.mostRecentMessageBody.rangeOfString("[spot_local]") != nil || friend.mostRecentMessageBody.rangeOfString("[spot_remote]") != nil{
-                self.messageLabel.text = "画像"
-                // TODO: 音声
+            if friend.mostRecentMessageBody.messageType() != .Text {
+                self.messageLabel.text = friend.mostRecentMessageBody.messageType().rawValue
             } else {
                 self.messageLabel.text = friend.mostRecentMessageBody
             }

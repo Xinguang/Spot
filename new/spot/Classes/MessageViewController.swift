@@ -201,12 +201,12 @@ extension MessageViewController: JSQMessagesCollectionViewDataSource {
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
         let m = messageAtIndexPath(indexPath) as XMPPMessageArchiving_Message_CoreDataObject
-        if m.isMediaMessage() {
+        let type = m.messageType()
+        
+        if type != .Text {
+            let path = m.pathOfMedia(m.isLocalMediaMessage())
             
-            if m.isPhotoMessage() {
-
-                let path = m.pathOfMedia(m.isLocalMediaMessage())
-                
+            if type == .Photo {
                 var image: UIImage?
                 
                 if let data = DatabaseManager.dataOfPath(path) {
@@ -219,17 +219,13 @@ extension MessageViewController: JSQMessagesCollectionViewDataSource {
                 
                 let photoItem = JSQPhotoMediaItem(image:image)
                 photoItem.appliesMediaViewMaskAsOutgoing = m.isLocalMediaMessage()
-
+                
                 let photoMessage = JSQMessage(senderId: m.senderId(), senderDisplayName: m.senderDisplayName(), date: m.timestamp, media: photoItem)
                 
                 return photoMessage
-
             }
             
-            if m.isVoiceMessage() {
-                
-                let path = m.pathOfMedia(m.isLocalMediaMessage())
-                
+            if type == .Voice {
                 var voice = DatabaseManager.dataOfPath(path)
                 if voice == nil && m.isRemoteMediaMessage() {
                     downloadResources(path)
@@ -248,8 +244,6 @@ extension MessageViewController: JSQMessagesCollectionViewDataSource {
         
         return messageAtIndexPath(indexPath)
     }
-    
-    
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageAvatarImageDataSource! {
         let message = messageAtIndexPath(indexPath)
@@ -356,13 +350,15 @@ extension MessageViewController: JSQMessagesCollectionViewDelegateFlowLayout {
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAtIndexPath indexPath: NSIndexPath!) {
-//        Util.showTodo()
         let m = messageAtIndexPath(indexPath) as XMPPMessageArchiving_Message_CoreDataObject
-        if m.isMediaMessage() {
-            if m.isVoiceMessage() {
-                if let data = DatabaseManager.dataOfPath(m.pathOfMedia(m.isLocalMediaMessage())) {
-                    VoiceController.instance.playOrStop(data)
-                }
+        if m.messageType() == .Voice {
+            if m.isRemoteMediaMessage() {
+                VoiceController.instance.playOrStopTest()
+                return
+            }
+            
+            if let data = DatabaseManager.dataOfPath(m.pathOfMedia(m.isLocalMediaMessage())) {
+                VoiceController.instance.playOrStop(data)
             }
         }
     }

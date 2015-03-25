@@ -85,23 +85,39 @@ class VoiceController :NSObject,AVAudioRecorderDelegate{
         return nil
     }
 
-    func playOrStop(data: NSData?) {
-        if player == nil {
-            // TODO: change to do once
-            let path = paths[0].stringByAppendingPathComponent("test.amr")
-            //        data.writeToFile(path, atomically: true)
-            
-            play(path)
-            return
+    func playOrStopTest() {
+        if player != nil {
+            if player.playing {
+                player.stop()
+                player = nil
+                return
+            } else {
+                player.stop()
+                player = nil
+            }
         }
         
-        if player.playing {
-            player.stop()
-            player = nil
-        } else {
-            player.prepareToPlay()
-            player.play()
+        let path = NSBundle.mainBundle().pathForResource("test", ofType: "amr")
+        
+        play(path)
+    }
+    
+    func playOrStop(data: NSData) {
+        if player != nil {
+            if player.playing {
+                player.stop()
+                player = nil
+                return
+            } else {
+                player.stop()
+                player = nil
+            }
         }
+        
+        let path = paths[0].stringByAppendingPathComponent("test.amr")
+        data.writeToFile(path, atomically: true)
+        
+        play(path)
     }
 
     func play(path:String!){
@@ -109,6 +125,7 @@ class VoiceController :NSObject,AVAudioRecorderDelegate{
         self.amrToWav(path, savePath: self.path_wav)
         /////
         player = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: self.path_wav), error: nil)
+//        player.delegate = self
         AVAudioSession.sharedInstance().overrideOutputAudioPort(.Speaker, error: nil)
         
         player.prepareToPlay()
@@ -122,4 +139,6 @@ class VoiceController :NSObject,AVAudioRecorderDelegate{
     func amrToWav(amrPath:String,savePath:String){
         DecodeAMRFileToWAVEFile(amrPath.cStringUsingEncoding(NSUTF8StringEncoding)!,savePath.cStringUsingEncoding(NSUTF8StringEncoding)!)
     }
+    
+    
 }

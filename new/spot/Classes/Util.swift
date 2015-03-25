@@ -184,51 +184,19 @@ extension XMPPMessageArchiving_Message_CoreDataObject: JSQMessageData {
     }
     
     public func isMediaMessage() -> Bool {
-        if body.rangeOfString("[spot_local]") != nil || body.rangeOfString("[spot_remote]") != nil{
-            return true
-        }
-        
-        return false
-    }
-    
-    public func isPhotoMessage() -> Bool {
-        if body.rangeOfString("[photo]") != nil {
-            return true
-        }
-        
-        return false
-    }
-    
-    public func isVoiceMessage() -> Bool {
-        if body.rangeOfString("[voice]") != nil {
-            return true
-        }
-        
-        return false
+        return body.isMediaMessage()
     }
     
     public func isLocalMediaMessage() -> Bool {
-        if body.rangeOfString("[spot_local]") != nil {
-            return true
-        }
-        
-        return false
+        return body.isLocalMediaMessage()
     }
     
     public func isRemoteMediaMessage() -> Bool {
-        if body.rangeOfString("[spot_remote]") != nil {
-            return true
-        }
-        
-        return false
+        return body.isRemoteMessage()
     }
     
-    public func isVideoMessage() -> Bool {
-        if body.rangeOfString("[video]") != nil {
-            return true
-        }
-        
-        return false
+    func messageType() -> MessageType {
+        return body.messageType()
     }
     
     public func pathOfMedia(local: Bool) -> String {
@@ -251,3 +219,57 @@ extension XMPPMessageArchiving_Message_CoreDataObject: JSQMessageData {
 //        let pathStr = body.stringByReplacingOccurrencesOfString("[spot_local]", withString: "", options: nil, range: nil)
 //    }
 }
+
+enum MessageType: String {
+    case Text = "text"
+    case Photo = "画像"
+    case Voice = "音声"
+    case Video = "映像"
+}
+
+extension String {
+    
+    func messageType() -> MessageType {
+        if isMediaMessage() {
+            if rangeOfString("[photo]") != nil {
+                return .Photo
+            }
+            
+            if rangeOfString("[voice]") != nil {
+                return .Voice
+            }
+            
+            if rangeOfString("[video]") != nil {
+                return .Video
+            }
+        }
+        
+        return .Text
+    }
+    
+    func isRemoteMessage() -> Bool {
+        if rangeOfString("[spot_remote]") != nil {
+            return true
+        }
+        
+        return false
+    }
+    
+    func isLocalMediaMessage() -> Bool {
+        if rangeOfString("[spot_local]") != nil {
+            return true
+        }
+        
+        return false
+    }
+    
+    func isMediaMessage() -> Bool {
+        if rangeOfString("[spot_local]") != nil || rangeOfString("[spot_remote]") != nil{
+            return true
+        }
+        
+        return false
+    }
+
+}
+

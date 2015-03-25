@@ -102,9 +102,19 @@ extension MessageViewController {
         else if longPressedRecognizer.state == UIGestureRecognizerState.Ended || longPressedRecognizer.state == UIGestureRecognizerState.Cancelled{
             
             btn_voice?.backgroundColor = UIColor(white: 0.85, alpha: 1.0)
-            let url = VoiceController.instance.stop()
-            
-            VoiceController.instance.play(url)
+            if let url = VoiceController.instance.stop() {
+                let path = NSUUID().UUIDString.lowercaseString
+                
+                if let data = NSData(contentsOfFile: url) {
+                    DatabaseManager.saveDataOfPath(path, data: data) { () -> Void in
+                        XMPPManager.instance.sendLocalVoiceMessage(path, to: self.jid)
+                        
+                        // TODO: uploadToS3
+                        XMPPManager.instance.sendRemoteVoiceMessage("https://archive.org/download/testmp3testfile/mpthreetest.mp3", to: self.jid)
+                    }
+                }
+            }
+//            VoiceController.instance.play(url)
             NSLog("hold release");
         }
     }

@@ -293,6 +293,22 @@ class XMPPManager: NSObject {
         
         xmppStream.sendElement(xmppMessage)
     }
+    
+    func sendLocalVoiceMessage(path: NSString, to: XMPPJID) {
+        let xmppMessage = XMPPMessage(type: "chat", to: to)
+        xmppMessage.addBody("[voice][spot_local]\(path)")
+        //                xmppMessage.addActiveChatState()
+        
+        xmppStream.sendElement(xmppMessage)
+    }
+    
+    func sendRemoteVoiceMessage(path: NSString, to: XMPPJID) {
+        let xmppMessage = XMPPMessage(type: "chat", to: to)
+        xmppMessage.addBody("[voice][spot_remote]\(path)")
+        //                xmppMessage.addActiveChatState()
+        
+        xmppStream.sendElement(xmppMessage)
+    }
 }
 
 // MARK: - XMPPStreamDelegate
