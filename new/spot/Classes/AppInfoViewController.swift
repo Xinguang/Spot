@@ -22,12 +22,13 @@ class AppInfoViewController: UIViewController {
         SVProgressHUD.show()
         
         ParseController.getAppHistoryDone { (res, error) -> Void in
-            SVProgressHUD.dismiss()
             
             if let res = res {
                 self.histories = res
                 self.tableView.reloadData()
             }
+            
+            SVProgressHUD.dismiss()
         }
     }
 
@@ -71,11 +72,11 @@ extension AppInfoViewController: UITableViewDataSource {
     
     func calculateHeightForConfiguredSizingCell(cell: UITableViewCell) -> CGFloat {
         cell.bounds = CGRectMake(0,0,tableView.bounds.width,cell.bounds.height)
-        
         cell.setNeedsLayout()
         cell.layoutIfNeeded()
         
         let size = cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize) as CGSize
+        
         return size.height + 1
     }
     
@@ -86,6 +87,6 @@ extension AppInfoViewController: UITableViewDataSource {
         
         cellForHeight.history = histories[indexPath.row]
         
-        return calculateHeightForConfiguredSizingCell(cellForHeight!)
+        return calculateHeightForConfiguredSizingCell(cellForHeight)
     }
 }
