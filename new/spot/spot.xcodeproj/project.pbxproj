@@ -43,6 +43,9 @@
 		290134BD1ABFF8B200BBFE29 /* Resource.m in Sources */ = {isa = PBXBuildFile; fileRef = 290134BC1ABFF8B200BBFE29 /* Resource.m */; };
 		290134C01AC0F8D500BBFE29 /* JSQVoiceMediaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 290134BF1AC0F8D500BBFE29 /* JSQVoiceMediaItem.m */; };
 		290134C21AC261A500BBFE29 /* test.amr in Resources */ = {isa = PBXBuildFile; fileRef = 290134C11AC261A500BBFE29 /* test.amr */; };
+		290134C41AC2868C00BBFE29 /* AppInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290134C31AC2868C00BBFE29 /* AppInfoViewController.swift */; };
+		290134C61AC28DC800BBFE29 /* MultilineLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290134C51AC28DC800BBFE29 /* MultilineLabel.swift */; };
+		290134C81AC28E8200BBFE29 /* AppHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290134C71AC28E8200BBFE29 /* AppHistoryCell.swift */; };
 		2906BD091AA9919400D75C05 /* GenderSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2906BD081AA9919300D75C05 /* GenderSelectViewController.swift */; };
 		2911ACE81A96E35B00DF1F84 /* TalkSearchResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2911ACE71A96E35B00DF1F84 /* TalkSearchResultTableViewController.swift */; };
 		2911ACEA1A96E37A00DF1F84 /* RecentlyFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2911ACE91A96E37A00DF1F84 /* RecentlyFriendCell.swift */; };
@@ -164,6 +167,9 @@
 		290134BE1AC0F8D500BBFE29 /* JSQVoiceMediaItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSQVoiceMediaItem.h; path = Classes/JSQVoiceMediaItem.h; sourceTree = "<group>"; };
 		290134BF1AC0F8D500BBFE29 /* JSQVoiceMediaItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSQVoiceMediaItem.m; path = Classes/JSQVoiceMediaItem.m; sourceTree = "<group>"; };
 		290134C11AC261A500BBFE29 /* test.amr */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.amr; sourceTree = "<group>"; };
+		290134C31AC2868C00BBFE29 /* AppInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppInfoViewController.swift; path = Classes/AppInfoViewController.swift; sourceTree = "<group>"; };
+		290134C51AC28DC800BBFE29 /* MultilineLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultilineLabel.swift; path = Classes/MultilineLabel.swift; sourceTree = "<group>"; };
+		290134C71AC28E8200BBFE29 /* AppHistoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppHistoryCell.swift; path = Classes/AppHistoryCell.swift; sourceTree = "<group>"; };
 		2906BD081AA9919300D75C05 /* GenderSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenderSelectViewController.swift; path = Classes/GenderSelectViewController.swift; sourceTree = "<group>"; };
 		2911ACE71A96E35B00DF1F84 /* TalkSearchResultTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TalkSearchResultTableViewController.swift; path = Classes/TalkSearchResultTableViewController.swift; sourceTree = "<group>"; };
 		2911ACE91A96E37A00DF1F84 /* RecentlyFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecentlyFriendCell.swift; path = Classes/RecentlyFriendCell.swift; sourceTree = "<group>"; };
@@ -470,6 +476,7 @@
 				DC4109B71A81C15200E11CAB /* TabBarController.swift */,
 				297235A21A9DBF17006E5F32 /* ContactDetailViewController.swift */,
 				177412311AB0698F000A1077 /* VoiceMessageController.swift */,
+				290134C31AC2868C00BBFE29 /* AppInfoViewController.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -695,6 +702,7 @@
 		DCB539161A81B02A00C216D7 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				290134C51AC28DC800BBFE29 /* MultilineLabel.swift */,
 				293DC7B91A9DD81600332124 /* ContactDetailFooterView.swift */,
 				2911ACE91A96E37A00DF1F84 /* RecentlyFriendCell.swift */,
 				DC410A091A8200EA00E11CAB /* ContactCell.swift */,
@@ -702,6 +710,7 @@
 				2989E0C31A98A8A100029F6B /* UserCell.swift */,
 				297235A61A9DC34A006E5F32 /* ContactDetailHeaderView.swift */,
 				294347E61AAEC027003578C8 /* FriendCell.swift */,
+				290134C71AC28E8200BBFE29 /* AppHistoryCell.swift */,
 			);
 			name = CustomView;
 			sourceTree = "<group>";
@@ -877,6 +886,7 @@
 			files = (
 				1737A4941AA03C0F007B8281 /* SNSController.swift in Sources */,
 				178AE0571A8DC27300D91542 /* NetResponseData.swift in Sources */,
+				290134C81AC28E8200BBFE29 /* AppHistoryCell.swift in Sources */,
 				296623A01A898D41002608EF /* DatabaseManager.swift in Sources */,
 				178AE0531A8DC27300D91542 /* NetData.swift in Sources */,
 				298AD04F1A946C9100D3BCD0 /* MessageViewController.swift in Sources */,
@@ -923,6 +933,7 @@
 				177412321AB0698F000A1077 /* VoiceMessageController.swift in Sources */,
 				DC4109CB1A81C50A00E11CAB /* Character.swift in Sources */,
 				DC4109CE1A81C50A00E11CAB /* ExSwift.swift in Sources */,
+				290134C41AC2868C00BBFE29 /* AppInfoViewController.swift in Sources */,
 				1774124A1AB11FAD000A1077 /* VoiceController.swift in Sources */,
 				296623DC1A8CA28C002608EF /* XMPPSearchReported.m in Sources */,
 				296D55001AA9B1D7005FC650 /* StationAddTableViewController.swift in Sources */,
@@ -936,6 +947,7 @@
 				29EE09C11AA4B3A5005F6509 /* UserController.swift in Sources */,
 				178AE0591A8DC27300D91542 /* Reachability.swift in Sources */,
 				296D55061AA9BAE1005FC650 /* Station.m in Sources */,
+				290134C61AC28DC800BBFE29 /* MultilineLabel.swift in Sources */,
 				DC4109D41A81C50A00E11CAB /* Range.swift in Sources */,
 				290134BD1ABFF8B200BBFE29 /* Resource.m in Sources */,
 				294347E91AAEC77E003578C8 /* UserListViewController.swift in Sources */,

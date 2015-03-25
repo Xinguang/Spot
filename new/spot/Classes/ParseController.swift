@@ -273,4 +273,15 @@ class ParseController: NSObject {
             }
         })
     }
+    
+    // MARK: - AppInfo
+    
+    class func getAppHistoryDone(done: ([PFObject]?, NSError?) -> Void) {
+        let q = PFQuery(className: "History")
+        q.orderByDescending("createdAt")
+        
+        q.findObjectsInBackgroundWithBlock { (res, err) -> Void in
+            done(res as? [PFObject], err)
+        }
+    }
 }
